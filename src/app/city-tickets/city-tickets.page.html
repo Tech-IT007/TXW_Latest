@@ -1,0 +1,151 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: green;">City Tickets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #fff">
+  <!-- <div>
+    <h3 class="h3" style="color: green;"></h3>
+    <div class="div">
+      <ion-icon routerLink="/corporate-all-tickets"class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+  <div>
+    <ion-buttons  style="color: #000; margin-left: 54%; margin-top: 2px">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </div> -->
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size ="12">
+        <ion-segment  [scrollable]="true">
+          <!-- <ion-segment-button routerLink="/corprate-tickets" >
+            <ion-label>Current</ion-label>
+          </ion-segment-button>
+          <ion-segment-button routerLink="/corprate-past-tickets" >
+            <ion-label  >Past </ion-label>
+          </ion-segment-button>
+          <ion-segment-button  routerLink="/ppm-tickets">
+            <ion-label  >PPM </ion-label>
+          </ion-segment-button> -->
+          <!-- <ion-segment-button   style="color: green;" >
+            <ion-label>City Tickets </ion-label>
+          </ion-segment-button> -->
+          <!-- <ion-segment-button  routerLink="/account-tickets"  style="color: brown;" >
+            <ion-label>Account </ion-label>
+          </ion-segment-button> -->
+        </ion-segment>
+
+   
+      </ion-col>
+    </ion-row>
+     </ion-grid>
+  <div *ngIf="show" style="text-align: center;margin-top: 28%;">
+    <img src="/assets/img/opps.jpg" alt="">
+    <h2 style="font-weight: bold;">
+      There Are No Tickets Found
+    </h2>
+  </div>
+  <div *ngIf="serach">
+    <ion-searchbar id="search" animated [(ngModel)]="searchTerm" placeholder="Search Tickets Here" animated
+      style="color: black; --background: #f4f6f9; "></ion-searchbar>
+  </div>
+  <div *ngFor="let user of obj | filter:searchTerm">
+
+    <ion-card class="card">
+      <div style="margin-top: 15px ;">
+        <div style="display: flex">
+          <div>
+            <h5 style="color: #000"></h5>
+          </div>
+          <div *ngIf=" user.ClientTicketID == '' ">
+            <h6 style="
+                   margin-top: 2px;
+    font-size: 11px;
+    color: #000;
+    margin-left: 0%;
+    font-weight: bold;
+              ">
+ {{user.TicketID}}
+            </h6>
+          </div>
+          <div *ngIf=" user.ClientTicketID != '' ">
+            <h6 style="
+                   margin-top: 2px;
+    font-size: 11px;
+    color: #000;
+    margin-left: 0%;
+    font-weight: bold;
+              ">
+             {{user.ClientTicketID}} /{{user.TicketID}}
+            </h6>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ion-button class="button99" (click)="route_to_profile_answer_screen(user.ID)">View</ion-button>
+      </div>
+      <div style="margin-top: -17px;">
+       
+        <h6 class="goom">{{ user.Name }}</h6>
+        <!-- <h6   (click)="route_to_Edit_impact_screen(ID)" class="view" routerLink="/profile">Booking Details</h6> -->
+      </div>
+
+      <div style="display: flex">
+        <div>
+          <h6 style="margin-left: 18px; font-size: 13px">Type</h6>
+        </div>
+
+        <div>
+          <h6 style="margin-left: 170px; font-size: 14px">
+            {{ user.Type}}
+          </h6>
+        </div>
+      </div>
+
+          
+  <ion-grid>
+    <ion-row>
+      <h6 class="side">Message</h6>
+ 
+      <ion-col *ngIf="user.Message  == ''" class="short">Not Set</ion-col>
+      <ion-col *ngIf="user.Message  != ''" class="short"> {{user.Message}}</ion-col>
+    
+     
+      <ion-col style="left: 22%;"></ion-col>
+
+    </ion-row>
+  </ion-grid>
+      <div style="display: flex">
+        <div>
+          <h6 style="margin-left: 18px; font-size: 13px">Status</h6>
+        </div>
+
+        <div *ngIf="user.Status == ''">
+          <h6 style="margin-left: 154px; font-size: 14px" >
+        Not Set
+          </h6>
+        </div>
+        
+        <div *ngIf="user.Status != ''">
+          <h6 style="margin-left: 154px; font-size: 14px" >
+            {{ user.Status }}
+          </h6>
+        </div>
+      </div>
+
+    </ion-card>
+  </div>
+  <ion-infinite-scroll threshold="50%" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more Forms...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

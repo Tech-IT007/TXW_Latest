@@ -1,0 +1,153 @@
+
+<ion-content style="--background: #fff">
+ 
+  <div>
+    <h3 class="h3">Ticket Information</h3>
+    <div class="div">
+      <ion-icon routerLink="/account-branch-tickets" class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+
+    <div *ngIf="show" style="text-align: center; margin-top: 28%">
+      <img src="/assets/img/opps.jpg" alt="" />
+      <h2 style="font-weight: bold">There Are No Tickets Found</h2>
+    </div>
+
+<div>
+  <h4 style="margin-left: 20px; color: #000">{{ impact.TicketID }}</h4>
+</div>
+<ion-card style="box-shadow: none; background: #fff">
+  <div style=" display: flex;justify-content: space-between;">
+    <div class="right">
+      <h4 class="type" >Type</h4>
+    </div>
+    <div *ngIf="impact.Type == '' ">
+    <h4 class="left" >Not Set</h4>
+   </div>
+   <div *ngIf="impact.Type != '' ">
+    <h4 class="left" >{{ impact.Type }}</h4>
+   </div>
+  </div>
+  <div style=" display: flex;justify-content: space-between;">
+    <div class="right">
+      <h4  class="type" >Branch</h4>
+    </div>
+    <div *ngIf="impact.BranchSite == '' ">
+    <h4 class="left" >Not Set</h4>
+   </div>
+   <div *ngIf="impact.BranchSite != '' ">
+    <h4 class="left" >{{ impact.BranchSite }}</h4>
+   </div>
+  </div>
+  <div style=" display: flex;justify-content: space-between;">
+    <div class="right">
+      <h4 class="type"  >Company</h4>
+    </div>
+    <div *ngIf="impact.CompanyName == '' ">
+    <h4 class="left" >Not Set</h4>
+   </div>
+   <div *ngIf="impact.CompanyName != '' ">
+    <h4 class="left" >{{ impact.CompanyName }}</h4>
+   </div>
+  </div>
+  <div style=" display: flex;justify-content: space-between;">
+    <div class="right">
+      <h4  class="type" >Message</h4>
+    </div>
+    <div *ngIf="impact.Message == '' ">
+    <h4 class="left" >Not Set</h4>
+   </div>
+   <div  style="width: 50%;" *ngIf="impact.Message != '' ">
+    <h4 class="left" >{{ impact.Message }}</h4>
+   </div>
+  </div>
+  <!-- <div style=" display: flex;justify-content: space-between;">
+    <div class="right">
+      <h4  class="type" >Address</h4>
+    </div>
+    <div *ngIf="impact.Customer_address == '' ">
+    <h4 class="left" >Not Set</h4>
+   </div>
+   <div *ngIf="impact.Customer_address != '' ">
+    <h4 class="left" >{{ impact.Customer_address }}</h4>
+   </div>
+  </div> -->
+  <div style=" display: flex;justify-content: space-between;">
+    <div class="right">
+      <h4  class="type" >Employee Name</h4>
+    </div>
+    <div *ngIf="impact.AssignedTo    == '-1' ">
+    <h4 class="left" >Not Set</h4>
+   </div>
+   <div *ngIf="impact.AssignedTo   != '' ">
+    <h4 class="left" >{{ impact.EmployeeName }}</h4>
+   </div>
+  </div>
+  <div style=" display: flex;justify-content: space-between;">
+    <div class="right">
+      <h4  class="type" >Status</h4>
+    </div>
+    <div *ngIf="impact.Status == '' ">
+    <h4 class="left" >Not Set</h4>
+   </div>
+   <div *ngIf="impact.Status != '' ">
+    <h4 class="left" >{{ impact.Status }}</h4>
+   </div>
+  </div>
+  <div style=" display: flex;justify-content: space-between;">
+    <div class="right">
+      <h4  class="type" >Due Date</h4>
+    </div>
+    <div *ngIf="impact.DueDate == '' ">
+    <h4 class="left" >Not Set</h4>
+   </div>
+   <div *ngIf="impact.DueDate!= '' ">
+    <h4 class="left" >{{ impact.DueDate }}</h4>
+   </div>
+  </div>
+  <div style=" display: flex;justify-content: space-between;">
+    <div class="right">
+      <h4  class="type" >Client Ticket ID   </h4>
+    </div>
+    <div *ngIf="impact.ClientTicketID == '' ">
+    <h4 class="left" >Not Set</h4>
+   </div>
+   <div *ngIf="impact.ClientTicketID!= '' ">
+    <h4 class="left" >{{impact.ClientTicketID}}</h4>
+   </div>
+  </div>
+  <div *ngIf="costly"  style=" display: flex;
+  justify-content: space-between;
+  border: 2px solid;
+  width: 100%; margin-top: 2%;"   routerLink="/finance-cost">
+    <div class="right">
+      <h4 style="font-weight: 700;" class="type" >Finance Cost</h4>
+    </div>
+  
+   <div>
+    <h4 class="left" style="color: red;
+    font-weight: 700; font-size: 16px;" > View</h4>
+   </div>
+  </div>
+</ion-card>
+<div>
+  <!-- <div *ngIf="row">
+    <ion-button (click)=" route_to_profile_answer_screen(BookingID)" [disabled]="!button"
+      [ngClass]="{'gray-button':!button}" class="button" expand="block">
+     Change Ticket Status </ion-button>
+  </div>
+  <div *ngIf="water">
+    <ion-button (click)=" route_to_profile_answer_screen(BookingID)" [disabled]="!button"
+      [ngClass]="{'gray-button':!button}" class="button" expand="block">
+     Start Work </ion-button>
+  </div> -->
+  <div >
+    <ion-button  [disabled]="!button"
+    [ngClass]="{'gray-button':!button}"  (click)="route_to_profile_answer_screen(BookingID)" 
+     class="button" expand="block">
+     Change Ticket Status  </ion-button>
+  </div>
+</div>
+
+
+</ion-content>  

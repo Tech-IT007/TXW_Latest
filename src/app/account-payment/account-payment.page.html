@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar style="--background:#027dc1; --color:#fff">
+    <ion-buttons slot="start">
+      <ion-back-button style="color:#fff"></ion-back-button>
+    </ion-buttons>
+    <ion-title>All Payments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-bg">
+
+  <!-- FAB -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" routerLink="/branch-account-payment-form">
+    <ion-fab-button class="logout-btn">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- GRAND TOTAL -->
+  <ion-card class="total-card">
+    <div class="total-left">
+      <span>Grand Total</span>
+      <h2>₹ {{ grandTotal }}</h2>
+    </div>
+    <ion-icon name="wallet-outline"></ion-icon>
+  </ion-card>
+
+  <!-- PAYMENT LIST -->
+  <ion-card class="payment-card" *ngFor="let item of paymentList"  [ngClass]="{
+    'card-paid': item.Status == 'Paid',
+    'card-pending': item.Status == 'Pending',
+    'card-rejected': item.Status == 'Rejected'
+  }">
+
+    <!-- Header -->
+    <div class="card-header">
+      <h2>{{ item.Store }}</h2>
+
+      <ion-button fill="clear" class="eye-btn" (click)="viewPayment(item.ID)"> View Details
+ 
+      </ion-button>
+    </div>
+
+    <!-- Body -->
+    <div class="card-body">
+
+      <div class="row">
+        <span>Amount</span>
+        <strong>₹ {{ item.Amount }}</strong>
+      </div>
+
+      <div class="row">
+        <span>Date</span>
+        <strong>{{ item.CreatedDate }}</strong>
+      </div>
+
+      <div class="row">
+        <span>Time</span>
+        <strong>{{ item.CreatedTime }}</strong>
+      </div>
+
+      <div class="row">
+        <span>Schedule Date</span>
+        <strong>{{ item.ScheduleDate }}</strong>
+      </div>
+
+      <!-- STATUS BADGE -->
+      <div class="row">
+        <span>Payment Status</span>
+
+        <ion-badge
+          [ngClass]="{
+            'status-paid': item.Status == 'Paid',
+            'status-pending': item.Status == 'Pending',
+            'status-rejected': item.Status == 'Rejected'
+          }"
+        >
+          {{ item.Status }}
+        </ion-badge>
+
+      </div>
+
+    </div>
+  </ion-card>
+
+</ion-content>

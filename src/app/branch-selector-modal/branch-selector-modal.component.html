@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select Branch</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Search Branch" debounce="300" (ionInput)="filterBranches($event)"></ion-searchbar>
+
+  <ion-list style="max-height:70vh; overflow-y:auto">
+    <ion-item *ngFor="let branch of filteredBranches" button (click)="selectBranch(branch)">
+      {{ branch.BranchSite }}
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreBranches($event)" *ngIf="hasMoreBranches">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more branches..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

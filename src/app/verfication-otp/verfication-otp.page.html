@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button style="    --background: #fff;" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Verification Code</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div style="padding: 16px; background:#f5f5f5; border-radius:8px; margin:10px;">
+    <p style="margin:4px 0; font-weight:600; color:#000;">Account Branch No. - {{acountbranchno}} </p>
+    <p style="margin:4px 0; font-weight:600; color:#000;">Account Branch Manager - {{acountbranchmanager }}</p>
+  </div>
+  <div *ngIf="tea">
+    <!-- <ng-otp-input ></ng-otp-input> -->
+    <div>
+      <ion-card    
+        style="
+          margin-top: 30%;
+          padding-bottom: 5%;
+          border-radius: 10px;
+          background: #fff;
+          box-shadow: none;
+        "
+      >
+        <h3
+          style="
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            font-family: Helvetica;
+            margin-top: 26px;
+          "
+        >
+          Verification Code
+        </h3>
+
+    
+
+
+
+        <ion-grid style="margin-top: -16px">
+          <ion-row>
+            <ion-col>
+              <input
+                #txt1
+                type="number"
+                (keyup)="move($event,'', txt1, txt2)"
+                [(ngModel)]="userdetails.otp1"
+                maxlength="1"
+                id="input"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                class="input"
+              />
+            </ion-col>
+            <ion-col>
+              <input
+                #txt2
+                type="number"
+                (keyup)="move($event,txt1, txt2, txt3)"
+                [(ngModel)]="userdetails.otp2"
+                maxlength="1"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                class="input"
+                placeholder=""
+                name="number"
+              />
+            </ion-col>
+            <ion-col>
+              <input
+                #txt3
+                type="number"
+                (keyup)="move($event,txt2, txt3, txt4)"
+                [(ngModel)]="userdetails.otp3"
+                maxlength="1"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                class="input"
+              />
+            </ion-col>
+            <ion-col>
+              <input
+                #txt4
+                type="number"
+                (keyup)="move($event,txt3, txt4, '')"
+                [(ngModel)]="userdetails.otp4"
+                maxlength="1"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                class="input"
+              />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+     
+        <div >
+          <ion-button  class="button" (click)="  submit()">
+            Verify Now
+          </ion-button>
+        </div>
+      </ion-card>
+    </div>
+
+  </div>
+
+
+</ion-content>

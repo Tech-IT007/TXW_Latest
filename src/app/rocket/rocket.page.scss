@@ -1,0 +1,93 @@
+.joinBtn {
+  width: 43%;
+  height: 7ex;
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.joinBtn:hover {
+  background-color: #fff;
+}
+
+
+.aari {
+  width: 20%;
+  margin-left: 2%;
+
+  // margin-top: 19px;
+}
+
+.blub {
+  width: 20%;
+  margin-left: 68%;
+  margin-top: 19px;
+
+}
+
+ion-header {
+  overflow: hidden;
+}
+
+
+.joinBtn2 {
+  width: 11em;
+  height: 8ex;
+  background-color: #d42d27;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #fff;
+
+  cursor: pointer;
+}
+
+
+.joinBtn3 {
+  width: 11em;
+  height: 8ex;
+  background-color: #027dc1;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+.joinBtn4 {
+  width: 10em;
+  height: 7ex;
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  --background: #e4f5ff;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: none;
+}
+
+#col {
+  --background: #027dc1;
+}
+
+.joinBtn44{
+  width: 10em;
+  height: 7ex;
+ color: #fff;
+  --border: 2px solid #fff;
+ --background: #e4f5ff;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: none;
+}

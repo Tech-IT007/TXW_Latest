@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar  style="--color: #000; --background :#fff;">
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Attendance History</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  
+<ion-item>
+  <ion-label>Year</ion-label>
+  <ion-select [(ngModel)]="selectedYear" interface="popover">
+    <ion-select-option *ngFor="let year of years" [value]="year">
+      {{ year }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-item>
+  <ion-label>Month</ion-label>
+  <ion-select [(ngModel)]="selectedMonth" interface="popover">
+    <ion-select-option *ngFor="let month of months" [value]="month.value">
+      {{ month.name }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-button expand="block" class="button22" (click)="sendData()">Submit</ion-button>
+<div *ngIf="show">
+  <ion-grid >
+    <ion-row>
+      <ion-col>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date </th>
+              <th>In </th>
+              <th>Out</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let temp of temp">
+              <td> {{temp.RecordDate}} </td>
+              <td> {{temp.InTime}} </td>
+              <td>{{temp.OutTime}} </td>
+              <td>{{temp.duration}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+<div *ngIf="hidd" style="    margin-top: 50%;
+    text-align: center;"> 
+  <h3>
+   No Records Found !
+</h3></div>
+</ion-content>

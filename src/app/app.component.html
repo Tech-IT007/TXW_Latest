@@ -1,0 +1,88 @@
+<ion-app>
+  <ngx-ui-loader></ngx-ui-loader>
+<div class="snow-container" id="snow"></div>
+  <ion-menu menuId="main-menu" content-id="main">
+    <ion-header style="padding-bottom: 0%"> </ion-header>
+    <ion-content style="--background: #fbfafe">
+      <ion-menu-toggle auto-hide="true">
+        <div>
+          <ion-list style="background: #fbfafe; margin-left: 80%; padding: 0px;">
+            <!-- <ion-toggle style="--background: gray" (click)="toogle()" slot="end"></ion-toggle> -->
+          </ion-list>
+          <div>
+            <img class="boy" src="/assets/img/boys.jpg" alt="" />
+            <div style="margin-left: 3%">
+              <div>
+                <h5 class="name">{{user.Name}}</h5>
+              </div>
+              <div>
+                <h5 class="mail">{{user.Email}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-list style="
+            margin-left: 3%;
+            padding-top: 0%;
+            margin-top: 0%;
+            background: #fbfafe;
+          ">
+          <ion-item [routerLink]="['/home']" style="padding-top: 7%; margin-bottom: 0%">
+            <img class="img1" src="/assets/img/home.png" alt="" />
+            <h6 style="margin-top: 13px; color: black">Home</h6>
+          </ion-item>
+          <!-- <ion-item [routerLink]="['/appointment']">
+          <img class="img2" src="/assets/img/booking2.png" alt="">
+          <h6 style=" margin-top: 13px; color: black;">
+            My Tickets</h6>
+        </ion-item> -->
+          <ion-item [routerLink]="['/information']">
+            <img class="img2" src="/assets/img/user.png" alt="" />
+            <h6 style="margin-top: 13px; color: black">My Profile</h6>
+          </ion-item>
+          <ion-item [routerLink]="['/attdenc-in']">
+            <img class="img2" src="/assets/img/att11.png" alt="" />
+            <h6 style="margin-top: 13px; color: black">Mark Attendance</h6>
+          </ion-item>
+          <ion-item [routerLink]="['/attendance']">
+            <img class="img2" src="/assets/img/attendance.png" alt="" />
+            <h6 style="margin-top: 13px; color: black"> Attendance Details</h6>
+          </ion-item>
+          <ion-item [routerLink]="['/all-convence-charge']">
+            <img class="img2" src="/assets/img/utilities.png" alt="" />
+            <h6 style="margin-top: 13px; color: black"> All Convenience Charges</h6>
+          </ion-item>
+
+          <ion-item [routerLink]="['/contact']">
+            <img class="img2" src="/assets/img/telephone.png" alt="" />
+            <h6 style="margin-top: 13px; color: black">Contact Us</h6>
+          </ion-item>
+           <ion-item [routerLink]="['/leave-managment']">
+          <img class="img2" src="/assets/img/fff.png" alt="">
+          <h6 style=" margin-top: 13px; color: black;">Leave</h6>
+
+
+
+        </ion-item>
+        <!-- <ion-item [routerLink]="['/terms']">
+          <img class="img2" src="/assets/img/terms1.png" alt="">
+          <h6 style=" margin-top: 13px; color: black;">Terms & Condition</h6>
+
+        </ion-item>  -->
+        </ion-list>
+        <div style="margin-top: 47%; margin-left: 19px">
+          <img class="img2" src="/assets/img/exit.png" alt="" />
+          <h3 (click)="logout()" style="
+              font-size: 20px;
+              margin-top: -26px;
+              margin-left: 34px;
+              color: #000;
+            ">
+            Logout
+          </h3>
+        </div>
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>  

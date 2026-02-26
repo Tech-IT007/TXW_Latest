@@ -1,0 +1,285 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; color: #000;">UPS PPM </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+ <ion-list>  
+  <ion-radio-group  [(ngModel)]="userdetails.Condition" >  
+    <ion-list-header style="color: #000; font-weight: 600; font-size: large;">  
+      Please Select Condition
+    </ion-list-header>  
+    <ion-item>  
+      <ion-label>Good</ion-label>  
+      <ion-radio value="GOOD"></ion-radio>  
+    </ion-item>  
+  
+    <ion-item>  
+      <ion-label>Not Good</ion-label>  
+      <ion-radio value="NOT GOOD"></ion-radio>  
+    </ion-item>  
+  </ion-radio-group>  
+  <ion-radio-group>  
+    <ion-item>  
+      <ion-label>Bad</ion-label>  
+      <ion-radio value="BER"></ion-radio>  
+    </ion-item>  
+  </ion-radio-group>  
+</ion-list>
+   
+<ion-item  >
+  <ion-label position="stacked" style="  font-size: 18px;">Complaint Description <span style="color: #d20411">*</span></ion-label>
+  <ion-textarea  value="{{clint_data.ProblemReportedByClient}}"  [(ngModel)]="userdetails.ProblemReportedByClient"  style=" --padding-bottom: 30px;" type="text" ></ion-textarea>
+</ion-item>
+<ion-item>
+  <ion-label  style="  font-size: 18px;" position="stacked">Action Taken  <span style="color: #d20411">*</span></ion-label>
+  <ion-textarea   value="{{clint_data.ActionTaken}}" [(ngModel)]="userdetails.ActionTaken"   style=" --padding-bottom: 50px;" type="text" ></ion-textarea>
+</ion-item>
+<ion-item>
+  <ion-label style="  font-size: 18px;" position="stacked"> Observation <span style="color: #d20411">*</span></ion-label>
+  <ion-textarea  value="{{clint_data.Observation}}"  [(ngModel)]="userdetails.Observation"  style=" --padding-bottom: 30px;" type="text" ></ion-textarea>
+</ion-item>
+
+<ion-item>
+  <ion-label  style="  font-size: 18px;" position="stacked"> Remarks</ion-label>
+  <ion-textarea value="{{clint_data.Remarks}}" rows="1" cols="50"  [(ngModel)]="userdetails.Remarks"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+</ion-item>
+<ion-item>
+  <ion-label  style="  font-size: 18px;" position="stacked">  Client Representative Name </ion-label>
+  <ion-textarea  value="{{clint_data.ClientRepresentative}}"   rows="1" cols="50" [(ngModel)]="userdetails.ClientRepresentative"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+</ion-item>
+<ion-item>
+  <ion-label  style="  font-size: 18px;" position="stacked"> Client Representative Contact</ion-label>
+  <ion-textarea  value="{{clint_data.ClientRepresentativeContact}}"  [(ngModel)]="userdetails.ClientRepresentativeContact"  rows="1" cols="50"      style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+</ion-item>
+<ion-item>
+  <ion-label  style="  font-size: 18px;" position="stacked">Email(s) <span style="font-size: 18px;"></span> </ion-label>
+  <ion-textarea value="{{clint_data.ClientRepresentativeEmails}}" rows="1" cols="50"  [(ngModel)]="userdetails.ClientRepresentativeEmails"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+</ion-item>
+<ion-item>
+  <ion-label  style="  font-size: 18px;" position="stacked"> Client Representative Designation</ion-label>
+  <ion-textarea value="{{clint_data.ClientRepresentativeDesignation}}" rows="1" cols="50"  [(ngModel)]="userdetails.ClientRepresentativeDesignation"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+</ion-item>
+<ion-item>
+  <ion-label  style="  font-size: 18px;" position="stacked"> Remarks</ion-label>
+  <ion-textarea value="{{clint_data.Remarks}}" rows="1" cols="50"  [(ngModel)]="userdetails.Remarks"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+</ion-item>
+    <ion-grid>
+    <ion-row>
+      <ion-col size="7">
+        <strong>Item</strong>
+      </ion-col>
+      <ion-col size="2">
+        <strong>Yes</strong>
+      </ion-col>
+      <ion-col size="2">
+        <strong>No</strong>
+      </ion-col>
+    </ion-row>
+<!-- <div class="tickmark">
+  <div>
+    <ion-label>Check for loose connection & tightened it.</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "   [(ngModel)]="userdetails.looseconnection">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-radio slot="start" value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div> -->
+  
+<div class="tickmark">
+  <div>
+    <ion-label>Check Functionality of DVR/NVR</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.CheckFunctionalityDVR">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-radio slot="start" value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+  
+<div class="tickmark">
+  <div style="width: 60%;">
+    <ion-label>Check Functionality of Indoor Cameras</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.CheckFunctionalityIndoor">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-radio slot="start" value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+  
+<div class="tickmark">
+  <div style="width: 60%;">
+    <ion-label>Check Functionality of Outdoor Cameras</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.CheckFunctionalityOutdoor">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-radio slot="start" value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+<div class="tickmark">
+  <div style="width: 60%;">
+    <ion-label>Check the Power Supply of the system</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.PowerSupply">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-radio slot="start" value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+  
+<div class="tickmark">
+  <div>
+    <ion-label>Check the wiring & connectivity.</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.Checkwiringconnectivity">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-radio slot="start" value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+  
+    
+<div class="tickmark">
+  <div>
+    <ion-label>Check the HDD functionality</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.CheckHDD">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-radio slot="start" value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+  
+<div class="tickmark">
+  <div>
+    <ion-label>Check the Quality for focus of camera</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.Qualitycamera">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-radio slot="start" value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+
+<div class="tickmark">
+  <div>
+    <ion-label>Check the earthing of the UPS (Volts).</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.earthing">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-input type="number"></ion-input>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+
+<div class="tickmark">
+  <div >
+    <ion-label>Check the output voltage (Volts).</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.outputvoltage">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-input type="number"></ion-input>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+  <div class="tickmark">
+  <div >
+    <ion-label>Check the charging voltage (Volts)</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.chargingvoltage">
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+        <ion-input type="number"></ion-input>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+<div class="tickmark">
+  <div>
+    <ion-label>Check the current load (Amps).</ion-label>
+  </div>
+  <div>
+    <ion-radio-group name=" "  [(ngModel)]="userdetails.currentload">
+      
+      <ion-item lines="none">
+        <ion-radio slot="start" value="yes"></ion-radio>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-input   slot="start" ></ion-input>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</div>
+  
+   
+  </ion-grid>
+
+
+
+
+
+
+  
+  <div style="    border: 1px solid #09475e;
+  margin: 5px;">
+    <canvas #signaturePad width="300" height="150" ></canvas>
+  </div>
+     <div class="sign_button" *ngIf="hidd_pad" style="display: flex; justify-content: space-around; margin-top: 5%;"> 
+      <ion-button  (click)="clearSignature()" style="--background: #eee8e8; color: black;">Clear Signature</ion-button>
+      <div>
+        <ion-button  style="--background: #0b7ba1;;"  (click)="saveSignature()">Save Signature</ion-button>
+      </div>
+ 
+     </div>
+     <div>
+    
+     </div>
+     <div style="margin-bottom: 10%; display: flex; justify-content: space-around;">
+      <div>
+        <ion-button  (click)="submit ()"  class="button22" expand="block"> Submit </ion-button>
+  
+      </div>
+    </div>
+</ion-content>

@@ -1,0 +1,147 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/ppm-tickets"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">Ticket Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ticket-bg">
+
+  <!-- Empty -->
+  <div *ngIf="show" class="empty-state">
+    <img src="assets/img/opps.jpg" />
+    <h2>No Tickets Found</h2>
+  </div>
+
+  <!-- Ticket ID -->
+  <div class="ticket-id">
+    Ticket ID: <strong>{{ impact.TicketID }}</strong>
+  </div>
+
+  <!-- Ticket Details -->
+  <div class="details-box">
+
+    <div class="detail-row">
+      <span>Type</span>
+      <strong>{{ impact.Type || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Branch</span>
+      <strong>{{ impact.BranchSite || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Employee</span>
+      <strong>{{ impact.EmployeeName || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Status</span>
+      <strong class="status">{{ impact.Status || 'Not Set' }}</strong>
+    </div>
+
+    <!-- R&M -->
+    <ng-container *ngIf="impact.Type === 'R&M'">
+      <div class="detail-row">
+        <span>Service</span>
+        <strong>{{ impact.Service || 'Not Set' }}</strong>
+      </div>
+
+      <div class="detail-row">
+        <span>Sub Service</span>
+        <strong>{{ impact.Subservice || 'Not Set' }}</strong>
+      </div>
+    </ng-container>
+
+    <!-- AMC -->
+    <ng-container >
+      <div class="detail-row">
+        <span>Equipment</span>
+        <strong>{{ impact.EquipmentName || 'Not Set' }}</strong>
+      </div>
+    </ng-container>
+
+    <div class="detail-row">
+      <span>Company</span>
+      <strong>{{ impact.CompanyName || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Due Date</span>
+      <strong>{{ impact.DueDate || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Location</span>
+      <strong>{{ impact.EquipmentLocation || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Serial No</span>
+      <strong>{{ impact.SNo || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Category</span>
+      <strong>{{ impact.CategoryName || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Booking Date</span>
+      <strong>{{ impact.CreatedDate || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Booking Time</span>
+      <strong>{{ impact.CreatedTime || 'Not Set' }}</strong>
+    </div>
+
+    <div class="detail-row">
+      <span>Make / Model</span>
+      <strong>{{ impact.Make || 'Not Set' }}</strong>
+    </div>
+
+  </div>
+
+  <!-- Branch Address -->
+  <div class="address-box">
+    <h4>Branch Address</h4>
+    <p>{{ impact.BranchAddress1 }}</p>
+  </div>
+
+  <!-- Finance Cost -->
+  <div *ngIf="costly" class="finance-box" routerLink="/finance-cost">
+    <span>Finance Cost</span>
+    <strong>View</strong>
+  </div>
+
+  <!-- Buttons -->
+  <div class="button-row" *ngIf="Change_Ticket_Status">
+    <ion-button expand="block" class="primary-btn"
+      (click)="route_to_profile_answer_screen(BookingID)">
+      Change Ticket Status
+    </ion-button>
+
+    <ion-button expand="block" color="danger" routerLink="/ppm-show-history">
+      <ion-icon slot="start" name="time-outline"></ion-icon>
+      Assets History
+    </ion-button>
+  </div>
+
+  <div class="button-row" *ngIf="Start_Work">
+    <ion-button expand="block" class="primary-btn"
+      [ngClass]="{'disabled-btn':!button}"
+      (click)="route_to_profile_pmm_submit(BookingID)">
+      Start Work
+    </ion-button>
+
+    <ion-button expand="block" color="danger" routerLink="/ppm-show-history">
+      <ion-icon slot="start" name="time-outline"></ion-icon>
+      Assets History
+    </ion-button>
+  </div>
+
+</ion-content>

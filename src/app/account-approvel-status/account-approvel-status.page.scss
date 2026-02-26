@@ -1,0 +1,33 @@
+/* Remove default padding */
+.iframe-container {
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: #f5f6fa;
+}
+
+/* Full screen iframe */
+.approval-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Make iframe occupy full viewport */
+ion-content,
+.iframe-container {
+  height: 100%;
+}
+
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+ion-content {
+  flex: 1;
+}

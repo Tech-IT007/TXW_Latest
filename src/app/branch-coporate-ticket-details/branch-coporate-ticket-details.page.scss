@@ -1,0 +1,242 @@
+
+.ticket-detail-page {
+  --background: #fff;
+
+  .logo-container {
+    text-align: center;
+    padding: 8px 0;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+
+    img {
+      width: 120px;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  .ticket-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid #ccc;
+
+    h2 {
+      flex: 1;
+      font-size: 14px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .back-icon {
+      font-size: 20px;
+      color: #333;
+      cursor: pointer;
+    }
+  }
+
+  .ticket-id {
+    text-align: center;
+    font-size: 12px;
+    margin: 5px 0;
+    color: #555;
+
+    span {
+      font-weight: bold;
+      color: #000;
+    }
+  }
+
+  .ticket-card {
+    margin: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: none;
+  }
+
+  .ticket-box {
+    padding: 6px;
+    border: 1px solid #ddd;
+    background: #fff;
+
+    p {
+      font-size: 11px;
+      color: #666;
+      margin: 0;
+    }
+
+    h3 {
+      font-size: 13px;
+      margin: 3px 0 0;
+      color: #222;
+      font-weight: 500;
+      word-break: break-word;
+    }
+  }
+
+  .full-width {
+    border-left: none;
+    border-right: none;
+  }
+
+  .address-box {
+    margin: 8px;
+    border: 1px solid #ccc;
+    padding: 6px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+
+    .address-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .address-icon {
+        color: #0c7cbc;
+        font-size: 16px;
+      }
+
+      .branch-address {
+        font-size: 12px;
+        color: #333;
+        line-height: 1.4;
+      }
+    }
+  }
+
+  /* ─────────── BUTTON FOOTER ─────────── */
+/* ─────────────── BUTTON FOOTER WRAPPER ─────────────── */
+.button-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  gap: 14px;
+  padding: 16px;
+  background: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* ─────────────── COMMON BUTTON STYLE ─────────────── */
+.button-footer ion-button {
+  --border-radius: 10px;
+  --color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  height: 45px;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-footer ion-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+}
+
+/* ─────────────── INDIVIDUAL BUTTON COLORS ─────────────── */
+.btn-start {
+  --background: #0c7cbc;
+}
+
+.btn-closed {
+  --background: #b0b0b0;
+  --color: #ffffff;
+}
+
+.btn-dpr {
+  --background: #bc0f0c;
+}
+
+.btn-view,
+.btn-view-full {
+  --background: #0c7cbc;
+}
+
+/* ─────────────── FLEX ROW (FOR TWO BUTTONS) ─────────────── */
+.dual-button-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.dual-button-row ion-button {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  height: 45px;
+}
+
+/* ─────────────── ASSETS HISTORY BUTTON ─────────────── */
+.assets-history-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.assets-history-btn {
+  --background: #e63946;
+  --border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: none;
+  height: 45px;
+}
+
+/* ─────────────── RESPONSIVE ─────────────── */
+@media (max-width: 500px) {
+  .button-footer {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .dual-button-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .dual-button-row ion-button {
+    flex: 1 1 calc(50% - 10px);
+  }
+
+  .button-footer ion-button {
+    font-size: 14px;
+    height: 44px;
+  }
+}
+
+/* ─────────────── SMALL VISUAL ENHANCEMENTS ─────────────── */
+ion-icon {
+  font-size: 18px;
+}
+
+ion-button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+}
+
+/* ─────────── OUTSIDE CONTAINER ─────────── */
+.assets-history-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+  margin-right: 8px;
+}
+
+.assets-history-btn {
+  --border-radius: 10px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}

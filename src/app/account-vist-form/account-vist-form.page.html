@@ -1,0 +1,160 @@
+<ion-header style="background: #fff;">
+  <div>
+    <h3 class="h3">Add Site Observation</h3>
+    <div class="div">
+      <ion-icon routerLink="/visitor-all-tickets" class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+  <ion-list style="margin-top: 2%;  background: transparent;">
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Observation <span style="color: #d20411">*</span></ion-label>
+    <ion-textarea  [(ngModel)]="userdetails.Observation" style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Location <span style="color: #d20411">*</span></ion-label>
+    <ion-textarea [(ngModel)]="userdetails.Location"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" >Category</ion-label>
+    <ion-select (ionChange)="onSelectChange($event)" placeholder="Choose Category"  [(ngModel)]="userdetails.Category">
+      <ion-select-option  *ngFor="let users of users" > {{users.CategoriesName}}  </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Auditor Recommendattion  <span style="color: #d20411">*</span></ion-label>
+    <ion-textarea  [(ngModel)]="userdetails.CompanyRecommendation"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Client Recommendation<span style="color: #d20411">*</span></ion-label>
+    <ion-textarea  [(ngModel)]="userdetails.ClientRecommendation"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+</ion-list>
+<div style="margin-left: 5%;
+color: #000;">
+  <h6 style="font-weight: 600;">Priority</h6>
+</div>
+<ion-card class="card">
+
+  <ion-radio-group [(ngModel)]="userdetails.Priority">
+    <ion-item style="--background: #fff;
+--color: #000;">
+
+      <ion-label style="margin-left: 10px;    font-weight: 300; color: #000;">High</ion-label>
+      <ion-radio value="High"></ion-radio>
+    </ion-item>
+    <ion-item style="--background: #fff;
+--color: #000;">
+      <ion-label  style="margin-left: 10px; font-weight: 300; color: #000;">Medium </ion-label>
+      <ion-radio value="Medium"></ion-radio>
+    </ion-item>
+    <ion-item style="--background: #fff;
+--color: #000;">
+      <ion-label style="margin-left: 10px; font-weight: 300; color: #000;">Low </ion-label>
+      <ion-radio value="Low"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+</ion-card>
+<ion-card class="card">
+  <div style="display: flex; justify-content: space-between; margin-top: 6%;">
+    <div style="margin-left: 4%;">
+      <span style="margin-left: 10px; color: #000;" class="span">
+        Image
+      </span>
+
+
+    </div>
+    <div style="
+margin-left: 40%;
+margin-top: -16px;
+">
+      <ion-button [disabled]="isButtonDisabled" (click)="captureImage()" id="cap">Capture </ion-button>
+    </div>
+    <div *ngIf="add" style="margin-right: 19px;">
+      <div>
+        <samp><ion-icon (click)="click_to_next()" style="font-size: 20px;
+    color: red;" name="add-circle-outline"></ion-icon></samp>
+      </div>
+    </div>
+  </div>
+  <div>
+    <img [src]="clickedImage" />
+  </div>
+  <div *ngIf="sec">
+    <div style="display: flex; justify-content: space-between; margin-top: 6%;">
+      <div style="margin-left: 4%;">
+        <span style="margin-left: 10px; color: #000;" class="span">
+          Image
+        </span>
+
+      </div>
+
+      <div style="margin-left: 40%;margin-top: -16px;">
+        <ion-button [disabled]="isButtonDisabled1" (click)="capture()" id="cap">Capture </ion-button>
+      </div>
+      <div *ngIf="row" style="margin-right: 19px;">
+        <div>
+          <samp><ion-icon (click)="click_to_next1()" style="font-size: 20px;
+    color: red;" name="add-circle-outline"></ion-icon></samp>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <img [src]="clicked" />
+  </div>
+
+
+  <div *ngIf="sec1" style="display: flex; justify-content: space-between; margin-top: 6%;">
+    <div style="margin-left: 4%;">
+      <span style="margin-left: 10px; color: #000;" class="span">
+        Image
+      </span>
+
+    </div>
+    <div style="margin-left: 40%;margin-top: -16px;">
+      <ion-button [disabled]="isButtonDisabled2" (click)="capture1()" id="cap">Capture </ion-button>
+    </div>
+    <div *ngIf="view" style="margin-right: 19px;">
+      <div>
+        <samp><ion-icon (click)="click_to_next2()" style="font-size: 20px;
+    color: red;" name="add-circle-outline"></ion-icon></samp>
+      </div>
+    </div>
+  </div>
+  <div>
+    <img [src]="clicked1" />
+  </div>
+
+
+  <div *ngIf="sec2" style="display: flex; justify-content: space-between; margin-top: 6%;">
+    <div style="margin-left: 4%;">
+      <span style="margin-left: 10px; color: #000;" class="span">
+        Image
+      </span>
+
+    </div>
+    <div style="margin-left: 40%;margin-top: -16px;">
+      <ion-button [disabled]="isButtonDisabled3" (click)="capture2()" id="cap">Capture </ion-button>
+    </div>
+    <div *ngIf="" style="margin-right: 19px;">
+      <div *ngIf="">
+        <samp><ion-icon (click)="click_to_next2()" style="font-size: 20px;
+    color: red;" name="add-circle-outline"></ion-icon></samp>
+      </div>
+    </div>
+  </div>
+  <div>
+    <img [src]="clicked2" />
+  </div>
+
+</ion-card>
+<div >
+  <ion-button  (click)="submit()"
+    [ngClass]="{'gray-button':!button}" class="button22" expand="block">
+   Save </ion-button>
+</div>
+</ion-content>

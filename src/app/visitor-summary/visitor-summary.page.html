@@ -1,0 +1,58 @@
+
+<div style="background:  #0c7cbc;
+color: #fff;display: flex;
+    align-items: center; padding: 10px;">
+  <div style="width: 10%; ">
+    <ion-icon routerLink="/visitor-all-tickets" style="font-size: larger;" class="icon" name="arrow-back-outline"></ion-icon>
+  </div>
+  <div>
+    <span> visitor Summary </span>
+  </div>
+
+
+</div>
+<ion-content>
+  
+  <ion-list style="margin-top: 2%;  background: transparent;">
+   
+    <ion-item>
+      <ion-label position="stacked" style="  font-size: 18px;">Summary<span style="color: #d20411">*</span></ion-label>
+      <ion-textarea  [(ngModel)]=" user_details.Summary"  style=" --padding-bottom: 30px;" type="text" ></ion-textarea>
+    </ion-item>
+<!-- 
+    <ion-item>
+      <ion-label style="  font-size: 18px;" position="stacked"> Observation <span style="color: #d20411">*</span></ion-label>
+      <ion-textarea   style=" --padding-bottom: 30px;" type="text" ></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label  style="  font-size: 18px;" position="stacked">Action Taken  <span style="color: #d20411">*</span></ion-label>
+      <ion-textarea     style=" --padding-bottom: 50px;" type="text" ></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label  style="  font-size: 18px;" position="stacked">  Client Representative Name </ion-label>
+      <ion-textarea    rows="1" cols="50"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+    </ion-item> -->
+  </ion-list>
+  
+  <div style="    border: 1px solid #09475e;
+  margin: 5px;">
+    <canvas #signaturePad width="300" height="150" ></canvas>
+  </div>
+     <div class="sign_button" *ngIf="hidd_pad" style="display: flex; justify-content: space-around; margin-top: 5%;"> 
+      <ion-button  (click)="clearSignature()" style="--background: #eee8e8; color: black;">Clear Signature</ion-button>
+      <div>
+        <ion-button  style="--background: #0b7ba1;;"  (click)="saveSignature()">Save Signature</ion-button>
+      </div>
+ 
+     </div>
+   
+  <div style="margin-bottom: 10%; display: flex; justify-content: space-around;">
+    <div>
+      <ion-button  (click)="summery()"  class="button22" expand="block"> Submit </ion-button>
+
+    </div>
+  </div>
+
+</ion-content>

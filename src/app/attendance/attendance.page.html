@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/vendor-new-page" icon="arrow-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Attendance Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="attendance-details-page">
+
+  <!-- Employee Name -->
+  <div class="employee-name">
+    <h4>{{ use.EmployeeName }}</h4>
+  </div>
+
+  <!-- Attendance Info Card -->
+  <ion-card class="attendance-card">
+    <ion-card-content>
+      <!-- In Time -->
+      <div class="attendance-item">
+        <p class="label">In Time</p>
+        <p class="value" *ngIf="users.InTime; else noInTime">
+          {{ users.InTime }}
+        </p>
+        <ng-template #noInTime>
+          <span class="not-set">Not Set</span>
+        </ng-template>
+      </div>
+
+      <!-- Out Time -->
+      <div class="attendance-item">
+        <p class="label">Out Time</p>
+        <p class="value" *ngIf="users.OutTime; else noOutTime">
+          {{ users.OutTime }}
+        </p>
+        <ng-template #noOutTime>
+          <span class="not-set">Not Set</span>
+        </ng-template>
+      </div>
+
+      <!-- Record Date -->
+      <div class="attendance-item">
+        <p class="label">Record Date</p>
+        <p class="value" *ngIf="users.RecordDate; else noRecordDate">
+          {{ users.RecordDate }}
+        </p>
+        <ng-template #noRecordDate>
+          <span class="not-set">Not Set</span>
+        </ng-template>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

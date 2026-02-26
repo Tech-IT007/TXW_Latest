@@ -1,0 +1,69 @@
+.page-bg {
+  --background: #fff;
+}
+
+/* HEADER */
+.header-toolbar {
+  --background: #cf000a;
+  --color: #fff;
+}
+
+.header-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* BANNER */
+.banner img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom-left-radius: 22px;
+  border-bottom-right-radius: 22px;
+}
+
+/* GRID */
+.dashboard-grid {
+  padding: 15px;
+}
+
+/* 3D CARD STYLE */
+.card-3d {
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px 10px;
+  text-align: center;
+  box-shadow: 
+    0 8px 18px rgba(0, 0, 0, 0.15),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.card-3d:active {
+  transform: scale(0.97);
+}
+
+/* ICON IMAGE */
+.card-3d img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+/* TITLE */
+.card-3d h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* COLOR VARIANTS */
+.card-3d.red {
+  border-top: 5px solid #cf000a;
+}
+
+.card-3d.blue {
+  border-top: 5px solid #2196f3;
+}

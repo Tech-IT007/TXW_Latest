@@ -1,0 +1,125 @@
+.punch-out-page {
+  --background: #f9fafc;
+
+.header-toolbar {
+  --background: #047ac2;
+  --color: #fff;
+  border-bottom: none;
+}
+
+.header-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+  .info-container {
+    margin-bottom: 16px;
+  }
+
+  .info-card {
+    margin: 8px 0;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .info-icon {
+    font-size: 28px;
+    color: #0c7cbc;
+  }
+
+  .label {
+    font-size: 13px;
+    color: #666;
+  }
+
+  .value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .camera-section {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #222;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .captured-img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transform: scaleX(-1);
+  }
+
+  .image-placeholder {
+    width: 160px;
+    height: 160px;
+    background: #f1f3f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    border: 2px dashed #ccc;
+  }
+
+  .placeholder-icon {
+    font-size: 40px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+
+  .capture-btn {
+    --background: #0c7cbc;
+    --border-radius: 12px;
+    --color: #fff;
+    font-weight: 600;
+    margin-top: 8px;
+    box-shadow: 0 4px 10px rgba(12, 124, 188, 0.3);
+  }
+
+  .submit-btn {
+    --background: #28a745;
+    --border-radius: 12px;
+    --color: #fff;
+    font-weight: 600;
+    margin-top: 18px;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+  }
+  .info-text-container {
+    background: #e7f3fe;
+    border: 1px solid #b3d4fc;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+  .info-text {
+    margin: 0;
+    font-size: 14px;
+    color: #4fbc0c;
+    text-align: center;
+  }
+}

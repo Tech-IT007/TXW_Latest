@@ -1,0 +1,118 @@
+.header-modern {
+  --background: #0c7cbc;
+  --color: #fff;
+  ion-title {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
+ion-content {
+  --background: #f4f6f9;
+}
+
+.loading-container {
+  text-align: center;
+  margin-top: 40px;
+  color: #666;
+}
+
+.no-data {
+  text-align: center;
+  margin-top: 50px;
+  color: #888;
+  ion-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+}
+
+.task-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: transform 0.2s ease;
+}
+.task-card:hover {
+  transform: translateY(-3px);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.task-date {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.task-status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  text-transform: capitalize;
+}
+.task-status.completed {
+  background: #e7f8f0;
+  color: #0ca678;
+}
+.task-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+.task-status.in-progress {
+  background: #e0f3ff;
+  color: #007bff;
+}
+.task-status.default {
+  background: #f1f3f5;
+  color: #666;
+}
+
+.progress-container {
+  position: relative;
+  margin-top: 10px;
+}
+.progress-container ion-progress-bar {
+  height: 8px;
+  border-radius: 8px;
+  --background: #dfe6ec;
+  --progress-background: #0c7cbc;
+}
+.progress-percent {
+  position: absolute;
+  top: -22px;
+  right: 0;
+  font-size: 13px;
+  color: #444;
+}
+
+.remarks-section {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.img-section {
+  margin-top: 12px;
+  text-align: center;
+  img {
+    width: 100%;
+    max-height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+}
+
+ion-button {
+  margin-top: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}

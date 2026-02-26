@@ -1,0 +1,163 @@
+/* Global styles */
+.h3 {
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+  }
+  
+  .div {
+    margin-top: -29px;
+    padding-bottom: 12px;
+  }
+  
+  
+  .icon {
+    margin-top: -6px;
+    margin-left: 2%;
+    color: #000;
+    font-size: x-large;
+  }
+  ion-content{
+    --background: #f9f9f9;
+  }
+  
+  /* Specific form styles */
+  .custom-radio-item {
+  font-size: smaller;
+  font-weight: 600;
+  }
+  
+  ion-label {
+    font-weight: 600;
+    color: #141e28;
+    margin-left: -5%;
+    position: fixed;
+    font-size: small;
+  }
+  
+  ion-input {
+    border-radius: 10px; /* Round input corners */
+    margin-top: 3%;
+  
+  }
+  
+  ion-button {
+    margin-top: 20px; /* Add space above the button */
+  }
+  
+  /* Form validation styles */
+  ion-item.item-has-focus input.ng-invalid {
+    border-color: #FF5722; /* Highlight input border in red when invalid */
+  }
+  
+  ion-item.item-has-focus input.ng-valid {
+    border-color: #4CAF50; /* Highlight input border in green when valid */
+   
+  }
+  ion-button {
+    --background: #d20411;
+     border-radius: 10px; 
+    margin: 0px;
+    padding: 0px;
+   text-transform: none;
+  }
+  
+  
+  ion-radio {
+    --padding-end: 4px; /* Adjust as needed */
+  }
+  
+  
+  .custom-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .custom-radio-group ion-item {
+    width: 50%;
+    box-sizing: border-box;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  
+  
+  .input-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .input-container ion-item {
+    width: 45%;
+    box-sizing: border-box;
+    background: transparent;
+    margin: auto auto 10px auto;;
+  }
+  
+  .input-container ion-label {
+    width: 100%;
+    
+  }
+  
+  
+  .input{
+    margin-top: 26%;
+  }
+  
+  .input_list{
+  margin-bottom: 10px;
+  }
+  
+  
+  ion-textarea{
+    padding-top: 10%;
+  }
+  .item-interactive.ion-valid {
+    --highlight-background:#09475e;; ;
+  }
+  
+  
+  
+  
+  .capture {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  
+  .add{
+    font-size: 25px;
+        color: #058262;
+        margin-left: 30%;
+  }
+  
+  
+  .image {
+    width: 44%;
+    margin-left: 44%;
+    margin-top: 3%;
+    border-radius: 17px;
+  }
+  
+  
+  .next_page{
+    padding: 20px 10px 30px 10px ;
+    margin-top: 5%;
+     border-top: 1px solid #ccc;
+     margin-left: 16px;
+      margin-right: 16px;
+  }
+
+
+
+
+  .button22 {
+    margin-top: 8%;
+    margin-left: 5%;
+    margin-right: 90px;
+    height: 48px;
+    --padding-top: 1px;
+    --background: #0c7cbc;
+    width: 90%;
+  }

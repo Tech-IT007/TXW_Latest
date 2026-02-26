@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title style="font-size:16px;">
+Payment Details
+    </ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+
+<ion-content class="ticket-detail-page">
+<ion-card *ngFor="let pay of impact" class="payment-card">
+
+  <!-- HEADER -->
+  <div class="payment-header">
+
+    <div class="left">
+      <div class="ticket-no">Ticket ID: {{ pay.TicketID }}</div>
+      <div class="status" [ngClass]="pay.Status">
+        {{ pay.Status }}
+      </div>
+    </div>
+
+    <div class="amount">₹ {{ pay.Amount }}</div>
+
+  </div>
+
+  <!-- IMAGES -->
+  <div class="img-row">
+
+    <div class="img-box" *ngIf="pay.BillImage">
+      <div class="img-title">Bill Image</div>
+      <img [src]="pay.BillImage" (click)="openImage(pay.BillImage)">
+    </div>
+
+    <div class="img-box" *ngIf="pay.QrImage">
+      <div class="img-title">QR Image</div>
+      <img [src]="pay.QrImage" (click)="openImage(pay.QrImage)">
+    </div>
+
+  </div>
+
+  <!-- APPROVE BUTTON -->
+  <div class="approve-area" *ngIf="pay.Status !== 'Approved'">
+    <ion-button expand="block" class="approve-btn"
+      (click)="approvePayment(pay)">
+      APPROVE PAYMENT
+    </ion-button>
+  </div>
+
+</ion-card>
+</ion-content>

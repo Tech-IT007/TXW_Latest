@@ -1,0 +1,52 @@
+<ion-header translucent>
+  <ion-toolbar style="--background:#027dc1; --color:#fff">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">Ticket Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-bg">
+
+  <!-- TOP BANNER -->
+  <div class="banner">
+    <img src="/assets/img/ppm_services.gif" />
+  </div>
+ <!-- (click)="sendTestNotification() " -->
+  <!-- routerLink="/corprate-tickets" -->
+  <!-- DASHBOARD GRID -->
+  <ion-grid class="dashboard-grid">
+
+    <ion-row>
+
+      <!-- ALL TICKETS -->
+      <ion-col size="6">
+        <div class="card-3d red" routerLink="/technican-all-tickets">
+          <img src="/assets/img/ticket.gif" />
+          <h4>All Tickets</h4>
+        </div>
+      </ion-col>
+
+      <!-- PPM TICKETS -->
+      <ion-col size="6">
+        <div class="card-3d blue" routerLink="/ppm-tickets">
+          <img src="/assets/img/ppm_tickets.png" />
+          <h4>PPM Tickets</h4>
+        </div>
+      </ion-col>
+
+            <ion-col size="6">
+        <div class="card-3d blue" routerLink="/audit-data">
+          <img src="/assets/img/audit.png" />
+          <h4>Audit</h4>
+        </div>
+      </ion-col>
+
+
+    </ion-row>
+
+
+  </ion-grid>
+
+</ion-content>

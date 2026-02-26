@@ -1,0 +1,518 @@
+<ion-content style="--background : #fff;">
+  <div>
+    <h3 class="h3">Ticket Information</h3>
+    <div class="div">
+      <ion-icon routerLink="/ppm-view-details" class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+  <div>
+    <div *ngIf="otr">
+      <div *ngIf="show" style="text-align: center; margin-top: 28%">
+        <img src="/assets/img/opps.jpg" alt="" />
+        <h2 style="font-weight: bold">There Are No Tickets Found</h2>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h4 style="margin-left: 12px; color: #000">{{ impact.TicketID }}</h4>
+  </div>
+  <div *ngIf="open">
+    <ion-card style="box-shadow: none; background: #fff; margin-top: 0px">
+      <h4 class="serv">Assigned To</h4>
+      <h5 class="plum">{{ impact.EmployeeName }}</h5>
+      <h4 class="serv">Status</h4>
+      <div *ngIf="impact.Status == ''">
+        <h5 class="plum">Not Set</h5>
+      </div>
+      <div *ngIf="impact.Status != ''">
+        <h5 class="plum">{{ impact.Status}}</h5>
+      </div>
+
+      <h4 class="serv">Due Date</h4>
+      <h5 class="plum">{{ impact.DueDate }}</h5>
+    </ion-card>
+  </div>
+  <div *ngIf="close">
+    <ion-card-content style="padding: 0px;">
+      <ion-radio-group (ionChange)="onassgin($event)" multiple="false">
+        <div style="display: flex;">
+          <div>
+            <ion-list-header><ion-label style="font-weight: 600; color: #000;">Assign To: </ion-label></ion-list-header>
+          </div>
+          <div style="margin: 12px; margin-left: 16%;">
+            <div style="display: flex;">
+
+              <ion-radio (click)=" this.vendor()" slot="start" color="primary" value="emp"></ion-radio>
+              <div>
+                <ion-label checked style="color: #000000; margin-left: 8px;"> <b>Vendor</b></ion-label>
+
+              </div>
+              <ion-radio (click)="Techech()" style="margin-left: 15px" slot="start" color="primary"
+                value="Tech"></ion-radio>
+
+              <div>
+                <ion-label style="color: #000; margin-left: 7px;"> <b>Technician</b></ion-label>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+      </ion-radio-group>
+    </ion-card-content>
+  </div>
+
+
+
+  <div *ngIf="assgin">
+    <ion-item style="--background: #fff margin-left: -3px;">
+      <ion-label style="color: #000">AssignedTo</ion-label>
+
+      <ion-select  (ionChange)="SelectChange($event)" multiple="false" [(ngModel)]="bookingdata.AssignedTo"
+        id="TicketStatus" name="TicketStatus" interface="popover" style="color: #000">
+        <ion-select-option value="{{mic.ID}}" *ngFor="let mic of mic">{{mic.Name}}</ion-select-option>
+        <ion-select-option value="{{emp}}">None</ion-select-option>
+
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <div *ngIf="vendo">
+    <ion-item style="--background: #fff margin-left: -3px;">
+      <ion-label style="color: #000">AssignedTo</ion-label>
+
+      <ion-select  (ionChange)="onSelect_Tech($event)" multiple="false" [(ngModel)]="bookingdata.AssignedTo"
+        id="TicketStatus" name="TicketStatus" interface="popover" style="color: #000">
+        <ion-select-option value="{{value.ID}}" *ngFor="let value of value ">{{value.Name}}</ion-select-option>
+        <ion-select-option value="{{emp}}">None</ion-select-option>
+
+      </ion-select>
+    </ion-item>
+  </div>
+
+
+  <!-- <div *ngIf="raise">
+    <ion-item style="--background: #fff margin-left: -3px;">
+      <ion-label style="color: #000">Status</ion-label>
+
+      <ion-select (ionChange)="onSelectRemark($event)" multiple="false" [(ngModel)]="bookingdata.TicketStatus"
+        id="TicketStatus" name="TicketStatus" interface="popover" style="color: #000">
+        <ion-select-option *ngFor="let use of otp">{{use.Status}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div> -->
+
+  <div  *ngIf="Remark" >
+    <ion-card style="--background: #fff; box-shadow: none;">
+      <ion-card-content style="--background: #fff;">
+        <ion-label  position="floating" style="color: black;  margin-left: -3%;">Remark</ion-label>
+        <ion-item style="--background: #fff; margin-left: -8%">
+          <ion-input  placeholder="Enter Your Remark" style="color: #000; " [(ngModel)]="bookingdata.Remark" type="text"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  
+  </div>
+  <!-- <div *ngIf="set">
+    <ion-item style="--background: #fff margin-left: -3px;">
+      <ion-label style="color: #000">Status</ion-label>
+
+      <ion-select (ionChange)="onSelectChange($event)" multiple="false" [(ngModel)]="bookingdata.TicketStatus"
+        id="TicketStatus" name="TicketStatus" interface="popover" style="color: #000">
+        <ion-select-option value="Assigned">Assigned</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div> -->
+
+  <!-- <div *ngIf="close">
+    <ion-card-content *ngIf="teemp">
+      <ion-radio-group (ionChange)="onSelect($event)" multiple="false" [(ngModel)]="spare.SparePartDecs">
+        <ion-list-header style="margin-left: -17px"><ion-label style="color: #000;">Spare
+            Items</ion-label></ion-list-header>
+        <div style="margin-top: -31px; margin-left: 56%">
+          <ion-radio slot="start" color="primary" value="Yes" style="float: left; margin-left: 16px"></ion-radio>
+          <ion-label checked style="color: #000000; float: left"><b>&nbsp; Yes</b></ion-label>
+          <ion-radio slot="start" color="primary" value="No" style="float: left; margin-left: 16px"></ion-radio>
+          <ion-label style="color: #000000; float: left"><b>&nbsp; No </b></ion-label>
+        </div>
+      </ion-radio-group>
+    </ion-card-content>
+  </div> -->
+  <div *ngIf="close" style="display: flex; justify-content: space-between; margin-top: 6%">
+    <div style="padding: 15px; color: #000">Due Date</div>
+    <div style="
+        color: #000;
+        border: 2px solid #000;
+        margin-right: 2%;
+        width: 40%;
+        height: 40px;
+      ">
+      <ion-input [(ngModel)]="bookingdata.DueDate" placeholder="Date" Type="date" id="inputdate"
+        name="inputdate"></ion-input>
+    </div>
+  </div>
+  <div *ngIf="close">
+
+
+     
+    <!-- <div *ngIf="costly" (click)="toggleForm()">
+      <div  class="cost">
+        <span>Add Cost </span>
+      </div>
+      
+    </div> -->
+    <div *ngIf="close_icon" class="icon22">
+      <ion-icon  (click)="close_icons()" style="font-size: larger; color: #000;" name="close-outline"></ion-icon>
+    </div>
+
+    <div  style=" margin-top: 10%;" *ngIf="showForm">
+
+   
+      <ion-label style="margin-left: 6%;  font-weight: 600;">Customer Price</ion-label>
+      <form [formGroup]="calculationForm">
+        <div style="margin-top: 4%;">
+
+
+          <div style="display: flex;align-items: center;">
+            <ion-label style="margin-left: 6%;">No. Of Visits</ion-label>
+            <ion-input [(ngModel)]=" DataToSend.C_VisitorNo" type="number" formControlName="number1" class="secound1"
+              labelPlacement="stacked" placeholder="No. Of Visits"></ion-input>
+
+          </div>
+
+          <div style="margin-top: 5%; display: flex; align-items: center;">
+            <ion-label style="margin-left: 6%;">Visit Charges </ion-label>
+            <ion-input [(ngModel)]=" DataToSend.C_VisitCharge" type="number" formControlName="number2" class="secound2"
+              labelPlacement="stacked" placeholder="Visit Charges "></ion-input>
+
+          </div>
+          <div style="margin-top: 5%; display: flex;align-items: center;">
+            <ion-label style="margin-left: 6%;">Material Cost </ion-label>
+            <ion-input [(ngModel)]=" DataToSend.C_MaterialCost" type="number" formControlName="number3" class="secound3"
+              labelPlacement="stacked" placeholder="Material Cost"></ion-input>
+
+          </div>
+          <div style="margin-top: 5%; display: flex; align-items: center;">
+            <ion-label style="margin-left: 6%;">Labour Cost </ion-label>
+            <ion-input [(ngModel)]=" DataToSend.C_LabourCost" type="number" formControlName="number4" class="secound4"
+              labelPlacement="stacked" placeholder="Labour Cost "></ion-input>
+
+          </div>
+<!-- 
+          <div style="margin-top: 5%; display: flex; align-items: center;">
+            <ion-label style="margin-left: 6%;">Customer Price</ion-label>
+            <ion-input [(ngModel)]=" DataToSend.C_CostumerPrice" type="number" formControlName="number5" class="secound5"
+              labelPlacement="stacked" placeholder="Customer Price "></ion-input>
+
+          </div> -->
+
+
+          <div style="margin-top: 5%; display: flex; align-items: center;">
+            <div style="width : 50%">
+              <ion-label style="margin-left: 8%;font-size: 13px;font-weight: 700">Total Costumer Price</ion-label>
+            </div>
+            <div class="result">
+              <span>{{ calculateResult() }} </span>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- <div>
+          <ion-button (click)="Add_cost()" class="button" expand="block">
+            Submit Your Cost
+          </ion-button>
+        </div> -->
+      </form>
+    </div>
+
+  <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   -->
+
+  <div *ngIf="showForm" style=" margin-top: 10%;">
+    <ion-label style="margin-left: 6%;  font-weight: 600;">Techxpert Price</ion-label>
+  <form [formGroup]="calculation" style="margin-top: 5%;">
+    <div style="margin-top: 4%;">
+
+
+      <div style="display: flex;align-items: center;">
+        <ion-label style="margin-left: 6%;">No. Of Visits</ion-label>
+        <ion-input [(ngModel)]=" DataToSend.T_VisitorNo" type="number" formControlName="number11" class="secound1"
+          labelPlacement="stacked" placeholder="No. Of Visits"></ion-input>
+
+      </div>
+
+      <div style="margin-top: 5%; display: flex; align-items: center;">
+        <ion-label style="margin-left: 6%;">Visit Charges </ion-label>
+        <ion-input [(ngModel)]=" DataToSend.T_VisitCharge"  type="number" formControlName="number12" class="secound2"
+          labelPlacement="stacked" placeholder="Visit Charges "></ion-input>
+
+      </div>
+      <div style="margin-top: 5%; display: flex;align-items: center;">
+        <ion-label style="margin-left: 6%;">Material Cost </ion-label>
+        <ion-input [(ngModel)]=" DataToSend.T_MaterialCost" type="number" formControlName="number13" class="secound3"
+          labelPlacement="stacked" placeholder="Material Cost"></ion-input>
+
+      </div>
+      <div style="margin-top: 5%; display: flex; align-items: center;">
+        <ion-label  style="margin-left: 6%;">Labour Cost </ion-label>
+        <ion-input  [(ngModel)]=" DataToSend.T_LabourCost" type="number" formControlName="number14" class="secound4"
+          labelPlacement="stacked" placeholder="Labour Cost "></ion-input>
+
+      </div>
+
+      <!-- <div style="margin-top: 5%; display: flex; align-items: center;">
+        <ion-label style="margin-left: 6%;">Customer Price</ion-label>
+        <ion-input [(ngModel)]=" DataToSend.T_CostumerPrice"  type="number" formControlName="number15" class="secound5"
+          labelPlacement="stacked" placeholder="Customer Price "></ion-input>
+
+      </div> -->
+
+
+      <div style="margin-top: 5%; display: flex; align-items: center;">
+        <div style="width : 50%">
+          <ion-label style="margin-left: 8%;font-size: 13px;font-weight: 700;">Total Internal  Price</ion-label>
+        </div>
+        <div class="result">
+          <span>{{ calculate() }} </span>
+        </div>
+
+      </div>
+
+    </div>
+    <div>
+      <ion-button (click)="Add_cost()" class="button" expand="block">
+        Submit  Cost
+      </ion-button>
+    </div>
+  </form>
+  </div>
+  </div>
+
+
+  <div *ngIf="hidden">
+    <div style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6%;
+      ">
+      <div>
+        <span style="margin-left: 10px; font-weight: 500;" class="span"> Before Img </span>
+      </div>
+      <div style="margin-right: 5%">
+        <!-- <ion-icon style="font-size: 20px; color: #000 ;" name="camera-reverse-outline"></ion-icon> -->
+         <ion-button [disabled]="isButtonDisabled11" (click)="captureImage()"  id="cap">Capture 
+         </ion-button>
+      </div>
+    </div>
+    <div>
+      <img [src]="clickedImage" *ngIf="clickedImage" />
+    </div>
+    <div *ngIf="open3" style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6%;
+      ">
+      <div>
+        <span style="margin-left: 10px; font-weight: 500;" class="span"> Before Img </span>
+      </div>
+      <div style="margin-left: 30%">
+        <ion-button [disabled]="isButtonDisabled22" (click)="capture()" id="cap">Capture
+        </ion-button>
+      </div>
+      <div *ngIf="add2" style="margin-right: 19px">
+        <div *ngIf="img2">
+          <samp><ion-icon (click)="click_to_next2()" style="font-size: 20px; color: red"
+              name="add-circle-outline"></ion-icon></samp>
+        </div>
+      </div>
+    </div>
+    <div>
+      <img [src]="clicked" />
+    </div>
+    <div *ngIf="open4" style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6%;
+      ">
+      <div>
+        <span style="margin-left: 10px; font-weight: 500;" class="span"> Before Img </span>
+      </div>
+      <div style="margin-left: 30%">
+        <ion-button [disabled]="isButtonDisabled33" (click)="IMG()" id="cap">Capture
+        </ion-button>
+      </div>
+      <div *ngIf="add22" style="margin-right: 19px">
+        <div *ngIf="img22">
+          <samp><ion-icon style="font-size: 20px; color: red" name="add-circle-outline"></ion-icon></samp>
+        </div>
+      </div>
+    </div>
+    <div>
+      <img [src]="clickedd" />
+    </div>
+  </div>
+  <div *ngIf="after">
+
+
+    <div style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6%;
+      ">
+      <div>
+        <span style="margin-left: 3%" class="span"> After Img </span>
+      </div>
+      <div style="margin-left: 30%">
+        <ion-button [disabled]="isButtonDisabled" (click)="captureImage_post()" id="cap">Capture
+        </ion-button>
+      </div>
+      <div *ngIf="add_post" style="margin-right: 19px">
+        <div *ngIf="img_post">
+          <samp><ion-icon (click)="click_to_next_post()" style="font-size: 20px; color: red"
+              name="add-circle-outline"></ion-icon></samp>
+        </div>
+      </div>
+    </div>
+    <div>
+      <img [src]="clickedImage_post" />
+    </div>
+    <div *ngIf="open3_post" style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6%;
+      ">
+      <div>
+        <span style="margin-left: 17px" class="span"> After Img </span>
+      </div>
+      <div style="margin-left: 30%">
+        <ion-button [disabled]="isButtonDisabled_to" (click)=" capture_post()" id="cap">Capture
+        </ion-button>
+      </div>
+      <div *ngIf="add2_post" style="margin-right: 19px">
+        <div *ngIf="img2_post">
+          <samp><ion-icon (click)="click_to_next2_post()" style="font-size: 20px; color: red"
+              name="add-circle-outline"></ion-icon></samp>
+        </div>
+      </div>
+    </div>
+    <div>
+      <img [src]="secoundimg_post" />
+    </div>
+    <div *ngIf="open4_post" style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6%;
+      ">
+      <div>
+        <span style="margin-left: 17px" class="span"> After Img </span>
+      </div>
+      <div style="margin-left: 30%">
+        <ion-button [disabled]="isButtonDis" (click)="Image_post()" id="cap">Capture
+        </ion-button>
+      </div>
+      <div *ngIf="add2_post" style="margin-right: 19px">
+        <div *ngIf="img2_post">
+          <samp><ion-icon style="font-size: 20px; color: red" name="add-circle-outline"></ion-icon></samp>
+        </div>
+      </div>
+    </div>
+    <div>
+      <img [src]="threeimg_post" />
+    </div>
+
+    <!-- <div style="display: flex">
+      <div style="margin-left: 17px">
+        <p class="color">Sign By Customer</p>
+      </div>
+      <div style="display: flex; margin-left: 12%">
+        <p class="color">Yes</p>
+        <input (click)="showe()" style="margin-left: 12%" type="checkbox" />
+        <p class="color" style="margin-left: 20%">No</p>
+        <input class="color" style="margin-left: 12%" type="checkbox" />
+      </div>
+    </div> -->
+  </div>
+   <div style="display: flex;
+   justify-content: space-between;
+   align-items: center;" *ngIf="hidden">
+    <div  style="    margin-left: 3%;
+    color: #000;
+    font-weight: 500;">
+      <span > Digital Service Report</span>
+    </div>
+    <div style="    margin-right: 10%;
+    color: #047ac2;
+    font-weight: 600;">
+    <ion-button  routerLink="/services-report" style="       text-transform: none;
+    --background: #047ac2;--border-radius: 10px;">Click</ion-button>
+    </div>
+   </div>
+
+
+
+    <div style="    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 44%;">
+      <ion-button  style=" --background: #0c7cbc;" (click)="Service_Change_Status()" class="button22" expand="block">
+        Submit
+      </ion-button>
+    </div>
+
+
+
+
+
+
+
+  <!-- <div *ngIf="closer">
+    <ion-button (click)="route_to_profile_answer_screen(BookingID)" class="button" expand="block">
+      Submit For Closure
+    </ion-button>
+  </div> -->
+  <!-- <div>
+    <div *ngIf="hidd">
+      <div>
+        <ion-item style="--background: #fff margin-left: -3px;">
+          <ion-label style="color: #000">Service Call Type</ion-label>
+
+          <ion-select style="color: #000;" [(ngModel)]="edit_data.CallType" interface="popover">
+            <ion-select-option value="OTR">OTR</ion-select-option>
+            <ion-select-option>OCR</ion-select-option>
+            <ion-select-option>Under AMC</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <div style="margin-top: 4%;">
+
+
+         <div>
+
+          <ion-input [(ngModel)]="edit_data.CustumerPrice" class="secound" labelPlacement="stacked"
+            placeholder="Customer Price"></ion-input>
+
+        </div> -->
+<!-- 
+        <div style="margin-top: 5%;">
+          <ion-input [(ngModel)]="edit_data.ExpensePrice" class="secound" labelPlacement="stacked"
+            placeholder="Expense Price"></ion-input>
+
+        </div> -->
+        <!-- <div style="margin-top: 5%;">
+          <ion-input [(ngModel)]="edit_data.Description" class="secound3" labelPlacement="stacked"
+            placeholder="Description"></ion-input>
+
+        </div> -->
+        <!-- <div>
+          <ion-button (click)=" super()" class="button" expand="block">
+            Edit Ticket Finance Details
+          </ion-button>
+        </div>
+
+      </div>
+    </div>
+  </div> --> 
+</ion-content>

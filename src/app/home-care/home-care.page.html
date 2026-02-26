@@ -1,0 +1,72 @@
+<ion-header class="otp-header ion-no-border">
+  <ion-toolbar>
+        <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Home Care Tickets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ticket-page">
+
+
+  <div *ngFor="let ticket of obj">
+
+    <ion-card class="ticket-card">
+
+      <!-- TOP ROW -->
+      <div class="top-row">
+        <span class="code">#{{ ticket.BookingCode }}</span>
+
+        <div class="right-icons">
+          <ion-icon
+            name="eye-outline"
+            class="eye-icon"
+            (click)="openTicket(ticket.BookingCode)">
+          </ion-icon>
+
+    <span
+  class="status"
+  [ngClass]="{
+    'completed': ticket.BookingStatus === 'Completed',
+    'pending': ticket.BookingStatus === 'PENDING',
+    'cancelled': ticket.BookingStatus === 'Cancelled' || ticket.BookingStatus === 'REJECTED',
+    'progress': ticket.BookingStatus === 'ASSIGNED',
+    'ACCEPTED': ticket.BookingStatus === 'ACCEPTED',
+    'WIP': ticket.BookingStatus === 'WIP'
+
+  }"
+>
+  {{ ticket.BookingStatus }}
+</span>
+        </div>
+      </div>
+
+      <!-- SERVICE -->
+      <h4 class="service-name">
+        {{ ticket.ServiceName }}
+      </h4>
+
+      <!-- CITY -->
+      <p class="city">
+        {{ ticket.City }}
+      </p>
+
+      <!-- DATE TIME -->
+      <div class="date-time">
+        <span>
+          <ion-icon name="calendar-outline"></ion-icon>
+          {{ ticket.CreatedDate }}
+        </span>
+
+        <span>
+          <ion-icon name="time-outline"></ion-icon>
+          {{ ticket.CreatedTime }}
+        </span>
+      </div>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

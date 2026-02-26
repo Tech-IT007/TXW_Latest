@@ -1,0 +1,78 @@
+/* Background */
+.ticket-bg {
+  --background: #f4f8fb;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+.main-toolbar {
+  --background: #017dc0;
+  --color: #fff;
+}
+
+/* Top Banner */
+.top-banner {
+  text-align: center;
+  padding: 20px 10px 10px;
+}
+
+.animated-gif {
+  width: 140px;
+  margin-bottom: 10px;
+}
+
+.top-banner h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #017dc0;
+  margin: 5px 0;
+}
+
+.top-banner p {
+  font-size: 13px;
+  color: #777;
+}
+
+/* Grid spacing */
+.ticket-grid {
+  padding: 10px;
+}
+
+/* Ticket Card */
+.ticket-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 15px 10px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  height: 100%;
+  border-top: 4px solid #017dc0;
+}
+
+/* Hover Animation */
+.ticket-card:active {
+  transform: scale(0.96);
+}
+
+/* Image */
+.ticket-card img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.ticket-card p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Accent Hover Effect */
+.ticket-card:hover {
+  border-top: 4px solid #d12e27;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+}

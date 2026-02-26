@@ -1,0 +1,85 @@
+.update-content {
+  --background: #f5f7fa;
+}
+
+.update-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.app-logo {
+  width: 160px;
+  margin: 20px auto 10px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.features-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.features-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-card li {
+  font-size: 14px;
+  color: #444;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.features-card li:last-child {
+  border-bottom: none;
+}
+
+.update-btn {
+  width: 100%;
+  max-width: 300px;
+  background: linear-gradient(135deg, #027dc1, #015f93);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.update-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(2, 125, 193, 0.3);
+}
+
+.note {
+  font-size: 12px;
+  color: #888;
+  margin-top: 14px;
+  padding: 0 10px;
+}
+
+.thank-you {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #555;
+  font-weight: 500;
+}

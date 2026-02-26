@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar  style="--background: #0c7cbc;; --color: #fff;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title >Block Game</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="score-panel">
+    <div>Score: {{ score }}</div>
+    <div>Level: {{ level }}</div>
+  </div>
+
+  <div class="game-container">
+    <canvas #gameCanvas width="240" height="480"></canvas>
+  </div>
+
+  <div class="controls" *ngIf="gameStarted">
+    <ion-button (click)="moveLeft()">⬅️</ion-button>
+    <ion-button (click)="rotate()">🔄</ion-button>
+    <ion-button (click)="moveRight()">➡️</ion-button>
+    <ion-button (click)="moveDown()">⬇️</ion-button>
+  </div>
+
+  <div class="start-btn" *ngIf="!gameStarted">
+    <ion-button expand="block" color="success" (click)="startGame()">🎮 Click to Start</ion-button>
+  </div>
+
+  <div class="pause-btn" *ngIf="gameStarted">
+    <ion-button expand="block" color="medium" (click)="togglePause()">
+      {{ isPaused ? '▶ Resume' : '⏸ Pause' }}
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dpr"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="payment-bg">
+
+  <div class="payment-card">
+
+
+    <!-- Payment Type Dropdown -->
+    <div class="field">
+      <label>Payment Type</label>
+
+      <ion-select
+        placeholder="Select Payment Type"
+        [(ngModel)]="dataToSend.PaymentType"
+        interface="popover">
+
+        <ion-select-option value="Visit Charge">
+          Visit Charge
+        </ion-select-option>
+
+        <ion-select-option value="Material Cost">
+          Material Cost
+        </ion-select-option>
+
+        <ion-select-option value="Labour Cost">
+          Labour Cost
+        </ion-select-option>
+
+      </ion-select>
+    </div>
+
+    <!-- Store Name -->
+    <div class="field">
+      <label>Name</label>
+      <ion-input
+        type="text"
+        [(ngModel)]="dataToSend.Store"
+        placeholder="Enter store name">
+      </ion-input>
+    </div>
+    <!-- Amount -->
+    <div class="field">
+      <label>Amount</label>
+      <ion-input
+        type="number"
+        [(ngModel)]="dataToSend.Amount"
+        placeholder="Enter amount">
+      </ion-input>
+    </div>
+
+    <!-- Bill Image -->
+    <div class="upload-box">
+      <div class="upload-header">
+        <span>Bill Image</span>
+        <ion-button size="small" (click)="captureBillImage()">Upload</ion-button>
+      </div>
+
+      <img *ngIf="billImage" [src]="billImage" class="preview-img" />
+    </div>
+
+    <!-- QR Code Image -->
+    <div class="upload-box">
+      <div class="upload-header">
+        <span>QR Code Image</span>
+        <ion-button size="small" (click)="captureQRImage()">Upload</ion-button>
+      </div>
+
+      <img *ngIf="qrImage" [src]="qrImage" class="preview-img" />
+    </div>
+
+    <!-- Schedule Date -->
+    <div class="upload-box">
+      <div class="upload-header">
+        <span>Schedule Date</span>
+
+        <ion-datetime-button datetime="scheduleDate"></ion-datetime-button>
+
+        <ion-modal keep-contents-mounted="true">
+          <ng-template>
+            <ion-datetime
+              id="scheduleDate"
+              presentation="date"
+              [(ngModel)]="dataToSend.ScheduleDate">
+            </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+
+  </div>
+
+  <ion-button expand="block" class="submit-btn" (click)="submitPayment()">
+    Submit Payment
+  </ion-button>
+
+</ion-content>

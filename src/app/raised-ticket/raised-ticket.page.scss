@@ -1,0 +1,51 @@
+.page-bg {
+  --background: #ffff;
+}
+
+ion-toolbar {
+  --background: #017dc0;
+  --color: #ffff;
+}
+
+.ticket-card {
+  margin: 14px;
+  padding: 8px;
+  border-radius: 14px;
+}
+
+ion-item {
+  --background: transparent;
+  margin-bottom: 10px;
+}
+
+ion-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #017dc0;
+}
+
+ion-input,
+ion-textarea,
+ion-select {
+  font-size: 14px;
+}
+
+.image-box {
+  text-align: center;
+  margin: 10px 0;
+
+  img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+}
+
+.submit-btn {
+  margin-top: 16px;
+  --background: #d12e27;
+  --border-radius: 10px;
+  font-weight: 600;
+}

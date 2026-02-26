@@ -1,0 +1,264 @@
+/* ===== HEADER ===== */
+.dashboard-header {
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.logo-container img {
+  height: 40px;
+  margin-left: 10px;
+}
+
+/* ===== PAGE ===== */
+.dashboard-content {
+  background: #ffffff;
+  padding-bottom: 90px;
+}
+
+/* ===== LOCATION REFRESH ===== */
+.location-refresh-box {
+  margin: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1.5px solid #027dc1;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-refresh-box h5 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #027dc1;
+}
+
+.location-refresh-box ion-icon {
+  font-size: 20px;
+  color: #d12e27;
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-card {
+  margin: 14px;
+  padding: 28px 16px 20px;
+  border-radius: 22px;
+  border: 1.6px solid #027dc1;
+  background: #fff;
+  text-align: center;
+}
+
+/* IMAGE */
+.profile-image-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.profile-img-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #027dc1;
+}
+
+/* CAMERA ICON */
+.camera-icon {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 34px;
+  height: 34px;
+  background: #027dc1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.camera-icon ion-icon {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+/* ===== PROFILE INFO ===== */
+.profile-info {
+  margin-top: 6px;
+}
+
+.profile-name {
+  margin: 8px 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #027dc1;
+  text-transform: uppercase;
+}
+
+.profile-designation,
+.profile-email {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-designation ion-icon,
+.profile-email ion-icon {
+  color: #d12e27;
+  font-size: 14px;
+}
+
+/* ===== TIME SECTION ===== */
+.time-section {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.time-box {
+  flex: 1;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px dashed #ccc;
+  background: #fff;
+  text-align: center;
+}
+
+.time-box ion-icon {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.in-icon {
+  color: #027dc1;
+}
+
+.out-icon {
+  color: #d12e27;
+}
+
+.time-label {
+  display: block;
+  font-size: 12px;
+  color: #777;
+}
+
+.time-value {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* ===== LOGOUT FAB ===== */
+.logout-btn {
+  --background: #d12e27;
+}
+
+/* ===== DASHBOARD GRID ===== */
+.dashboard-grid {
+  padding: 10px;
+}
+
+.dashboard-card {
+  border-radius: 16px;
+  border: 1.2px solid #027dc1;
+  background: #fff;
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.dashboard-card img {
+  height: 60px;
+  margin-bottom: 6px;
+}
+
+.dashboard-card p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #027dc1;
+}
+
+/* ===== NOTIFICATION HEADER BADGE ===== */
+.notification-button {
+  position: relative;
+}
+
+.notify-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 10px;
+  padding: 3px 5px;
+}
+
+/* ===== NOTIFICATION PAGE ===== */
+.notification-content {
+  --background: #f6f7f9;
+  padding: 12px;
+}
+
+/* CARD */
+.notify-card {
+  position: relative;
+  background: #fff;
+  padding: 16px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* DELETE ICON */
+.delete-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 20px;
+  color: #e53935;
+}
+
+/* TITLE */
+.notify-card h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #d12e27;
+}
+
+/* BODY */
+.notify-card p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* EMPTY STATE */
+.empty-box {
+  text-align: center;
+  margin-top: 40%;
+}
+
+.empty-box img {
+  width: 140px;
+  opacity: 0.6;
+}

@@ -1,0 +1,116 @@
+<ion-content style="   --background: #fff;">
+  <div>
+    <h3 class="h3">Leave Management</h3>
+    <div class="div">
+      <ion-icon routerLink="/vendor-new-page"class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+  <ion-toolbar style="--background: #fff;">
+    <ion-grid style="padding-top: 14px;">
+    </ion-grid>
+    <ion-segment value="english">
+      <ion-segment-button (click)="Leave_balance()"  style="  text-transform: none; font-size: large; color: #000;" value="english"><ion-label>Request
+        </ion-label></ion-segment-button>
+      <ion-segment-button  (click)="Request_leave()"  style="  text-transform: none; font-size: large; color: #000;" value="assamese"><ion-label>
+          History</ion-label></ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <div *ngIf="show" style="margin-top: 5%;">
+  
+    <!-- <div style="    display: flex;
+    justify-content: space-between; margin: 17px;">
+
+        <ion-label style="color: #000;     font-weight: bold;;">Type</ion-label>
+
+        <ion-select   [(ngModel)]="User_details.TypeOfLeave"  id="TicketStatus" name="TicketStatus" interface="popover" style="color: #000; padding: 0px;"  >
+          <ion-select-option   *ngFor="let temp of temp" >{{temp}}</ion-select-option>
+         
+
+        </ion-select>
+  
+    </div> -->
+    <div style="display: flex; justify-content: space-between; margin-top: 6%">
+      <div style="padding: 15px; color: #000;     font-weight: bold;;">From Date</div>
+      <div style="
+          color: #000;
+          border: 2px solid #000;
+          margin-right: 2%;
+          width: 40%;
+          height: 40px;
+          border-radius: 10px;
+        ">
+        <ion-input id="datePicker" [(ngModel)]="User_details.FromDate" placeholder="Date" Type="date"   (ionChange)="dateChanged($event)"   name="inputdate"></ion-input>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; margin-top: 4%">
+      <div style="padding: 15px; color: #000;     font-weight: bold;;">To Date</div>
+      <div style="
+          color: #000;
+          border: 2px solid #000;
+          margin-right: 2%;
+          width: 40%;
+          height: 40px;
+          border-radius: 10px;
+        ">
+        <ion-input id="datePicker2" [(ngModel)]="User_details.ToDate" placeholder="Date" (ionChange)="date2Changed($event)" Type="date" name="inputdate"></ion-input>
+      </div>
+    </div>
+    <div style="margin-top: 5%;">
+      <ion-item style="--background: #fff margin-left: -3px;">
+        <ion-label style="color: #000;     font-weight: bold;;">Duration</ion-label>
+
+        <ion-select [(ngModel)]="User_details.Duration"  id="TicketStatus" name="TicketStatus" interface="popover" style="color: #000">
+          <ion-select-option>Full Day</ion-select-option>
+          <ion-select-option>Half Day</ion-select-option>
+
+
+        </ion-select>
+      </ion-item>
+    </div>
+    <!-- <div *ngIf="Duration2" style="margin-top: 5%;">
+      <ion-item style="--background: #fff margin-left: -3px;">
+        <ion-label style="color: #000;     font-weight: bold;;">Duration</ion-label>
+
+        <ion-select [(ngModel)]="User_details.Duration"    id="TicketStatus" name="TicketStatus" interface="popover" style="color: #000">
+          <ion-select-option>Full Day</ion-select-option>
+
+
+        </ion-select>
+      </ion-item>
+    </div> -->
+    <div style="padding: 1px 0px 10px 14px;">
+      <h6 style="font-size: 16px; color: #000;     font-weight: bold;;">Reason</h6>
+    </div>
+    <div style="padding: 0px 0px 10px 10px; width: 90%">
+      <ion-input [(ngModel)]="User_details.ReasonOfLeave"   style="border: 2px solid whitesmoke;     background: #fff;
+      color: #000;  " type="text" placeholder="Pleace Enter your Reason"></ion-input>
+    </div>
+
+    <div >
+      <ion-button (click)="Submit()" class="button" expand="block">
+        Submit
+      </ion-button>
+    </div>
+  </div>
+  <div *ngIf="hidd" >
+    <ion-card  *ngFor="let users of users"  class="leave-card">
+      
+      <ion-card-content>
+        <p><span class="label">From Date:</span> {{ users.FromDate }}</p>
+        <p><span class="label">To Date:</span> {{ users.ToDate }}</p>
+        <p><span class="label">Duration:</span> {{ users.Duration }}</p>
+        <p><span class="label">Reason of Leave:</span> {{ users.ReasonOfLeave }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+
+
+
+
+
+
+
+
+</ion-content>

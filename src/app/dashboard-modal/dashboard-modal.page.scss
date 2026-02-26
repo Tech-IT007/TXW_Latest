@@ -1,0 +1,103 @@
+.kpi-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.progress-circle {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+.outer {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  padding: 20px;
+  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+              -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+}
+
+.inner {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+              inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+              0.5px 0.5px 0px rgba(255, 255, 255, 1),
+              -0.5px -0.5px 0px rgba(0, 0, 0, 0.15);
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+circle {
+  fill: none;
+  stroke-width: 15px;
+  stroke-dasharray: 440;
+  transition: stroke-dashoffset 0.5s ease, stroke 0.5s ease;
+}
+
+.inner h2 {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin: 0;
+  color: #444;
+}
+
+.inner span {
+  font-size: 0.6em;
+}
+
+.inner p {
+  font-size: 0.8em;
+  color: gray;
+  margin: 0;
+}
+
+/* --- Enhanced KPI Detail Layout --- */
+.kpi-details.new-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 20px;
+  width: 100%;
+}
+
+.kpi-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8faff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.kpi-item .label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9em;
+}
+
+.kpi-item .value {
+  font-weight: 700;
+  color: #047ac2;
+  font-size: 1em;
+}
+
+ion-card {
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}

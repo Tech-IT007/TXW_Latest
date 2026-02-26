@@ -1,0 +1,107 @@
+/* Make app transparent for QRScanner camera preview */
+:host,
+.scanner-content,
+ion-content.scanner-content {
+  --background: transparent !important;
+  background: transparent !important;
+}
+
+/* Header Styling */
+.scanner-header ion-toolbar {
+  backdrop-filter: blur(8px);
+  --background: rgba(0, 0, 0, 0.45);
+  --color: #fff;
+}
+
+/* Overlay Setup */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  pointer-events: none;
+}
+
+/* QR Cutout Box */
+.cutout {
+  position: relative;
+  width: min(80vw, 340px);
+  aspect-ratio: 1 / 1;
+}
+
+/* Dark Background with Transparent Hole */
+.overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-mask:
+    radial-gradient(closest-side, transparent 99%, black 100%)
+    calc(50% - min(40vw, 170px)) calc(50% - min(40vw, 170px)) /
+    min(80vw, 340px) min(80vw, 340px) no-repeat,
+    linear-gradient(#000 0 0);
+  mask:
+    radial-gradient(closest-side, transparent 99%, black 100%)
+    calc(50% - min(40vw, 170px)) calc(50% - min(40vw, 170px)) /
+    min(80vw, 340px) min(80vw, 340px) no-repeat,
+    linear-gradient(#000 0 0);
+}
+
+/* Frame Styling */
+.frame {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.95) inset;
+}
+
+/* Animated Scanning Line */
+.scan-line {
+  position: absolute;
+  left: 8%;
+  width: 84%;
+  height: 2px;
+  top: 8%;
+  background: rgba(0, 255, 150, 0.95);
+  box-shadow: 0 0 12px rgba(0, 255, 150, 0.9), 0 0 24px rgba(0, 255, 150, 0.6);
+  border-radius: 2px;
+  animation: sweep 1.5s linear infinite;
+}
+
+@keyframes sweep {
+  from {
+    top: 8%;
+  }
+  to {
+    top: 92%;
+  }
+}
+
+/* Hint Text */
+.hint {
+  position: absolute;
+  bottom: 22%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* Bottom Bar Buttons */
+.bottom-bar {
+  position: absolute;
+  bottom: env(safe-area-inset-bottom, 10px);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.45));
+}
+.bottom-bar ion-button {
+  --color: #fff;
+}

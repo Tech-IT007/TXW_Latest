@@ -1,0 +1,154 @@
+.details-page {
+  --background: #ffff;
+  padding: 10px;
+}
+
+/* =====================
+   HEADER
+===================== */
+.top-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 20px;
+}
+
+.top-header h3 {
+  color: #017dc0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.back-icon {
+  font-size: 22px;
+  color: #017dc0;
+}
+
+/* =====================
+   CARD
+===================== */
+.info-card {
+  background: #ffff;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* =====================
+   ROWS
+===================== */
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.label {
+  color: #666;
+  font-weight: 500;
+}
+
+.value {
+  color: #000;
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+}
+
+.price {
+  color: #017dc0;
+}
+
+/* =====================
+   STATUS
+===================== */
+.status {
+  color: #d12e27;
+  font-weight: 700;
+}
+
+/* =====================
+   BUTTONS
+===================== */
+.action-buttons {
+     margin-top: 25px;
+    display: flex;
+    gap: 12px;
+    justify-content: space-around;
+}
+
+.approve-btn {
+  --background: #017dc0;
+  --border-radius: 30px;
+  font-weight: 600;
+}
+
+.reject-btn {
+  --background: #d12e27;
+  --border-radius: 30px;
+  font-weight: 600;
+}
+/* MODAL SIZE & SHAPE */
+.assign-modal {
+  --width: 92%;
+  --border-radius: 18px;
+  --background: #ffffff;
+}
+
+/* HEADER */
+.assign-modal ion-toolbar {
+  --background: #027dc0;
+  --color: #fff;
+}
+
+.assign-modal ion-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* CONTENT */
+.assign-modal ion-content {
+  --background: #f8f9fb;
+}
+
+/* SELECT BOX */
+.assign-modal ion-item {
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  margin-top: 20px;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+}
+
+.assign-modal ion-label {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ASSIGN BUTTON */
+.assign-modal .assign-btn {
+  margin-top: 30px;
+  --background: #027dc0;
+  --border-radius: 10px;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* CLOSE BUTTON */
+.assign-modal ion-button {
+  font-size: 13px;
+}
+.footer-toolbar {
+  --background: transparent;
+  padding: 10px 16px;
+}
+
+.submit-btn {
+  height: 46px;
+  --border-radius: 25px;
+  font-weight: 600;
+  --background: #027dc0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}

@@ -1,0 +1,230 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="    --background: #0c7cbc;
+    --color: #fff;">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: #fff"> HVAC Report  </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding" color="light">  
+ <!-- Radio Button in a List -->  
+
+ <ion-list>  
+    <ion-radio-group  [(ngModel)]="userdetails.Condition" >  
+      <ion-list-header style="color: #000; font-weight: 600; font-size: large;">  
+        Please Select Condition
+      </ion-list-header>  
+      <ion-item>  
+        <ion-label>Good</ion-label>  
+        <ion-radio value="GOOD"></ion-radio>  
+      </ion-item>  
+    
+      <ion-item>  
+        <ion-label>Not Good</ion-label>  
+        <ion-radio value="NOT GOOD"></ion-radio>  
+      </ion-item>  
+    </ion-radio-group>  
+    <ion-radio-group>  
+      <ion-item>  
+        <ion-label>Bad</ion-label>  
+        <ion-radio value="BER"></ion-radio>  
+      </ion-item>  
+    </ion-radio-group>  
+  </ion-list>
+     
+  <ion-item  >
+    <ion-label position="stacked" style="  font-size: 18px;">Complaint Description <span style="color: #d20411">*</span></ion-label>
+    <ion-textarea  value="{{clint_data.ProblemReportedByClient}}"  [(ngModel)]="userdetails.ProblemReportedByClient"  style=" --padding-bottom: 30px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked">Action Taken  <span style="color: #d20411">*</span></ion-label>
+    <ion-textarea   value="{{clint_data.ActionTaken}}" [(ngModel)]="userdetails.ActionTaken"   style=" --padding-bottom: 50px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Observation <span style="color: #d20411">*</span></ion-label>
+    <ion-textarea  value="{{clint_data.Observation}}"  [(ngModel)]="userdetails.Observation"  style=" --padding-bottom: 30px;" type="text" ></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked"> Remarks</ion-label>
+    <ion-textarea value="{{clint_data.Remarks}}" rows="1" cols="50"  [(ngModel)]="userdetails.Remarks"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked">  Client Representative Name </ion-label>
+    <ion-textarea  value="{{clint_data.ClientRepresentative}}"   rows="1" cols="50" [(ngModel)]="userdetails.ClientRepresentative"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked"> Client Representative Contact</ion-label>
+    <ion-textarea  value="{{clint_data.ClientRepresentativeContact}}"  [(ngModel)]="userdetails.ClientRepresentativeContact"  rows="1" cols="50"      style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked">Email(s) <span style="font-size: 18px;"></span> </ion-label>
+    <ion-textarea value="{{clint_data.ClientRepresentativeEmails}}" rows="1" cols="50"  [(ngModel)]="userdetails.ClientRepresentativeEmails"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked"> Client Representative Designation</ion-label>
+    <ion-textarea value="{{clint_data.ClientRepresentativeDesignation}}" rows="1" cols="50"  [(ngModel)]="userdetails.ClientRepresentativeDesignation"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked"> Remarks</ion-label>
+    <ion-textarea value="{{clint_data.Remarks}}" rows="1" cols="50"  [(ngModel)]="userdetails.Remarks"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <table>
+    <thead>
+      <tr>
+        <th>Checklist </th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Grill Temperature (C/F)</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.GrillTemperature" ></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Ambient Temperature (C/F)</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.AmbientTemperature"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Room Temperature (C/F)</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.RoomTemperature"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Indoor Fan Motor Current (Amps)</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"   [(ngModel)]="userdetails.IndoorFan"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Return Air Temperature C/F</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.ReturnAirTemperature" ></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Supply Air Temperature C/F</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.SupplyAirTemperature"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Compressor AMPS</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.Compressor" ></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Voltage (Volts)</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.Voltage"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Total Current (Amps)</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.TotalCurrent"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Outdoor Fan Motor Current (Amps)</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.OutdoorFan" ></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Compressor Suction Pressure</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.CompressorSuction"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Compressor Discharge Pressure</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.CompressorDischarge"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Condenser Air Inlet C/F</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.CondenserAirInlet"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Condenser Air Outlet C/F</td>
+        <td>
+          <ion-item>
+            <ion-input type="text"  [(ngModel)]="userdetails.CondenserAirOutlet"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div style="    border: 1px solid #09475e;
+  margin: 5px;">
+    <canvas #signaturePad width="300" height="150" ></canvas>
+  </div>
+     <div class="sign_button" *ngIf="hidd_pad" style="display: flex; justify-content: space-around; margin-top: 5%;"> 
+      <ion-button  (click)="clearSignature()" style="--background: #eee8e8; color: black;">Clear Signature</ion-button>
+      <div>
+        <ion-button  style="--background: #0b7ba1;;"  (click)="saveSignature()">Save Signature</ion-button>
+      </div>
+ 
+     </div>
+     <div>
+    
+     </div>
+      <!-- <div  *ngIf="clint_data.ClientSignature != ''" style="margin-top: 10%;">
+        <ion-label  style="font-size: 18px;
+        margin-left: 6%;
+        font-weight: 700;" position="stacked"> Past Signature </ion-label>
+        <img src="{{clint_data.ClientSignature}}" alt="">
+      </div> -->
+
+  <!-- <div  *ngIf="clint_data.ClientSignature != ''" style="margin-top: 10%;">
+    <ion-label  style="font-size: 18px;
+    margin-left: 6%;
+    font-weight: 700;" position="stacked"> Past Signature </ion-label>
+    <img src="{{clint_data.ClientSignature}}" alt="">
+  </div> -->
+  <div style="margin-bottom: 10%; display: flex; justify-content: space-around;">
+    <div>
+      <ion-button  (click)="submit ()"  class="button22" expand="block"> Submit </ion-button>
+
+    </div>
+  </div>
+</ion-content>  

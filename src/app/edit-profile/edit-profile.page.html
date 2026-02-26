@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar style="--background: #0c7cbc; --color: #fff;">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: #fff;"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="edit-profile-content">
+
+  <!-- PROFILE IMAGE -->
+  <div class="profile-image-card">
+    <div class="profile-img-wrapper" >
+      <img src="{{ impact.ProfileImage || 'assets/avatar.png' }}" />
+      <!-- <ion-icon   name="camera-outline" class="camera-icon"></ion-icon> -->
+    </div>
+  </div>
+
+  <!-- FORM CARD -->
+  <ion-card class="form-card">
+
+    <!-- NAME -->
+    <div class="input-group">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-input
+        placeholder="Full Name"
+        [(ngModel)]="UpdateProfile.employee_name">
+      </ion-input>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="input-group">
+      <ion-icon name="mail-outline"></ion-icon>
+      <ion-input
+        type="email"
+        placeholder="Email Address"
+        [(ngModel)]="UpdateProfile.employee_email">
+      </ion-input>
+    </div>
+
+    <!-- PHONE -->
+    <div class="input-group">
+      <ion-icon name="call-outline"></ion-icon>
+      <ion-input
+        type="tel"
+        placeholder="Phone Number"
+        [(ngModel)]="UpdateProfile.employee_contact">
+      </ion-input>
+    </div>
+
+    <!-- UAN -->
+    <div class="input-group">
+      <ion-icon name="id-card-outline"></ion-icon>
+      <ion-input
+        placeholder="UAN Number"
+        [(ngModel)]="UpdateProfile.UANNumber">
+      </ion-input>
+    </div>
+
+    <!-- BANK NAME -->
+    <div class="input-group">
+      <ion-icon name="business-outline"></ion-icon>
+      <ion-input
+        placeholder="Bank Account Name"
+        [(ngModel)]="UpdateProfile.BankAccountNumber">
+      </ion-input>
+    </div>
+
+    <!-- BANK NUMBER -->
+    <div class="input-group">
+      <ion-icon name="card-outline"></ion-icon>
+      <ion-input
+        placeholder="Bank Account Number"
+        [(ngModel)]="UpdateProfile.bank_account_number">
+      </ion-input>
+    </div>
+
+    <!-- AADHAR -->
+    <div class="input-group">
+      <ion-icon name="finger-print-outline"></ion-icon>
+      <ion-input
+        placeholder="Aadhar Number"
+        [(ngModel)]="UpdateProfile.employee_aadhar_number">
+      </ion-input>
+    </div>
+
+    <!-- PAN -->
+    <div class="input-group">
+      <ion-icon name="document-text-outline"></ion-icon>
+      <ion-input
+        placeholder="PAN Number"
+        [(ngModel)]="UpdateProfile.employee_pan_number">
+      </ion-input>
+    </div>
+
+  </ion-card>
+
+  <!-- SUBMIT BUTTON -->
+  <ion-button expand="block" class="save-btn" (click)="submit()">
+    <ion-icon name="save-outline" slot="start"></ion-icon>
+    Save Changes
+  </ion-button>
+
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar class="main-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ticket Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ticket-bg">
+
+  <!-- Top Illustration -->
+  <div class="top-banner">
+    <img src="assets/img/tickets.gif" class="animated-gif" />
+    <h2>Manage Your Tickets</h2>
+    <p>Select a category to continue</p>
+  </div>
+
+  <!-- Cards Grid -->
+  <ion-grid class="ticket-grid">
+    <ion-row>
+
+      <!-- All Corporate -->
+      <ion-col size="6">
+        <div class="ticket-card" routerLink="/corprate-tickets">
+          <img src="/assets/img/All_Tickets.jpg" />
+          <p>All Corporate Tickets</p>
+        </div>
+      </ion-col>
+
+      <!-- Account Manager -->
+      <ion-col size="6">
+        <div class="ticket-card" (click)="routing_page_Branch_Manager()">
+          <img src="/assets/img/Branch_Tickets.png" />
+          <p>Acc Branch Tickets</p>
+        </div>
+      </ion-col>
+
+            <ion-col size="6">
+        <div class="ticket-card"  routerLink="/payment-approvel">
+               <img src="/assets/img/secure-payment.png" />
+          <p>Payment Approvals</p>
+        </div>
+      </ion-col>
+            <ion-col size="6"  *ngIf="display" routerLink="/quotation-approve-all-tickets">
+        <div class="ticket-card" >
+             <img src="/assets/img/financing.png" />
+          <p>Quotation Approval</p>
+        </div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

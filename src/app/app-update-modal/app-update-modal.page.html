@@ -1,0 +1,58 @@
+<ion-content class="update-content">
+
+  <div class="update-container">
+
+    <!-- Logo -->
+    <div class="logo-wrapper">
+      <img src="assets/img/logo.jpg" class="app-logo" />
+    </div>
+
+    <!-- Title -->
+    <h2 class="title">New App Update Available</h2>
+    <p class="subtitle">
+      Please update the app to continue with the latest improvements
+    </p>
+
+    <!-- What's New -->
+    <div class="features-card">
+
+      <div class="feature-item">
+        <ion-icon name="rocket-outline"></ion-icon>
+        <span>Improved performance & faster loading</span>
+      </div>
+
+      <div class="feature-item">
+        <ion-icon name="location-outline"></ion-icon>
+        <span>Accurate & faster location tracking</span>
+      </div>
+
+      <div class="feature-item">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <span>Notification Now Available</span>
+      </div>
+
+      <div class="feature-item">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <span>Approval Process Improved</span>
+      </div>
+
+    </div>
+
+    <!-- Update Button -->
+    <ion-button expand="block" class="update-btn" (click)="updateApp()">
+      <ion-icon name="cloud-download-outline" slot="start"></ion-icon>
+      Update Now
+    </ion-button>
+
+    <!-- Info -->
+    <p class="note">
+      If the update does not start automatically, please uninstall and reinstall the app.
+    </p>
+
+    <p class="thank-you">
+      Thank you for using our app 🙏
+    </p>
+
+  </div>
+
+</ion-content>

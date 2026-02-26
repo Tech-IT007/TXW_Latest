@@ -1,0 +1,95 @@
+<ion-header class="dashboard-header">
+  <ion-toolbar>
+    <!-- Back Button -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
+
+    <!-- Logo in center -->
+    <div class="logo-container">
+      <img src="assets/img/logo.jpg" alt="Logo" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="dashboard-content" style="--background: #efebe6;">
+
+
+<div>
+  <img src="assets/img/work.gif" alt="">
+</div>
+
+  <!-- Dashboard Grid -->
+  <ion-grid class="dashboard-grid">
+    <ion-row>
+      <!-- Home Care -->
+  
+
+      <!-- Profile -->
+      <ion-col size="6">
+        <ion-card button routerLink="/information" class="dashboard-card">
+          <img src="/assets/img/profile1.png" alt="Profile" />
+          <p>Profile</p>
+        </ion-card>
+      </ion-col>
+
+
+      <!-- Leave -->
+      <ion-col size="6">
+        <ion-card button routerLink="/leave-managment" class="dashboard-card">
+          <img src="/assets/img/4.png" alt="Leave" />
+          <p>Leave</p>
+        </ion-card>
+      </ion-col>
+
+
+
+      <!-- Attendance -->
+      <ion-col size="6">
+        <ion-card button (click)="router_to_attendance()" class="dashboard-card">
+          <img src="/assets/img/2.png" alt="Attendance" />
+          <p>Attendance</p>
+        </ion-card>
+      </ion-col>
+
+      <!-- Convenience -->
+      <ion-col size="6">
+        <ion-card button routerLink="/charge" class="dashboard-card">
+          <img src="/assets/img/3.png" alt="Convenience" />
+          <p>Convenience</p>
+        </ion-card>
+      </ion-col>
+
+      <!-- Attendance History (Conditional) -->
+      <ion-col size="6">
+        <ion-card button routerLink="/attdence-history" class="dashboard-card">
+          <img src="/assets/img/test.png" alt="Attendance History" />
+          <p>Attendance History</p>
+        </ion-card>
+      </ion-col>
+
+            <ion-col size="6">
+        <ion-card button routerLink="/kpi" class="dashboard-card">
+          <img src="/assets/img/kpi.png" alt="Attendance History" />
+          <p>Employee KPI </p>
+        </ion-card>
+      </ion-col>
+
+            <ion-col size="6">
+        <ion-card button routerLink="/game" class="dashboard-card">
+          <img src="/assets/img/tetris.png" alt="Attendance History" />
+          <p>Block Game</p>
+        </ion-card>
+      </ion-col>
+
+<!-- 
+   <div>
+    <ion-button routerLink="/camera"> Testing Camera </ion-button>
+   </div> -->
+
+
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

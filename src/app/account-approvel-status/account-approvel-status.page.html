@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Approve Status</ion-title>
+  <ion-back-button  slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<iframe
+  *ngIf="approvalUrl"
+  [src]="approvalUrl"
+    class="approval-frame">
+</iframe>
+</ion-content>

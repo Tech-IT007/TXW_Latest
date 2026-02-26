@@ -1,0 +1,94 @@
+/* PAGE */
+ion-content {
+  --background: #ffffff;
+}
+
+/* HEADER */
+.header-title {
+  color: #017dc0;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* WRAPPER */
+.otp-wrapper {
+  margin-top: 28%;
+}
+
+/* CARD */
+.otp-card {
+  margin: 0 16px;
+  padding-bottom: 24px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* TITLE */
+.otp-title {
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* OTP GRID */
+ion-grid {
+  padding: 0 18px;
+}
+
+ion-col {
+  display: flex;
+  justify-content: center;
+}
+
+/* OTP INPUT */
+.otp-input {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: 2px solid #017dc0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  outline: none;
+  background: #ffffff;
+  color: #000;
+}
+
+/* REMOVE NUMBER ARROWS */
+.otp-input::-webkit-outer-spin-button,
+.otp-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.otp-input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* FOCUS EFFECT */
+.otp-input:focus {
+  border-color: #d12e27;
+  box-shadow: 0 0 0 2px rgba(209, 46, 39, 0.2);
+}
+
+/* VERIFY BUTTON */
+.verify-btn {
+  margin: 26px 20px 10px;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  --background: #d12e27;
+}
+
+/* TIMER */
+.timer-text {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #666;
+}

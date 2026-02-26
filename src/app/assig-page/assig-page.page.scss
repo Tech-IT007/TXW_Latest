@@ -1,0 +1,151 @@
+/* ================= HEADER ================= */
+.custom-header {
+  --background: #017dc0;
+  --color: #ffffff;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.back-btn {
+  color: #ffffff;
+}
+
+.header-text {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* ================= PAGE ================= */
+.page-bg {
+  --background: #ffffff;
+}
+
+/* ================= BOOKING BLOCK ================= */
+.booking-block {
+  padding: 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.booking-id {
+  font-size: 15px;
+  font-weight: 600;
+  color: #017dc0;
+  margin: 0 0 12px 0;
+}
+
+/* FLEX ROW */
+.booking-flex {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* FLEX ITEM */
+.booking-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* FIELD LABEL */
+.field-label {
+  font-size: 11px;
+  margin: 0;
+  color: #017dc0;
+}
+
+/* FIELD VALUE */
+.field-value {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #000;
+  font-weight: 500;
+}
+
+/* DIVIDER */
+.flex-divider {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 16px;
+  color: #d12e27;
+}
+
+/* ================= INFO CARD ================= */
+.info-card {
+  box-shadow: none;
+  background: #ffffff;
+  margin: 12px;
+  padding: 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  font-size: 12px;
+  color: #017dc0;
+}
+
+.value {
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+}
+
+.status {
+  color: #d12e27;
+  font-weight: 600;
+}
+
+/* ================= STATUS SELECT ================= */
+.status-item {
+  --background: #ffffff;
+  margin: 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+}
+
+.status-item ion-label {
+  font-size: 12px;
+  color: #000;
+}
+
+.status-item ion-select {
+  font-size: 12px;
+  color: #000;
+}
+
+/* ================= BUTTON ================= */
+.submit-btn {
+  margin: 16px;
+  --background: #d12e27;
+  --color: #ffffff;
+  font-size: 13px;
+  height: 44px;
+  border-radius: 8px;
+}
+
+/* ================= SMALL SCREEN FIX ================= */
+@media (max-width: 360px) {
+
+
+  .flex-divider {
+    display: none;
+  }
+
+  .booking-item {
+    margin-bottom: 10px;
+  }
+}

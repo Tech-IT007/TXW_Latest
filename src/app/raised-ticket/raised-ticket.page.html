@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar style="background: #0c7cbc;;">
+        <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Raise Ticket</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-bg">
+
+  <ion-card class="ticket-card">
+
+    <!-- Corporate Service Type -->
+    <!-- <ion-item>
+      <ion-label position="stacked">Branch Type</ion-label>
+      <ion-select
+        placeholder="Select Type"
+        [(ngModel)]="form.serviceType">
+        <ion-select-option value="R&M">R&M</ion-select-option>
+        <ion-select-option value="Supply">Supply</ion-select-option>
+        <ion-select-option value="Project">Project</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+
+    <!-- Services -->
+    <ion-item>
+      <ion-label position="stacked">Service</ion-label>
+      <ion-select
+        placeholder="Select Service"
+        [(ngModel)]="form.serviceId"
+        (ionChange)="loadSubServices($event.detail.value)">
+        <ion-select-option
+          *ngFor="let s of services"
+          [value]="s.ID">
+          {{ s.Name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Sub Services -->
+    <ion-item>
+      <ion-label position="stacked">Sub Service</ion-label>
+      <ion-select
+        placeholder="Select Sub Service"
+        [(ngModel)]="form.subServiceId">
+        <ion-select-option
+          *ngFor="let sub of subServices"
+          [value]="sub.SubServiceID">
+          {{ sub.title }}
+
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Client Ticket ID -->
+    <ion-item>
+      <ion-label position="stacked">Client Ticket ID</ion-label>
+      <ion-input
+        placeholder="Enter Ticket ID"
+        [(ngModel)]="form.clientTicketId">
+      </ion-input>
+    </ion-item>
+
+    <!-- Priority -->
+    <ion-item>
+      <ion-label position="stacked">Priority</ion-label>
+      <ion-select
+        placeholder="Select Priority"
+        [(ngModel)]="form.priority">
+        <ion-select-option value="Low">Low</ion-select-option>
+        <ion-select-option value="Medium">Medium</ion-select-option>
+        <ion-select-option value="High">High</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Ticket Attachment -->
+    <ion-item lines="none">
+      <ion-label>Ticket Attachment</ion-label>
+      <ion-button
+        fill="outline"
+        color="primary"
+        slot="end"
+        (click)="captureImage()">
+        <ion-icon name="camera-outline"></ion-icon>
+        Capture
+      </ion-button>
+    </ion-item>
+
+    <div *ngIf="imagePreview" class="image-box">
+      <img [src]="imagePreview" />
+    </div>
+
+    <!-- Message -->
+    <ion-item>
+      <ion-label position="stacked">Message</ion-label>
+      <ion-textarea
+        rows="4"
+        placeholder="Describe your issue"
+        [(ngModel)]="form.message">
+      </ion-textarea>
+    </ion-item>
+
+    <!-- Submit -->
+    <ion-button expand="block" class="submit-btn" (click)="submitTicket()">
+      Submit Ticket
+    </ion-button>
+
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Assets Mapping</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="routerpage()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding mismatch-modal-content">
+  <div class="modal-container">
+    <img src="assets/img/logo.jpg" alt="Logo" class="modal-logo" />
+
+    <h2 class="modal-title">Asset Not Yet Mapped</h2>
+    <p class="modal-message">
+      This Asset is not mapped to any  QR Code.  
+    
+    </p>
+
+    <ion-button class="button22"   (click)="dismissModal()">
+      Click to Mapped
+    </ion-button>
+  </div>
+</ion-content>

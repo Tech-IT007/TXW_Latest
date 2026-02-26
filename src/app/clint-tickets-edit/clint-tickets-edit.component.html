@@ -1,0 +1,22 @@
+<ion-header>
+  <div>
+    <h3 class="h3">Client Ticket ID</h3>
+    <div class="div">
+    </div>
+  </div>
+
+</ion-header>
+
+
+<ion-content id="red">
+  <ion-card class="card22">
+    <div style="position: relative; width: 90%; ">
+      <input   [(ngModel)]=" DataTosend.ClientTicketID" class="input" type="text" 
+        placeholder="Client Ticket ID">
+    </div>
+  </ion-card>
+  <div style="text-align: center;">
+    <ion-button class="button" (click)="submit()">Submit</ion-button>
+  </div>
+
+</ion-content>

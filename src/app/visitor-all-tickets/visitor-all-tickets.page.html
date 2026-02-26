@@ -1,0 +1,95 @@
+<ion-header style="background: #fff;">
+  <div>
+    <h3 class="h3">Site Visits</h3>
+    <div class="div">
+      <ion-icon routerLink="/vendor-new-page" class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-fab routerLink="/visitor-seclect-branch" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button style="--background: #0c7cbc; --color: #fff;">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+  <div  *ngFor="let user of obj">
+    <ion-card>
+      <div style=" display: flex;align-items: center;justify-content: space-between;margin: 8px;">
+        <div style="color: #000; font-weight: 700">
+          <span>{{user.ReportNumber}}</span>
+        </div>
+
+      </div>
+      <div>
+        <div style="    display: flex;
+        align-items: center;
+        margin: 3px;
+        justify-content: space-between;">
+      
+          <div style="margin-left: 8px; color: #000">
+            <ion-icon name="settings-outline"></ion-icon>
+            <span style="margin-left: 10px;">{{user.VisitTitle}}</span>
+          </div>
+         <div *ngIf="user.Status != 'Completed'" style="display: flex;    margin-left: 0%;"  >
+          <div  style="    font-size: 22px;color: red;margin-right: 18px;">
+            <ion-icon (click)="route_to_Observation(user.ID)" 
+            style="    margin-right: 10px;" name="add-circle"></ion-icon>
+            <ion-icon  *ngIf="user.Status == 'Observation Recorded'" (click)="route_to_Summary(user.ID)" 
+            style="color: green;" name="checkmark-circle"></ion-icon>
+          </div>
+         </div>
+       
+           
+          </div>
+       
+
+        <div style="display: flex; align-items: center; margin: 8px">
+          <div style="color: #000; font-size: large; margin-top: 4px">
+            <ion-icon name="clipboard-outline"></ion-icon>
+          </div>
+          <div style="margin-left: 8px; color: #000">
+            <span> {{user .Status}}</span>
+          </div>
+        </div>
+        <!-- 
+        <div style="display: flex; align-items: center; margin: 8px">
+          <div style="color: green; font-size: large; margin-top: 4px">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+          </div>
+          <div style="margin-left: 8px; color: #000">
+           <span *ngIf="user.Message  == ''"> Not Set</span> -->
+        <!-- <span>Not Working</span>
+          </div>
+        </div> -->
+        <div style="display: flex; align-items: center; margin: 8px">
+          <div style="color: #000; font-size: large; margin-top: 4px">
+            <ion-icon name="calendar-clear-outline"></ion-icon>
+          </div>
+          <div style="margin-left: 8px; color: #000">
+            <!-- <span *ngIf="user.Message  == ''"> Not Set</span> -->
+            <span> {{user.CreatedDate}}/{{user.CreatedTime}} </span>
+          </div>
+
+          <div style="margin-left: 30%;">
+            <span style="color: #000;font-weight: 600;"> {{user.CreatedBy}} </span>
+
+          </div>
+
+        </div>
+      </div>
+    </ion-card>
+  </div>
+
+  <ion-infinite-scroll threshold="50%" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Loading more Forms..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

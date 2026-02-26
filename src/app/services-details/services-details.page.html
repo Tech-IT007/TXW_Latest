@@ -1,0 +1,61 @@
+<!-- <ion-header >
+  <ion-toolbar style="--background:   #dc0612;">
+    <ion-back-button slot="start" style="color: #fff;"></ion-back-button>
+    <ion-title style="color: #fff"> </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<div style="background: #0b7ba1;
+color: #fff;display: flex;
+    align-items: center; padding: 10px;">
+  <div style="width: 10%; ">
+    <ion-icon routerLink="/tabs/main-page" style="font-size: larger;" class="icon" name="arrow-back-outline"></ion-icon>
+  </div>
+  <div>
+    <span>  Complete Your Details </span>
+  </div>
+
+
+</div>
+<ion-content >
+
+<ion-list>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked">  Client Representative Name </ion-label>
+    <ion-textarea  rows="1" cols="50"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked"> Client Representative Contact</ion-label>
+    <ion-textarea maxlength="10"  rows="1" cols="50"      style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked">Remarks</ion-label>
+    <ion-textarea rows="1" cols="50"    style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked">Email(s) <span style="font-size: 18px;"></span> </ion-label>
+    <ion-textarea rows="1" cols="50"    style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label  style="  font-size: 18px;" position="stacked"> Client Service Designation</ion-label>
+    <ion-textarea rows="1" cols="50"    style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+  </ion-item>
+</ion-list>
+
+  <div style="    border: 1px solid #09475e;
+  margin: 5px;">
+    <canvas #signaturePad width="300" height="150"></canvas>
+  </div>
+     <div class="sign_button" *ngIf="hidd_pad"  > 
+      <ion-button  (click)="clearSignature()" style="--background: #eee8e8; color: black;">Clear Signature</ion-button>
+      <div>
+        <ion-button  style="--background: #0b7ba1;;"  (click)="saveSignature()">Save Signature</ion-button>
+      </div>
+ 
+     </div>
+
+
+<div style="text-align: center; margin-top: 5%; padding: 16px;">
+  <ion-button  (click)="submit()"> Complete </ion-button>
+</div>
+</ion-content>
+ 

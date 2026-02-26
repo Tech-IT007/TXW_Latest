@@ -1,0 +1,169 @@
+
+<ion-header class="otp-header ion-no-border">
+  <ion-toolbar>
+        <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Booking Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="details-page">
+
+
+  <!-- CARD -->
+  <ion-card class="info-card">
+
+    <div class="row">
+      <span class="label">Booking Code</span>
+      <span class="value">#{{ impact.BookingCode }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Customer Name</span>
+      <span class="value">{{ impact.CustomerName }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Phone</span>
+      <span class="value">{{ impact.Phone }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Email</span>
+      <span class="value">{{ impact.Email }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Service</span>
+      <span class="value">{{ impact.ServiceName }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Sub Service</span>
+      <span class="value">{{ impact.SubService }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Price</span>
+      <span class="value price">₹ {{ impact.Price }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Address</span>
+      <span class="value">{{ impact.Address }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">City</span>
+      <span class="value">{{ impact.City }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">State</span>
+      <span class="value">{{ impact.State }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Status</span>
+      <span class="status">{{ impact.BookingStatus }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Created</span>
+      <span class="value">
+        {{ impact.CreatedDate }} · {{ impact.CreatedTime }}
+      </span>
+    </div>
+
+  </ion-card>
+
+  <!-- ACTION BUTTONS -->
+<div class="action-buttons">
+
+  <!-- APPROVE & REJECT -->
+  <ng-container *ngIf="!isApproved && impact.BookingStatus != 'ACCEPTED'">
+
+    <ion-button expand="block" class="approve-btn" (click)="approve()">
+      Approve
+    </ion-button>
+
+    <ion-button expand="block" class="reject-btn">
+      Reject
+    </ion-button>
+
+  </ng-container>
+
+  <!-- ASSIGN TECHNICIAN -->
+  <ion-button
+  (click)="openAssignModal()"
+    expand="block"
+    class="assign-btn"
+    *ngIf="isApproved || impact.BookingStatus === 'ACCEPTED'">
+
+    Assign Technician
+  </ion-button>
+
+</div>
+<ion-modal [isOpen]="isAssignModalOpen" cssClass="assign-modal">
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar class="modal-header">
+        <ion-title>Assign Technician</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeAssignModal()">CLOSE</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- SCROLLABLE CONTENT -->
+    <ion-content>
+
+      <ion-searchbar
+        placeholder="Search technician"
+        debounce="300"
+        (ionInput)="filterTechnicians($event)">
+      </ion-searchbar>
+
+      <ion-list>
+        <ion-item
+          button
+          class="tech-item"
+          *ngFor="let user of filteredTechnicians"
+          (click)="bookingdata.AssignedTo = user.ID">
+
+          <ion-label>{{ user.Name }}</ion-label>
+
+          <ion-icon
+            *ngIf="bookingdata.AssignedTo === user.ID"
+            slot="end"
+            name="checkmark-circle"
+            color="success">
+          </ion-icon>
+        </ion-item>
+      </ion-list>
+
+    </ion-content>
+
+    <!-- ✅ FIXED BOTTOM AREA -->
+    <ion-footer *ngIf="bookingdata.AssignedTo">
+      <ion-toolbar class="footer-toolbar" style="--background: #fff">
+        <ion-button
+          expand="block"
+          class="submit-btn"
+          (click)="assignTechnician()">
+
+          Submit
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+
+  </ng-template>
+</ion-modal>
+
+
+
+</ion-content>

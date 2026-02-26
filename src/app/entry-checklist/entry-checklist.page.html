@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-toolbar style="--background: #0c7cbc; --color: #fff;">
+    <!-- Back Button -->
+    <ion-buttons slot="start">
+      <ion-back-button style="color: #fff;"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Employee Safety Checklist</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding checklist-page">
+
+  <ion-card class="main-card">
+    <ion-card-header>
+      <ion-card-title>Safety Verification</ion-card-title>
+      <ion-card-subtitle>Tap “Yes” to capture a quick photo</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- Company Uniform -->
+      <div class="question-box">
+        <p class="question">Are you wearing the company uniform?</p>
+        <ion-radio-group
+          [value]="userdetails.Is_Uniform"
+          (ionChange)="onChoice('Is_Uniform', $event.detail.value)"
+          class="radio-group"
+        >
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="YES"></ion-radio>
+            <ion-label>Yes</ion-label>
+          </ion-item>
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="NO"></ion-radio>
+            <ion-label>No</ion-label>
+          </ion-item>
+        </ion-radio-group>
+
+        <div class="preview" *ngIf="images.Is_Uniform">
+          <ion-img [src]="images.Is_Uniform"></ion-img>
+        </div>
+      </div>
+
+      <!-- Safety Jacket -->
+      <div class="question-box">
+        <p class="question">Are you wearing your safety jacket?</p>
+        <ion-radio-group
+          [value]="userdetails.Has_Jacket"
+          (ionChange)="onChoice('Has_Jacket', $event.detail.value)"
+          class="radio-group"
+        >
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="YES"></ion-radio>
+            <ion-label>Yes</ion-label>
+          </ion-item>
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="NO"></ion-radio>
+            <ion-label>No</ion-label>
+          </ion-item>
+        </ion-radio-group>
+
+        <div class="preview" *ngIf="images.Has_Jacket">
+          <ion-img [src]="images.Has_Jacket"></ion-img>
+        </div>
+      </div>
+
+      <!-- Toolkit -->
+      <div class="question-box">
+        <p class="question">Do you have your insulated toolkit?</p>
+        <ion-radio-group
+          [value]="userdetails.Has_Toolkit_Isolated"
+          (ionChange)="onChoice('Has_Toolkit_Isolated', $event.detail.value)"
+          class="radio-group"
+        >
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="YES"></ion-radio>
+            <ion-label>Yes</ion-label>
+          </ion-item>
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="NO"></ion-radio>
+            <ion-label>No</ion-label>
+          </ion-item>
+        </ion-radio-group>
+
+        <div class="preview" *ngIf="images.Has_Toolkit_Isolated">
+          <ion-img [src]="images.Has_Toolkit_Isolated"></ion-img>
+        </div>
+      </div>
+
+      <!-- Safety Shoes -->
+      <div class="question-box">
+        <p class="question">Are you wearing approved safety shoes?</p>
+        <ion-radio-group
+          [value]="userdetails.Has_Safety_Shoes"
+          (ionChange)="onChoice('Has_Safety_Shoes', $event.detail.value)"
+          class="radio-group"
+        >
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="YES"></ion-radio>
+            <ion-label>Yes</ion-label>
+          </ion-item>
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="NO"></ion-radio>
+            <ion-label>No</ion-label>
+          </ion-item>
+        </ion-radio-group>
+
+        <div class="preview" *ngIf="images.Has_Safety_Shoes">
+          <ion-img [src]="images.Has_Safety_Shoes"></ion-img>
+        </div>
+      </div>
+
+      <!-- PPE Kit -->
+      <div class="question-box">
+        <p class="question">Do you have your full PPE kit available?</p>
+        <ion-radio-group
+          [value]="userdetails.Has_Ppe_Kit"
+          (ionChange)="onChoice('Has_Ppe_Kit', $event.detail.value)"
+          class="radio-group"
+        >
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="YES"></ion-radio>
+            <ion-label>Yes</ion-label>
+          </ion-item>
+          <ion-item lines="none" class="radio-option">
+            <ion-radio value="NO"></ion-radio>
+            <ion-label>No</ion-label>
+          </ion-item>
+        </ion-radio-group>
+
+        <div class="preview" *ngIf="images.Has_Ppe_Kit">
+          <ion-img [src]="images.Has_Ppe_Kit"></ion-img>
+        </div>
+      </div>
+
+    </ion-card-content>
+
+    <!-- Submit Button -->
+    <div class="ion-text-center ion-padding">
+      <ion-button
+        expand="block"
+        style="--background: #0c7cbc; text-transform: none;"
+        shape="round"
+        size="large"
+      (click)="submitChecklist()"
+      >
+        Submit Checklist
+      </ion-button>
+    </div>
+  </ion-card>
+</ion-content>

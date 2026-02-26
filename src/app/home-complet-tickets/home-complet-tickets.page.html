@@ -1,0 +1,112 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+  <div>
+    <h3 class="h3">Home Care Tickets</h3>
+    <div class="div">
+      <ion-icon
+        routerLink="/rocket"
+        class="icon"
+        name="chevron-back-outline"
+      ></ion-icon>
+    </div>
+  </div>
+  <div>
+    <ion-buttons style="color: #000; margin-left: 54%; margin-top: 2px">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </div>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4">
+        <div>
+          <ion-button class="button44" (click)=" Current()"
+            >Current tickets</ion-button
+          >
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div  *ngIf="city_lead">
+          <ion-button class="button42" routerLink="/home-city-lead"
+            >City tickets</ion-button
+          >
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div>
+          <ion-button (click)="past()" class="button45">Past Tickets</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="show"   style="text-align: center;margin-top: 28%;">
+    <img src="/assets/img/opps.jpg" alt="">
+<h2 style="font-weight: bold;">
+  There Are No Tickets Found
+</h2>
+  </div>
+  <div *ngFor="let user of obj">
+    <ion-card
+      style="
+        padding-bottom: 0px;
+        margin-left: 0;
+        box-shadow: none;
+        --background: #fff;
+        color: #000;
+      "
+    >
+      <div style="margin-top: 15px ;">
+        <div style="display: flex">
+          <div>
+            <h5 style="color: #000">Ticket ID:</h5>
+          </div>
+          <div>
+            <h6 style="margin-top: 2px; font-size: 11px; color: #000">
+              {{ user.BookingID}}
+            </h6>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ion-button
+          class="button33"
+          (click)="route_to_profile_answer_screen(user.ID)"
+          >Open</ion-button
+        >
+      </div>
+      <div style="margin-top: -17px; border-bottom: 4px solid whitesmoke">
+        <img class="boy" src="/assets/img/boys.jpg" alt="" />
+        <h6 class="goom">{{ user.Name }}</h6>
+        <!-- <h6   (click)="route_to_Edit_impact_screen(ID)" class="view" routerLink="/profile">Booking Details</h6> -->
+      </div>
+
+      <ion-grid>
+        <ion-row >
+          <ion-col style="left: 2%;"> {{user.Service_name}} </ion-col>
+          <ion-col style="left: 22%;">{{ user.Status }}</ion-col>
+      
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row >
+          <ion-col style="left: 2%;"> {{user.Phone}} </ion-col>
+          <ion-col style="left: 18%;"><ion-icon name="calendar-clear-outline" style="margin: -2px; margin-right: 4%;"></ion-icon>{{user.BookingDate}}</ion-col>
+      
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row >
+          <ion-col style="left: 2%;">    {{ user.Customer_address }}</ion-col>
+          <ion-col style="left: 22%;"><ion-icon name="time-outline" style="margin: -2px;"></ion-icon>  {{ user.BookingTime }}</ion-col>
+      
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+</ion-content>

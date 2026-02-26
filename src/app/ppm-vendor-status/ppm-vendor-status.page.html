@@ -1,0 +1,197 @@
+<ion-content style="--background: #fff">
+  <div routerLink="/corporate-all-tickets"style="display: flex; justify-content: space-between">
+    <div >
+    <ion-icon style="    color: #000;
+    margin-left: 8px;
+    margin-top: 22px;
+    font-size: 20px;" name="arrow-back-sharp"></ion-icon>
+  </div>
+    <div style="font-size: x-large; color: #000; margin: 5%">
+      <ion-icon name=""></ion-icon>
+    </div>
+  </div>
+  <h5 style="margin-left: 5%; color: #000">Statistics</h5>
+  <div >
+  <div >
+    <ion-row class="row">
+      <ion-col (click)="sum()">
+        <div class="color" style="background: #ffdb16" >
+          <div style="width: 25%">
+            <ion-icon
+              style="font-size: 27px"
+              name="hand-left-outline"
+            ></ion-icon>
+          </div>
+          <div class="tick">
+            <h6    >{{impact.Pending}}</h6>
+            <span style="opacity: 0.6" id="pending" >Pending</span>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="color" style="background: #40b056" (click)="complet()" >
+          <div style="width: 25%">
+            <ion-icon
+              style="font-size: 27px"
+              name="checkbox-outline"
+            ></ion-icon>
+          </div>
+          <div class="tick">
+            <h6>{{impact.Completed}}</h6>
+            <span  id="complet" style="opacity: 0.6; font-size:14px;">Completed</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div>
+    <ion-row class="row">
+      <ion-col>
+        <div class="color" style="background: #ffb52d" (click)="Progress ()"  >
+          <div style="width: 25%">
+            <ion-icon style="font-size: 27px" name="warning-outline"></ion-icon>
+          </div>
+          <div class="tick">
+            <h6> {{impact['In Progress']}} </h6>
+            <span style="opacity: 0.6">IP</span>
+            <span id="Progress" style="display: none;">In Progress</span>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="color" style="background: #ff4242" (click)="Escalated ()">
+          <div style="width: 30%">
+            <ion-icon
+              style="font-size: 27px"
+              name="cellular-outline"
+            ></ion-icon>
+          </div>
+          <div class="tick">
+            <h6>{{impact.Escalated}}</h6>
+            <span id="Escalated" style="opacity: 0.6">Escalated</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div>
+    <ion-row class="row">
+      <ion-col>
+        <div class="color" style="background: #ffc0cb" (click)="QSAP()">
+          <div style="width: 25%">
+            <ion-icon style="font-size: 27px" name="receipt-outline"></ion-icon>
+          </div>
+          <div class="tick">
+            <h6>{{impact['Quote Sent Approval Pending']}}</h6>
+            <span   style="opacity: 0.6">QSAP</span>
+            <span id="QSAP" style="display: none;">Quote Sent Approval Pending</span>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="color" style="background: #7a7d81" (click)="HBC()">
+          <div style="width: 30%">
+            <ion-icon
+              style="font-size: 27px"
+              name="pause-circle-outline"
+            ></ion-icon>
+          </div>
+          <div class="tick">
+            <h6>{{impact['Hold by Customer']}}</h6>
+            <span style="opacity: 0.6">HBC</span>
+            <span id="HBC" style="display: none;">Hold by Customer</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div>
+    <ion-row class="row">
+      <ion-col>
+        <div class="color" style="background: #a52a2a" (click)="HBT()" >
+          <div style="width: 25%">
+            <ion-icon
+              style="font-size: 27px"
+              name="pause-circle-outline"
+            ></ion-icon>
+          </div>
+          <div class="tick">
+            <h6>{{impact['Hold by Techxpert']}}</h6>
+            <span   style="opacity: 0.6">HBT</span>
+            <span id="HBT" style="display: none;">Hold by Techxpert</span>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="color" style="background: #c21170"  (click)="VDQP()"  >
+          <div style="width: 30%">
+            <ion-icon style="font-size: 27px" name="time-outline"></ion-icon>
+          </div>
+          <div class="tick">
+            <h6>{{impact['Visit Done Quote Pending']}}</h6>
+            <span   style="opacity: 0.6">VDQP</span>
+            <span  id="VDQP" style="display: none;">Visit Done Quote Pending</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+  </div>
+  <div style=" display: flex; margin-left: 7%; margin-top: 5%;">
+    <div>
+      <span class="dot"></span>
+    </div>
+    <div class="hold">
+      IP :In Progress
+    </div>
+  </div>
+  <div style=" display: flex; margin-left: 7%; margin-top: 2%;">
+    <div>
+      <span class="dot" style="background: #a52a2a"></span>
+    </div>
+    <div class="hold" >
+      HBT :Hold by Techxpert
+    </div>
+  </div>
+  <div style=" display: flex; margin-left: 7%; margin-top: 2%;">
+    <div>
+      <span class="dot" style="background: #7a7d81"></span>
+    </div>
+    <div class="hold" >
+      HBC :Hold by Customer
+    </div>
+  </div>
+  <div style=" display: flex; margin-left: 7%; margin-top: 2%;">
+    <div>
+      <span class="dot" style="background: #ffc0cb"></span>
+    </div>
+    <div class="hold" >
+      QSAP :Quote Sent Approval Pending
+    </div>
+  </div>
+  <div style=" display: flex; margin-left: 7%; margin-top: 2%;">
+    <div>
+      <span class="dot" style="background: #c21170"></span>
+    </div>
+    <div class="hold" >
+    VDQP :Visit Done Quote Pending
+    </div>
+  </div>
+  <!-- <div class="ion-padding">
+    <ion-card style="box-shadow: none;">
+      <ion-card-header> </ion-card-header>
+      <ion-card-content>
+        <canvas
+          #doughnutCanvas
+          style="position: relative; height: 20vh; width: 40vw"
+        ></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div> -->
+</ion-content>
+
+
+
+

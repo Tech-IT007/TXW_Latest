@@ -1,0 +1,272 @@
+/* ===============================
+   PAGE BASE
+================================ */
+.ticket-info-content {
+  --background: #f5f7fb;
+  padding-bottom: 90px;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.page-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.back-button {
+  --color: #027dc1;
+}
+
+/* ===============================
+   NO TICKET
+================================ */
+.no-ticket img {
+  width: 180px;
+  margin-bottom: 12px;
+}
+
+.no-ticket h2 {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* ===============================
+   TICKET CARD
+================================ */
+.ticket-card {
+  margin: 12px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.ticket-card ion-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #027dc1;
+}
+
+/* ===============================
+   INFO ROW
+================================ */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row .label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.info-row .value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+/* ===============================
+   TASK CARD
+================================ */
+.task-card {
+  margin: 12px;
+  border-radius: 14px;
+  padding: 10px;
+}
+
+.task-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.task-row:last-child {
+  border-bottom: none;
+}
+
+.task-label span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.submit-btn {
+  --background: #027dc1;
+  --border-radius: 10px;
+  font-size: 13px;
+}
+
+/* ===============================
+   SECTION (PRE / POST / SERVICE)
+================================ */
+.section {
+  margin: 12px;
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ===============================
+   STATUS ICONS
+================================ */
+.status-icon {
+  font-size: 18px;
+}
+
+.status-icon.done {
+  color: #16a34a
+}
+
+.status-icon.not-done {
+  color: #d12e27;
+}
+
+/* ===============================
+   IMAGE PREVIEW
+================================ */
+.img-preview img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.multi-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.multi-preview img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ===============================
+   CARD ROW (DPR / SPARE / DSR)
+================================ */
+.card-row {
+  margin: 12px;
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.action-btn {
+  --background: #027dc1;
+  --border-radius: 10px;
+  font-size: 13px;
+}
+
+/* ===============================
+   SPARE PART GALLERY
+================================ */
+.spare-gallery {
+  background: #ffffff;
+  border-radius: 14px;
+}
+
+.spare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.spare-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.spare-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.spare-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px;
+}
+
+.spare-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #027dc1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ion-button {
+//   --padding-start: 0;
+//   --padding-end: 0;
+// }
+
+
+/* ===============================
+   FOOTER SUBMIT
+================================ */
+ion-footer {
+  --background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.button_submit {
+  --background: #16a34a;
+  --border-radius: 14px;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.gray-btn {
+  --background: #9ca3af;
+}

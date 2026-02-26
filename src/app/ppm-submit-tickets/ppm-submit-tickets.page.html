@@ -1,0 +1,105 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/ppm-tickets"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">Ticket Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="page-bg">
+  <!-- TICKET ID -->
+  <div class="ticket-code">
+    {{ impact.TicketID }}
+  </div>
+
+  <!-- TICKET CARD -->
+  <div class="ticket-card">
+    <div class="row">
+      <span>Assigned To</span>
+      <strong>{{ impact.EmployeeName }}</strong>
+    </div>
+
+    <div class="row">
+      <span>Status</span>
+      <strong>{{ impact.Status || 'Not Set' }}</strong>
+    </div>
+
+    <div class="row">
+      <span>Due Date</span>
+      <strong>{{ impact.DueDate }}</strong>
+    </div>
+  </div>
+
+  <!-- ACTION SECTIONS -->
+  <div class="action-card">
+    <div class="action-row">
+      <span>Pre Image</span>
+      <ion-icon *ngIf="pre_done" name="checkmark-circle"></ion-icon>
+      <ion-button size="small" (click)="capture()">Capture</ion-button>
+    </div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-row">
+      <span>Post Image</span>
+      <ion-icon *ngIf="post_done" name="checkmark-circle"></ion-icon>
+      <ion-button size="small" (click)="Image_post()">Capture</ion-button>
+    </div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-row">
+      <span>Service Report</span>
+      <ion-button size="small" (click)="services_report()">Capture</ion-button>
+    </div>
+  </div>
+
+  <!-- DIGITAL REPORT -->
+  <div class="digital-card">
+    <span>Digital Service Report</span>
+
+    <ion-icon
+      *ngIf="services_not_done"
+      class="danger"
+      name="alert-circle-outline">
+    </ion-icon>
+
+    <ion-icon
+      *ngIf="services_done"
+      class="success"
+      name="checkmark-circle-outline">
+    </ion-icon>
+
+    <ion-button (click)="report()">Update</ion-button>
+  </div>
+
+  <!-- IMAGE GALLERY -->
+<div class="gallery">
+  <div class="gallery-item" *ngFor="let imgg of imgg; let i = index">
+
+    <!-- Delete icon -->
+<ion-icon
+  name="close-circle"
+  class="delete-icon"
+  (click)="deleteImage(imgg.ID, i)">
+</ion-icon>
+
+    <img [src]="imgg.Image" />
+    <span>{{ imgg.Action }}</span>
+
+  </div>
+</div>
+
+  <!-- SUBMIT -->
+  <ion-button
+    expand="block"
+    class="submit-btn"
+    [disabled]="!button"
+    (click)="Service_Change_Status()">
+    Submit Ticket
+  </ion-button>
+
+</ion-content>

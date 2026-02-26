@@ -1,0 +1,86 @@
+.update-content {
+  --background: linear-gradient(180deg, #0c7cbc, #0a5fa0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.update-container {
+  width: 100%;
+  max-width: 380px;
+  margin: auto;
+  padding: 24px;
+  text-align: center;
+  color: #fff;
+}
+
+.logo-wrapper {
+  margin-bottom: 20px;
+}
+
+.app-logo {
+   background:#fff ;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 22px;
+}
+
+.features-card {
+  background: #ffffff;
+  color: #333;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  margin-bottom: 24px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+}
+
+.feature-item ion-icon {
+  font-size: 20px;
+  color: #0c7cbc;
+}
+
+.update-btn {
+  --background: #ffffff;
+  --color: #0c7cbc;
+  --border-radius: 14px;
+  font-weight: 600;
+  height: 48px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.note {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 14px;
+}
+
+.thank-you {
+  margin-top: 12px;
+  font-size: 13px;
+  opacity: 0.9;
+}

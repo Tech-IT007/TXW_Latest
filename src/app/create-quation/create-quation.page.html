@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create Quotation</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleCart()">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge color="danger" *ngIf="cartCount > 0">
+          {{ cartCount }}
+        </ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- CATEGORY SELECT -->
+  <ion-card>
+    <ion-item>
+      <ion-label position="stacked">Select Category</ion-label>
+      <ion-select
+        placeholder="Select Category"
+        [(ngModel)]="selectedCategory"
+        (ionChange)="onCategoryChange()"
+      >
+        <ion-select-option *ngFor="let cat of categoryList" [value]="cat.CategoryName">
+          {{ cat.CategoriesName }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+
+  <!-- RATE CARD LIST -->
+  <ion-card
+    *ngFor="let item of rateCardList"
+    class="rate-card"
+    [class.already-added]="item.alreadyAdded"
+  >
+    <ion-item lines="none">
+      <ion-checkbox
+        slot="start"
+        [(ngModel)]="item.checked"
+        [disabled]="item.alreadyAdded"
+        (ionChange)="onCheckboxChange(item)"
+      ></ion-checkbox>
+
+      <ion-label>
+        <h2 class="item-title">{{ item.line_item_name }}</h2>
+        <p class="item-meta">
+          {{ item.make }} • HSN {{ item.hsn }} • {{ item.uom }}
+        </p>
+      </ion-label>
+
+      <ion-icon
+        *ngIf="item.alreadyAdded"
+        name="checkmark-circle"
+        color="success"
+        slot="end"
+      ></ion-icon>
+    </ion-item>
+
+    <!-- ADD TO CART ACTION -->
+    <div class="action-area" *ngIf="item.checked && !item.alreadyAdded">
+      <ion-item>
+        <ion-label position="floating">Quantity</ion-label>
+        <ion-input type="number" min="1" [(ngModel)]="item.qty"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" color="success" (click)="addToCart(item)">
+        Add to Cart
+      </ion-button>
+    </div>
+  </ion-card>
+
+  <!-- CART MODAL -->
+  <ion-modal [isOpen]="showCart" (didDismiss)="showCart = false" class="cart-modal">
+    <ng-template>
+
+      <ion-header>
+        <ion-toolbar class="cart-header">
+          <ion-title>Cart Items ({{ cartCount }})</ion-title>
+          <ion-buttons slot="end">
+            <ion-button fill="clear" (click)="showCart = false">
+              <ion-icon name="close" size="large"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <ion-list *ngIf="historyList.length > 0">
+          <ion-item class="cart-item" *ngFor="let h of historyList">
+            <ion-label class="wrap-label">
+              <h2>{{ h.LineItemName }}</h2>
+              <p>Quantity: {{ h.Quantity }}</p>
+            </ion-label>
+            <div class="cart-status">
+              <ion-icon name="checkmark-circle" color="success"></ion-icon>
+            </div>
+          </ion-item>
+        </ion-list>
+
+        <!-- EMPTY CART VIEW -->
+        <div *ngIf="historyList.length === 0" class="empty-cart">
+          <ion-icon name="cart-outline" size="large"></ion-icon>
+          <p>No items in your cart</p>
+        </div>
+      </ion-content>
+
+      <ion-footer>
+        <ion-toolbar class="cart-footer">
+          <ion-button expand="block" shape="round" (click)="showCart = false">
+            Continue
+          </ion-button>
+        </ion-toolbar>
+      </ion-footer>
+
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+<!-- SUBMIT BUTTON -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-button
+      expand="full"
+      color="primary"
+      (click)="submitQuotation()"
+      [disabled]="cartCount === 0"
+    >
+      Submit Quotation
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,126 @@
+/* PAGE BACKGROUND */
+.page-bg {
+  --background: #f4f6f9;
+}
+
+/* HEADER */
+.toolbar {
+  --background: #ffffff;
+  --color: #000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ================= SUMMARY (TODAY) CARD ================= */
+.summary-card {
+  margin: 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #000;
+  border: 1px solid #e5e7eb;   /* normal border */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* ONLY TODAY SUMMARY → BORDER HIGHLIGHT */
+.today-highlight {
+  border: 2px solid #1e88e5;
+}
+
+/* SUMMARY CONTENT */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-title {
+  font-size: 14px;
+  margin: 0;
+  color: #1e88e5;
+  font-weight: 600;
+}
+
+.summary-date {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #555;
+}
+
+.summary-count {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1e88e5;
+}
+
+/* ================= EMPTY STATE ================= */
+.empty-state {
+  margin-top: 25%;
+  text-align: center;
+  padding: 20px;
+}
+
+.empty-state img {
+  width: 180px;
+  opacity: 0.85;
+}
+
+.empty-state h2 {
+  margin-top: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.empty-state p {
+  color: #777;
+  font-size: 14px;
+}
+
+/* ================= CONVENIENCE LIST CARD ================= */
+.charge-card {
+  margin: 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;   /* normal card border */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* TODAY GENERATED LIST CARD → BORDER HIGHLIGHT */
+.today-card-highlight {
+  border: 2px solid #1e88e5;
+}
+
+/* ================= ROW LAYOUT ================= */
+.row {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  align-items: flex-start;
+}
+
+.row.last {
+  border-bottom: none;
+}
+
+/* ================= TEXT ================= */
+.label {
+  min-width: 120px;
+  font-size: 13px;
+  color: #777;
+  font-weight: 500;
+}
+
+.value {
+  flex: 1;
+  font-size: 14px;
+  color: #111;
+  font-weight: 600;
+}
+
+.wrap {
+  word-break: break-word;
+  white-space: normal;
+}
+
+.amount {
+  color: #1e88e5;
+}

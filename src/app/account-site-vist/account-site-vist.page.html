@@ -1,0 +1,43 @@
+<ion-header style="background: #fff;">
+  <div >
+    <h3 class="h3">visitor clint details</h3>
+    <div class="div">
+      <ion-icon routerLink="/visitor-seclect-branch" class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+</ion-header>
+<ion-content>
+  <ion-list style="margin-top: 2%;  background: transparent;">
+   
+
+
+    <ion-item>
+      <ion-label  style="  font-size: 18px;" position="stacked">Visit Details  <span style="color: #d20411">*</span></ion-label>
+      <ion-textarea     [(ngModel)]="userdetails.VisitTitle"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-label  style="  font-size: 18px;" position="stacked">  Report Number <span style="color: #d20411">*</span></ion-label>
+      <ion-textarea    rows="1" cols="50" [(ngModel)]="userdetails.ReportNumber"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+    </ion-item> -->
+    <ion-item>
+      <ion-label  style="  font-size: 18px;" position="stacked">Contact Person <span style="color: #d20411">*</span></ion-label>
+      <ion-textarea value="{{clint_data.SiteIncharge}}" [(ngModel)]="userdetails.ContactPerson"  rows="1" cols="50"      style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label  style="  font-size: 18px;" position="stacked">Email(s) <span style="font-size: 18px;"></span> </ion-label>
+      <ion-textarea value="clint_data.BranchEmail" value="{{clint_data.BranchEmail}}" rows="1" cols="50"  [(ngModel)]="userdetails.ContactPersonEmail"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label  style="  font-size: 18px;" position="stacked"> Contact Person Phone</ion-label>
+      <ion-textarea  value="clint_data.BranchMobile"  value="{{clint_data.BranchMobile}}" rows="1" cols="50"  [(ngModel)]="userdetails.ContactPersonPhone"   style=" --padding-bottom: 10px;" type="text" ></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <div style="margin-bottom: 10%; display: flex; justify-content: space-around;">
+    <div>
+      <ion-button (click)="submit()"   class="button22" expand="block"> Submit </ion-button>
+
+    </div>
+  </div>
+
+</ion-content>

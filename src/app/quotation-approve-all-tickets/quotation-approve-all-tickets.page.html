@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title style="font-size:16px;">
+      Quotation Approval Tickets
+    </ion-title>
+  </ion-toolbar>
+    <ion-searchbar
+    placeholder="Search Ticket..."
+    (ionInput)="filterTickets($event)">
+  </ion-searchbar>
+</ion-header>
+
+<ion-content class="page-bg">
+
+  <!-- PULL TO REFRESH -->
+  <ion-refresher slot="fixed" (ionRefresh)="refreshTickets($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- SEARCH -->
+
+
+  <!-- EMPTY UI -->
+  <div class="empty-box" *ngIf="filteredTickets.length === 0">
+    <ion-icon name="document-text-outline"></ion-icon>
+    <p>No Tickets Found</p>
+  </div>
+
+  <!-- LIST -->
+  <ion-card class="ticket-card" *ngFor="let t of filteredTickets">
+
+    <ion-card-content>
+
+      <div class="row">
+        <span class="label">Ticket ID</span>
+        <span class="value">{{t.TicketID}}</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Status</span>
+        <span [ngClass]="getStatusClass(t.QuotationStatus)">
+          {{t.QuotationStatus}}
+        </span>
+      </div>
+
+      <div class="row">
+        <span class="label">Created Date</span>
+        <span class="value">{{t.CreatedDate}}</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Created By</span>
+        <span class="value">{{t.CreatedBy}}</span>
+      </div>
+
+      <ion-button
+        expand="block"
+        size="small"
+        class="view-btn"
+        (click)=" viewDetails(t.ID)">
+        View Details
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+
+</ion-content>

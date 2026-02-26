@@ -1,0 +1,94 @@
+
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ticket Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+
+
+<ion-content class="ticket-bg">
+
+
+  <!-- EMPTY STATE -->
+  <div *ngIf="otr && show" class="empty-state">
+    <img src="/assets/img/opps.jpg" />
+    <p>No Tickets Found</p>
+  </div>
+
+  <!-- Ticket ID -->
+  <div class="ticket-id">
+    {{ impact.TicketID }}
+  </div>
+
+  <!-- DETAILS CARD -->
+  <div class="details-card">
+
+    <!-- Assigned -->
+    <div class="info-block">
+      <label>Assigned To</label>
+      <span *ngIf="impact.AssignedTo == '-1'">Not Set</span>
+      <span *ngIf="impact.AssignedTo != '-1'">{{ impact.EmployeeName }}</span>
+    </div>
+
+    <!-- Status -->
+    <div class="info-block">
+      <label>Status</label>
+      <span class="status">{{ impact.Status || 'Not Set' }}</span>
+    </div>
+
+    <!-- Branch -->
+    <div class="info-block">
+      <label>Branch</label>
+      <span>{{ impact.BranchSite || 'Not Set' }}</span>
+    </div>
+
+    <!-- Created Date -->
+    <div class="info-block">
+      <label>Created Date</label>
+      <span>{{ impact.CreatedDate || 'Not Set' }}</span>
+    </div>
+
+    <!-- Service -->
+    <div class="info-block">
+      <label>Service</label>
+      <span>{{ impact.Service || 'Not Set' }}</span>
+    </div>
+
+    <!-- Subservice -->
+    <div class="info-block">
+      <label>Subservice</label>
+      <span>{{ impact.Subservice || 'Not Set' }}</span>
+    </div>
+
+  </div>
+<div class="action-list">
+
+  <div  class="action-item payment" routerLink="/account-payment">
+    <ion-icon name="card-outline"></ion-icon>
+    <span>Ticket Payment</span>
+    <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+  </div>
+
+  <!-- <div class="action-item visit"  routerLink="/account-vist-form">
+    <ion-icon name="location-outline"></ion-icon>
+    <span>Site Visit</span>
+    <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+  </div> -->
+
+  <div class="action-item conveyance" routerLink="/account-convence-charge">
+    <ion-icon name="car-outline"></ion-icon>
+    <span>Conveyance Charge</span>
+    <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+  </div>
+
+</div>
+
+
+</ion-content>

@@ -1,0 +1,205 @@
+<ion-content class="ticket-info-content" fullscreen>
+
+  <!-- HEADER -->
+  <div class="page-header ion-padding">
+    <ion-button fill="clear" size="small" class="back-button" routerLink="/cop-current-tickets" aria-label="Back">
+      <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+    <h3>Ticket Information</h3>
+  </div>
+
+  <!-- NO TICKET FOUND -->
+  <div *ngIf="otr && show" class="no-ticket ion-text-center ion-padding">
+    <img src="assets/img/opps.jpg" alt="No Tickets" />
+    <h2>There Are No Tickets Found</h2>
+  </div>
+
+  <!-- TICKET DETAILS -->
+  <ion-card class="ticket-card" *ngIf="open && impact">
+    <ion-card-header>
+      <ion-card-title>{{ impact?.TicketID || '—' }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="info-row">
+        <span class="label">Assigned To</span>
+        <span class="value">{{ impact?.EmployeeName || 'Not Assigned' }}</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Status</span>
+        <span class="value">{{ impact?.Status || 'Not Set' }}</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Due Date</span>
+        <span class="value">{{ impact?.DueDate || 'Not Set' }}</span>
+      </div>
+
+      <div *ngIf="impact?.Type === 'R&M'" class="info-row">
+        <span class="label">Service</span>
+        <span class="value">{{ impact?.Service || 'Not Set' }}</span>
+      </div>
+
+      <div *ngIf="impact?.Type === 'AMC'" class="info-row">
+        <span class="label">Category Name</span>
+        <span class="value">{{ impact?.CategoryName || 'Not Set' }}</span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+<ion-card class="task-card">
+  <!-- <div class="task-row">
+    <div class="task-label">
+      <span>conveyance Charge</span>
+    </div>
+    <ion-button routerLink="/all-convence-charge"  fill="solid" class="submit-btn">Add</ion-button>
+  </div> -->
+    <div class="task-row">
+    <div class="task-label">
+      <span>Ticket Payment</span>
+    </div>
+    <ion-button style="--background: green;" routerLink="/all-payment-show"  fill="solid" class="submit-btn">Add</ion-button>
+  </div>
+</ion-card>
+
+
+
+  <!-- SECTIONS: Pre / Post / Service Image -->
+<div class="section" *ngFor="let s of sections">
+  <div class="section-header ion-justify-content-between ion-align-items-center">
+    <div class="section-label">
+      <span>{{ s.name }}</span>
+
+      <ion-icon
+        *ngIf="s.done"
+        name="checkmark-circle"
+        class="status-icon done">
+      </ion-icon>
+
+      <ion-icon
+        *ngIf="s.not_done"
+        name="alert-circle"
+        class="status-icon not-done">
+      </ion-icon>
+    </div>
+
+    <ion-button
+      size="small"
+
+      (click)="openCameraOptions(s.key)">
+      Capture
+    </ion-button>
+  </div>
+
+  <!-- SINGLE IMAGE (KEEP – backward compatibility) -->
+  <div class="img-preview" *ngIf="s.src">
+    <img [src]="s.src" [alt]="s.name" loading="lazy" />
+  </div>
+
+  <!-- MULTIPLE IMAGES (CORRECT & SAFE) -->
+  <div
+    class="multi-preview"
+    *ngIf="
+      (s.key === 'pre' && preImages.length) ||
+      (s.key === 'post' && postImages.length) ||
+      (s.key === 'service' && serviceImages.length)
+    "
+    [ngSwitch]="s.key">
+
+    <ng-container *ngSwitchCase="'pre'">
+      <img *ngFor="let img of preImages" [src]="img" />
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'post'">
+      <img *ngFor="let img of postImages" [src]="img" />
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'service'">
+      <img *ngFor="let img of serviceImages" [src]="img" />
+    </ng-container>
+
+  </div>
+</div>
+
+  <!-- DPR SECTION -->
+  <div *ngIf="impact?.Type === 'Projects' || impact?.Type === 'Supply'" class="card-row ion-padding-vertical">
+    <div class="card-title">DPR</div>
+    <ion-icon *ngIf="DPR_not_done" name="alert-circle" class="status-icon not-done"></ion-icon>
+    <ion-icon *ngIf="DPR_done" name="checkmark-circle" class="status-icon done"></ion-icon>
+    <ion-button routerLink="/dpr" class="action-btn" size="small">Update</ion-button>
+  </div>
+  <!-- DIGITAL SERVICE REPORT  (MANDATORY) -->
+     <!-- SPARE PART SECTION -->
+   <div *ngIf="teemp" class="card-row ion-padding-vertical">
+    <div class="card-title">Spare Parts</div>
+    <ion-icon *ngIf="Submitted" name="time-outline" class="status-icon done"></ion-icon>
+        <ion-icon *ngIf="approve" name="checkmark-circle" class="status-icon done"></ion-icon>
+        <ion-button *ngIf="Submitted" style="--background: red ;" size="small">Approval Pending</ion-button>
+      <ion-button *ngIf="approve" style="--background: green ;" size="small">Approval</ion-button>
+    <ion-button *ngIf="Not_show"  (click)=" add_spare_part ()"  class="action-btn" size="small">Add</ion-button>
+
+  </div> 
+
+  <div class="card-row ion-padding-vertical">
+    <div class="card-title">Digital Service Report </div>
+    <ion-icon *ngIf="services_not_done" name="alert-circle" class="status-icon not-done"></ion-icon>
+    <ion-icon *ngIf="services_done" name="checkmark-circle" class="status-icon done"></ion-icon>
+    <ion-button (click)="report()" class="action-btn" size="small">Update</ion-button>
+  </div>
+
+
+
+
+
+  <!-- SPARE IMAGES -->
+<div class="spare-gallery ion-padding" *ngIf="imgg?.length">
+
+  <div class="spare-grid">
+
+    <div
+      class="spare-card"
+      *ngFor="let part of imgg; let i = index">
+
+      <img
+        [src]="part.Image"
+        alt="Spare Part"
+        loading="lazy"
+        (click)="openImage(part.Image)"
+      />
+
+      <div class="spare-actions">
+        <span class="spare-label">
+          {{ part.Action || 'Spare' }}
+        </span>
+
+        <ion-button
+          color="danger"
+          fill="clear"
+          size="small"
+          (click)="deleteImage(part.ID, i)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+  <!-- SUBMIT BUTTON (ENABLED ONLY IF ALL MANDATORY DONE) -->
+   </ion-content>
+
+
+
+  <ion-footer translucent >
+    <ion-toolbar>
+      <ion-button   class="button_submit"   style="--background: #0c7cbc;;"  *ngIf="Testing"  expand="block" (click)="feedbackStatus()" [disabled]="!button" [ngClass]="{'gray-btn': !button}">
+        Submit
+      </ion-button>
+    </ion-toolbar>
+  </ion-footer>
+
+ 
+

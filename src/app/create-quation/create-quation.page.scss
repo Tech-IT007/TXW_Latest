@@ -1,0 +1,136 @@
+/* PAGE */
+ion-content {
+  --background: #f8f9fb;
+}
+
+/* HEADER */
+.header-toolbar {
+  --background: #003f88;
+  --color: #fff;
+}
+
+ion-title {
+  font-weight: 600;
+}
+
+/* CART BADGE */
+ion-badge {
+  margin-left: 6px;
+}
+
+/* RATE CARD */
+.rate-card {
+  margin: 12px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.rate-card.already-added {
+  opacity: 0.6;
+}
+
+/* ITEM TEXT */
+.item-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #003f88;
+}
+
+.item-meta {
+  font-size: 12px;
+  color: var(--ion-color-medium);
+}
+
+/* ACTION AREA */
+.action-area {
+  padding: 12px;
+  border-top: 1px dashed #ddd;
+}
+
+/* BUTTON */
+ion-button {
+  --border-radius: 10px;
+  font-weight: 500;
+}
+
+/* CART / HISTORY */
+ion-card-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+ion-list ion-item {
+  --padding-start: 12px;
+}
+ion-modal {
+  --height: 70%;
+  --border-radius: 16px 16px 0 0;
+}
+/* MODAL */
+.cart-modal::part(content) {
+  border-radius: 18px 18px 0 0;
+}
+
+/* HEADER */
+.cart-header {
+  --background: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+/* ITEM */
+.cart-item {
+  margin: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  background: #f9fafb;
+}
+
+/* TEXT */
+.wrap-label h2 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: normal;
+}
+
+.wrap-label p {
+  font-size: 12px;
+  color: #777;
+  margin-top: 6px;
+}
+
+/* STATUS ICON */
+.cart-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* EMPTY STATE */
+.empty-cart {
+  text-align: center;
+  margin-top: 40%;
+  color: #999;
+}
+
+.empty-cart ion-icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+.cart-footer ion-button {
+  height: 48px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.submit-btn {
+  --background: #2196f3;
+  --border-radius: 10px;
+  height: 45px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(33,150,243,0.3);
+}

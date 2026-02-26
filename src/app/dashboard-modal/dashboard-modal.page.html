@@ -1,0 +1,157 @@
+<ion-header>
+  <ion-toolbar style="--background: #047ac2; --color: #fff;">
+    <ion-title>Employee KPI Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="  closeModal() ">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- 🟢 Attendance KPI -->
+  <ion-card *ngIf="attendance.length > 0">
+    <ion-card-header>
+      <ion-card-title>Attendance KPI</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngFor="let item of attendance" class="kpi-container">
+        <div class="progress-circle">
+          <div class="outer">
+            <div class="inner">
+              <h2>{{ attendancePercent | number:'1.1-2' }}<span>%</span></h2>
+              <p>Performance</p>
+            </div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+            <circle
+              cx="80"
+              cy="80"
+              r="70"
+              stroke-linecap="round"
+              [style.strokeDashoffset]="440 - (440 * attendancePercent / 100)"
+              [attr.stroke]="getColor(attendancePercent)"
+            />
+          </svg>
+        </div>
+
+        <div class="kpi-details new-layout">
+          <div class="kpi-item">
+            <span class="label">Present Days</span>
+            <span class="value">{{ item.PresentDays || '-' }}</span>
+          </div>
+          <div class="kpi-item">
+            <span class="label">Absent Days</span>
+            <span class="value">{{ item.AbsentDays || '-' }}</span>
+          </div>
+          <div class="kpi-item">
+            <span class="label">Leaves</span>
+            <span class="value">{{ item.Leaves || '-' }}</span>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 🟠 Assignment KPI -->
+  <ion-card *ngIf="assignment.length > 0">
+    <ion-card-header>
+      <ion-card-title>Assignment KPI</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngFor="let item of assignment" class="kpi-container">
+        <div class="progress-circle">
+          <div class="outer">
+            <div class="inner">
+              <h2>{{ assignmentPercent | number:'1.1-2' }}<span>%</span></h2>
+              <p>Performance</p>
+            </div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+            <circle
+              cx="80"
+              cy="80"
+              r="70"
+              stroke-linecap="round"
+              [style.strokeDashoffset]="440 - (440 * assignmentPercent / 100)"
+              [attr.stroke]="getColor(assignmentPercent)"
+            />
+          </svg>
+        </div>
+
+        <div class="kpi-details new-layout">
+          <div class="kpi-item">
+            <span class="label">Total Tickets</span>
+            <span class="value">{{ item.TotalTickets || '-' }}</span>
+          </div>
+          <div class="kpi-item">
+            <span class="label">Within 1 Hour</span>
+            <span class="value">{{ item.Within1Hour || '-' }}</span>
+          </div>
+          <div class="kpi-item">
+            <span class="label">After 1 Hour</span>
+            <span class="value">{{ item.After1Hour || '-' }}</span>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 🔵 Closing KPI -->
+  <ion-card *ngIf="closing.length > 0">
+    <ion-card-header>
+      <ion-card-title>Closing KPI</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngFor="let item of closing" class="kpi-container">
+        <div class="progress-circle">
+          <div class="outer">
+            <div class="inner">
+              <h2>{{ closingPercent | number:'1.1-2' }}<span>%</span></h2>
+              <p>Performance</p>
+            </div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+            <circle
+              cx="80"
+              cy="80"
+              r="70"
+              stroke-linecap="round"
+              [style.strokeDashoffset]="440 - (440 * closingPercent / 100)"
+              [attr.stroke]="getColor(closingPercent)"
+            />
+          </svg>
+        </div>
+
+        <div class="kpi-details new-layout">
+          <div class="kpi-item">
+            <span class="label">Available Tickets</span>
+            <span class="value">{{ item.AvailableTickets || '-' }}</span>
+          </div>
+          <div class="kpi-item">
+            <span class="label">Standard Target</span>
+            <span class="value">{{ item.StandardTarget || '-' }}</span>
+          </div>
+          <div class="kpi-item">
+            <span class="label">Closing Target</span>
+            <span class="value">{{ item.ClosingTarget || '-' }}</span>
+          </div>
+          <div class="kpi-item">
+            <span class="label">Closed Tickets</span>
+            <span class="value">{{ item.ClosedTickets || '-' }}</span>
+          </div>
+          <div class="kpi-item">
+            <span class="label">Closed Within 24 Hour</span>
+            <span class="value">{{ item.ClosedWithin24Hour || '-' }}</span>
+          </div>
+          <div class="kpi-item">
+            <span class="label">Closed After 24 Hour</span>
+            <span class="value">{{ item.ClosedAfter24Hour || '-' }}</span>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

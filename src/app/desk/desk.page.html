@@ -1,0 +1,89 @@
+
+<ion-content style=" --background: #fff;">
+  <div>
+    <h3 class="h3">My Desk</h3>
+    <div class="div">
+      <ion-icon routerLink="/corporate-all-tickets"class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      <ion-card>
+     <img routerLink="/information" src="/assets/img/profile1.png" alt="" ><p>Profile</p>
+    </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card>
+     <img routerLink="/attdenc-in" src="/assets/img/2.png" alt="" ><p>Attendance</p>
+    </ion-card>
+    </ion-col>
+    
+   
+    </ion-row>
+   
+    <ion-row>
+      <ion-col>
+        <ion-card>
+       <img routerLink="/charge" src="/assets/img/3.png" alt="" ><p>Convenience</p>
+      </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+       <img routerLink="/leave-managment" src="/assets/img/4.png" alt="" ><p>Leave</p>
+      </ion-card>
+      </ion-col>
+    <!-- <ion-col>
+      <ion-card>
+     <img src="/assets/img/profile1.png" alt="" ><p>Profile</p>
+    </ion-card>
+    </ion-col> -->
+    <!-- <ion-col>
+      <ion-card>
+     <img src="/assets/img/profile1.png" alt="" ><p>Profile</p>
+    </ion-card>
+    </ion-col> -->
+    </ion-row>
+ 
+   
+  </ion-grid>
+
+</ion-content>
+<ion-footer>
+  <ion-grid style="background: #fff">
+    <ion-row>
+      <ion-col size="3" style="text-align: center" class="hov">
+        <div routerLink="/corporate-all-tickets"routerDirection="root">
+          <ion-icon style="font-size: 18px; color: #000" name="home-outline"></ion-icon>
+          <p class="text-bot" style="color: #000">Home</p>
+        </div>
+      </ion-col>
+
+      <ion-col size="3" style="text-align: center" class="hov">
+        <div routerDirection="root">
+          <!-- <ion-icon style="font-size: 20px;" name="storefront-outline"></ion-icon> -->
+          <ion-icon  routerLink="/corp-current" style="font-size: 18px; color: #027dc1" name="desktop-outline"></ion-icon>
+          <p routerLink="/desk" class="text-bot">My Desk</p>
+        </div>
+      </ion-col>
+
+      <ion-col size="3" style="text-align: center" class="hov">
+        <div routerDirection="root" style="margin-left: 9px">
+          <ion-icon style="font-size: 18px; color: black" name="storefront-outline"></ion-icon>
+
+          <a style="text-decoration: none"
+            href="https://www.store.techxpertgroup.in/store/index.php?CorporateID={{coprate}}&BranchID={{branch}}">
+            <p class="text-bot">Store</p>
+          </a>
+        </div>
+      </ion-col>
+
+      <ion-col size="3" style="text-align: center">
+        <div routerLink="/information" routerDirection="root">
+          <ion-icon style="font-size: 18px; color: black" name="person-outline"></ion-icon>
+          <p class="text-bot">profile</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

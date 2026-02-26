@@ -1,0 +1,126 @@
+ion-content {
+    --background: #fff;
+
+}
+
+
+
+ion-header {
+    overflow: hidden;
+}
+
+
+
+.button1 {
+    width: 90%;
+    height: 35px;
+    --border-radius: 8px;
+    margin-left: 15%;
+    --background: #027dc1;
+    text-transform: none;
+}
+
+.button21 {
+    width: 90%;
+    height: 35px;
+    --border-radius: 8px;
+    margin-left: 90%;
+    --background: #027dc1;
+    text-transform: none;
+}
+
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 18px;
+}
+
+.p1 {
+    margin-left: 24px;
+    margin-top: -23px;
+}
+
+.p2 {
+    margin-left: 26px;
+    margin-top: -23px;
+}
+
+.p3 {
+    margin-left: 35px;
+    margin-top: -21px;
+}
+
+
+
+
+
+.img1 {
+    width: 29px;
+    margin-left: 67%;
+    margin-top: 0px;
+    border-radius: 50px;
+}
+
+
+
+.size {
+    font-size: 20px;
+
+
+    --background: #0b8bd1;
+    ;
+
+    color: #fff;
+}
+
+
+
+
+
+.icon {
+
+    margin-left: 2%;
+    color: #000;
+
+    font-size: 19px;
+}
+
+.h3 {
+    text-align: center;
+  color: #000;
+    
+    margin-top: 10px;
+    font-size: 18px;
+    margin-left: -4%;
+}
+
+.div {
+    margin-top: -32px;
+    padding-bottom: 12px;
+
+}
+
+.button {
+    margin-left: 19%;
+    --border-radius: 20px;
+    --background: #d42d27;
+    text-transform: none;
+    margin-top: 13px;
+    font-size: 9px;
+    width: 68%;
+    height: 31px;
+}
+
+
+
+
+.title {
+    color: darkgray;
+
+    font-size: 12px;
+    margin-left: 4px;
+}

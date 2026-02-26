@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>DPR</ion-title>
+
+    <!-- ✅ Download PDF Button -->
+    <ion-buttons slot="end">
+      <ion-button (click)="downloadPDF()">
+        <ion-icon name="download-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- 🔴 Pending Today Counter -->
+  <div *ngIf="pendingTodayCount > 0" class="pending-blink">
+    🔴 {{ pendingTodayCount }} Today Pending Task{{ pendingTodayCount > 1 ? 's' : '' }}
+  </div>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+  <!-- Loader -->
+  <ion-spinner *ngIf="loading" name="crescent" class="loader"></ion-spinner>
+
+  <!-- No Data -->
+  <div *ngIf="!loading && (!taskList || taskList.length === 0)" class="no-data">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <p>No tasks found</p>
+  </div>
+
+  <!-- Task Cards -->
+  <div *ngFor="let task of taskList" class="modern-card">
+
+    <!-- Status Header -->
+    <div
+      class="status-header"
+      [ngClass]="{
+        'to-start': task.TaskStatus === 'To Start',
+        'in-progress': task.TaskStatus === 'In Progress',
+        'completed': task.TaskStatus === 'Completed',
+        'pending': task.TaskStatus === 'Pending',
+        'highlight-blink': isTodayAndZeroProgress(task)
+      }">
+      <ion-icon name="flag-outline"></ion-icon>
+      <span>{{ task.TaskStatus || 'To Start' }}</span>
+    </div>
+
+    <!-- Body -->
+    <div class="card-body">
+
+      <div class="item-row">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <div>
+          <label>Line Item</label>
+          <p>{{ task.Description || '—' }}</p>
+        </div>
+      </div>
+
+      <div class="item-row">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <div>
+          <label>Start Date</label>
+          <p>{{ task.StartDate || '—' }}</p>
+        </div>
+      </div>
+
+      <div class="item-row">
+        <ion-icon name="calendar-number-outline"></ion-icon>
+        <div>
+          <label>End Date</label>
+          <p>{{ task.EndDate || '—' }}</p>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-header">
+        <label>Progress</label>
+        <span>{{ task.animatedProgress > 100 ? 100 : task.animatedProgress }}%</span>
+      </div>
+      <ion-progress-bar
+        class="animated-bar"
+        [color]="getProgressColor(task.animatedProgress)"
+        [value]="getProgressBarValue(task.animatedProgress)">
+      </ion-progress-bar>
+    </div>
+
+    <ion-button expand="block" class="view-btn" (click)="viewDetails(task)">
+      <ion-icon name="eye-outline" slot="start"></ion-icon>
+      VIEW DETAILS
+    </ion-button>
+
+  </div>
+</ion-content>

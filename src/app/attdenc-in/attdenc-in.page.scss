@@ -1,0 +1,148 @@
+/* Overall Page */
+.punch-in-page {
+  --background: #f7f9fc;
+  padding: 12px;
+}
+
+/* Header */
+.header-toolbar {
+  --background: #047ac2;
+  --color: #fff;
+  border-bottom: none;
+}
+
+.header-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Info Section (Time + Location) */
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  gap: 12px;
+}
+
+.icon {
+  font-size: 24px;
+  color: #047ac2;
+}
+
+.label {
+  font-size: 12px;
+  color: #777;
+  margin: 0;
+}
+
+.value {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  color: #222;
+}
+
+/* Camera Section */
+.camera-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Image Preview */
+.image-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  
+}
+
+.captured-img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+
+}
+
+.image-placeholder {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 12px;
+}
+
+.placeholder-icon {
+  font-size: 34px;
+  color: #999;
+}
+
+/* Buttons */
+.primary-btn {
+  --background: #047ac2;
+  --color: #fff;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  height: 44px;
+  margin-top: 6px;
+  box-shadow: 0 3px 6px rgba(4, 122, 194, 0.3);
+}
+
+.submit-btn {
+  margin-top: 10px;
+}
+
+ion-button[disabled] {
+  opacity: 0.5;
+  box-shadow: none;
+}
+.cameraPreview {
+  width: 80%;
+  height: 300px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+
+.preview-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.preview-box img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>All Conveyance Charges</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-bg">
+  <ion-fab  slot="fixed"vertical="bottom" horizontal="end">
+  <ion-fab-button   routerLink="/tickets-convence-charge" >
+<ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+  <!-- TODAY CONVENIENCE SUMMARY CARD -->
+<!-- GRAND TOTAL CARD -->
+<ion-card class="summary-card">
+  <ion-card-content>
+    <div class="summary-row">
+      <div>
+        <p class="summary-title">Grand Total Conveyance</p>
+        <!-- <p class="summary-date">All Tickets</p> -->
+      </div>
+
+      <div class="summary-count">
+        ₹ {{ grandTotal | number:'1.0-2' }}
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+
+  <!-- EMPTY STATE -->
+  <div *ngIf="show" class="empty-state">
+    <img src="/assets/img/opps.jpg" />
+    <h2>No Records Found</h2>
+    <p>There are no Conveyance Charges available.</p>
+  </div>
+
+  <!-- CONVENIENCE LIST -->
+<ion-card
+  class="charge-card"
+  *ngFor="let user of obj"
+  [class.today-card-highlight]="isToday(user.CreatedDate)">
+
+  <ion-card-content>
+
+    <div class="row">
+      <span class="label">Date</span>
+      <span class="value">
+        {{ user.ConvenienceDate || 'Not Set' }}
+      </span>
+    </div>
+
+    <div class="row">
+      <span class="label">Conveyance From</span>
+      <span class="value wrap">
+        {{ user.ConvenienceFrom || 'Not Set' }}
+      </span>
+    </div>
+
+    <div class="row">
+      <span class="label">Conveyance To</span>
+      <span class="value wrap">
+        {{ user.ConvenienceTo || 'Not Set' }}
+      </span>
+    </div>
+
+    <div class="row">
+      <span class="label">Amount</span>
+      <span class="value amount">
+        {{ user.ConvenienceAmount || 'Not Set' }}
+      </span>
+    </div>
+
+    <div class="row last">
+      <span class="label">Reference</span>
+      <span class="value">
+        {{ user.Reference || 'Not Set' }}
+      </span>
+    </div>
+
+  </ion-card-content>
+</ion-card>
+
+</ion-content>

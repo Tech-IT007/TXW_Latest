@@ -1,0 +1,57 @@
+<ion-content [fullscreen]="true" class="login-container">
+
+  <!-- Logo Section -->
+  <div class="logo-wrapper">
+    <img src="/assets/img/logo.jpg" alt="Company Logo" class="logo" />
+    <p class="tagline">Quick • Affordable • Trusted</p>
+  </div>
+
+  <!-- Login Card -->
+  <div class="login-card">
+    <h2 class="welcome-title">Welcome Back</h2>
+    <p class="subtitle">Sign in to continue</p>
+
+    <form (ngSubmit)="submit()">
+
+      <!-- Username -->
+      <div class="input-group">
+        <ion-icon name="person-outline" class="input-icon"></ion-icon>
+        <ion-input
+          type="text"
+          placeholder="Username"
+          [(ngModel)]="userdetails.username"
+          name="name"
+          required>
+        </ion-input>
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+        <ion-input
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Password"
+          [(ngModel)]="userdetails.password"
+          name="password"
+          required>
+        </ion-input>
+        <ion-icon
+          [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+          class="eye-icon"
+          (click)="togglePasswordVisibility()">
+        </ion-icon>
+      </div>
+
+      <!-- Submit Button -->
+      <ion-button expand="block" shape="round" class="login-button" type="submit">
+        LOGIN
+      </ion-button>
+    </form>
+<!--        
+   <div class="forgot-password">
+      <a   routerLink="/reset-password">Forgot Password?</a>
+
+   </div> -->
+  </div>
+
+</ion-content>

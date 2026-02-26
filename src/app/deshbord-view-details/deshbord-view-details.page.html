@@ -1,0 +1,96 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content style="--background: #fff">
+  <div>
+    <h3 class="h3">Tickets Infomation</h3>
+    <div class="div">
+      <ion-icon routerLink="/desboard-view-homecare" class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+  <div *ngIf="show" style="text-align: center; margin-top: 28%">
+    <img src="/assets/img/opps.jpg" alt="" />
+    <h2 style="font-weight: bold">There Are No Tickets Found</h2>
+  </div>
+
+  <div>
+    <!-- <img class="" src="assets/img/acc.jpg" alt=""> -->
+  </div>
+  <!-- <img
+    style="width: 11%; border-radius: 50%; height: 7%"
+    src="assets/img/boys.jpg"
+    alt=""
+  /> -->
+  <h4 style="margin-left: 7px; color: #000">{{ impact.Name }}</h4>
+
+  <div>
+    <ion-card style="box-shadow: none; background: #fff">
+      <h4 class="serv">Services Name</h4>
+      <h5 class="plum">{{ impact.Service_name }}</h5>
+      <h4 class="serv">Booking Date</h4>
+      <h5 class="plum">{{ impact.BookingDate }}</h5>
+
+      <h4 class="serv">Booking ID</h4>
+      <h5 class="plum">{{ impact.BookingID}}</h5>
+      <h4 class="serv">Phone Number</h4>
+      <h5 class="plum">{{ impact.Phone }}</h5>
+      <h4 class="serv">Email</h4>
+      <h5 class="plum">{{ impact.Email }}</h5>
+    </ion-card>
+  </div>
+
+  <div>
+    <ion-card style="box-shadow: none; background: #fff; margin-top: -18px">
+      <h4 class="serv">Address</h4>
+      <h5 class="plum">{{ impact.Customer_address }}</h5>
+    </ion-card>
+  </div>
+  <ion-card style="box-shadow: none; background: #fff">
+    <!-- <h4 class="serv">Assigned To </h4>
+    <h5 class="plum">{{ impact.EmployeeName}}</h5>  -->
+    <h4 class="serv">Status</h4>
+    <h5 class="plum">{{ impact.Status}}</h5>
+  </ion-card>
+  <div>
+    <!-- 
+     <div >
+
+      <ion-item style="--background: #fff">
+        <ion-label style="color: #000">Assigned To</ion-label>
+        <ion-select
+          [(ngModel)]="bookingdata.AssignedTo"
+       
+          style="color: #000"
+          interface="popover"
+        >
+          <ion-select-option  value="{{user.ID}}" *ngFor="let user of obj">
+            {{ user.Name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>  -->
+
+    <!-- <div >
+      <ion-item style="--background: #fff">
+          <ion-label style="color: #000">Status</ion-label>
+          <ion-select [(ngModel)]="bookingdata.BookingStatus" interface="popover" 
+              style="color: #000">
+              <ion-select-option    *ngFor="let obh of obh">{{ obh }}
+              </ion-select-option>
+          </ion-select>
+      </ion-item>
+  </div> -->
+  <!-- <div >
+    <ion-button
+  (click)=" route_to_profile_answer_screen(BookingID)"
+  [disabled]="!button" 
+  [ngClass]="{'gray-button':!button}"
+    class="button"
+    expand="block"
+  >
+  Change Ticket Status</ion-button
+  >
+</div> -->
+  </div>
+</ion-content>

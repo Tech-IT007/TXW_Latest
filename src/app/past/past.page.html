@@ -1,0 +1,128 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+  <div>
+    <h3 class="h3">Complaints and Tickets</h3>
+    <div class="div">
+      <ion-icon
+        routerLink="/login"
+        class="icon"
+        name="chevron-back-outline"
+      ></ion-icon>
+    </div>
+  </div>
+  <div>
+    <ion-buttons style="color: #000; margin-left: 54%; margin-top: 2px">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </div>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div style="display: flex">
+    <div>
+      <ion-button class="button44" routerLink="/home"
+        >Current tickets</ion-button
+      >
+    </div>
+    <div>
+      <ion-button routerLink="/past" class="button45">Past Tickets</ion-button>
+    </div>
+  </div>
+  <div *ngFor="let user of obj">
+    <ion-card
+      style="
+        padding-bottom: 0px;
+        margin-left: 0;
+        box-shadow: none;
+        --background: #fff;
+        color: #000;
+      "
+    >
+      <div style="margin-top: 15px ;">
+        <div style="display: flex">
+          <div>
+            <h5 style="color: #000">Ticket ID:</h5>
+          </div>
+          <div>
+            <h6 style="margin-top: 2px; font-size: 11px; color: #000">
+              {{ user.ID }}
+            </h6>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ion-button class="button55">Open</ion-button>
+      </div>
+      <div style="margin-top: -17px; border-bottom: 4px solid whitesmoke">
+        <img class="boy" src="/assets/img/boys.jpg" alt="" />
+        <h6 class="goom">{{ user.Name }}</h6>
+        <!-- <h6   (click)="route_to_Edit_impact_screen(ID)" class="view" routerLink="/profile">Booking Details</h6> -->
+      </div>
+
+      <div style="display: flex">
+        <div>
+          <h6 style="margin-left: 18px; font-size: 13px">Service Name</h6>
+        </div>
+
+        <div>
+          <h6 style="margin-left: 119px; font-size: 14px">
+            {{ user.Service_name }}
+          </h6>
+        </div>
+      </div>
+
+      <div style="display: flex">
+        <div>
+          <h6 style="margin-left: 18px; font-size: 13px">Address</h6>
+        </div>
+
+        <div>
+          <h6 style="margin-left: 154px; font-size: 14px" routerLink="/status">
+            {{ user.Customer_address }}
+          </h6>
+        </div>
+      </div>
+
+      <div style="display: flex">
+        <div>
+          <h6 style="margin-left: 18px; font-size: 13px">Status</h6>
+        </div>
+
+        <div>
+          <h6 style="margin-left: 167px; font-size: 14px" routerLink="/profile">
+            {{ user.Status }}
+          </h6>
+        </div>
+      </div>
+
+      <div style="display: flex">
+        <div>
+          <h6 style="margin-left: 18px; font-size: 13px">Time</h6>
+        </div>
+
+        <div>
+          <h6 style="margin-left: 173px; font-size: 14px" routerLink="/status">
+            {{ user.BookingTime }} am
+          </h6>
+        </div>
+      </div>
+
+      <div style="display: flex">
+        <div>
+          <h6 style="margin-left: 18px; font-size: 13px">Assigned to</h6>
+        </div>
+
+        <div>
+          <h6 style="margin-left: 130px; font-size: 14px" routerLink="/status">
+            Test Vendor
+          </h6>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

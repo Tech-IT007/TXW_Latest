@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dpr"></ion-back-button>
+    </ion-buttons>
+    <ion-title>DPR Task Progress</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Loader -->
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p>Loading progress...</p>
+  </div>
+
+  <!-- No Data -->
+  <div *ngIf="!loading && taskProgressList.length === 0" class="no-data">
+    <ion-icon name="document-outline"></ion-icon>
+    <p>No task progress found</p>
+  </div>
+
+  <!-- Task Cards -->
+  <div *ngFor="let task of taskProgressList; trackBy: trackByIndex" class="task-card">
+
+    <div class="task-header">
+      <p class="task-date">{{ task.TaskDate | date:'MMM d, y' }}</p>
+      <span class="task-status" [ngClass]="task.statusClass">{{ task.Status }}</span>
+    </div>
+
+    <div class="progress-container">
+      <ion-progress-bar [value]="task.progress" color="primary"></ion-progress-bar>
+      <span class="progress-percent">{{ (task.progress * 100) | number:'1.0-0' }}%</span>
+    </div>
+
+    <div class="remarks-section">
+      <p><strong>Remarks:</strong> {{ task.Remarks || '—' }}</p>
+    </div>
+
+    <div class="img-section" *ngIf="task.Img">
+      <img [src]="task.Img" alt="Progress Image">
+    </div>
+  <ion-button  (click)="router_to_DPR_camera(task)">
+    <ion-icon name="eye-outline"></ion-icon>
+  </ion-button>
+
+    <!-- ✅ Button visible only for today or future TaskDates -->
+    <!-- <ion-button 
+      *ngIf="task.showUpdate" 
+      expand="block" 
+      color="primary" 
+      shape="round" 
+      (click)="router_to_DPRform(task)">
+      Update
+    </ion-button> -->
+
+  </div>
+
+</ion-content>

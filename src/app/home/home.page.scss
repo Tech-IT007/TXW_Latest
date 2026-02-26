@@ -1,0 +1,172 @@
+.ticket-page {
+  --background: #ffff;
+  padding: 10px;
+}
+
+/* ======================
+   TITLE
+====================== */
+.page-title {
+  text-align: center;
+  color: #017dc0;
+  font-weight: 600;
+  margin: 14px 0 18px;
+  font-size: 16px;
+}
+
+/* ======================
+   NO DATA
+====================== */
+.no-data {
+  text-align: center;
+  margin-top: 30%;
+}
+
+.no-data img {
+  width: 140px;
+  opacity: 0.8;
+}
+
+.no-data h2 {
+  font-size: 14px;
+  color: #d12e27;
+  margin-top: 10px;
+}
+
+/* ======================
+   CARD
+====================== */
+.ticket-card {
+  background: #ffff;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ======================
+   TOP ROW
+====================== */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.code {
+  color: #017dc0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* STATUS */
+.status {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.pending {
+  background: rgba(209, 46, 39, 0.1);
+  color: #d12e27;
+}
+
+.done {
+  background: rgba(1, 125, 192, 0.1);
+  color: #017dc0;
+}
+
+/* ======================
+   SERVICE
+====================== */
+.service-name {
+  font-size: 14px;
+  color: #000;
+  margin: 10px 0 4px;
+  font-weight: 600;
+}
+
+/* ======================
+   CITY
+====================== */
+.city {
+  font-size: 12px;
+  color: #017dc0;
+  margin-bottom: 8px;
+}
+
+/* ======================
+   DATE TIME
+====================== */
+.date-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #000;
+}
+
+.date-time ion-icon {
+  color: #d12e27;
+  margin-right: 4px;
+  font-size: 13px;
+}
+/* ======================
+   RIGHT ICON AREA
+====================== */
+.right-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* EYE ICON */
+.eye-icon {
+  font-size: 18px;
+  color: #017dc0;
+  background: rgba(1, 125, 192, 0.1);
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.eye-icon:active {
+  transform: scale(0.95);
+}
+
+/* STATUS */
+.status {
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* COMPLETED */
+.completed {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+}
+
+/* PENDING */
+.pending {
+  background: rgba(243, 156, 18, 0.15);
+  color: #f39c12;
+}
+
+/* CANCELLED / REJECTED */
+.cancelled {
+  background: rgba(209, 46, 39, 0.15);
+  color: #d12e27;
+}
+
+/* IN PROGRESS */
+.progress {
+  background: rgba(1, 125, 192, 0.15);
+  color: #017dc0;
+}
+
+.ACCEPTED {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+}

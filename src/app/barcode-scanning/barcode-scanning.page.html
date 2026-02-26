@@ -1,0 +1,32 @@
+
+
+<ion-header>
+  <ion-toolbar style="--background: #027dc1; --color: #fff;">
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Barcode Scanning </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="block" color="success" (click)="startScanning()" [disabled]="isScanning">
+    {{ isScanning ? 'Scanning...' : 'Start Scanning' }}
+  </ion-button>
+
+
+
+</ion-content> 
+
+
+
+
+
+
+
+
+
+
+
+

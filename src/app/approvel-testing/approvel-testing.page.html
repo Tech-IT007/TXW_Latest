@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>approvel_testing</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card  *ngFor="let users of users" class="leave-card"  >
+    <ion-card-content>
+      <ion-item lines="none" class="info-item">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label>From Date</ion-label>
+        <div class="info-value">{{users.FromDate}}</div>
+      </ion-item>
+
+      <ion-item lines="none" class="info-item">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label>To Date</ion-label>
+        <div class="info-value">{{ users.toDate}}</div>
+      </ion-item>
+
+      <ion-item lines="none" class="info-item">
+        <ion-icon name="time-outline" slot="start"></ion-icon>
+        <ion-label>Duration</ion-label>
+        <div class="info-value">{{users.duration}}</div>
+      </ion-item>
+
+      <!-- Separate section for reason with improved layout -->
+      <ion-item lines="none" class="info-item reason-item">
+        <ion-icon name="medkit-outline" slot="start"></ion-icon>
+        <ion-label>Reason</ion-label>
+      </ion-item>
+      <div class="reason-text">{{users.reasonOfLeave}}</div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

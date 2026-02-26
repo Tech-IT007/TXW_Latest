@@ -1,0 +1,202 @@
+ion-grid {
+    --ion-grid-padding: 0;
+    --ion-grid-column-padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  ion-row {
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  ion-row:last-child {
+    border-bottom: none;
+  }
+  
+  ion-col {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  ion-col strong {
+    font-weight: bold;
+  }
+  
+  ion-col:nth-child(1) {
+    text-align: left;
+    background-color: #f8f8f8;
+    font-weight: bold;
+  }
+  
+  ion-col:nth-child(2),
+  ion-col:nth-child(3) {
+    text-align: center;
+  }
+  
+  .header-row ion-col {
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ccc;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  ion-checkbox {
+    --size: 22px;
+    --background: #fff;
+    --border-radius: 4px;
+    --border-color: #666;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  ion-item {
+    --highlight-background: none;
+    --min-height: auto;
+  }
+  
+  ion-input {
+    width: 100%;
+    border: none;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+  .button22 {
+    margin-top: 8%;
+    margin-left: 5%;
+    margin-right: 90px;
+    height: 48px;
+    --padding-top: 1px;
+    --background: #0c7cbc;
+    width: 90%;
+  }
+  
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  ion-item {
+    --highlight-background: none;
+    --min-height: auto;
+  }
+  
+  ion-input {
+    width: 100%;
+    border: none;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+  
+  
+  .tickmark{
+    display: flex;
+    margin-left: 8px;
+    color: #000;
+    font-weight: 600;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+  }
+  
+  
+  ion-input{
+    border: 2px solid whitesmoke;
+    height: 30px;
+  }
+  
+  
+  
+  
+  .tickmark {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .tickmark ion-label {
+    flex: 1;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .tickmark ion-radio-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .tickmark ion-item {
+    flex: 1;
+  }
+  
+  .tickmark ion-input {
+    margin-left: 10px;
+    width: 70px;
+  }
+  
+  @media (max-width: 576px) {
+    .tickmark {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .tickmark ion-label {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  
+    .tickmark ion-radio-group {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .tickmark ion-input {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+  
+  ion-grid {
+    --ion-grid-padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  ion-col {
+    padding: 5px 10px;
+  }
+  
+  strong {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  

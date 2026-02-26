@@ -1,0 +1,142 @@
+/* Global Font */
+// * {
+//   font-family: 'Poppins', sans-serif;
+// }
+
+/* Background */
+.ticket-bg {
+  --background: #ffffff;
+}
+
+/* Header */
+.header-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #003f88;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  margin-top: 30%;
+}
+
+.empty-state img {
+  width: 140px;
+  opacity: 0.9;
+}
+
+.empty-state h2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #003f88;
+  margin-top: 10px;
+}
+
+/* Ticket ID */
+.ticket-id {
+  font-size: 12px;
+  color: #e10256;
+  padding: 10px 14px;
+  font-weight: 500;
+}
+
+/* Details Box */
+.details-box {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 14px;
+  margin: 0 14px 14px;
+  padding: 12px;
+}
+
+/* Detail Row */
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-row span {
+  color: #7a7a7a;
+}
+
+.detail-row strong {
+  color: #003f88;
+  font-weight: 500;
+  text-align: right;
+  max-width: 60%;
+}
+
+/* Status */
+.status {
+  color: #2196f3;
+  font-weight: 600;
+}
+
+/* Address */
+.address-box {
+  margin: 12px 14px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #eaeaea;
+}
+
+.address-box h4 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #003f88;
+  margin-bottom: 4px;
+}
+
+.address-box p {
+  font-size: 11px;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Finance Cost */
+.finance-box {
+  margin: 12px 14px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #2196f3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #003f88;
+}
+
+/* Buttons */
+.button-row {
+  margin: 16px 14px;
+}
+
+.primary-btn {
+  --background: #003f88;
+  --border-radius: 12px;
+  font-size: 12px;
+  height: 42px;
+  margin-bottom: 10px;
+  text-transform: none;
+}
+
+ion-button[color="danger"] {
+  --border-radius: 12px;
+  font-size: 12px;
+  height: 42px;
+  text-transform: none;
+}
+
+/* Disabled */
+.disabled-btn {
+  opacity: 0.6;
+}

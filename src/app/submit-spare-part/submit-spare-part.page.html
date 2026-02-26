@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: 20px;">Submit Spare Parts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding bright-bg">
+
+  <ion-spinner *ngIf="loading" name="crescent" class="loader"></ion-spinner>
+
+  <ion-card *ngIf="!loading" class="bright-card">
+    <ion-card-content>
+
+      <!-- Category -->
+      <div class="row">
+        <label class="label">Category</label>
+        <span class="value">{{ catagory_name }}</span>
+      </div>
+
+      <!-- Spare Part Select -->
+      <div class="form-group" (click)="sparePartPopover.present()">
+        <label class="label">Select Spare Part</label>
+        <div class="input-field">
+          {{ selectedSparePart?.SparePart || 'Tap to select' }}
+        </div>
+      </div>
+
+      <!-- Quantity -->
+      <div class="form-group" *ngIf="selectedSparePart">
+        <label class="label">Quantity</label>
+        <ion-input type="number" min="1" [(ngModel)]="quantity" class="input-field"></ion-input>
+      </div>
+
+      <!-- Popover -->
+      <ion-popover #sparePartPopover [dismissOnSelect]="false">
+        <ng-template>
+          <ion-content>
+            <ion-searchbar placeholder="Search..." (ionInput)="filterSpareParts($event)"></ion-searchbar>
+
+            <ion-list>
+              <ion-item button *ngFor="let part of filteredSpareParts" (click)="selectSparePart(part)">
+                <span class="pop-title">{{ part.SparePart }}</span>
+              </ion-item>
+
+              <ion-item *ngIf="filteredSpareParts.length === 0">
+                <ion-label>No Parts Found</ion-label>
+              </ion-item>
+            </ion-list>
+
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+
+      <!-- Add button -->
+      <ion-button expand="block" class="btn-bright" (click)="addSparePart()"
+        [disabled]="!selectedSparePart || !quantity">
+        Add Spare Parts
+      </ion-button>
+
+      <!-- Selected List -->
+      <ion-list *ngIf="item?.length > 0" class="list-container">
+
+        <ion-card class="list-item" *ngFor="let part of item; let i = index">
+          <div class="item-left">
+            <h2 class="item-title">{{ part.SparePart }}</h2>
+            <p class="item-qty">Qty: {{ part.Qty }}</p>
+          </div>
+
+          <ion-button fill="clear" class="delete-btn" (click)="deleteSparePart(i)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-card>
+
+      </ion-list>
+
+      <!-- Submit -->
+      <ion-button expand="block" class="btn-bright" (click)="submitParts()">
+        Submit
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,121 @@
+/* Global small font */
+* {
+  font-size: 13px;
+}
+
+/* Header */
+.header {
+  --background: linear-gradient(90deg, #027dc0, #00a8ff);
+  color: #fff;
+}
+
+/* Background */
+.bright-bg {
+  --background: #f2f9ff;
+}
+
+/* Main Card */
+.bright-card {
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 12px;
+  box-shadow: 0 4px 14px rgba(0, 140, 255, 0.2);
+  border: 1px solid #cfe8ff;
+}
+
+/* Category row */
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.label {
+  font-weight: 600;
+  color: #027dc0;
+}
+
+.value {
+  font-weight: 700;
+  color: #444;
+}
+
+/* Input fields */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.input-field {
+  background: #e8f4ff;
+  border: 1px solid #b8dcff;
+  padding: 8px;
+  border-radius: 6px;
+  color: #000;
+}
+
+ion-input.input-field {
+  --padding-start: 10px;
+}
+
+/* Popover */
+.pop-title {
+  font-size: 13px;
+  white-space: normal;
+  color: #027dc0;
+}
+
+/* Bright button */
+.btn-bright {
+  --border-radius: 8px;
+  --background: linear-gradient(90deg, #027dc0, #00a8ff);
+  color: #fff;
+  margin-top: 14px;
+  font-weight: bold;
+}
+
+/* List container */
+.list-container {
+  margin-top: 20px;
+}
+
+/* List item card */
+.list-item {
+  background: #ffffff;
+  border-left: 4px solid #027dc0;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 60, 160, 0.15);
+}
+
+/* Item text */
+.item-title {
+  font-weight: 600;
+  color: #027dc0;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.item-qty {
+  color: #444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Delete Icon */
+.delete-btn {
+  color: #d12e27;
+  font-size: 18px;
+}
+
+.delete-btn ion-icon {
+  font-size: 20px;
+}
+
+/* Loader */
+.loader {
+  display: block;
+  margin: 40px auto;
+}

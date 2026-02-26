@@ -1,0 +1,33 @@
+.audit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.audit-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 10px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  transition: 0.3s;
+}
+
+.audit-card img {
+  width: 55px;
+  height: 55px;
+  margin-bottom: 10px;
+}
+
+.audit-card p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.audit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}

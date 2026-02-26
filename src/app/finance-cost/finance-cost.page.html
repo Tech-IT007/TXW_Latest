@@ -1,0 +1,82 @@
+
+<ion-content  style=" --background: #fff;">
+  <div>
+    <h3 class="h3">Finance Cost</h3>
+    <div class="div">
+      <ion-icon routerLink="/corporate-all-tickets"class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+  <ion-grid>
+    <ion-row class="table">
+      <ion-col>No. Of Visits (Customer)</ion-col>
+      <ion-col size="auto">
+        <div *ngIf="temp.C_VisitorNo == ' '" style="width: 50px">Not Set</div>
+        <div *ngIf="temp.C_VisitorNo != ' '"  style="width: 50px">{{temp.C_VisitorNo}}</div>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="table">
+      <ion-col>Visit Charge (Customer)</ion-col>
+      <ion-col size="auto">
+        <div style="width: 50px">{{temp.C_VisitCharge}}</div>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="table">
+      <ion-col>Material Cost (Customer)</ion-col>
+      <ion-col size="auto">
+        <div style="width: 50px">{{temp.C_MaterialCost}}</div>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="table">
+      <ion-col >Labour Cost (Customer)</ion-col>                                        
+      <ion-col size="auto">
+        <div style="width: 50px;">{{temp.C_LabourCost}}</div>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="table">
+      <ion-col style="font-weight: 700;">Total Price (Customer)</ion-col>
+      <ion-col size="auto">
+        <div style="width: 50px">{{temp.C_TotalPrice}}</div>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="table"> 
+      <ion-col>No. Of Visits (Internal)</ion-col>
+      <ion-col size="auto">
+        <div style="width: 50px">{{temp.T_VisitorNo}}</div>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="table">
+      <ion-col>Visit Charge (Internal)</ion-col>
+      <ion-col size="auto">
+        <div style="width: 50px">{{temp.T_VisitCharge}}</div>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="table">
+      <ion-col>Material Cost (Internal)</ion-col>
+      <ion-col size="auto">
+        <div style="width: 50px">{{temp.T_MaterialCost}}</div>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="table">
+      <ion-col>Labour Cost (Internal)</ion-col>
+      <ion-col size="auto">
+        <div style="width: 50px">{{temp.T_LabourCost}}</div>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row class="table">
+      <ion-col style="font-weight: 700;">Total Price (Internal)</ion-col>
+      <ion-col size="auto">
+        <div style="width: 50px">{{temp.T_TotalPrice}}</div>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+</ion-content>

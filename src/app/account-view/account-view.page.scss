@@ -1,0 +1,72 @@
+.ticket-bg {
+  --background: #eef2f5;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Ticket ID */
+.ticket-id {
+  padding: 16px 18px 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #017dc0;
+}
+
+/* Card */
+.details-card {
+  margin: 0 14px;
+  padding: 12px;
+  background: #f5f6f7;
+  border-radius: 18px;
+}
+
+/* Row Item */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 12px;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+/* Label */
+.item span {
+  color: #7a7a7a;
+  font-weight: 500;
+}
+
+/* Value */
+.item b {
+  color: #333;
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+}
+
+/* Address wrap */
+.address b {
+  white-space: normal;
+  line-height: 1.4;
+}
+
+/* Status */
+.status {
+  color: #017dc0;
+}
+
+/* Button */
+.btn-area {
+  padding: 20px 14px;
+}
+
+ion-button {
+  --background: #017dc0;
+  --border-radius: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  height: 44px;
+}

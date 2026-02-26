@@ -1,0 +1,85 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">Verified OTP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="tea" class="otp-wrapper">
+
+    <ion-card class="otp-card">
+
+      <h3 class="otp-title">Verification Code</h3>
+
+      <ion-grid>
+        <ion-row>
+
+          <ion-col>
+            <input
+              #txt1
+              type="number"
+              maxlength="1"
+              class="otp-input"
+              [(ngModel)]="userdetails.otp1"
+              (keyup)="move($event,'', txt1, txt2)"
+            />
+          </ion-col>
+
+          <ion-col>
+            <input
+              #txt2
+              type="number"
+              maxlength="1"
+              class="otp-input"
+              [(ngModel)]="userdetails.otp2"
+              (keyup)="move($event, txt1, txt2, txt3)"
+            />
+          </ion-col>
+
+          <ion-col>
+            <input
+              #txt3
+              type="number"
+              maxlength="1"
+              class="otp-input"
+              [(ngModel)]="userdetails.otp3"
+              (keyup)="move($event, txt2, txt3, txt4)"
+            />
+          </ion-col>
+
+          <ion-col>
+            <input
+              #txt4
+              type="number"
+              maxlength="1"
+              class="otp-input"
+              [(ngModel)]="userdetails.otp4"
+              (keyup)="move($event, txt3, txt4, '')"
+            />
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="button">
+        <ion-button
+          class="verify-btn"
+          expand="block"
+    
+          (click)="submit()"
+        >
+          Verify Now
+        </ion-button>
+      </div>
+
+    </ion-card>
+
+    <div id="sec" class="timer-text"></div>
+
+  </div>
+
+</ion-content>

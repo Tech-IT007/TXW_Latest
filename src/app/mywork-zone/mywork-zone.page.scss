@@ -1,0 +1,252 @@
+/* Header */
+.dashboard-header {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;
+}
+
+.logo-container {
+  text-align: center;
+}
+
+.logo-container img {
+    width: 51%;
+    height: auto;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Content */
+.dashboard-content {
+  --background: #f9f9f9;
+  padding-bottom: 80px;
+}
+
+/* Banner */
+.banner-container {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 20px;
+}
+
+.banner-container img {
+  width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid */
+.dashboard-grid {
+  padding: 10px;
+}
+
+/* Cards */
+.dashboard-card {
+  text-align: center;
+  background: #fff;
+  padding: 14px 10px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 8px;
+}
+
+.dashboard-card p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Logout Button */
+.logout-btn {
+  --background: #fff;
+  --color: #0c7cbc;
+  // border: 2px solid #0c7cbc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.profile-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  margin: 15px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.profile-img-wrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #4CAF50;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+.profile-designation {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  ion-icon {
+    color: #4CAF50;
+    font-size: 18px;
+  }
+}
+
+/* Time Section */
+.time-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 48%;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #f1f1f1;
+    transform: translateY(-2px);
+  }
+}
+
+.in-icon {
+  color: #4CAF50;
+  font-size: 22px;
+}
+
+.out-icon {
+  color: #f44336;
+  font-size: 22px;
+}
+
+.time-label {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4px;
+}
+
+.time-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #222;
+  margin-top: 3px;
+}
+/* Custom attendance alert */
+.attendance-alert {
+  --backdrop-opacity: 0.6;
+  --background: #ffffff;
+  --max-width: 380px;
+  --border-radius: 18px;
+  --box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+
+  .alert-head {
+    color: #0c7cbc;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .alert-message {
+    color: #555;
+    font-size: 1rem;
+    margin-top: 8px;
+  }
+
+  .alert-button-group {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 12px;
+  }
+
+  .alert-button {
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  /* Cancel button style */
+  .cancel-btn {
+    color: #999;
+    background: #f3f3f3;
+    border-radius: 10px;
+    padding: 8px 16px;
+  }
+
+  /* Punch In button style */
+  .punch-btn {
+    color: #fff;
+    background: #0c7cbc;
+    border-radius: 10px;
+    padding: 8px 16px;
+  }
+}
+.dashboard-header {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: 16%;
+}
+
+.logo-container img {
+  height: 40px;
+  object-fit: contain;
+}

@@ -1,0 +1,83 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile-content">
+
+  <!-- PROFILE TOP CARD -->
+  <div class="profile-top-card">
+    <div class="profile-pic-wrapper">
+      <img [src]="obj.ProfileImage || 'assets/avatar.png'" />
+    </div>
+
+    <h2>{{ obj.Name || 'Not Set' }}</h2>
+    <p>{{ obj.Email || 'Not Set' }}</p>
+  </div>
+
+  <!-- ADDRESS PROOF -->
+  <ion-card class="info-card">
+    <div class="section-title">Address Proof</div>
+
+    <div class="info-row">
+      <span>Aadhar Number</span>
+      <strong>{{ obj.Aadhar || 'Not Set' }}</strong>
+    </div>
+
+    <div class="info-row">
+      <span>PAN Number</span>
+      <strong>{{ obj.PAN || 'Not Set' }}</strong>
+    </div>
+  </ion-card>
+
+  <!-- DEPARTMENT -->
+  <ion-card class="info-card">
+    <div class="section-title">Department</div>
+
+    <div class="info-row">
+      <span>Department</span>
+      <strong>{{ obj.Department || 'Not Set' }}</strong>
+    </div>
+  </ion-card>
+
+  <!-- PERSONAL INFO -->
+  <ion-card class="info-card">
+    <div class="section-title">Personal Information</div>
+
+    <div class="info-row">
+      <span>Name</span>
+      <strong>{{ obj.Name || 'Not Set' }}</strong>
+    </div>
+
+    <div class="info-row">
+      <span>Contact Number</span>
+      <strong>{{ obj.ContactNumber || 'Not Set' }}</strong>
+    </div>
+
+    <div class="info-row">
+      <span>UAN Number</span>
+      <strong>{{ obj.UANNumber || 'Not Set' }}</strong>
+    </div>
+  </ion-card>
+
+  <!-- SUPERVISOR -->
+  <ion-card class="info-card">
+    <div class="section-title">Supervisor</div>
+
+    <div class="info-row">
+      <span>Supervisor Name</span>
+      <strong>{{ obj.SupervisorName || 'Not Set' }}</strong>
+    </div>
+  </ion-card>
+<!-- Edit Profile Button -->
+<div class="edit-profile-wrapper">
+  <ion-button size="small" class="edit-profile-btn"  routerLink="/edit-profile">
+    <ion-icon name="create-outline" slot="start"></ion-icon>
+    Edit Profile
+  </ion-button>
+</div>
+</ion-content>

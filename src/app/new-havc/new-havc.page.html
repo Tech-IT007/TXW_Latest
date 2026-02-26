@@ -1,0 +1,516 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; color: #000;">HVAC Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <ion-card> 
+   <h6 style="    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    color: #000;">Assets Information</h6>
+  
+  <ion-item>
+    <ion-label position="stacked" style="  font-size: 18px;">Equipment Details <span
+        style="color: #d20411">*</span></ion-label>
+    <ion-textarea value="{{view_data.EquipmentDetails}}"   [(ngModel)]="userdetails.EquipmentDetails" 
+      type="text"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" style="  font-size: 18px;"> Serial No. <span
+        style="color: #d20411">*</span></ion-label>
+    <ion-textarea  value="{{view_data.SerialNo}}" [(ngModel)]="userdetails.SerialNo" 
+      type="text"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked" style="  font-size: 18px;"> Capacity <span
+        style="color: #d20411">*</span></ion-label>
+    <ion-textarea value="{{view_data.Capacity}}"   [(ngModel)]="userdetails.Capacity" 
+      type="text"></ion-textarea>
+  </ion-item>
+
+    <ion-item>
+    <ion-label position="stacked" style="  font-size: 18px;"> Make / Model  <span
+        style="color: #d20411">*</span></ion-label>
+    <ion-textarea value="{{view_data.MakeModel}}"   [(ngModel)]="userdetails.MakeModel" 
+      type="text"></ion-textarea>
+  </ion-item>
+    <ion-item>
+    <ion-label position="stacked" style="  font-size: 18px;"> Refrigerant Type  <span
+        style="color: #d20411">*</span></ion-label>
+    <ion-textarea  value="{{view_data.RefrigerantType}}"  [(ngModel)]="userdetails.RefrigerantType"
+      type="text"></ion-textarea>
+  </ion-item>
+  <ion-list>
+    <ion-radio-group  value="{{view_data.AssetCondition}}"  [(ngModel)]="userdetails.AssetCondition">
+      <ion-list-header style="color: #000; font-weight: 600; font-size: large;">
+        Please Select Condition
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Good</ion-label>
+        <ion-radio value="GOOD"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Not Good</ion-label>
+        <ion-radio value="NOT GOOD"></ion-radio>
+      </ion-item>
+        <ion-item>
+        <ion-label>Bad</ion-label>
+        <ion-radio value="BER"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  
+  </ion-list>
+
+  
+
+
+
+
+  </ion-card>
+
+  <ion-item>
+    <ion-label position="stacked" style="  font-size: 18px;">Complaint Description <span
+        style="color: #d20411">*</span></ion-label>
+    <ion-textarea value="{{view_data.ProblemReportedByClient}}"  [(ngModel)]="userdetails.ProblemReportedByClient" style=" --padding-bottom: 30px;"
+      type="text"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked">Action Taken <span
+        style="color: #d20411">*</span></ion-label>
+    <ion-textarea value="{{view_data.ActionTaken}}" [(ngModel)]="userdetails.ActionTaken" style=" --padding-bottom: 50px;" type="text"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Observation <span
+        style="color: #d20411">*</span></ion-label>
+    <ion-textarea  value="{{view_data.ActionTaken}}" [(ngModel)]="userdetails.Observation" style=" --padding-bottom: 30px;" type="text"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Client Representative Name </ion-label>
+    <ion-textarea rows="1" cols="50" value="{{view_data.ClientRepresentative}}" [(ngModel)]="userdetails.ClientRepresentative" style=" --padding-bottom: 10px;"
+      type="text"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Client Representative Contact</ion-label>
+    <ion-textarea value="{{view_data.ClientRepresentativeContact}}" [(ngModel)]="userdetails.ClientRepresentativeContact" rows="1" cols="50"
+      style=" --padding-bottom: 10px;" type="text"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked">Email(s) <span style="font-size: 18px;"></span>
+    </ion-label>
+    <ion-textarea value="{{view_data.ClientRepresentativeEmails}}" rows="1" cols="50" [(ngModel)]="userdetails.ClientRepresentativeEmails"
+      style=" --padding-bottom: 10px;" type="text"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Client Representative Designation</ion-label>
+    <ion-textarea value="{{view_data.ClientRepresentativeDesignation}}" rows="1" cols="50" [(ngModel)]="userdetails.ClientRepresentativeDesignation"
+      style=" --padding-bottom: 10px;" type="text"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label style="  font-size: 18px;" position="stacked"> Remarks</ion-label>
+    <ion-textarea value="{{view_data.Remarks}}" rows="1" cols="50" [(ngModel)]="userdetails.Remarks" style=" --padding-bottom: 10px;"
+      type="text"></ion-textarea>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="7">
+        <strong>Item</strong>
+      </ion-col>
+      <ion-col size="2">
+        <strong>Yes</strong>
+      </ion-col>
+      <ion-col size="2">
+        <strong>No</strong>
+      </ion-col>
+    </ion-row>
+
+
+    <div style=" text-align: center;  margin-top: 16px;">
+
+
+      <ion-lable style=" text-align: center; color: #000; font-weight:700">
+        Check Points - Indoor Unit
+      </ion-lable>
+    </div>
+
+    <div style="margin-top: 5%">
+
+
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Cooling Coil Cleaning & Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.CoolingCoilCleaningCondition}}"  name=" " [(ngModel)]="userdetails.CoolingCoilCleaningCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Drain Pump Working Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.DrainPumpWorkingCondition}}" name=" " [(ngModel)]="userdetails.DrainPumpWorkingCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Drain Tray Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.DrainTrayCondition}}" name=" " [(ngModel)]="userdetails.DrainTrayCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label> Fan Motor Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.FanMotorCondition}}" name=" " [(ngModel)]="userdetails.FanMotorCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Filter Cleaning Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.FilterCleaningCondition}}" name=" " [(ngModel)]="userdetails.FilterCleaningCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>PCB Physical & Working Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.PCBPhysicalWorkingCondition}}" name=" " [(ngModel)]="userdetails.PCBPhysicalWorkingCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Cooling Loss Prevention Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.CoolingLossPreventionCondition}}" name=" " [(ngModel)]="userdetails.CoolingLossPreventionCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <div style=" text-align: center; margin-top: 16px;">
+
+      <ion-lable style=" text-align: center; color: #000; font-weight:700">
+        Check Points - Outdoor Unit
+      </ion-lable>
+    </div>
+
+
+    <div style="margin-top: 5%;">
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label> Condensor Coil Condition </ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.CondesnorCoilConditionCleaning}}" name=" " [(ngModel)]="userdetails.CondesnorCoilConditionCleaning">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Compressor Working Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.CompressorWorkingCondition}}" name=" " [(ngModel)]="userdetails.CompressorWorkingCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Outdoor Installation Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.OutdoorInstallationCondition}}" name=" " [(ngModel)]="userdetails.OutdoorInstallationCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Fan Motor Working Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.FanMotorWorkingCondition}}" name=" " [(ngModel)]="userdetails.FanMotorWorkingCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Electrical Terminal Condition</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.ElectricalTerminalCondition}}" name=" " [(ngModel)]="userdetails.ElectricalTerminalCondition">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+      <div class="tickmark">
+        <div style="width: 60%;">
+          <ion-label>Surrounding Conditions to Work</ion-label>
+        </div>
+        <div>
+          <ion-radio-group value="{{view_data.SurroundingConditionsToWork}}" name=" " [(ngModel)]="userdetails.SurroundingConditionsToWork">
+            <ion-item lines="none">
+              <ion-radio slot="start" value="yes"></ion-radio>
+              <ion-radio slot="start" value="no"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </div>
+    </div>
+
+  </ion-grid>
+
+  <div style=" text-align: center; margin-top: 16px;">
+
+    <ion-lable style=" text-align: center; color: #000; font-weight:700">
+      PARAMETERS OBSERVED
+    </ion-lable>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Checklist </th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Supply Voltage (Volts)</td>
+        <td>
+          <ion-item>
+            <ion-input  value="{{view_data.SupplyVoltage}}"  type="text" [(ngModel)]="userdetails.SupplyVoltage"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Frequency (Hz)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.AFrequency}}"  type="text" [(ngModel)]="userdetails.AFrequency"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Return Air Temperature (C/F)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.ReturnAirTemperature}}" type="text" [(ngModel)]="userdetails.ReturnAirTemperature"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Ambient Air Temperature (C/F)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.AmbientTemperature}}" type="text" [(ngModel)]="userdetails.AmbientTemperature"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Grill Temperature (C/F)</td>
+        <td>
+          <ion-item>
+            <ion-input  value="{{view_data.GrillTemperature}}" type="text" [(ngModel)]="userdetails.GrillTemperature"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Supply Air Temperature (C/F)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.SupplyAirTemperature}}" type="text" [(ngModel)]="userdetails.SupplyAirTemperature"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Room Temperature (C/F)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.RoomTemperature}}" type="text" [(ngModel)]="userdetails.RoomTemperature"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Compressor Suction Pressure (PSI)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.CompressorSuctionPressure}}" type="text" [(ngModel)]="userdetails.CompressorSuctionPressure"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Comp. Discharge Pressure (PSI)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.DischargePressuret}}" type="text" [(ngModel)]="userdetails.DischargePressuret"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Total Current (Amps)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.TotalCurrent}}" type="text" [(ngModel)]="userdetails.TotalCurrent"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Compressor Current (Amps)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.CompressorCurrent}}" type="text" [(ngModel)]="userdetails.CompressorCurrent"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Compressor Discharge Pressure (PSI)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.CompressorDischarge}}" type="text" [(ngModel)]="userdetails.CompressorDischarge"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td> Indoor Fan Motor Current (Amps) </td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.IndoorFanMotorCurrent}}" type="text" [(ngModel)]="userdetails.IndoorFanMotorCurrent"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+      <tr>
+        <td>Outdoor Fan Motor Current (Amps)</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.OutdoorFanMotorCurrent}}"  type="text" [(ngModel)]="userdetails.OutdoorFanMotorCurrent"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+            <tr>
+        <td>Condenser Air Outlet (C/F) </td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.CondenserAirInlet}}"  type="text" [(ngModel)]="userdetails.CondenserAirInlet"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+            <tr>
+        <td>Condenser Air Outlet</td>
+        <td>
+          <ion-item>
+            <ion-input value="{{view_data.CondenserAirOutlet}}"  type="text" [(ngModel)]="userdetails.CondenserAirOutlet"></ion-input>
+          </ion-item>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+  <div style="    border: 1px solid #09475e;
+  margin: 5px;">
+    <canvas #signaturePad width="300" height="150"></canvas>
+  </div>
+  <div class="sign_button" *ngIf="hidd_pad" style="display: flex; justify-content: space-around; margin-top: 5%;">
+    <ion-button (click)="clearSignature()" style="--background: #eee8e8; color: black;">Clear Signature</ion-button>
+    <div>
+      <ion-button style="--background: #0b7ba1;;" (click)="saveSignature()">Save Signature</ion-button>
+    </div>
+
+  </div>
+  <div>
+
+  </div>
+  <div style="margin-bottom: 10%; display: flex; justify-content: space-around;">
+    <div>
+      <ion-button (click)="submit ()" class="button22" expand="block"> Submit </ion-button>
+
+    </div>
+  </div>
+</ion-content>

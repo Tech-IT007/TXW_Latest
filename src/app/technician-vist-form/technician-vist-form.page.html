@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar style="--background: #0c7cbc;; --color: #fff;">
+        <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Site Observation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-bg">
+
+  <ion-list class="form-list">
+
+    <ion-item>
+      <ion-label position="stacked">Observation <span class="req">*</span></ion-label>
+      <ion-textarea [(ngModel)]="userdetails.Observation"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Location <span class="req">*</span></ion-label>
+      <ion-textarea [(ngModel)]="userdetails.Location"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Auditor Recommendation <span class="req">*</span></ion-label>
+      <ion-textarea [(ngModel)]="userdetails.CompanyRecommendation"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Client Recommendation <span class="req">*</span></ion-label>
+      <ion-textarea [(ngModel)]="userdetails.ClientRecommendation"></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+  <!-- PRIORITY -->
+  <div class="section-title">Priority</div>
+
+  <ion-card class="card">
+    <ion-radio-group [(ngModel)]="userdetails.Priority">
+
+      <ion-item>
+        <ion-label>High</ion-label>
+        <ion-radio value="High"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Medium</ion-label>
+        <ion-radio value="Medium"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Low</ion-label>
+        <ion-radio value="Low"></ion-radio>
+      </ion-item>
+
+    </ion-radio-group>
+  </ion-card>
+
+  <!-- IMAGE SECTION -->
+<ion-card class="card">
+
+  <div class="image-header">
+    <span>Images</span>
+    <ion-button size="small" (click)="captureImage()">
+      Capture
+    </ion-button>
+  </div>
+
+  <div class="preview-grid">
+    <div class="img-box" *ngFor="let img of capturedImages; let i = index">
+      <img [src]="img" />
+      <ion-icon name="close-circle" (click)="removeImage(i)"></ion-icon>
+    </div>
+  </div>
+
+</ion-card>
+  
+  <!-- <div style="    border: 1px solid #09475e;
+  margin: 5px;">
+    <canvas #signaturePad width="300" height="150" ></canvas>
+  </div>
+     <div class="sign_button"  style="display: flex; justify-content: space-around; margin-top: 5%;"> 
+      <ion-button  (click)="clearSignature()" style="--background: #eee8e8; color: black;">Clear Signature</ion-button>
+      <div>
+        <ion-button  style="--background: #0b7ba1;;"  (click)="saveSignature()">Save Signature</ion-button>
+      </div>
+ 
+     </div> -->
+  <!-- SAVE BUTTON -->
+  <div class="btn-wrapper">
+    <ion-button expand="block"
+      class="save-btn"
+      (click)="submit()"
+     >
+   Submit
+    </ion-button>
+  </div>
+
+</ion-content>

@@ -1,0 +1,125 @@
+
+<ion-content style="--background: #fff">
+  <div>
+    <h3 class="h3">Corporate Tickets</h3>
+    <div class="div">
+      <ion-icon (click)="roles()" class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+  <div>
+    <ion-buttons  style="color: #000; margin-left: 54%; margin-top: 2px">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </div>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size ="12">
+        <ion-segment  [scrollable]="true">
+          <ion-segment-button style="color: #0c7cbc;" >
+            <ion-label>Open </ion-label>
+          </ion-segment-button>
+          <ion-segment-button routerLink="/complet-branch-tickets"  style="color: #000;">
+            <ion-label  >Close </ion-label>
+          </ion-segment-button>
+          <!-- <ion-segment-button routerLink="/ppm-tickets"  style="color: #000;">
+            <ion-label  >PPM </ion-label>
+          </ion-segment-button> -->
+        </ion-segment>
+
+   
+      </ion-col>
+    </ion-row>
+     </ion-grid>
+
+     <ion-item>
+      <ion-label position="stacked" style="color: #000;">Status Select</ion-label>
+        <ion-select interface="action-sheet" (ionChange)="onSelect($event)" placeholder="Choose Status Select"  >
+          <ion-select-option    value ="" > All </ion-select-option>
+          <ion-select-option    *ngFor="let b_status of b_status " > {{b_status.Status}} </ion-select-option>
+        </ion-select>
+      </ion-item>
+  <div *ngIf="show" style="text-align: center;margin-top: 28%;">
+    <img src="/assets/img/opps.jpg" alt="">
+    <h2 style="font-weight: bold;">
+      There Are No Tickets Found
+    </h2>
+  </div>
+  <div *ngIf="serach">
+
+
+
+
+    <ion-searchbar id="search" animated [(ngModel)]="searchTerm" placeholder="Search Tickets Here" animated
+      style="color: black; --background: #f4f6f9; "></ion-searchbar>
+    
+  </div>
+
+
+
+
+
+  <div *ngFor="let user of obj | filter:searchTerm">
+<ion-card>
+  <div style="display: flex;
+  align-items: center;
+  justify-content: space-between;margin: 8px;">
+
+  <div style="color: #000; font-weight: 700;">
+    <span>{{user.ClientTicketID}} /{{user.TicketID}}</span>
+  </div>
+<div style="margin-right: 10%;
+font-size: 20px;
+color: red;"  (click)="route_to_profile_answer_screen(user.ID)">
+  <ion-icon name="eye-outline"></ion-icon>
+</div>
+</div>
+<div>
+<div style="display: flex;
+  align-items: center; margin: 8px;">
+  <div style="    color: #000;
+    font-size: large; margin-top: 4px;">
+    <ion-icon name="settings-outline"></ion-icon>
+  </div>
+  <div style="margin-left: 8px; color: #000;">
+    <span> {{ user.Type}}</span>
+  </div>
+
+</div>
+
+<div style="display: flex;
+  align-items: center; margin: 8px;">
+  <div style="    color: #000;
+    font-size: large; margin-top: 4px;">
+<ion-icon name="clipboard-outline"></ion-icon>
+  </div>
+  <div style="margin-left: 8px; color: #000;">
+    <span> {{user.Status}}</span>
+  </div>
+
+</div>
+
+
+<div style="display: flex;
+  align-items: center; margin: 8px;">
+  <div style="    color: green;
+    font-size: large; margin-top: 4px;">
+  <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+  </div>
+  <div style="margin-left: 8px; color: #000;">
+
+    <span *ngIf="user.Message  == ''"  > Not Set</span>
+    <span  *ngIf="user.Message  != ''" > {{user.Message}}</span>
+  </div>
+</div>
+</div>
+</ion-card>
+  </div>
+  
+  <ion-infinite-scroll threshold="50%" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more Forms...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

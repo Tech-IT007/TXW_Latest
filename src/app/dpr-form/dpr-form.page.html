@@ -1,0 +1,102 @@
+<ion-header class="header-modern">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dpr-id-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title-text">📋 Daily Progress Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding page-bg">
+
+  <div class="form-container">
+
+    <h2 class="page-title">Work Progress Details</h2>
+
+    <!-- Task Date -->
+    <div class="section date-section">
+      <ion-label class="label">Task Date</ion-label>
+      <div class="date-box">{{ task_date || 'Not Available' }}</div>
+    </div>
+
+    <!-- Work Progress: show only after we loaded saved/server value -->
+    <div class="section" *ngIf="isLoaded">
+      <label class="label">Work Progress</label>
+
+      <!-- Show baseline and allowed additional clearly -->
+      <div style="margin-bottom:8px;">
+        <strong>Already completed:</strong> {{ previousProgress }}%
+      </div>
+
+      <ion-range
+        [pin]="true"
+        [pinFormatter]="pinFormatter"
+        [(ngModel)]="additionalProgress"
+        [min]="0"
+        [max]="maxAdditional"
+        step="1"
+        color="primary"
+        (ionChange)="onAdditionalChange($event)"
+        [disabled]="maxAdditional === 0"
+      >
+        <ion-icon slot="start" name="remove-outline"></ion-icon>
+        <ion-icon slot="end" name="add-outline"></ion-icon>
+      </ion-range>
+
+      <div class="progress-text">
+        Additional: {{ additionalProgress }}% &nbsp;|&nbsp;
+        <strong>Total:</strong> {{ previousProgress + additionalProgress }}%
+      </div>
+
+      <div class="remaining-text">
+        Remaining to complete task: {{ 100 - (previousProgress + additionalProgress) }}%
+      </div>
+
+      <div *ngIf="maxAdditional === 0" style="color: #888; margin-top:8px;">
+        Task already at 100% — no further progress can be added.
+      </div>
+    </div>
+
+    <!-- If still loading (rare) show small placeholder -->
+    <div class="section" *ngIf="!isLoaded">
+      <label class="label">Work Progress</label>
+      <div style="padding:12px 0;">Loading progress...</div>
+    </div>
+
+    <!-- Remarks -->
+    <div class="section">
+      <label class="label">Remarks</label>
+      <ion-textarea
+        [(ngModel)]="userdetails.Remarks"
+        rows="3"
+        placeholder="Enter remarks here..."
+        class="remarks-box"
+      ></ion-textarea>
+    </div>
+
+    <!-- Capture Image -->
+    <div class="section image-section">
+      <ion-button expand="block" color="secondary" (click)="captureImage()" class="capture-btn">
+        <ion-icon slot="start" name="camera-outline"></ion-icon>
+        Capture Image
+      </ion-button>
+
+      <div class="preview" *ngIf="capturedImage" style="margin-top:8px;">
+        <img [src]="capturedImage" alt="Captured Image" style="max-width:100%; border-radius:6px;" />
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <ion-button
+      expand="block"
+      class="submit-btn"
+      (click)="submitDPR()"
+      [disabled]="!userdetails.Remarks || additionalProgress === 0"
+    >
+      <ion-icon slot="start" name="send-outline"></ion-icon>
+      Submit DPR
+    </ion-button>
+
+  </div>
+
+</ion-content>

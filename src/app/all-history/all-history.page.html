@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar style="--background: #0c7cbc; --color: #fff;">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: #fff;"></ion-back-button>
+    </ion-buttons>
+    <ion-title>View Asset History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ng-container *ngIf="history_not_show; else noHistory">
+    <div class="table-container">
+      <table class="asset-table">
+        <thead>
+          <tr>
+            <th class="fixed-col">Ticket ID</th>
+            <th class="fixed-top">Type</th>
+            <th class="fixed-top">Created Date</th>
+            <th class="fixed-top">Due Date</th>
+            <th class="fixed-top">Close Date</th>
+            <th class="fixed-top">Close Time</th>
+            <th class="fixed-top">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asset of assetHistory">
+            <td class="fixed-col">{{ asset.TicketID || 'NA' }}</td>
+            <td>{{ asset.TicketType || 'NA' }}</td>
+            <td>{{ asset.CreatedDate || 'NA' }}</td>
+            <td>{{ asset.DueDate || 'NA' }}</td>
+            <td>{{ asset.CloseDate || 'NA' }}</td>
+            <td>{{ asset.CloseTime || 'NA' }}</td>
+            <td>
+              <ion-badge [color]="asset.Status === 'Closed' ? 'success' : 'warning'">
+                {{ asset.Status || 'NA' }}
+              </ion-badge>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  <ng-template #noHistory>
+    <ion-item class="no-history">
+      <ion-label>No history found</ion-label>
+    </ion-item>
+  </ng-template>
+
+</ion-content>

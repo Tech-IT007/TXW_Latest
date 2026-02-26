@@ -1,0 +1,93 @@
+.checklist-page {
+  background: #f5f7fa;
+
+  .header-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .main-card {
+    margin: 15px auto;
+    border-radius: 18px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+
+    ion-card-header {
+      text-align: center;
+      background: #eaf1ff;
+      border-radius: 18px 18px 0 0;
+      padding: 15px;
+
+      ion-card-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1e3a8a;
+      }
+
+      ion-card-subtitle {
+        font-size: 14px;
+        color: #555;
+      }
+    }
+
+    ion-card-content {
+      padding: 10px 15px;
+
+      .question-box {
+        background: #f9f9f9;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 12px 14px;
+        margin-bottom: 12px;
+        transition: 0.3s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+
+        &:hover {
+          background: #f1f5ff;
+          transform: scale(1.01);
+        }
+
+        .question {
+          font-size: 15px;
+          font-weight: 600;
+          color: #222;
+          margin-bottom: 8px;
+        }
+
+        .radio-group {
+          display: flex;
+          gap: 15px;
+          padding-left: 5px;
+
+          .radio-option {
+            display: flex;
+            align-items: center;
+            --background: transparent;
+            padding: 0;
+
+            ion-radio {
+              --color-checked: #3880ff;
+              --size: 20px;
+              margin-right: 6px;
+            }
+
+            ion-label {
+              font-size: 15px;
+              color: #333;
+              margin-top: 2px;
+              margin-top: 12px;
+            }
+          }
+        }
+      }
+    }
+
+    ion-button {
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      margin-top: 10px;
+    }
+  }
+}

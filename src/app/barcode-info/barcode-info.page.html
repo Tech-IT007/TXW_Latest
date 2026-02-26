@@ -1,0 +1,136 @@
+<ion-header class="header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Barcode Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="barcode-page" [scrollEvents]="true">
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="assets/img/logo.jpg" alt="TechXpert Logo" class="logo-img" />
+  </div>
+
+  <!-- Branch Search -->
+  <div class="searchbar-container" *ngIf="!selectedBranch">
+    <ion-searchbar
+      placeholder="Search Branch"
+      debounce="300"
+      animated="true"
+      show-clear-button="always"
+      (ionInput)="filterBranches($event)">
+    </ion-searchbar>
+  </div>
+
+  <!-- Branch List -->
+  <div class="branch-list" *ngIf="!selectedBranch && filteredBranchList?.length > 0">
+    <ion-list>
+      <ion-item *ngFor="let branch of filteredBranchList" (click)="selectBranch(branch)">
+        <ion-label>{{ branch.BranchSite }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- Infinite Scroll -->
+  <ion-infinite-scroll
+    threshold="100px"
+    (ionInfinite)="loadMore($event)"
+    *ngIf="hasMoreBranches && !selectedBranch">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more branches...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <!-- Selected Branch & Change Button -->
+  <ion-item lines="none" class="branch-box" *ngIf="selectedBranch">
+    <ion-button fill="outline" color="primary" (click)="clearSelectedBranch()">
+      Change Branch
+    </ion-button>
+    <ion-text slot="end" class="branch-name">{{ selectedBranchName }}</ion-text>
+  </ion-item>
+
+  <!-- Asset Search -->
+  <div class="searchbar-container" *ngIf="filteredAssetsList?.length > 0 && selectedBranch">
+    <ion-searchbar
+      placeholder="Search Asset"
+      debounce="300"
+      animated="true"
+      show-clear-button="always"
+      (ionInput)="filterAssets($event)">
+    </ion-searchbar>
+  </div>
+
+  <!-- Assets List -->
+  <div class="asset-list" *ngIf="filteredAssetsList?.length > 0 && selectedBranch">
+    <ion-card *ngFor="let asset of filteredAssetsList" class="asset-card">
+      <ion-card-content>
+        <div class="asset-row">
+          <div class="asset-info">
+            <h2 class="asset-title">{{ asset.EquipmentName }}</h2>
+
+            <p class="asset-location">
+              <ion-icon name="location-outline" class="location-icon"></ion-icon>
+              {{ asset.EquipmentLocation || 'Location not available' }} / {{ asset.FloorNumber }}
+            </p>
+
+            <div>
+              <p><strong>Make/Model</strong> : {{ asset.Make }} / {{ asset.Model }}</p>
+            </div>
+          </div>
+
+          <div class="asset-action">
+
+            <!-- MAP Button -->
+            <ion-button
+              *ngIf="asset.IsMapedQR === '-1'"
+              fill="solid"
+              size="small"
+              color="danger"
+              class="map-btn"
+              (click)="selectAsset(asset)">
+              MAP
+            </ion-button>
+
+            <!-- Green Tick -->
+            <ion-icon
+              *ngIf="asset.IsMapedQR === '1'"
+              name="checkmark-circle"
+              color="success"
+              class="tick-icon">
+            </ion-icon>
+
+            <!-- ❌ Unassign Icon (MAP Again) -->
+      <ion-icon
+  *ngIf="asset.IsMapedQR === '1'"
+  name="close-circle"
+  class="unassign-icon"
+  (click)="unassignAsset(asset)">
+</ion-icon>
+
+            <!-- MAP AGAIN Button (After Unassign) -->
+            <ion-button
+              *ngIf="asset.IsMapedQR === '0'"
+              fill="solid"
+              size="small"
+              color="warning"
+              (click)="selectAsset(asset)">
+              MAP AGAIN
+            </ion-button>
+
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- No Assets Found -->
+  <div *ngIf="selectedBranch && filteredAssetsList?.length === 0" class="no-assets">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <p>No assets found</p>
+  </div>
+
+</ion-content>

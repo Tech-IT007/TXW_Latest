@@ -1,0 +1,116 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.payment-bg {
+  --background: #ffffff;
+}
+
+/* Header */
+.header-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #003f88;
+}
+
+/* Card */
+.payment-card {
+  margin: 14px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+/* Fields */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  font-size: 12px;
+  color: #003f88;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* INPUT STYLE */
+ion-input {
+  font-size: 13px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  min-height: 42px;
+}
+
+/* INPUT FOCUS */
+ion-input.ion-focused {
+  border: 1px solid #2196f3;
+}
+
+/* SELECT DROPDOWN STYLE */
+ion-select {
+  font-size: 13px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  min-height: 42px;
+  background: #fff;
+}
+
+/* SELECT FOCUS */
+ion-select.ion-focused {
+  border: 1px solid #2196f3;
+}
+
+/* Upload Boxes */
+.upload-box {
+  margin-top: 14px;
+  border: 1px dashed #2196f3;
+  border-radius: 14px;
+  padding: 14px;
+  background: #f9fcff;
+}
+
+/* Upload Header */
+.upload-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #003f88;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.upload-header ion-button {
+  --background: #2196f3;
+  font-size: 11px;
+  height: 32px;
+  --border-radius: 8px;
+  text-transform: none;
+}
+
+/* Image Preview */
+.preview-img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+/* Submit Button */
+.submit-btn {
+  margin: 20px 14px;
+  --background: #e10256;
+  --border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+  height: 46px;
+}

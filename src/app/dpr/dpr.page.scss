@@ -1,0 +1,219 @@
+/* ─────────── HEADER ─────────── */
+.header-toolbar {
+  --background: #0c7cbc;
+  --color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-title {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* 🔴 Pending Task Counter Blink */
+.pending-blink {
+  text-align: center;
+  background: #ff0000;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px;
+  animation: blinkCounter 1s infinite ease-in-out;
+  font-size: 14px;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.8);
+}
+
+@keyframes blinkCounter {
+  0%, 100% {
+    background: #ff0000;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    background: #ff4b4b;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+  }
+}
+
+/* ─────────── CONTENT ─────────── */
+ion-content {
+  --background: #f5f7fb;
+}
+
+/* ─────────── CARD CONTAINER ─────────── */
+.modern-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modern-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+/* ─────────── STATUS HEADER ─────────── */
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.status-header ion-icon {
+  font-size: 16px;
+}
+
+/* Status colors */
+.status-header.to-start {
+  background: linear-gradient(135deg, #007bff, #4dabf7);
+}
+.status-header.in-progress {
+  background: linear-gradient(135deg, #f9a825, #fdd835);
+  color: #000;
+}
+.status-header.completed {
+  background: linear-gradient(135deg, #0f9d58, #34c759);
+}
+.status-header.pending {
+  background: linear-gradient(135deg, #d93025, #ef5350);
+}
+
+/* 🔴 Continuous red blink for today's 0% progress */
+.highlight-blink {
+  background: linear-gradient(135deg, #ff0000, #ff4b4b) !important;
+  color: #fff !important;
+  animation: blinkRed 1s infinite ease-in-out;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+}
+
+@keyframes blinkRed {
+  0%, 100% {
+    background: linear-gradient(135deg, #ff0000, #ff4b4b);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
+  }
+  50% {
+    background: linear-gradient(135deg, #ff4b4b, #ff0000);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+  }
+}
+
+/* ─────────── CARD BODY ─────────── */
+.card-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.item-row ion-icon {
+  color: #0c7cbc;
+  font-size: 18px;
+  margin-top: 2px;
+}
+
+.item-row label {
+  font-size: 12px;
+  color: #777;
+}
+
+.item-row p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  margin-top: 2px;
+}
+
+/* ─────────── PROGRESS BAR ─────────── */
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.progress-header label {
+  color: #777;
+}
+
+.progress-header span {
+  font-weight: 600;
+  color: #222;
+}
+
+.animated-bar {
+  --background: #e6f0fa;
+  height: 8px;
+  border-radius: 6px;
+  margin-top: 5px;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+}
+
+ion-progress-bar::part(progress) {
+  transition: width 1s ease-in-out, background-color 0.8s ease-in-out;
+}
+
+/* Progress colors */
+ion-progress-bar[color="danger"]::part(progress) {
+  background: linear-gradient(90deg, #ff3b30, #ff6b6b);
+}
+ion-progress-bar[color="warning"]::part(progress) {
+  background: linear-gradient(90deg, #ffb300, #ffd54f);
+}
+ion-progress-bar[color="success"]::part(progress) {
+  background: linear-gradient(90deg, #00c853, #69f0ae);
+}
+ion-progress-bar[color="medium"]::part(progress) {
+  background: linear-gradient(90deg, #b0bec5, #eceff1);
+}
+
+/* ─────────── BUTTON ─────────── */
+.view-btn {
+  --background: #0c7cbc;
+  --border-radius: 0;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ─────────── EMPTY / LOADING ─────────── */
+.no-data {
+  text-align: center;
+  color: #777;
+  margin-top: 40%;
+}
+
+.no-data ion-icon {
+  font-size: 42px;
+  color: #ccc;
+}
+
+.loader {
+  display: block;
+  margin: 40% auto;
+}
+.pending-blink {
+  background: #ffdddd;
+  padding: 6px;
+  text-align: center;
+  font-weight: bold;
+  color: #d10000;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}

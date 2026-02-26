@@ -1,0 +1,112 @@
+
+<ion-header class="otp-header ion-no-border">
+  <ion-toolbar>
+        <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Booking Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="details-page">
+
+
+  <!-- CARD -->
+  <ion-card class="info-card">
+
+    <div class="row">
+      <span class="label">Booking Code</span>
+      <span class="value">#{{ impact.BookingCode }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Customer Name</span>
+      <span class="value">{{ impact.CustomerName }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Phone</span>
+      <span class="value">{{ impact.Phone }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Email</span>
+      <span class="value">{{ impact.Email }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Service</span>
+      <span class="value">{{ impact.ServiceName }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Sub Service</span>
+      <span class="value">{{ impact.SubService }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Price</span>
+      <span class="value price">₹ {{ impact.Price }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Address</span>
+      <span class="value">{{ impact.Address }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">City</span>
+      <span class="value">{{ impact.City }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">State</span>
+      <span class="value">{{ impact.State }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Status</span>
+      <span class="status">{{ impact.BookingStatus }}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Created</span>
+      <span class="value">
+        {{ impact.CreatedDate }} · {{ impact.CreatedTime }}
+      </span>
+    </div>
+
+  </ion-card>
+
+  <!-- ACTION BUTTONS -->
+<div class="action-buttons">
+
+
+
+  <!-- ASSIGN TECHNICIAN -->
+  <ion-button
+    *ngIf="impact.BookingStatus == 'ASSIGNED'"    
+  (click)="route_to_profile_answer_screen(impact.BookingCode)"
+    expand="block"
+    class="assign-btn"
+    >
+
+Start Work
+  </ion-button>
+    <ion-button
+    *ngIf="impact.BookingStatus == 'WIP'"    
+  (click)="  route_to_profile(impact.BookingCode)"
+    expand="block"
+    class="assign-btn"
+    >
+
+ View Details
+  </ion-button>
+
+</div>
+
+
+
+</ion-content>

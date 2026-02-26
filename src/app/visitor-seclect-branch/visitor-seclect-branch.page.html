@@ -1,0 +1,54 @@
+<ion-header style="background: #fff;">
+  <div >
+    <h3 class="h3">Provide Details</h3>
+    <div class="div">
+      <ion-icon routerLink="/visitor-all-tickets" class="icon" name="chevron-back-outline"></ion-icon>
+    </div>
+  </div>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <img src="assets/img/company_select.gif" alt="">
+  </div>
+  <div>
+
+
+    <ion-item style="--background: #fff">
+      <ion-label style="color: #000">Select Your Company</ion-label>
+      <ion-select (ionChange)=" onSelectChange_company($event)" style="color: #000" idlDefault >
+        <ion-label style="color: #000">Select Your  Company</ion-label>
+      <ion-select-option  value="{{company.ID}}" *ngFor="let company of company ">{{company.CompanyName}} </ion-select-option>
+
+      </ion-select>
+             
+ 
+    </ion-item>
+
+
+
+
+    <ion-item style="--background: #fff; margin-top: 10%;">
+      <ion-label style="color: #000">Select Your Branch</ion-label>
+      <ion-select (ionChange)="onSelectChange_branch($event)" style="color: #000" idlDefault >
+        <ion-label style="color: #000">Select Your Branch</ion-label>
+      <ion-select-option  value="{{temp.ID}}" *ngFor="let temp of temp ">{{temp.BranchSite}} </ion-select-option>
+
+      </ion-select>
+             
+ 
+    </ion-item>
+
+
+
+
+  </div>
+      <div >
+        <ion-button   routerLink="/visitor-clint-details"
+          [ngClass]="{'gray-button':!button}" class="button22" expand="block">
+         Next </ion-button>
+      </div>
+</ion-content>

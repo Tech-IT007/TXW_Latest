@@ -1,0 +1,80 @@
+
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ticket Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content class="ticket-bg">
+
+  <!-- Ticket ID -->
+  <div class="ticket-id">
+    {{ impact.TicketID }}
+  </div>
+
+  <!-- Details Card -->
+  <div class="details-card">
+
+    <div class="item">
+      <span>Type</span>
+      <b>{{ impact.Type || 'Not Set' }}</b>
+    </div>
+
+    <div class="item">
+      <span>Branch</span>
+      <b>{{ impact.BranchSite || 'Not Set' }}</b>
+    </div>
+
+    <div class="item">
+      <span>Company</span>
+      <b>{{ impact.CompanyName || 'Not Set' }}</b>
+    </div>
+
+    <div class="item">
+      <span>Message</span>
+      <b>{{ impact.Message || 'Not Set' }}</b>
+    </div>
+
+    <div class="item">
+      <span>Employee</span>
+      <b>{{ impact.EmployeeName || 'Not Set' }}</b>
+    </div>
+
+    <div class="item">
+      <span>Status</span>
+      <b class="status">{{ impact.Status || 'Not Set' }}</b>
+    </div>
+
+    <div class="item">
+      <span>Due Date</span>
+      <b>{{ impact.DueDate || 'Not Set' }}</b>
+    </div>
+
+    <div class="item">
+      <span>Client Ticket ID</span>
+      <b>{{ impact.ClientTicketID || 'Not Set' }}</b>
+    </div>
+
+    <div class="item address">
+      <span>Branch Address</span>
+     
+    </div>
+ <b style="  font-size: 12px;">{{ impact.BranchAddress1 || 'Not Set' }}</b>
+  </div>
+
+  <!-- Button -->
+  <div class="btn-area">
+    <ion-button expand="block"
+      [disabled]="!button"
+      (click)="route_to_profile_answer_screen(BookingID)">
+     Continue
+    </ion-button>
+  </div>
+
+</ion-content>

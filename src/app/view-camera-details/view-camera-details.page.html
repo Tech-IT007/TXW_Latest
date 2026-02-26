@@ -1,0 +1,43 @@
+<ion-header class="header-modern">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dpr"></ion-back-button>
+    </ion-buttons>
+    <ion-title>View Camera Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading details...</p>
+  </div>
+
+  <!-- Data Display -->
+  <div *ngIf="!loading && temp" class="details-container">
+    <h6 class="section-title">Work Details</h6>
+    <ion-card>
+      <ion-card-content>
+        <p><strong>Status:</strong> {{ temp.Status }}</p>
+        <p><strong>Remarks:</strong> {{ temp.Remarks }}</p>
+        <p><strong>Task Date:</strong> {{ temp.TaskDate }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <h6 class="section-title">Camera Details</h6>
+    <ion-card class="image-card">
+      <ion-card-content class="image-container">
+        <ng-container *ngIf="Images && Images.length > 0; else noImage">
+          <div *ngFor="let image of Images" class="image-wrapper">
+            <img [src]="image.FullImageURL" alt="Camera Image" class="camera-image" />
+          </div>
+        </ng-container>
+
+        <ng-template #noImage>
+          <p class="no-image-text">No image available</p>
+        </ng-template>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

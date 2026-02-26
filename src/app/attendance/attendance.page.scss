@@ -1,0 +1,70 @@
+.attendance-details-page {
+  --background: #f8f9fc;
+  padding: 16px;
+
+  .employee-name {
+    text-align: center;
+    margin-bottom: 12px;
+    margin-top: 5%;
+
+    h4 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #222;
+      margin: 0;
+    }
+  }
+
+  .attendance-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 10px;
+
+    ion-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .attendance-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-radius: 12px;
+      background: #f9f9f9;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #eef5ff;
+      }
+
+      .label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #444;
+      }
+
+      .value {
+        font-size: 16px;
+        font-weight: 500;
+        color: #0c7cbc;
+      }
+
+      .not-set {
+        font-size: 16px;
+        font-weight: 500;
+        color: #999;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+.header-toolbar {
+  --background: #0c7cbc;
+  --color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}

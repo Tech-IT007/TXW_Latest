@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar style="--background: #0c7cbc;; --color: #fff;">
+        <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Conveyance Charges</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+
+  <!-- Items -->
+  <div *ngFor="let item of items" class="card-wrapper">
+    <ion-card class="custom-card">
+      
+      <!-- Date Row -->
+      <div class="row">
+        <span class="label">Date</span>
+        <span class="value">{{ currentDate }}</span>
+      </div>
+
+      <!-- From Input -->
+      <div class="input-group">
+        <label>From</label>
+        <ion-input [(ngModel)]="dataToSend.ConvenienceFrom" placeholder="Enter your starting place"></ion-input>
+      </div>
+
+      <!-- To Input -->
+      <div class="input-group">
+        <label>To</label>
+        <ion-input [(ngModel)]="dataToSend.ConvenienceTo" placeholder="Enter your final place"></ion-input>
+      </div>
+
+      <!-- Amount Input -->
+      <div class="input-group">
+        <label>Amount</label>
+        <ion-input [(ngModel)]="dataToSend.ConvenienceAmount" type="number" placeholder="Enter your amount"></ion-input>
+      </div>
+
+      <!-- Reference Input -->
+      <div class="input-group">
+        <label>Reference / Remarks</label>
+        <ion-input [(ngModel)]="dataToSend.Reference" placeholder="Ticket ID or related remarks"></ion-input>
+      </div>
+
+      <!-- Submit Button -->
+      <ion-button (click)="submit()" expand="block" class="submit-btn">
+        Submit
+      </ion-button>
+
+    </ion-card>
+  </div>
+</ion-content>

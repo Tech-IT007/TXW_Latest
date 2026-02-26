@@ -1,0 +1,228 @@
+
+<ion-header style="overflow: hidden;">
+  <ion-toolbar style="background: #0c7cbc;;">
+        <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ticket Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ticket-detail-page">
+  <!-- Logo -->
+    <div class="logo-container">
+      <img src="assets/img/logo.jpg" alt="Logo" />
+    </div>
+
+  <!-- Header -->
+  <!-- Ticket ID -->
+  <div class="ticket-id">
+    Ticket ID: <span>{{ impact.TicketID || 'Not Available' }}</span>
+  </div>
+
+  <!-- Ticket Info Card -->
+  <ion-card class="ticket-card">
+    <ion-grid>
+      <!-- Row 1 -->
+      <ion-row>
+        <ion-col size="6" class="ticket-box">
+          <p>Type</p>
+          <h3>{{ impact.Type || 'Not Set' }}</h3>
+        </ion-col>
+        <ion-col size="6" class="ticket-box">
+          <p>Branch</p>
+          <h3>{{ impact.BranchSite || 'Not Set' }}</h3>
+        </ion-col>
+      </ion-row>
+
+      <!-- Row 2 -->
+      <ion-row>
+        <ion-col size="6" class="ticket-box">
+          <p>Company</p>
+          <h3>{{ impact.CompanyName || 'Not Set' }}</h3>
+        </ion-col>
+        <ion-col size="6" class="ticket-box">
+          <p>Employee Name</p>
+          <h3>{{ impact.EmployeeName || 'Not Set' }}</h3>
+        </ion-col>
+      </ion-row>
+
+      <!-- Row 3 -->
+      <ion-row>
+        <ion-col size="6" class="ticket-box">
+          <p>Status</p>
+          <h3>
+            <ion-chip style="font-size: 12px;" [color]="impact.Status === 'Open' ? 'success' : impact.Status === 'Pending' ? 'warning' : 'danger'">
+              {{ impact.Status || 'Not Set' }}
+            </ion-chip>
+          </h3>
+        </ion-col>
+        <ion-col size="6" class="ticket-box">
+          <p>Due Date</p>
+          <h3>{{ impact.DueDate || 'Not Set' }}</h3>
+        </ion-col>
+      </ion-row>
+
+      <!-- Row 4 -->
+      <ion-row>
+        <ion-col size="6" class="ticket-box">
+          <p>Priority</p>
+          <h3>
+            <ion-chip [color]="impact.Priority === 'High' ? 'danger' : impact.Priority === 'Medium' ? 'warning' : 'success'">
+              {{ impact.Priority || 'Not Set' }}
+            </ion-chip>
+          </h3>
+        </ion-col>
+        <ion-col size="6" class="ticket-box">
+          <p>Booking Date</p>
+          <h3>{{ impact.CreatedDate || 'Not Set' }}</h3>
+        </ion-col>
+      </ion-row>
+
+      <!-- Row 5 -->
+      <ion-row>
+        <ion-col size="6" class="ticket-box">
+          <p>Booking Time</p>
+          <h3>{{ impact.CreatedTime || 'Not Set' }}</h3>
+        </ion-col>
+        <ion-col size="6" class="ticket-box">
+          <p>Client Ticket ID</p>
+          <h3>{{ impact.ClientTicketID || 'Not Set' }}</h3>
+        </ion-col>
+      </ion-row>
+
+      <!-- Conditional Section for R&M -->
+      <ng-container *ngIf="impact.Type === 'R&M'">
+        <ion-row>
+          <ion-col size="6" class="ticket-box">
+            <p>Service</p>
+            <h3>{{ impact.Service || 'Not Set' }}</h3>
+          </ion-col>
+          <ion-col size="6" class="ticket-box">
+            <p>Subservice</p>
+            <h3>{{ impact.Subservice || 'Not Set' }}</h3>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+
+      <!-- Conditional Section for AMC -->
+      <ng-container *ngIf="impact.Type === 'AMC'">
+        <ion-row>
+          <ion-col size="6" class="ticket-box">
+            <p>Equipment Name</p>
+            <h3>{{ impact.EquipmentName || 'Not Set' }}</h3>
+          </ion-col>
+          <ion-col size="6" class="ticket-box">
+            <p>Category Name</p>
+            <h3>{{ impact.CategoryName || 'Not Set' }}</h3>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+
+      <!-- Message (Full Width) -->
+      <ion-row>
+        <ion-col size="12" class="ticket-box full-width">
+          <p>Message</p>
+          <h3>{{ impact.Message || 'No message' }}</h3>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <!-- Finance View -->
+  <div *ngIf="costly" class="finance-cost" routerLink="/finance-cost">
+    <div>Finance Cost</div>
+    <div class="view">View</div>
+  </div>
+
+  <!-- Branch Address (Full Width) -->
+  <ion-row>
+    <ion-col size="12" class="ticket-box address-box">
+      <p>Branch Address</p>
+      <div class="address-container">
+        <ion-icon name="location-outline" class="address-icon"></ion-icon>
+        <h3 class="branch-address">{{ impact.BranchAddress1 || 'Not Set' }}</h3>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+
+
+<!-- Chart Card 1 -->
+<div class="chart-card">
+  <div class="chart-title">Financial Comparison</div>
+  <canvas #barChart1Canvas></canvas>
+</div>
+
+
+<!-- Chart Card 2 -->
+<div class="chart-card">
+  <div class="chart-title">Payment</div>
+  <canvas #barChart2Canvas></canvas>
+</div>
+
+
+<!-- Chart Card 3 -->
+<div class="chart-card">
+  <div class="chart-title">Cost Distribution</div>
+  <canvas #pieChartCanvas></canvas>
+</div>
+
+
+<!-- Profit % Chart -->
+<div class="chart-card">
+  <div class="chart-title">Profit Percentage</div>
+  <canvas #profitChartCanvas></canvas>
+</div>
+
+
+<!-- Balance Sheet -->
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Balance Sheet</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+
+    <!-- IMPORTANT: Template Reference (NO id) -->
+    <canvas #balanceChartCanvas></canvas>
+
+    <div style="text-align:center;margin-top:12px;font-weight:bold;">
+
+      <div *ngIf="profitAmount > 0" style="color:green;font-size:16px;">
+        Profit : ₹ {{ profitAmount | number }}
+      </div>
+
+      <div *ngIf="lossAmount > 0" style="color:red;font-size:16px;">
+        Loss : ₹ {{ lossAmount | number }}
+      </div>
+
+      <div *ngIf="profitAmount === 0 && lossAmount === 0" style="color:#666;">
+        No Profit / No Loss
+      </div>
+
+    </div>
+
+  </ion-card-content>
+</ion-card>
+
+
+<!-- Cute More History Button -->
+
+  <!-- Action Buttons -->
+
+
+<!-- ACTION BUTTONS SECTION -->
+<div class="extra-actions">
+   <ion-button
+    (click)=" Approvel_Ticket()"
+    expand="block"
+    class="btn-closed"  style="--background: green;">
+    Click to Approve
+  </ion-button>
+
+</div>
+
+</ion-content>

@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar style="--background:#0c7cbc; --color:#fff;">
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ticket Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ticket-content">
+
+  <!-- No Ticket -->
+  <div *ngIf="otr && show" class="empty-state">
+    <img src="/assets/img/opps.jpg" />
+    <h2>No Tickets Found</h2>
+  </div>
+
+  <!-- Ticket ID -->
+  <div class="ticket-id">
+    {{ impact.TicketID }}
+  </div>
+
+  <!-- Ticket Details -->
+  <ion-card class="info-card">
+    <div class="info-row">
+      <span class="label">Assigned To</span>
+      <span class="value">{{ impact.EmployeeName }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Status</span>
+      <span class="value">{{ impact.Status || 'Not Set' }}</span>
+    </div>
+  </ion-card>
+
+  <!-- Assign Section -->
+  <ion-card *ngIf="close" class="assign-card">
+
+    <h4 class="section-title">Assign To</h4>
+
+    <ion-radio-group (ionChange)="onassgin($event)">
+      <div class="radio-row">
+        <ion-radio value="emp" (click)="vendor()"></ion-radio>
+        <ion-label>Vendor</ion-label>
+
+        <ion-radio value="Tech" (click)="Techech()"></ion-radio>
+        <ion-label>Technician</ion-label>
+      </div>
+    </ion-radio-group>
+
+    <!-- Technician -->
+<!-- Technician -->
+<ion-item *ngIf="assgin" button (click)="openTechModal()">
+  <ion-label>Assigned To</ion-label>
+  <ion-text>
+    {{ selectedTechName || 'Select Vendor' }}
+  </ion-text>
+</ion-item>
+   
+<!-- Vendor -->
+<ion-item *ngIf="vendo" button (click)="openVendorModal()">
+  <ion-label>Assigned To</ion-label>
+  <ion-text>
+    {{ selectedVendorName || 'Select  Technician ' }}
+  </ion-text>
+</ion-item>
+
+
+    <!-- Due Date -->
+    <div class="due-date">
+      <ion-label>Due Date</ion-label>
+      <ion-input
+        type="date"
+        [(ngModel)]="bookingdata.DueDate">
+      </ion-input>
+    </div>
+
+  </ion-card>
+
+  <!-- Submit Button -->
+  <div class="submit-wrap">
+    <ion-button expand="block" (click)="Service_Change_Status()">
+      Submit
+    </ion-button>
+  </div>
+<ion-modal [isOpen]="showTechModal">
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Select Technician</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeTechModal()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+      <ion-searchbar
+        placeholder="Search Technician..."
+        (ionInput)="filterTech($event)">
+      </ion-searchbar>
+
+      <ion-list>
+        <ion-item
+          *ngFor="let t of filteredTechList"
+          (click)="selectTech(t)">
+          {{ t.Name }}
+        </ion-item>
+      </ion-list>
+
+    </ion-content>
+
+  </ng-template>
+</ion-modal>
+<ion-modal [isOpen]="showVendorModal">
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Select Vendor</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeVendorModal()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+      <ion-searchbar
+        placeholder="Search Vendor..."
+        (ionInput)="filterVendor($event)">
+      </ion-searchbar>
+
+      <ion-list>
+        <ion-item
+          *ngFor="let v of filteredVendorList"
+          (click)="selectVendor(v)">
+          {{ v.Name }}
+        </ion-item>
+      </ion-list>
+
+    </ion-content>
+
+  </ng-template>
+</ion-modal>
+
+</ion-content>

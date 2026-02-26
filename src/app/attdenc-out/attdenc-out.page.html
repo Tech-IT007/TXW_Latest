@@ -1,0 +1,77 @@
+<ion-header class="header">
+  <ion-toolbar class="header-toolbar" style="--background: #047ac2; --color: #fff;"> 
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/vendor-new-page" icon="arrow-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">Attendance Punch-Out</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="punch-out-page ion-padding">
+   <div class="info-text-container" *ngIf="timeIn">
+    <p class="info-text">You have punched in at: <strong>{{ formattedInTime }}</strong></p>
+   </div>
+  <!-- Time & Location Cards -->
+  <div class="info-container">
+    <!-- Current Time -->
+    <ion-card class="info-card">
+      <ion-card-content>
+        <div class="info-row">
+          <ion-icon name="time-outline" class="info-icon"></ion-icon>
+          <div>
+            <p class="label">Current Time</p>
+            <p class="value">{{ currentTime }}</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Current Location -->
+    <ion-card class="info-card">
+      <ion-card-content>
+        <div class="info-row">
+          <ion-icon name="location-outline" class="info-icon"></ion-icon>
+          <div>
+            <p class="label">Current Location</p>
+            <p class="value">{{address}}</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Camera Section -->
+  <div class="camera-section">
+    <h2 class="section-title">Capture Your Photo</h2>
+
+    <!-- Captured Image or Placeholder -->
+    <div class="image-container">
+      <ng-container *ngIf="clicked; else placeholder">
+        <img [src]="clicked" alt="Captured" class="captured-img" />
+      </ng-container>
+      <ng-template #placeholder>
+        <div class="image-placeholder">
+          <ion-icon name="camera-outline" class="placeholder-icon"></ion-icon>
+          <p>No Image Captured</p>
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- Capture Button -->
+    <ion-button expand="block" class="capture-btn" (click)="capture()">
+      <ion-icon slot="start" name="camera"></ion-icon>
+      Capture Photo
+    </ion-button>
+  </div>
+
+  <!-- Punch-Out Button -->
+  <ion-button
+    expand="block"
+    class="submit-btn"
+    [disabled]="!clicked"
+    (click)="attdence_out()">
+    <ion-icon slot="start" name="log-out-outline"></ion-icon>
+    Submit Punch-Out
+  </ion-button>
+
+</ion-content>

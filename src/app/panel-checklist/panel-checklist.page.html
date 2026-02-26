@@ -1,0 +1,155 @@
+<ion-header>
+  <ion-toolbar>
+    <div style="display: flex; ">
+      <div class="div">
+        <ion-icon [routerLink]="['/vendor-new-page']" class="icon" name="chevron-back-outline"></ion-icon>
+      </div>
+      <ion-title>Panel Checklist</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="checklistForm" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label position="floating">Site</ion-label>
+      <ion-input formControlName="Site"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Asset</ion-label>
+      <ion-input formControlName="Asset"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Location</ion-label>
+      <ion-input formControlName="Location"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Frequency</ion-label>
+      <ion-input formControlName="Frequency"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Work Group</ion-label>
+      <ion-input formControlName="WorkGroup"></ion-input>
+    </ion-item>
+
+    <!-- Checklist Section -->
+    <ion-item-divider>
+      <ion-label>A Safety Precautions Prior to throw PM Procedure</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-checkbox formControlName="lockTagOutNotice" slot="start"></ion-checkbox>
+      <ion-label>Apply Lock In & Tag Out Notice</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="usePersonalProtectiveDevice" slot="start"></ion-checkbox>
+      <ion-label>Use personal protective device</ion-label>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-label>B- Performance Checklist</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-checkbox formControlName="removeDustFromPanel" slot="start"></ion-checkbox>
+      <ion-label>Remove the dust from the panel</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="checkIndicationLamp" slot="start"></ion-checkbox>
+      <ion-label>Check all the indication lamp</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="checkMetersAndSwitches" slot="start"></ion-checkbox>
+      <ion-label>Check Voltmeter, Ammeter and Selector Switches</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="checkLooseConnections" slot="start"></ion-checkbox>
+      <ion-label>Check for any color change due to loose connection and tighten if necessary</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="checkSurroundingCleaning" slot="start"></ion-checkbox>
+      <ion-label>Check surrounding cleaning</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="checkMCCBSettings" slot="start"></ion-checkbox>
+      <ion-label>Check the over current setting of the MCCB as per load</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="checkControlFuses" slot="start"></ion-checkbox>
+      <ion-label>Check all the control fuses</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="checkTPNOutput" slot="start"></ion-checkbox>
+      <ion-label>Check all TPN for output</ion-label>
+    </ion-item>
+    <ion-item-divider>
+      <ion-label>C- Checklist for safety inspection on completion of PM</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-checkbox formControlName="removeSignboard" slot="start"></ion-checkbox>
+      <ion-label>Remove signboard</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="ensureToolsleftOver" slot="start"></ion-checkbox>
+      <ion-label>Ensure that no tools are left over</ion-label>
+    </ion-item>
+    
+    <ion-item-divider>
+      <ion-label>D- Inspection and Test Results</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-checkbox formControlName="acceptableLimits" slot="start"></ion-checkbox>
+      <ion-label>Acceptable limits</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="testData" slot="start"></ion-checkbox>
+      <ion-label>Test Data</ion-label>
+    </ion-item>
+    <ion-item-divider>
+      <ion-label>Material Required</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-checkbox formControlName="wasteCloth" slot="start"></ion-checkbox>
+      <ion-label>Waste cloth</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="cRC" slot="start"></ion-checkbox>
+      <ion-label>CRC</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea formControlName="sparesUsed" placeholder="Enter your Spares here..."></ion-textarea>
+    </ion-item>
+    
+    <ion-item-divider>
+      <ion-label>Test Equipment Required</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-checkbox formControlName="toolBox" slot="start"></ion-checkbox>
+      <ion-label>Tool box</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="electrianToolKit" slot="start"></ion-checkbox>
+      <ion-label>Electrian Tool Kit</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="multimeter" slot="start"></ion-checkbox>
+      <ion-label>Multimeter</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName="tongTester" slot="start"></ion-checkbox>
+      <ion-label>Tong Tester</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea formControlName="Remark" placeholder="Enter your remarks here..."></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Team & Condition</ion-label>
+      <ion-toggle formControlName="TeamAndCondition" checked="true"></ion-toggle>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="checklistForm.invalid">Submit</ion-button>
+  </form>
+</ion-content>

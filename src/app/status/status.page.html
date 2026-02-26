@@ -1,0 +1,90 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+  <div>
+    <h3 class="h3">Booking Status</h3>
+    <div class="div">
+      <ion-icon
+        routerLink="/home"
+        class="icon"
+        name="chevron-back-outline"
+      ></ion-icon>
+    </div>
+  </div>
+  <ion-card style="--background: #fff">
+    <ion-card-content style="--background: #fff">
+      <div>
+        <ion-item style="--background: #fff">
+          <ion-checkbox
+            slot="start"
+            [(ngModel)]="impact.Pending"
+          ></ion-checkbox>
+          <ion-list-header style="--background: #fff; color: #000"
+            >Pending</ion-list-header
+          >
+        </ion-item>
+        <ion-item style="--background: #fff">
+          <ion-checkbox
+            slot="start"
+            [(ngModel)]="impact.Complet"
+          ></ion-checkbox>
+          <ion-list-header style="--background: #fff; color: #000"
+            >Complet</ion-list-header
+          >
+        </ion-item>
+        <ion-item style="--background: #fff">
+          <ion-checkbox slot="start" [(ngModel)]="impact.Under"></ion-checkbox>
+          <ion-list-header style="--background: #fff; color: #000"
+            >Under Complet</ion-list-header
+          >
+        </ion-item>
+      </div>
+      <ion-item style="--background: #fff">
+        <ion-checkbox slot="start" [(ngModel)]="impact.Reject"></ion-checkbox>
+        <ion-list-header style="--background: #fff; color: #000"
+          >Reject</ion-list-header
+        >
+      </ion-item>
+      <ion-item style="--background: #fff">
+        <ion-checkbox slot="start" [(ngModel)]="impact.Not"></ion-checkbox>
+        <ion-list-header style="--background: #fff; color: #000"
+          >Not available</ion-list-header
+        >
+      </ion-item>
+      <ion-item style="--background: #fff">
+        <ion-checkbox slot="start" [(ngModel)]="impact.other"></ion-checkbox>
+        <ion-list-header style="--background: #fff; color: #000"
+          >other</ion-list-header
+        >
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card style="--background: #fff">
+    <ion-card-content style="--background: #fff">
+      <ion-label style="color: #000" position="floating" style="color: black">
+        Remarks
+      </ion-label>
+      <ion-item style="--background: #fff">
+        <ion-input
+          style="color: #000"
+          [(ngModel)]="impact.Remarks"
+          name="NativeDistrict"
+        ></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <div>
+    <ion-button
+      fill="solid"
+      expand="block"
+      style="margin: 16px"
+      routerLink="/home"
+      (click)="submit()"
+      id="col"
+      >Submit</ion-button
+    >
+  </div>
+</ion-content>

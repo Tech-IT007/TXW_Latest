@@ -1,0 +1,48 @@
+.table-container {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.asset-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 700px; /* allow horizontal scroll */
+  font-size: 13px;
+}
+
+.asset-table th,
+.asset-table td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Fixed top row for all headers except Ticket ID */
+.fixed-top {
+  position: sticky;
+  top: 0;
+  background-color: #0c7cbc;
+  color: #fff;
+  z-index: 2;
+}
+
+/* Fixed Ticket ID column */
+.fixed-col {
+  position: sticky;
+  left: 0;
+  background: #f9f9f9;
+  z-index: 3;
+  min-width: 100px;
+}
+
+ion-badge {
+  font-size: 11px;
+}
+
+.no-history {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 20px;
+}

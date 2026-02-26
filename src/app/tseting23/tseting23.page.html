@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar style="--background:#017dc0; --color:#ffffff">
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dashboard-bg">
+
+  <!-- CORPORATE SECTION -->
+  <div class="section-card">
+    <div class="section-header">
+      <h4>Corporate</h4>
+      <span>Total: {{ impact?.Total }}</span>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-box">
+        <h6>Corporate Pie</h6>
+        <canvas id="corporatePie"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h6>Corporate Bar</h6>
+        <canvas id="corporateBar"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- PPM SECTION -->
+  <div class="section-card">
+    <div class="section-header red">
+      <h4>PPM Tickets</h4>
+      <span>Total: {{ ppm?.Total }}</span>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-box">
+        <h6>PPM Pie</h6>
+        <canvas id="ppmPie"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h6>PPM Bar</h6>
+        <canvas id="ppmBar"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADVANCED CHARTS -->
+  <div class="section-card">
+    <div class="section-header">
+      <h4>Advanced Insights</h4>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-box">
+        <h6>Doughnut Status</h6>
+        <canvas id="corporateDoughnut"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h6>Gradient Bar</h6>
+        <canvas id="corporateGradientBar"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h6>Status Line (Dot)</h6>
+        <canvas id="corporateLine"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h6>PPM Mini Bar</h6>
+        <canvas id="ppmMiniBar"></canvas>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

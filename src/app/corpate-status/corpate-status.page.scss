@@ -1,0 +1,88 @@
+.ticket-content {
+  --background: #f5f7fb;
+}
+
+.ticket-id {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0c7cbc;
+  margin: 14px;
+}
+
+.info-card {
+  margin: 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 14px;
+  color: #666;
+}
+
+.value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+}
+
+.assign-card {
+  margin: 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 12px;
+  color: #000;
+}
+
+.radio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.due-date {
+  padding: 12px;
+}
+
+.submit-wrap {
+  margin: 20px;
+}
+
+.submit-wrap ion-button {
+  --background: #0c7cbc;
+  border-radius: 10px;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  margin-top: 25%;
+}
+
+.empty-state img {
+  width: 180px;
+  opacity: 0.9;
+}
+
+.empty-state h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+}

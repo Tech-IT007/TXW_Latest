@@ -1,0 +1,166 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.page-bg {
+  --background: #ffffff;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.header h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #003f88;
+}
+
+.header ion-icon {
+  font-size: 20px;
+  color: #003f88;
+}
+
+/* TICKET CODE */
+.ticket-code {
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e10256;
+}
+
+/* CARD */
+.ticket-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 0 14px 14px;
+  border: 1px solid #eaeaea;
+}
+
+.ticket-card .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: #003f88;
+}
+
+/* ACTION CARDS */
+.action-card {
+  margin: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #2196f3;
+  padding: 12px;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.action-row span {
+  font-size: 12px;
+  font-weight: 500;
+  color: #003f88;
+}
+
+.action-row ion-icon {
+  color: #2e7d32;
+  font-size: 18px;
+}
+
+.action-row ion-button {
+  --background: #2196f3;
+  font-size: 11px;
+  height: 30px;
+  --border-radius: 8px;
+}
+
+/* DIGITAL REPORT */
+.digital-card {
+  margin: 16px 14px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.digital-card ion-button {
+  --background: #003f88;
+  font-size: 11px;
+  height: 30px;
+}
+
+.success {
+  color: green;
+}
+
+.danger {
+  color: #e10256;
+}
+
+/* =====================
+   GALLERY SECTION
+===================== */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 14px;
+}
+
+.gallery-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gallery-item img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #2196f3;
+}
+
+/* DELETE ICON */
+.delete-icon {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ffffff;
+  color: #e10256;
+  font-size: 18px;
+  border-radius: 50%;
+  padding: 4px;
+  border: 1px solid #e10256;
+  z-index: 10;
+}
+
+.gallery-item span {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #003f88;
+  font-weight: 500;
+}
+
+/* SUBMIT */
+.submit-btn {
+  margin: 20px 14px;
+  --background: #e10256;
+  --border-radius: 14px;
+  font-size: 13px;
+}

@@ -1,0 +1,132 @@
+.profile-content {
+  background: #fff;
+  padding: 12px;
+}
+
+/* ===== TOP PROFILE CARD ===== */
+.profile-top-card {
+  border: 1.5px solid #027dc1;
+  border-radius: 20px;
+  padding: 24px 16px 20px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* Profile Image Wrapper */
+.profile-pic-wrapper {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  border: 3px solid #d12e27;
+  padding: 4px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+
+/* Actual Image */
+.profile-pic-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+}
+
+/* Name */
+.profile-top-card h2 {
+  margin: 8px 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #027dc1;
+}
+
+/* Email */
+.profile-top-card p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+  word-break: break-all;
+}
+
+/* ===== INFO CARDS ===== */
+.info-card {
+  border: 1.5px solid #d12e27;
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  background: #fff;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #d12e27;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #027dc1;
+}
+
+/* Info Rows */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row span {
+  font-size: 13px;
+  color: #555;
+}
+
+.info-row strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #027dc1;
+  text-align: right;
+  max-width: 55%;
+  word-break: break-word;
+}
+
+/* Small Screen Polish */
+@media (max-width: 360px) {
+  .profile-pic-wrapper {
+    width: 96px;
+    height: 96px;
+  }
+
+  .profile-top-card h2 {
+    font-size: 16px;
+  }
+  /* ===== EDIT PROFILE BUTTON ===== */
+.edit-profile-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.edit-profile-btn {
+  --background: #027dc1;
+  --color: #fff;
+  --border-radius: 20px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  height: 32px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: 0 4px 10px rgba(2, 125, 193, 0.3);
+}
+
+.edit-profile-btn ion-icon {
+  font-size: 14px;
+}
+
+}

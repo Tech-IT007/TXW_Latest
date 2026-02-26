@@ -1,0 +1,55 @@
+.h3 {
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+  }
+  
+  .div {
+    margin-top: -29px;
+    padding-bottom: 12px;
+  }
+  
+  
+  .icon {
+    margin-top: -6px;
+    margin-left: 2%;
+    color: #000;
+    font-size: x-large;
+  }
+    
+  .button {
+    margin-top: 14%;
+    margin-left: 5%;
+    margin-right: 35px;
+    height: 48px;
+    --padding-top: 1px;
+    --background: #0c7cbc;
+  
+  }
+  
+
+  .card{
+   
+    border-radius: 8px;
+  }
+/* leave-request.component.scss */
+.leave-card {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+ion-card-title {
+  color: #3880ff;
+  font-size: 1.4rem;
+}
+
+.label {
+  font-weight: bold;
+  color: #222;
+}
+
+p {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #666;
+}

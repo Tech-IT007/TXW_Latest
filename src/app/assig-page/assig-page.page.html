@@ -1,0 +1,74 @@
+<!-- HEADER (ONLY HEADER, NO DATA) -->
+<ion-header>
+  <ion-toolbar class="custom-header">
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/profile"
+        text=""
+        icon="chevron-back-outline"
+        class="back-btn">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="header-text">
+      Change Tickets
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- CONTENT (ALL DATA HERE) -->
+<ion-content class="page-bg">
+
+  <!-- Booking Info -->
+<!-- Booking Info -->
+<!-- Booking Info -->
+<div class="booking-block">
+  <h3 class="booking-id">{{ impact.BookingCode }}</h3>
+
+  <div class="booking-flex">
+    <div class="booking-item">
+      <p class="field-label">City</p>
+      <p class="field-value">{{ impact.City }}</p>
+    </div>
+
+    <div class="booking-item">
+      <p class="field-label">Service Name</p>
+      <p class="field-value">{{ impact.ServiceName }}</p>
+    </div>
+  </div>
+</div>
+
+  <!-- Assigned / Status -->
+  <ion-card class="info-card">
+    <!-- <div class="row">
+      <span class="label">Assigned To</span>
+      <span class="value">{{ impact.EmployeeName }}</span>
+    </div> -->
+
+    <div class="row">
+      <span class="label">Current Status</span>
+      <span class="value status">{{ impact.BookingStatus }}</span>
+    </div>
+  </ion-card>
+
+  <!-- Change Status -->
+  <ion-item class="status-item">
+    <ion-label>Status</ion-label>
+    <ion-select
+      [(ngModel)]="bookingdata1.BookingStatus"
+      interface="popover">
+      <ion-select-option value="Generate OTP for Closure">
+        Submit for Closure
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Submit -->
+  <ion-button
+    expand="block"
+    class="submit-btn"
+    (click)="Service_Change_Status2()">
+    Submit
+  </ion-button>
+
+</ion-content>

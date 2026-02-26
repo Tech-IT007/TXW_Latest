@@ -1,0 +1,108 @@
+
+<ion-content>
+  <div>
+    <h3 class="h3">Booking Info</h3>
+    <div class="div">
+      <ion-icon
+        [routerLink]="['/corprate-tickets']"
+        class="icon"
+        name="chevron-back-outline"
+      ></ion-icon>
+    </div>
+  </div>
+  <!-- <div>
+    <h4 style="margin-top: 9px; margin-left: 8px; font-size: 19px;">Nearest Visit</h4>
+
+  </div> -->
+
+  <div style="margin-top: 6%">
+    <ion-card
+      style="
+        padding-bottom: 10px;
+        margin-left: 13px;
+        --background: #fff;
+        color: #000;
+      "
+    >
+      <ion-card-header>
+        <ion-card-title
+          ><h3 style="font-size: 16px; font-weight: 600; color: #000">
+            {{ impact.TicketID }}
+          </h3>
+          <div style="margin-top: -45px; margin-left: 50%">
+            <img class="img1" src="/assets/img/img.png" alt="" />
+          </div>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div style="display: flex; justify-content: space-between">
+          <div>
+            <h5>Company</h5>
+          </div>
+          <div>
+            <h5>{{ impact.CompanyName }}</h5>
+          </div>
+        </div>
+      </ion-card-content>
+
+      <ion-card-content>
+        <div style="display: flex; justify-content: space-between">
+          <div>
+            <h5>Branch</h5>
+          </div>
+          <div>
+            <h5>{{ impact.BranchSite }}</h5>
+          </div>
+        </div>
+      </ion-card-content>
+
+      <ion-card-content>
+        <div style="display: flex; justify-content: space-between">
+          <div>
+            <h5>Type</h5>
+          </div>
+          <div>
+            <h5>{{ impact.Type }}</h5>
+          </div>
+        </div>
+      </ion-card-content>
+
+      <ion-card-content>
+        <div style="display: flex; justify-content: space-between">
+          <div>
+            <h5>Equipment Name</h5>
+          </div>
+          <div>
+            <h5>{{ impact.EquipmentName }}</h5>
+          </div>
+        </div>
+      </ion-card-content>
+
+      <ion-card-content>
+        <div style="display: flex; justify-content: space-between">
+          <div>
+            <h5>Message</h5>
+          </div>
+          <div>
+            <h5>{{ impact.Message }}</h5>
+          </div>
+        </div>
+      </ion-card-content>
+
+      <ion-card-content>
+        <div style="display: flex; justify-content: space-between">
+          <div>
+            <h5>Status</h5>
+          </div>
+          <div>
+            <h5>{{ impact.Status }}</h5>
+          </div>
+        </div>
+      </ion-card-content>
+
+      <div style="margin-left: 60%">
+        <ion-button class="button" (click)="raja()">Escalate Ticket</ion-button>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

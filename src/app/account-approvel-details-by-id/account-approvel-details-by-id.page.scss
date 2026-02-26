@@ -1,0 +1,185 @@
+/* ================= PAGE BACKGROUND ================= */
+.ticket-detail-page {
+  --background: #ffffff;
+}
+
+/* ================= HEADER AREA ================= */
+.logo-container {
+  text-align: center;
+  padding: 8px 0;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo-container img {
+  width: 120px;
+  object-fit: contain;
+}
+
+/* ================= TICKET HEADER ================= */
+.ticket-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.ticket-header h2 {
+  flex: 1;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
+.back-icon {
+  font-size: 20px;
+  color: #333;
+}
+
+/* ================= TICKET INFO ================= */
+.ticket-id {
+  text-align: center;
+  font-size: 12px;
+  margin: 5px 0;
+  color: #555;
+}
+
+.ticket-id span {
+  font-weight: bold;
+  color: #000;
+}
+
+/* ================= CARD ================= */
+.ticket-card {
+  margin: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+/* ================= BOX ================= */
+.ticket-box {
+  padding: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.ticket-box p {
+  font-size: 11px;
+  color: #666;
+  margin: 0;
+}
+
+.ticket-box h3 {
+  font-size: 13px;
+  margin: 3px 0 0;
+  color: #222;
+  font-weight: 500;
+}
+
+/* ================= ADDRESS ================= */
+.address-box {
+  margin: 8px;
+  border: 1px solid #ccc;
+  padding: 6px;
+  background: #f9f9f9;
+  border-radius: 6px;
+}
+
+.address-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.address-icon {
+  color: #0c7cbc;
+  font-size: 16px;
+}
+
+.branch-address {
+  font-size: 12px;
+  color: #333;
+}
+
+/* =======================================================
+   FOOTER BUTTON SECTION
+======================================================= */
+/* =======================================================
+   EXTRA ACTION BUTTONS (FIXED)
+======================================================= */
+
+.extra-actions {
+  display: flex;
+  // flex-direction: column;   /* ✅ STACK BUTTONS */
+  gap: 12px;
+  padding: 12px 16px 20px;
+}
+
+/* COMMON BUTTON STYLE */
+.extra-actions ion-button {
+  --border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  height: 46px;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  width: 100%;
+}
+
+/* COLOR TYPES */
+.btn-danger {
+  --background: #e63946;
+}
+
+.btn-warning {
+  --background: #ff9800;
+}
+
+.btn-primary {
+  --background: #0c7cbc;
+}
+
+.btn-start {
+  --background: #0c7cbc;
+}
+
+.btn-view {
+  --background: #0c7cbc;
+}
+
+
+/* ICON */
+ion-icon {
+  font-size: 18px;
+}
+
+/* DISABLED */
+ion-button:disabled {
+  opacity: 0.7;
+}
+
+
+/* Chart Cards */
+.chart-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.chart-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Canvas Fix for Mobile */
+canvas {
+  width: 100% !important;
+  height: 240px !important;
+}

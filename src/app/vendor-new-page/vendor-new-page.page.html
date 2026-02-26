@@ -1,0 +1,218 @@
+<ion-header>
+  <ion-toolbar>
+
+    <!-- LOGO -->
+    <div class="logo-container">
+      <img src="assets/img/logo.jpg" alt="Logo" />
+    </div>
+    <!-- NOTIFICATION -->
+<ion-buttons slot="end">
+  <ion-button
+    fill="clear"
+    (click)="openNotification()"
+    class="notification-button"
+  >
+    <ion-icon
+      slot="icon-only"
+      name="notifications-outline">
+    </ion-icon>
+<ion-badge
+  *ngIf="notification_counter > 0"
+  color="danger"
+  class="notify-badge">
+  {{ notification_counter }}
+</ion-badge>
+  </ion-button>
+</ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="dashboard-content">
+
+  <!-- LOCATION REFRESH -->
+  <div *ngIf="location_enable" class="location-refresh-box">
+    <h5>Location Refresh</h5>
+    <ion-icon name="refresh-outline" (click)="location()"></ion-icon>
+  </div>
+
+  <!-- ===== PROFILE CARD ===== -->
+  <ion-card class="profile-card">
+
+    <!-- Profile Image -->
+<div class="profile-image-section">
+  <div class="profile-img-wrapper">
+
+    <!-- Profile Image -->
+    <img
+      [src]="obj.ProfileImage || 'assets/img/user.png'"
+      alt="Profile Image"
+      class="profile-img"
+      (click)="captureImage()"
+    />
+
+    <!-- Camera Icon -->
+    <div class="camera-icon" (click)="captureImage()">
+      <ion-icon name="camera-outline"></ion-icon>
+    </div>
+
+  </div>
+</div>
+
+
+    <!-- Profile Info -->
+    <div class="profile-info">
+      <h2 class="profile-name">
+        {{ obj.Name || 'Employee Name' }}
+      </h2>
+
+      <p class="profile-designation">
+        <ion-icon name="clipboard-outline"></ion-icon>
+        {{ emp.EmployeeDesignation || 'N/A' }}
+      </p>
+
+      <p class="profile-email">
+        <ion-icon name="mail-outline"></ion-icon>
+        {{ obj.Email || 'Email Not Available' }}
+      </p>
+    </div>
+
+    <!-- Time Section -->
+    <div class="time-section">
+
+      <div class="time-box" *ngIf="in">
+        <ion-icon name="log-in-outline" class="in-icon"></ion-icon>
+        <span class="time-label">In Time</span>
+        <span class="time-value">
+          {{ convertTo12HourFormat(in) || '--:--' }}
+        </span>
+      </div>
+
+      <div class="time-box" *ngIf="out">
+        <ion-icon name="log-out-outline" class="out-icon"></ion-icon>
+        <span class="time-label">Out Time</span>
+        <span class="time-value">
+          {{ convertTo12HourFormat(out) || '--:--' }}
+        </span>
+      </div>
+
+    </div>
+
+  </ion-card>
+
+  <!-- LOGOUT FAB -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="logout()">
+    <ion-fab-button class="logout-btn">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- ===== DASHBOARD GRID ===== -->
+  <ion-grid class="dashboard-grid">
+    <ion-row>
+
+      <ion-col size="6">
+        <ion-card (click)="home_care_roles()"  class="dashboard-card">
+          <img src="assets/img/home_care.png" />
+          <p>Home Care</p>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button (click)="roles()" class="dashboard-card">
+          <img src="assets/img/Corporate.png" />
+          <p>Corporate</p>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" *ngIf="status">
+        <ion-card button routerLink="/tseting23" class="dashboard-card">
+          <img src="assets/img/dashboard.png" />
+          <p>Dashboard</p>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/visitor-all-tickets" class="dashboard-card">
+          <img src="assets/img/visitor.png" />
+          <p>Site Visits</p>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/barcode-info" class="dashboard-card">
+          <img src="assets/img/barcode.png" />
+          <p>Mapped Assets</p>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/mywork-zone" class="dashboard-card">
+          <img src="assets/img/workplace.png" />
+          <p>My Work Zone</p>
+        </ion-card>
+      </ion-col>
+            <!-- <ion-col size="6">
+        <ion-card button routerLink="/raised-ticket" class="dashboard-card">
+          <img src="assets/img/City_Tickets.png" />
+          <p>Raise Ticket</p>
+        </ion-card>
+      </ion-col> -->
+<!-- <ion-button expand="block" (click)="showInAppMessage()">
+</ion-button> -->
+    </ion-row>
+  </ion-grid>
+<ion-modal [isOpen]="isNotificationOpen" cssClass="notification-modal">
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Notifications</ion-title>
+
+        <ion-buttons slot="end">
+          <!-- CLEAR ALL -->
+          <ion-button   *ngIf="notifications.length > 0"  fill="clear" color="danger" (click)="deleteNotification()">
+            Clear All
+          </ion-button>
+
+          <!-- CLOSE -->
+          <ion-button (click)="closeNotification()">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="notification-content">
+
+      <!-- NO DATA -->
+      <div *ngIf="notifications.length === 0" class="empty-box">
+        <img src="assets/opps.jpg">
+        <p>No notifications found</p>
+      </div>
+
+      <!-- NOTIFICATION CARD -->
+      <ion-card
+        *ngFor="let item of notifications; let i = index"
+        class="notify-card"
+      >
+        <!-- DELETE ICON -->
+        <ion-icon
+          name="trash-outline"
+          class="delete-icon"
+          (click)="SeenNotification(item.id, i)"
+        ></ion-icon>
+
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.body }}</p>
+      </ion-card>
+
+    </ion-content>
+
+  </ng-template>
+</ion-modal>
+
+
+
+</ion-content>
