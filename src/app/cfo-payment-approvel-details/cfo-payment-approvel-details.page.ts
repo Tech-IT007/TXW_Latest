@@ -5,11 +5,11 @@ import { ToastController } from '@ionic/angular';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
-  selector: 'app-payment-approvel-details',
-  templateUrl: './payment-approvel-details.page.html',
-  styleUrls: ['./payment-approvel-details.page.scss'],
+  selector: 'app-cfo-payment-approvel-details',
+  templateUrl: './cfo-payment-approvel-details.page.html',
+  styleUrls: ['./cfo-payment-approvel-details.page.scss'],
 })
-export class PaymentApprovelDetailsPage implements OnInit {
+export class CFOPaymentApprovelDetailsPage implements OnInit {
 
   impact: any[] = [];
   show = false;
@@ -60,11 +60,10 @@ export class PaymentApprovelDetailsPage implements OnInit {
     const body = {
       TicketID: pay.TicketID,
       PaymentID: pay.ID,   // <-- important
-      "IsStateApprove": "Yes"
     };
 
     this.http.post(
-      'https://techxpertindia.in/api/change_ticket_payment_approval.php',
+      'https://techxpertindia.in/api/post_change_tickets_payment_status.php',
       body
     ).subscribe(async (res: any) => {
 
@@ -97,3 +96,15 @@ export class PaymentApprovelDetailsPage implements OnInit {
     window.open(img, '_blank');
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+

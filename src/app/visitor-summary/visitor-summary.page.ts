@@ -11,7 +11,7 @@ import SignaturePad from 'signature_pad';
 })
 export class VisitorSummaryPage implements OnInit {
   @ViewChild('signaturePad', {static: true}) signaturePadElement!: ElementRef<HTMLCanvasElement>;
-  private signaturePad: SignaturePad;
+  private signaturePad: SignaturePad;   
   isButtonDisabled_save: boolean;
   clint_data: any = {}
   Contact: any;

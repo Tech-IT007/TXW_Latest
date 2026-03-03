@@ -43,12 +43,17 @@ Payment Details
   </div>
 
   <!-- APPROVE BUTTON -->
-  <div class="approve-area" *ngIf="pay.IsStateApprove == 'No'">
-    <ion-button expand="block" class="approve-btn"
-      (click)="approvePayment(pay)">
-      APPROVE PAYMENT
-    </ion-button>
-  </div>
+<div class="approve-area"
+     *ngIf="pay.
+IsFinanceApprove
+?.toLowerCase() == 'yes' && pay.IsStateApprove
+?.toLowerCase() == 'yes'">
+     
+  <ion-button expand="block" class="approve-btn"
+    (click)="approvePayment(pay)">
+    APPROVE PAYMENT
+  </ion-button>
 
+</div>
 </ion-card>
 </ion-content>

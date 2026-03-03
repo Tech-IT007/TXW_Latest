@@ -5,11 +5,11 @@ import { ToastController } from '@ionic/angular';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
-  selector: 'app-payment-approvel-details',
-  templateUrl: './payment-approvel-details.page.html',
-  styleUrls: ['./payment-approvel-details.page.scss'],
+  selector: 'app-finence-payment-approvel-details',
+  templateUrl: './finence-payment-approvel-details.page.html',
+  styleUrls: ['./finence-payment-approvel-details.page.scss'],
 })
-export class PaymentApprovelDetailsPage implements OnInit {
+export class FinencePaymentApprovelDetailsPage implements OnInit {
 
   impact: any[] = [];
   show = false;
@@ -60,7 +60,7 @@ export class PaymentApprovelDetailsPage implements OnInit {
     const body = {
       TicketID: pay.TicketID,
       PaymentID: pay.ID,   // <-- important
-      "IsStateApprove": "Yes"
+      "IsFinanceApprove": "Yes"
     };
 
     this.http.post(
@@ -97,3 +97,18 @@ export class PaymentApprovelDetailsPage implements OnInit {
     window.open(img, '_blank');
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

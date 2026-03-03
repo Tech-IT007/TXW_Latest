@@ -1,15 +1,16 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-payment-approvel',
-  templateUrl: './payment-approvel.page.html',
-  styleUrls: ['./payment-approvel.page.scss'],
+  selector: 'app-cfo-quotation-approvel',
+  templateUrl: './cfo-quotation-approvel.page.html',
+  styleUrls: ['./cfo-quotation-approvel.page.scss'],
 })
-export class PaymentApprovelPage implements OnInit {
+export class CfoQuotationApprovelPage implements OnInit {
+
+
   tickets: any[] = [];
   filteredTickets: any[] = [];
 
@@ -22,10 +23,9 @@ export class PaymentApprovelPage implements OnInit {
 
 approvel: any = {
   StateName: (localStorage.getItem("StateName") || "").split(","),
-  IsFinanceApprove: "",
+  IsFinanceApprove: "Yes",
   IsStateApprove: "Yes",
-  "Status": "Pending",
-
+  QuotationStatus: ['FinanceApproved']
 };
   constructor(
     private http: HttpClient,
@@ -36,9 +36,9 @@ approvel: any = {
     this.allTickets();
   }
 
-ngOnInit(): void {
-  
-}
+  ngOnInit() {
+  }
+
   /* ================= LOADER ================= */
   async presentLoading() {
     this.loading = await this.loadingCtrl.create({
@@ -57,36 +57,11 @@ ngOnInit(): void {
   /* ================= SET APPROVAL CONDITION ================= */
 setApprovalStatus() {
 
-  // 👉 Finance Approver
-  if (this.IsFinanceApprove === "Yes") {
-
-    this.approvel.IsFinanceApprove = "No";
-
-
-  }
-
-  // 👉 State Approver
-  else if (this.IsStateApprove === "Yes") {
-
-
-    this.approvel.IsStateApprove = "No";
-
-
-  }
-
-  // 👉 Default (Both NO)
-  else {
-
-    this.approvel.IsFinanceApprove = "No";
-    this.approvel.IsStateApprove = "No";
-
-
-  }
 }
   /* ================= FETCH DATA ================= */
   async allTickets(isRefresh = false) {
 
-    const api = "https://techxpertindia.in/api/get-all-ticket-payments-by-state.php";
+    const api = "https://techxpertindia.in/api/get-all-satewise-quation-approval.php";
 
     if (!isRefresh) {
       await this.presentLoading();
@@ -161,7 +136,7 @@ setApprovalStatus() {
 
     if (!status) return 'status';
 
-    status = status.toLowerCase();  
+    status = status.toLowerCase();
 
     if (status.includes('approved')) return 'status approved';
     if (status.includes('rejected')) return 'status rejected';
@@ -173,10 +148,17 @@ setApprovalStatus() {
   /* ================= NAVIGATION ================= */
   viewDetails(id: string) {
     localStorage.setItem('Ticket_id', id);
- 
-    this.router.navigate(['/payment-approvel-details']);
+    this.router.navigate(['/cfo-quotation-approvel-details']);
   }
+
 }
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,83 @@
+/* CARD */
+.payment-card {
+  margin: 10px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.payment-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+/* TEXT SIZES SMALL */
+.ticket-no {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+.amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0c7cbc;
+}
+
+/* STATUS BADGE */
+.status {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin-top: 3px;
+  display: inline-block;
+}
+
+.status.Pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.Approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* IMAGE SECTION */
+.img-row {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+}
+
+.img-box {
+  flex: 1;
+}
+
+.img-title {
+  font-size: 10px;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.img-box img {
+  width: 100%;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* BUTTON */
+.approve-area {
+  padding: 0 10px 10px;
+}
+
+.approve-btn {
+  --background: #0a8f2d;
+  font-size: 12px;
+  height: 38px;
+  letter-spacing: 0.5px;
+}

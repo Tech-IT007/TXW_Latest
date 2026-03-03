@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-payment-approvel',
-  templateUrl: './payment-approvel.page.html',
-  styleUrls: ['./payment-approvel.page.scss'],
+  selector: 'app-cfo-payment-approvel',
+  templateUrl: './cfo-payment-approvel.page.html',
+  styleUrls: ['./cfo-payment-approvel.page.scss'],
 })
-export class PaymentApprovelPage implements OnInit {
+export class CFOPaymentApprovelPage implements OnInit {
   tickets: any[] = [];
   filteredTickets: any[] = [];
 
@@ -22,8 +22,8 @@ export class PaymentApprovelPage implements OnInit {
 
 approvel: any = {
   StateName: (localStorage.getItem("StateName") || "").split(","),
-  IsFinanceApprove: "",
-  IsStateApprove: "Yes",
+  IsFinanceApprove: "Yes",
+  IsStateApprove: "",
   "Status": "Pending",
 
 };
@@ -57,36 +57,17 @@ ngOnInit(): void {
   /* ================= SET APPROVAL CONDITION ================= */
 setApprovalStatus() {
 
-  // 👉 Finance Approver
-  if (this.IsFinanceApprove === "Yes") {
-
-    this.approvel.IsFinanceApprove = "No";
 
 
-  }
 
-  // 👉 State Approver
-  else if (this.IsStateApprove === "Yes") {
-
-
-    this.approvel.IsStateApprove = "No";
-
-
-  }
 
   // 👉 Default (Both NO)
-  else {
 
-    this.approvel.IsFinanceApprove = "No";
-    this.approvel.IsStateApprove = "No";
-
-
-  }
 }
   /* ================= FETCH DATA ================= */
   async allTickets(isRefresh = false) {
 
-    const api = "https://techxpertindia.in/api/get-all-ticket-payments-by-state.php";
+    const api = "https://techxpertindia.in/api/get-all-status-wise-payment-tickets.php";
 
     if (!isRefresh) {
       await this.presentLoading();
@@ -174,9 +155,18 @@ setApprovalStatus() {
   viewDetails(id: string) {
     localStorage.setItem('Ticket_id', id);
  
-    this.router.navigate(['/payment-approvel-details']);
+    this.router.navigate(['/cfo-payment-approvel-details']);
   }
 }
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,79 @@
+.page-bg {
+  --background: #f5f7fb;
+  padding: 12px;
+}
+
+/* CARD */
+.ticket-card {
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-weight: 600;
+  color: #555;
+  font-size: 14px;
+}
+
+.value {
+  font-size: 14px;
+  color: #222;
+  text-align: right;
+}
+
+/* STATUS COLORS */
+.status {
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.status.approved {
+  background: #e6fffa;
+  color: #0a8f6a;
+}
+
+.status.rejected {
+  background: #fdecea;
+  color: #d93025;
+}
+
+.status.pending {
+  background: #fff4e5;
+  color: #f29900;
+}
+
+/* BUTTON */
+.view-btn {
+  margin-top: 10px;
+  --border-radius: 8px;
+}
+
+/* SEARCH */
+ion-searchbar {
+  padding: 10px;
+  --border-radius: 10px;
+}
+
+/* EMPTY UI */
+.empty-box {
+  text-align: center;
+  margin-top: 80px;
+  color: #888;
+}
+
+.empty-box ion-icon {
+  font-size: 60px;
+}
+
+/* LOAD MORE */
+.load-more {
+  margin: 20px 0;
+}

@@ -560,6 +560,30 @@ const routes: Routes = [
     path: 'payment-approvel-details',
     loadChildren: () => import('./payment-approvel-details/payment-approvel-details.module').then( m => m.PaymentApprovelDetailsPageModule)
   },
+  {
+    path: 'finence-payment-approvel',
+    loadChildren: () => import('./finence-payment-approvel/finence-payment-approvel.module').then( m => m.FinencePaymentApprovelPageModule)
+  },
+  {
+    path: 'finence-payment-approvel-details',
+    loadChildren: () => import('./finence-payment-approvel-details/finence-payment-approvel-details.module').then( m => m.FinencePaymentApprovelDetailsPageModule)
+  },
+  {
+    path: 'cfo-payment-approvel',
+    loadChildren: () => import('./cfo-payment-approvel/cfo-payment-approvel.module').then( m => m.CFOPaymentApprovelPageModule)
+  },
+  {
+    path: 'cfo-payment-approvel-details',
+    loadChildren: () => import('./cfo-payment-approvel-details/cfo-payment-approvel-details.module').then( m => m.CFOPaymentApprovelDetailsPageModule)
+  },
+  {
+    path: 'cfo-quotation-approvel',
+    loadChildren: () => import('./cfo-quotation-approvel/cfo-quotation-approvel.module').then( m => m.CfoQuotationApprovelPageModule)
+  },
+  {
+    path: 'cfo-quotation-approvel-details',
+    loadChildren: () => import('./cfo-quotation-approvel-details/cfo-quotation-approvel-details.module').then( m => m.CfoQuotationApprovelDetailsPageModule)
+  },
 
 ];
 

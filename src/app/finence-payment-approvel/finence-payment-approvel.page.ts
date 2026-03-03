@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-payment-approvel',
-  templateUrl: './payment-approvel.page.html',
-  styleUrls: ['./payment-approvel.page.scss'],
+  selector: 'app-finence-payment-approvel',
+  templateUrl: './finence-payment-approvel.page.html',
+  styleUrls: ['./finence-payment-approvel.page.scss'],
 })
-export class PaymentApprovelPage implements OnInit {
+export class FinencePaymentApprovelPage implements OnInit {
   tickets: any[] = [];
   filteredTickets: any[] = [];
 
@@ -86,7 +86,7 @@ setApprovalStatus() {
   /* ================= FETCH DATA ================= */
   async allTickets(isRefresh = false) {
 
-    const api = "https://techxpertindia.in/api/get-all-ticket-payments-by-state.php";
+    const api = "https://techxpertindia.in/api/get-all-status-wise-payment-tickets.php";
 
     if (!isRefresh) {
       await this.presentLoading();
@@ -174,9 +174,23 @@ setApprovalStatus() {
   viewDetails(id: string) {
     localStorage.setItem('Ticket_id', id);
  
-    this.router.navigate(['/payment-approvel-details']);
+    this.router.navigate(['/finence-payment-approvel-details']);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -155,7 +155,7 @@ if (this.role.includes ("Account Manager")){
       
       console.log(this.obj);
       this.temp = data 
-      this.temp = this.temp.data.length
+      this.temp = this.temp.length
       console.log(this.temp)
       
       if(this.temp == "0"){

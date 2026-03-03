@@ -36,13 +36,13 @@
         </div>
       </ion-col>
 
-            <ion-col size="6">
-        <div class="ticket-card"  routerLink="/payment-approvel">
+            <ion-col size="6" *ngIf="display" >
+        <div class="ticket-card" (click)="login_approvel()">
                <img src="/assets/img/secure-payment.png" />
           <p>Payment Approvals</p>
         </div>
       </ion-col>
-            <ion-col size="6"  *ngIf="display" routerLink="/quotation-approve-all-tickets">
+            <ion-col size="6"  *ngIf="display" (click)="login_approvel_quotaion ()">
         <div class="ticket-card" >
              <img src="/assets/img/financing.png" />
           <p>Quotation Approval</p>

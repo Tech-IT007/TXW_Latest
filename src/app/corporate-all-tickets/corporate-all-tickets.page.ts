@@ -110,6 +110,14 @@ else{
 display: boolean = false;
 
 verfiction() {
+    const role = localStorage.getItem("role");
+  let rolesArray: string[] = [];
+
+  if (role) {
+    console.log(role);
+    rolesArray = role.split(',');
+    console.log(rolesArray);
+  }
   const api = "https://techxpertindia.in/api/check_state_approval_access.php";
 
   this.http.post<any>(api, this.userdetails).subscribe((response) => {
@@ -123,7 +131,7 @@ verfiction() {
     localStorage.setItem("StateName", stateName);
 
     // CONDITION
-    if (finance === "No" && state === "No" && this.CFO_Roles === "CFO") {
+    if (finance === "No" && state === "No" && !rolesArray.includes("CFO")) {
       this.display = false;
     } else {
       this.display = true;
@@ -131,6 +139,54 @@ verfiction() {
 
     console.log("Display:", this.display);
   });
+}
+
+login_approvel() {
+
+  const role = localStorage.getItem("role");
+  let rolesArray: string[] = [];
+
+  if (role) {
+    console.log(role);
+    rolesArray = role.split(',');
+    console.log(rolesArray);
+  }
+
+  if (localStorage.getItem("IsFinanceApprove") === "Yes") {
+
+    this.router.navigateByUrl("/finence-payment-approvel");
+
+  } else if (localStorage.getItem("IsStateApprove") === "Yes") {
+
+    this.router.navigateByUrl("/payment-approvel");
+
+  } else if (rolesArray.includes("CFO")) {
+
+    this.router.navigateByUrl("/cfo-payment-approvel");
+
+  }
+
+}
+login_approvel_quotaion() {
+
+  const role = localStorage.getItem("role");
+  let rolesArray: string[] = [];
+
+  if (role) {
+    console.log(role);
+    rolesArray = role.split(',');
+    console.log(rolesArray);
+  }
+
+  if (rolesArray.includes("CFO")) {
+
+    this.router.navigateByUrl("/cfo-quotation-approvel");
+
+  } else {
+
+    this.router.navigateByUrl("/quotation-approve-all-tickets");
+
+  }
 }
 
 

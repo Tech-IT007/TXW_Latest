@@ -80,7 +80,8 @@ lastNotificationCount: number = 0;
           private nativeAudio: NativeAudio,
           private notificationService: NotificationService
   ) { 
-   
+  //  this.launchHoliSmoke()
+   this.chckAppGpsPermission()
   }
 
   currentTime: string;
@@ -699,58 +700,88 @@ async logout() {
 
           await modal.present();
 
-          this.launchConfetti();
+     
         }
       });
   }
 
-  launchConfetti() {
-    const duration = 3 * 1000;
-    const end = Date.now() + duration;
+launchHoliSmoke() {
 
-    (function frame() {
-      confetti({
-        particleCount: 8,
-        angle: 60,
-        spread: 50,
-        origin: { x: 0 },
-        shapes: ['circle', 'square'],
-        colors: ['#FFA500', '#FFD700', '#FF4500', '#FF6347'],
-        scalar: 1.2,
-        ticks: 250,
-        gravity: 0.8,
+  setTimeout(() => {
+
+    const canvas: any = document.getElementById('holiSmoke');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = [
+      '#ff1744', '#ff9100', '#ffd600',
+      '#00e676', '#00b0ff', '#d500f9', '#ff4081'
+    ];
+
+    let particles: any[] = [];
+
+    function createParticle() {
+      return {
+        x: canvas.width / 2 + (Math.random() - 0.5) * 200,
+        y: canvas.height - 50, // FROM BOTTOM (real throw feel)
+        radius: Math.random() * 50 + 40,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * 3,
+        vy: -(Math.random() * 6 + 4), // UPWARD THROW
+        alpha: 0.6,
+        life: 120
+      };
+    }
+
+    // create burst
+    for (let i = 0; i < 120; i++) {
+      particles.push(createParticle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, index) => {
+
+        const gradient = ctx.createRadialGradient(
+          p.x, p.y, 0,
+          p.x, p.y, p.radius
+        );
+
+        gradient.addColorStop(0, p.color + 'AA');
+        gradient.addColorStop(1, p.color + '00');
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // movement physics
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.15; // gravity pull down
+        p.radius += 0.3;
+        p.alpha -= 0.005;
+        p.life--;
+
+        if (p.life <= 0) {
+          particles.splice(index, 1);
+        }
       });
 
-      confetti({
-        particleCount: 8,
-        angle: 120,
-        spread: 50,
-        origin: { x: 1 },
-        shapes: ['circle', 'square'],
-        colors: ['#FFA500', '#FFD700', '#FF4500', '#FF6347'],
-        scalar: 1.2,
-        ticks: 250,
-        gravity: 0.8,
-      });
-
-      confetti({
-        particleCount: 5,
-        angle: 90,
-        spread: 20,
-        origin: { x: 0.5, y: 0 },
-        shapes: ['circle'],
-        colors: ['#FFD700', '#FFA500'],
-        scalar: 1.0,
-        ticks: 300,
-        gravity: 0.5,
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
+      if (particles.length > 0) {
+        requestAnimationFrame(animate);
       }
-    })();
-  }
-  
+    }
+
+    animate();
+
+  }, 200);
+}
 profile() {
    var url = "https://techxpertindia.in/api/get_employee_info.php";
     // console.log(this.user);
