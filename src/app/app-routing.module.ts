@@ -584,6 +584,10 @@ const routes: Routes = [
     path: 'cfo-quotation-approvel-details',
     loadChildren: () => import('./cfo-quotation-approvel-details/cfo-quotation-approvel-details.module').then( m => m.CfoQuotationApprovelDetailsPageModule)
   },
+  {
+    path: 'payment-done-details',
+    loadChildren: () => import('./payment-done-details/payment-done-details.module').then( m => m.PaymentDoneDetailsPageModule)
+  },
 
 ];
 

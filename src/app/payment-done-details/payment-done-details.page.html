@@ -2,12 +2,10 @@
   <ion-toolbar color="primary">
     <ion-back-button slot="start"></ion-back-button>
     <ion-title style="font-size:16px;">
-Payment Details
+      Payment Details
     </ion-title>
   </ion-toolbar>
-
 </ion-header>
-
 
 <ion-content class="ticket-detail-page">
 
@@ -21,8 +19,8 @@ Payment Details
           Ticket ID: {{ pay.TicketID }}
         </div>
 
-        <div class="status-badge" [ngClass]="pay.Status">
-        Finance Approval
+        <div class="status-badge" style="color: green;">
+        CFO Approved
         </div>
       </div>
 
@@ -38,34 +36,52 @@ Payment Details
 
     </div>
 
-    <!-- IMAGES -->
+    <!-- EXISTING IMAGES -->
     <div class="img-row">
 
       <div class="img-box" *ngIf="pay.BillImage">
         <div class="img-title">Bill Image</div>
-        <img [src]="pay.BillImage"
-             (click)="openImage(pay.BillImage)" />
+        <img [src]="pay.BillImage" />
       </div>
 
       <div class="img-box" *ngIf="pay.QrImage">
         <div class="img-title">QR Image</div>
-        <img [src]="pay.QrImage"
-             (click)="openImage(pay.QrImage)" />
+        <img [src]="pay.QrImage" />
       </div>
 
     </div>
 
-    <!-- APPROVE BUTTON -->
+<!-- CAPTURE PAYMENT IMAGE -->
+<div class="upload-section">
+
+  <div class="upload-box" (click)="capture(pay)">
+    Capture Payment Image
+  </div>
+
+  <!-- Preview -->
+  <div class="preview"
+       *ngIf="selectedPaymentId === pay.ID && previewImage">
+    <img [src]="previewImage" />
+  </div>
+
+</div>
+
+<!-- SUBMIT BUTTON -->
 <div class="approve-area"
-     *ngIf="pay.IsCfoApprove != 'Yes'">
-     
-  <ion-button expand="block" class="approve-btn"
-    (click)="approvePayment(pay)">
-    APPROVE PAYMENT
+     *ngIf="selectedPaymentId === pay.ID && previewImage">
+
+  <ion-button expand="block"
+              [disabled]="isSubmitting"
+              (click)="submitPayment(pay)">
+    Submit
   </ion-button>
 
 </div>
 
   </ion-card>
+
+  <div *ngIf="show" class="no-data">
+    No Payment Records Found
+  </div>
 
 </ion-content>

@@ -9,46 +9,64 @@ Payment Details
 </ion-header>
 
 
-
 <ion-content class="ticket-detail-page">
-<ion-card *ngFor="let pay of impact" class="payment-card">
 
-  <!-- HEADER -->
-  <div class="payment-header">
+  <ion-card *ngFor="let pay of impact" class="payment-card">
 
-    <div class="left">
-      <div class="ticket-no">Ticket ID: {{ pay.TicketID }}</div>
-      <div class="status" [ngClass]="pay.Status">
-        {{ pay.Status }}
+    <!-- HEADER -->
+    <div class="payment-header">
+
+      <div class="left-section">
+        <div class="ticket-no">
+          Ticket ID: {{ pay.TicketID }}
+        </div>
+
+        <div class="status-badge" [ngClass]="pay.Status">
+          State Approve 
+        </div>
+
       </div>
+
+      <div class="right-section">
+        <div class="payment-type">
+          {{ pay.PaymentType }}
+        </div>
+
+        <div class="amount">
+          ₹ {{ pay.Amount }}
+        </div>
+      </div>
+
     </div>
 
-    <div class="amount">₹ {{ pay.Amount }}</div>
+    <!-- IMAGES -->
+    <div class="img-row">
 
-  </div>
+      <div class="img-box" *ngIf="pay.BillImage">
+        <div class="img-title">Bill Image</div>
+        <img [src]="pay.BillImage"
+             (click)="openImage(pay.BillImage)" />
+      </div>
 
-  <!-- IMAGES -->
-  <div class="img-row">
+      <div class="img-box" *ngIf="pay.QrImage">
+        <div class="img-title">QR Image</div>
+        <img [src]="pay.QrImage"
+             (click)="openImage(pay.QrImage)" />
+      </div>
 
-    <div class="img-box" *ngIf="pay.BillImage">
-      <div class="img-title">Bill Image</div>
-      <img [src]="pay.BillImage" (click)="openImage(pay.BillImage)">
     </div>
 
-    <div class="img-box" *ngIf="pay.QrImage">
-      <div class="img-title">QR Image</div>
-      <img [src]="pay.QrImage" (click)="openImage(pay.QrImage)">
+    <!-- APPROVE BUTTON -->
+    <div class="approve-area" >
+      <ion-button expand="block"
+      [disabled]="pay.IsFinanceApprove === 'Yes'"
+                  size="small"
+                  class="approve-btn"
+                  (click)="approvePayment(pay)">
+        APPROVE PAYMENT
+      </ion-button>
     </div>
 
-  </div>
+  </ion-card>
 
-  <!-- APPROVE BUTTON -->
-  <div class="approve-area">
-    <ion-button expand="block" class="approve-btn" [disabled]="pay.IsFinanceApprove === 'Yes'"
-      (click)="approvePayment(pay)">
-      APPROVE PAYMENT
-    </ion-button>
-  </div>
-
-</ion-card>
 </ion-content>

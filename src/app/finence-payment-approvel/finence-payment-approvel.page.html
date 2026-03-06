@@ -1,70 +1,83 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-back-button slot="start"></ion-back-button>
-    <ion-title style="font-size:16px;">
-Payment Approval Tickets
+    <ion-title class="page-title">
+      Payment Approval Tickets
     </ion-title>
   </ion-toolbar>
-    <ion-searchbar
+
+  <!-- SEGMENT -->
+  <ion-segment [(ngModel)]="selectedSegment"
+               (ionChange)="segmentChanged($event)"
+               class="custom-segment">
+    <ion-segment-button value="current"      style="text-transform: none;">
+      <ion-label>Payments Approvals</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="history"      style="text-transform: none;">
+      <ion-label>Payments Not Done</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- SEARCH -->
+  <ion-searchbar
+    class="custom-search"
     placeholder="Search Ticket..."
     (ionInput)="filterTickets($event)">
   </ion-searchbar>
 </ion-header>
 
+
 <ion-content class="page-bg">
 
-  <!-- PULL TO REFRESH -->
+  <!-- REFRESH -->
   <ion-refresher slot="fixed" (ionRefresh)="refreshTickets($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <!-- SEARCH -->
-
-
-  <!-- EMPTY UI -->
+  <!-- EMPTY STATE -->
   <div class="empty-box" *ngIf="filteredTickets.length === 0">
     <ion-icon name="document-text-outline"></ion-icon>
     <p>No Tickets Found</p>
   </div>
 
-  <!-- LIST -->
+  <!-- TICKET LIST -->
   <ion-card class="ticket-card" *ngFor="let t of filteredTickets">
 
     <ion-card-content>
 
-      <div class="row">
-        <span class="label">Ticket ID</span>
-        <span class="value">{{t.TicketID}}</span>
-      </div>
+      <div class="ticket-header">
+        <div class="ticket-id">
+          #{{t.TicketID}}
+        </div>
 
-      <div class="row">
-        <span class="label">Status</span>
-        <span [ngClass]="getStatusClass(t.Status)">
+        <div [ngClass]="getStatusClass(t.Status)" class="status-badge">
           {{t.Status}}
-        </span>
+        </div>
       </div>
 
-      <div class="row">
-        <span class="label">Created Date</span>
-        <span class="value">{{t.CreatedDate}}</span>
+      <div class="ticket-body">
+        <div class="info-row">
+          <span class="label">Created</span>
+          <span class="value">{{t.CreatedDate}}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Amount</span>
+          <span class="amount">₹ {{t.Amount}}</span>
+        </div>
       </div>
 
-      <div class="row">
-        <span class="label">Amount</span>
-        <span class="value" style="font-weight: 800; color: red;">{{t.Amount}}</span>
-      </div>
-
-      <ion-button
-        expand="block"
-        size="small"
-        class="view-btn"
-        (click)=" viewDetails(t.TicketID)">
-        View Details
+      <ion-button expand="block"
+                  size="small"
+                      style="text-transform: none;"
+                  class="view-btn"
+                  (click)="viewDetails(t.TicketID)">
+       Click To Approve Payment
       </ion-button>
 
     </ion-card-content>
 
   </ion-card>
-
 
 </ion-content>

@@ -59,11 +59,12 @@ export class CFOPaymentApprovelDetailsPage implements OnInit {
 
     const body = {
       TicketID: pay.TicketID,
-      PaymentID: pay.ID,   // <-- important
+      PaymentID: pay.ID, 
+      IsCfoApprove:"Yes"  // <-- important
     };
 
     this.http.post(
-      'https://techxpertindia.in/api/post_change_tickets_payment_status.php',
+      'https://techxpertindia.in/api/change_ticket_payment_approval.php',
       body
     ).subscribe(async (res: any) => {
 

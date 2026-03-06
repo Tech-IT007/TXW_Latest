@@ -1,12 +1,17 @@
 
+<ion-header style="overflow: hidden;">
+  <ion-toolbar style="background: #0c7cbc;;">
+        <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ticket Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
 <ion-content style="--background: #fff">
- 
-  <div>
-    <h3 class="h3">Ticket Information</h3>
-    <div class="div">
-      <ion-icon routerLink="/account-tickets" class="icon" name="chevron-back-outline"></ion-icon>
-    </div>
-  </div>
 
     <div *ngIf="show" style="text-align: center; margin-top: 28%">
       <img src="/assets/img/opps.jpg" alt="" />

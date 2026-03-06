@@ -1,70 +1,98 @@
+.ticket-detail-page {
+  --background: #f4f6f9;
+  padding: 8px;
+}
+
 /* CARD */
 .payment-card {
-  margin: 10px;
-  border-radius: 14px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* HEADER */
 .payment-header {
   display: flex;
   justify-content: space-between;
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+  align-items: flex-start;
+  margin-bottom: 8px;
 }
 
-/* TEXT SIZES SMALL */
+.left-section {
+  display: flex;
+  flex-direction: column;
+}
+
 .ticket-no {
   font-size: 12px;
   font-weight: 600;
   color: #333;
 }
 
-.amount {
-  font-size: 14px;
-  font-weight: 700;
-  color: #0c7cbc;
-}
-
-/* STATUS BADGE */
-.status {
+.status-badge {
+  margin-top: 4px;
   font-size: 10px;
   padding: 3px 8px;
-  border-radius: 12px;
-  margin-top: 3px;
-  display: inline-block;
+  border-radius: 20px;
+  width: fit-content;
+  font-weight: 600;
 }
 
-.status.Pending {
+/* Example status colors */
+.status-badge.Pending {
   background: #fff3cd;
   color: #856404;
 }
 
-.status.Approved {
+.status-badge.Approved {
   background: #d4edda;
   color: #155724;
 }
 
-/* IMAGE SECTION */
+.status-badge.Rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.right-section {
+  text-align: right;
+}
+
+.payment-type {
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
+}
+
+.amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  margin-top: 2px;
+}
+
+/* IMAGES */
 .img-row {
   display: flex;
-  gap: 8px;
-  padding: 10px;
+  gap: 10px;
+  margin-top: 8px;
 }
 
 .img-box {
   flex: 1;
+  text-align: center;
 }
 
 .img-title {
   font-size: 10px;
-  color: #777;
+  color: #666;
   margin-bottom: 4px;
 }
 
 .img-box img {
   width: 100%;
-  height: 85px;
+  height: 80px;
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid #ddd;
@@ -72,12 +100,11 @@
 
 /* BUTTON */
 .approve-area {
-  padding: 0 10px 10px;
+  margin-top: 10px;
 }
 
 .approve-btn {
-  --background: #0a8f2d;
+  --border-radius: 8px;
   font-size: 12px;
-  height: 38px;
-  letter-spacing: 0.5px;
+  height: 36px;
 }

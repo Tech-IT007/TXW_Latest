@@ -1,79 +1,123 @@
-.page-bg {
-  --background: #f5f7fb;
-  padding: 12px;
-}
-
-/* CARD */
-.ticket-card {
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin-bottom: 16px;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.label {
+.page-title {
+  font-size: 15px;
   font-weight: 600;
-  color: #555;
-  font-size: 14px;
 }
 
-.value {
-  font-size: 14px;
-  color: #222;
-  text-align: right;
-}
-
-/* STATUS COLORS */
-.status {
-  font-size: 13px;
-  padding: 4px 8px;
-  border-radius: 6px;
-}
-
-.status.approved {
-  background: #e6fffa;
-  color: #0a8f6a;
-}
-
-.status.rejected {
-  background: #fdecea;
-  color: #d93025;
-}
-
-.status.pending {
-  background: #fff4e5;
-  color: #f29900;
-}
-
-/* BUTTON */
-.view-btn {
-  margin-top: 10px;
-  --border-radius: 8px;
-}
-
-/* SEARCH */
-ion-searchbar {
+/* Background */
+.page-bg {
+  --background: #f4f6f9;
   padding: 10px;
-  --border-radius: 10px;
 }
 
-/* EMPTY UI */
+/* Searchbar */
+.custom-search {
+  padding: 0 10px 8px 10px;
+}
+
+/* Segment */
+.custom-segment {
+  margin: 8px 10px;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.custom-segment ion-segment-button {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Empty UI */
 .empty-box {
   text-align: center;
-  margin-top: 80px;
-  color: #888;
+  margin-top: 60px;
+  color: #999;
 }
 
 .empty-box ion-icon {
-  font-size: 60px;
+  font-size: 40px;
+  margin-bottom: 8px;
 }
 
-/* LOAD MORE */
-.load-more {
-  margin: 20px 0;
+/* Ticket Card */
+.ticket-card {
+  margin: 8px 0;
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
+
+/* Header inside card */
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ticket-id {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Status badge */
+.status-badge {
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Example status colors */
+.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Body */
+.ticket-body {
+  margin-bottom: 8px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.label {
+  font-size: 11px;
+  color: #666;
+}
+
+.value {
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+}
+
+.amount {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e53935;
+}
+
+/* Button */
+.view-btn {
+  --border-radius: 8px;
+  font-size: 12px;
+  height: 34px;
+}
+

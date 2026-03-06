@@ -1,9 +1,20 @@
+
+
+<ion-header style="overflow: hidden;">
+  <ion-toolbar style="background: #0c7cbc;;">
+        <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Conveyance Charges</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+
+
 <ion-content>
-  <!-- Header -->
-  <div class="header">
-    <ion-icon [routerLink]="['/vendor-new-page']" name="chevron-back-outline" class="back-icon"></ion-icon>
-    <h3 class="title">Conveyance Charges</h3>
-  </div>
 
   <!-- Items -->
   <div *ngFor="let item of items" class="card-wrapper">

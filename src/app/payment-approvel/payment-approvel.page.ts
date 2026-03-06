@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,35 +9,100 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./payment-approvel.page.scss'],
 })
 export class PaymentApprovelPage implements OnInit {
+
   tickets: any[] = [];
   filteredTickets: any[] = [];
-
-  hasMoreData = true;
+  selectedSegment: string = 'current';
   loading: any;
 
-  // 👉 Approval flags
+  approvel: any = {
+    StateName: (localStorage.getItem("StateName") || "").split(","),
+    Status: "Pending",
+    IsFinanceApprove: "",
+    IsStateApprove: "",
+    IsCfoApprove: "",
+    start_counter: 0,
+    no_of_records: 10
+  };
+
   IsFinanceApprove = localStorage.getItem("IsFinanceApprove");
   IsStateApprove = localStorage.getItem("IsStateApprove");
 
-approvel: any = {
-  StateName: (localStorage.getItem("StateName") || "").split(","),
-  IsFinanceApprove: "",
-  IsStateApprove: "Yes",
-  "Status": "Pending",
-
-};
   constructor(
     private http: HttpClient,
     private router: Router,
     private loadingCtrl: LoadingController
-  ) {
+  ) {}
+
+  /* ================= INIT ================= */
+  ngOnInit(): void {
+    this.loadCurrentTickets();
+  }
+
+  /* ================= SEGMENT CHANGE ================= */
+  segmentChanged(event: any) {
+
+    const value = event.detail.value;
+
+    this.tickets = [];
+    this.filteredTickets = [];
+    this.approvel.start_counter = 0;
+
+    if (value === 'current') {
+      this.loadCurrentTickets();
+    } else {
+      this.loadPaymentDoneTickets();
+    }
+  }
+
+  /* ================= CURRENT TAB ================= */
+  loadCurrentTickets() {
+
+    // Reset object cleanly
+    this.approvel = {
+      StateName: (localStorage.getItem("StateName") || "").split(","),
+      Status: "Pending",
+      IsFinanceApprove: "",
+      IsStateApprove: "",
+      start_counter: 0,
+      no_of_records: 10
+    };
+
+    // Apply approval rules
     this.setApprovalStatus();
+
     this.allTickets();
   }
 
-ngOnInit(): void {
-  
-}
+  /* ================= PAYMENT DONE TAB ================= */
+  loadPaymentDoneTickets() {
+
+    // Completely clean object
+    this.approvel = {
+      StateName: (localStorage.getItem("StateName") || "").split(","),
+      IsCfoApprove: "Yes",
+      start_counter: 0,
+      no_of_records: 10
+    };
+
+    this.allTickets();
+  }
+
+  /* ================= SET APPROVAL CONDITION ================= */
+  setApprovalStatus() {
+
+    if (this.IsFinanceApprove === "Yes") {
+      this.approvel.IsFinanceApprove = "No";
+    }
+    else if (this.IsStateApprove === "Yes") {
+      this.approvel.IsStateApprove = "No";
+    }
+    else {
+      this.approvel.IsFinanceApprove = "No";
+      this.approvel.IsStateApprove = "No";
+    }
+  }
+
   /* ================= LOADER ================= */
   async presentLoading() {
     this.loading = await this.loadingCtrl.create({
@@ -54,62 +118,17 @@ ngOnInit(): void {
     }
   }
 
-  /* ================= SET APPROVAL CONDITION ================= */
-setApprovalStatus() {
-
-  // 👉 Finance Approver
-  if (this.IsFinanceApprove === "Yes") {
-
-    this.approvel.IsFinanceApprove = "No";
-
-
-  }
-
-  // 👉 State Approver
-  else if (this.IsStateApprove === "Yes") {
-
-
-    this.approvel.IsStateApprove = "No";
-
-
-  }
-
-  // 👉 Default (Both NO)
-  else {
-
-    this.approvel.IsFinanceApprove = "No";
-    this.approvel.IsStateApprove = "No";
-
-
-  }
-}
   /* ================= FETCH DATA ================= */
-  async allTickets(isRefresh = false) {
+  async allTickets() {
 
     const api = "https://techxpertindia.in/api/get-all-ticket-payments-by-state.php";
 
-    if (!isRefresh) {
-      await this.presentLoading();
-    }
+    await this.presentLoading();
 
     this.http.post(api, this.approvel).subscribe({
       next: (res: any) => {
-
-        const newData = res.data || [];
-
-        if (isRefresh) {
-          this.tickets = newData;
-        } else {
-          this.tickets = [...this.tickets, ...newData];
-        }
-
+        this.tickets = res.data || [];
         this.filteredTickets = [...this.tickets];
-
-        // Stop infinite scroll if no more data
-        if (newData.length < this.approvel.no_of_records) {
-          this.hasMoreData = false;
-        }
-
         this.dismissLoading();
       },
       error: () => {
@@ -118,26 +137,11 @@ setApprovalStatus() {
     });
   }
 
-  /* ================= LOAD MORE ================= */
-  loadMore(event: any) {
-
-    this.approvel.start_counter += this.approvel.no_of_records;
-
-    this.allTickets();
-
-    setTimeout(() => {
-      event.target.complete();
-    }, 600);
-  }
-
   /* ================= REFRESH ================= */
   refreshTickets(event: any) {
 
     this.approvel.start_counter = 0;
-    this.hasMoreData = true;
-    this.tickets = [];
-
-    this.allTickets(true);
+    this.allTickets();
 
     setTimeout(() => {
       event.target.complete();
@@ -151,17 +155,17 @@ setApprovalStatus() {
 
     this.filteredTickets = this.tickets.filter((ticket: any) =>
       (ticket.TicketID || '').toLowerCase().includes(searchValue) ||
-      (ticket.QuotationStatus || '').toLowerCase().includes(searchValue) ||
+      (ticket.Status || '').toLowerCase().includes(searchValue) ||
       (ticket.CreatedBy || '').toLowerCase().includes(searchValue)
     );
   }
 
-  /* ================= STATUS COLOR ================= */
+  /* ================= STATUS CLASS ================= */
   getStatusClass(status: string) {
 
     if (!status) return 'status';
 
-    status = status.toLowerCase();  
+    status = status.toLowerCase();
 
     if (status.includes('approved')) return 'status approved';
     if (status.includes('rejected')) return 'status rejected';
@@ -171,15 +175,17 @@ setApprovalStatus() {
   }
 
   /* ================= NAVIGATION ================= */
-  viewDetails(id: string) {
-    localStorage.setItem('Ticket_id', id);
- 
+viewDetails(id: string) {
+
+  localStorage.setItem('Ticket_id', id);
+
+  if (this.selectedSegment === 'current') {
     this.router.navigate(['/payment-approvel-details']);
+  } 
+  else {
+    this.router.navigate(['/payment-done-details']);
   }
+
 }
 
-
-
-
-
-
+}
