@@ -81,7 +81,7 @@ lastNotificationCount: number = 0;
           private notificationService: NotificationService
   ) { 
   //  this.launchHoliSmoke()
-   this.chckAppGpsPermission()
+  
   }
 
   currentTime: string;
@@ -139,7 +139,7 @@ ionViewWillEnter() {
 
     this.getNotifications(); // first call immediately
 
-    this.notificationSubscription = interval(5000000).subscribe(() => {
+    this.notificationSubscription = interval(5000).subscribe(() => {
       this.getNotifications();
     });
 
@@ -296,7 +296,6 @@ getNotifications(): void {
 
   location() {
     localStorage.removeItem('address');
-    this.chckAppGpsPermission();
   }
 
   async openAttendanceAlert() {
@@ -439,144 +438,6 @@ getNotifications(): void {
     }
   }
 
-  chckAppGpsPermission() {
-    this.androidPermissions
-      .checkPermission(
-        this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION
-      )
-      .then(
-        (result) => {
-          if (result.hasPermission) {
-            this.requestToSwitchOnGPS();
-          } else {
-            this.askGPSPermission();
-          }
-        },
-        (err) => {
-          alert(err);
-        }
-      );
-  }
-
-  askGPSPermission() {
-    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
-      if (canRequest) {
-      } else {
-        this.androidPermissions
-          .requestPermission(
-            this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION
-          )
-          .then(
-            () => {
-              this.requestToSwitchOnGPS();
-            },
-            (error) => {
-              alert(error);
-            }
-          );
-      }
-    });
-  }
-
-  requestToSwitchOnGPS() {
-    this.locationAccuracy
-      .request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY)
-      .then(
-        () => {
-          this.getGeolocation();
-        },
-        (error) => alert(JSON.stringify(error))
-      );
-  }
-
-  async getGeolocation() {
-
-
-    this.geolocation
-      .getCurrentPosition()
-      .then((resp) => {
-        this.latitude = resp.coords.latitude;
-        this.longitude = resp.coords.longitude;
-        this.accuracy = resp.coords.accuracy;
-
-        localStorage.setItem('latitude', this.latitude.toString());
-        localStorage.setItem('longitude', this.longitude.toString());
-
-        console.log(this.latitude);
-        console.log(this.longitude);
-
-        this.getGeoencoder(this.latitude, this.longitude);
-
-
-      })
-
-  }
-
-  async getGeoencoder(latitude: number, longitude: number) {
-
-
-    try {
-      const result: NativeGeocoderResult[] =
-        await this.nativeGeocoder.reverseGeocode(
-          latitude,
-          longitude,
-          this.geoencoderOptions
-        );
-
-      if (result && result.length > 0) {
-        this.address = this.generateShortCleanAddress(result[0]);
-        localStorage.setItem('address', this.address);
-        console.log('Address', this.address);
-      } else {
-        this.address = 'Address not found';
-      }
-
-
-    } catch (error) {
-
-      console.error('Error getting geocode', error);
-      this.address = 'Unable to fetch address';
-    }
-  }
-
-  generateShortCleanAddress(addressObj: any): string {
-    const parts = [];
-
-    if (addressObj.subThoroughfare) parts.push(addressObj.subThoroughfare);
-    if (addressObj.thoroughfare) parts.push(addressObj.thoroughfare);
-    if (addressObj.subLocality) parts.push(addressObj.subLocality);
-    if (addressObj.locality) parts.push(addressObj.locality);
-
-    if (addressObj.administrativeArea) {
-      let state = addressObj.administrativeArea;
-
-      const stateShortcuts = {
-        'uttar pradesh': 'UP',
-        'madhya pradesh': 'MP',
-        maharashtra: 'MH',
-        delhi: 'DL',
-        karnataka: 'KA',
-        'tamil nadu': 'TN',
-        'west bengal': 'WB',
-        bihar: 'BR',
-        rajasthan: 'RJ',
-        gujarat: 'GJ',
-      };
-
-      const key = state.toLowerCase();
-      state = stateShortcuts[key] || state;
-
-      parts.push(state);
-    }
-
-    const uniqueParts = [...new Set(parts)];
-
-    if (addressObj.postalCode) {
-      return `${uniqueParts.join(', ')} - ${addressObj.postalCode}`;
-    } else {
-      return uniqueParts.join(', ');
-    }
-  }
 
   Status_role() {
     const role = localStorage.getItem('role');

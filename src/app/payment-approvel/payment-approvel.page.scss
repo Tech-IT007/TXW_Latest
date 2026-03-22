@@ -18,14 +18,25 @@
 .custom-segment {
   margin: 8px 10px;
   border-radius: 10px;
-  background: #ffffff;
+  background: #f2f4f8;
   padding: 4px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
+/* Default button */
 .custom-segment ion-segment-button {
   font-size: 12px;
   font-weight: 600;
+  text-transform: none;
+  --color: #666;
+  --background: transparent;
+  border-radius: 8px;
+}
+
+/* Active button */
+.custom-segment ion-segment-button.segment-button-checked {
+  background: #2b6ef2;   /* Active background */
+  color: #ffffff;        /* Active text color */
 }
 
 /* Empty UI */

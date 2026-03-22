@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ToastController, LoadingController, ActionSheetController } from '@ionic/angular';
+import { ToastController, ActionSheetController } from '@ionic/angular';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Router } from '@angular/router';
@@ -12,17 +12,18 @@ import { Router } from '@angular/router';
 })
 export class PaymetFormPage implements OnInit {
 
-  billImage: string;
-  qrImage: string;
+  billImages: string[] = [];
+  qrImage: string = '';
 
-  dataToSend = {
+  dataToSend: any = {
     TicketID: localStorage.getItem('ID'),
     Store: '',
     Amount: '',
-    BillImageData: '',
-    QrImageData: '',
-   ScheduleDate :"",
-   PaymentType : ''
+    BillImageData: [],     // ARRAY
+    QrImageData: '',       // SINGLE
+    ScheduleDate: "",
+    PhoneNumber: "",
+    PaymentType: ""
   };
 
   constructor(
@@ -30,23 +31,30 @@ export class PaymetFormPage implements OnInit {
     private ngxService: NgxUiLoaderService,
     private toastCtrl: ToastController,
     private actionSheetCtrl: ActionSheetController,
-    private loadingCtrl: LoadingController,
     private router: Router
   ) {}
 
   ngOnInit() {
-      this.dataToSend.ScheduleDate = new Date().toISOString().split('T')[0]
+    this.dataToSend.ScheduleDate = new Date().toISOString().split('T')[0];
   }
 
   /* ---------------- BILL IMAGE ---------------- */
 
-  async captureBillImage() {
+  captureBillImage() {
+    if (this.billImages.length >= 3) {
+      this.showToast('Only 3 Bill Images allowed');
+      return;
+    }
     this.openActionSheet('bill');
   }
 
   /* ---------------- QR IMAGE ---------------- */
 
-  async captureQRImage() {
+  captureQRImage() {
+    if (this.qrImage) {
+      this.showToast('Only 1 QR Image allowed');
+      return;
+    }
     this.openActionSheet('qr');
   }
 
@@ -72,6 +80,7 @@ export class PaymetFormPage implements OnInit {
         },
       ],
     });
+
     await actionSheet.present();
   }
 
@@ -88,11 +97,15 @@ export class PaymetFormPage implements OnInit {
       const base64 = photo.base64String;
 
       if (type === 'bill') {
-        this.billImage = 'data:image/jpeg;base64,' + base64;
-        this.dataToSend.BillImageData = base64;
+
+        this.billImages.push('data:image/jpeg;base64,' + base64);
+        this.dataToSend.BillImageData.push(base64);
+
       } else {
+
         this.qrImage = 'data:image/jpeg;base64,' + base64;
         this.dataToSend.QrImageData = base64;
+
       }
 
     } catch (error) {
@@ -102,36 +115,47 @@ export class PaymetFormPage implements OnInit {
 
   /* ---------------- SUBMIT ---------------- */
 
-async submitPayment() {
-  if (!this.dataToSend.Store || !this.dataToSend.Amount  || !this.dataToSend.BillImageData || !this.dataToSend.QrImageData || !this.dataToSend.PaymentType    )  {
-    this.showToast('Please fill all required fields');
-    return;
-  }
+  submitPayment() {
 
-  this.ngxService.start();
-
-  const url = 'https://techxpertindia.in/api/post_ticket_payment.php';
-
-
-
-
-  this.http.post(url,this.dataToSend ).subscribe({
-    next: async (res: any) => {
-      if (res.error === false) {
-        this.showToast('Payment submitted successfully');
-        this.router.navigate(['/all-payment-show']);
-      } else {
-        this.showToast(res.message);
-      }
-    },
-    error: () => {
-      this.showToast('Something went wrong');
-    },
-    complete: () => {
-      this.ngxService.stop();
+    if (
+      !this.dataToSend.Store ||
+      !this.dataToSend.Amount ||
+      !this.dataToSend.PaymentType ||
+      this.dataToSend.BillImageData.length === 0 ||
+      !this.dataToSend.QrImageData
+    ) {
+      this.showToast('Please fill all required fields');
+      return;
     }
-  });
-}
+
+    this.ngxService.start();
+
+    const url = 'https://techxpertindia.in/api/post_ticket_payment.php';
+
+    this.http.post(url, this.dataToSend).subscribe({
+
+      next: (res: any) => {
+
+        if (res.error === false) {
+          this.showToast('Payment submitted successfully');
+          this.router.navigate(['/all-payment-show']);
+        } else {
+          this.showToast(res.message);
+        }
+
+      },
+
+      error: () => {
+        this.showToast('Something went wrong');
+      },
+
+      complete: () => {
+        this.ngxService.stop();
+      }
+
+    });
+
+  }
 
   /* ---------------- TOAST ---------------- */
 
@@ -143,4 +167,5 @@ async submitPayment() {
     });
     toast.present();
   }
+
 }

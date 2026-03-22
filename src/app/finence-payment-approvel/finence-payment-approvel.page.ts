@@ -34,9 +34,13 @@ export class FinencePaymentApprovelPage implements OnInit {
     private loadingCtrl: LoadingController
   ) {}
 
+ionViewWillEnter() {
+  this.loadCurrentTickets();
+}
+
   /* ================= INIT ================= */
   ngOnInit(): void {
-    this.loadCurrentTickets();
+    // this.loadCurrentTickets();
   }
 
   /* ================= SEGMENT CHANGE ================= */
@@ -176,15 +180,16 @@ export class FinencePaymentApprovelPage implements OnInit {
   }
 
   /* ================= NAVIGATION ================= */
-viewDetails(id: string) {
+viewDetails(id: string, paymentId: string) {
 
   localStorage.setItem('Ticket_id', id);
-
+  localStorage.setItem('finance_payment_id', paymentId);
+    console.log("Payment ID:", paymentId);
   if (this.selectedSegment === 'current') {
     this.router.navigate(['/finence-payment-approvel-details']);
   } 
   else {
-    this.router.navigate(['/payment-done-details']);
+    this.router.navigate(['/finance-transfer-money']);
   }
 
 }

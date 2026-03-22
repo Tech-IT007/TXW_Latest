@@ -1,0 +1,283 @@
+/* ================= PAGE ================= */
+
+.ticket-detail-page {
+  --background: #f4f6f9;
+  padding: 12px;
+}
+
+/* ================= CARD ================= */
+
+.payment-card {
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 16px;
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* ================= HEADER ================= */
+
+.payment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-no {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+}
+
+.status-badge {
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.remaining {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #444;
+}
+
+/* ================= RIGHT SECTION ================= */
+
+.right-section {
+  text-align: right;
+}
+
+.payment-type {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+.amount {
+  font-size: 17px;
+  font-weight: 700;
+  color: #000;
+  margin-top: 3px;
+}
+
+/* ================= APPROVAL LINE ================= */
+
+.approval-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.approval {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  padding: 5px;
+  border-bottom: 3px solid #ccc;
+  font-weight: 600;
+}
+
+.approval.green {
+  border-color: #2ecc71;
+  color: #2ecc71;
+}
+
+.approval.red {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+/* ================= EXISTING IMAGES ================= */
+
+.img-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.img-box {
+  flex: 1;
+  text-align: center;
+}
+
+.img-title {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.img-box img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+/* ================= BUTTON ROW ================= */
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.history-btn {
+  height: 36px;
+  text-transform: none;
+  font-size: 12px;
+}
+/* ================= SPLIT PAYMENT HISTORY ================= */
+
+.history-box {
+  padding: 10px;
+  background: #f8f9fb;
+  border-radius: 10px;
+}
+
+.history-item {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-item b {
+  color: #333;
+}
+
+.history-item a {
+  color: #3880ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ================= MODAL HISTORY CARD ================= */
+
+.history-card {
+  background: #ffffff;
+  padding: 12px;
+  margin: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  font-size: 13px;
+}
+
+.history-card div {
+  margin-bottom: 4px;
+}
+
+/* ================= FORM ================= */
+
+ion-item {
+  margin-top: 8px;
+  --border-radius: 10px;
+}
+
+ion-input {
+  font-size: 14px;
+}
+
+/* ================= REMAINING NOTE ================= */
+
+.remaining-note {
+  font-size: 11px;
+  color: #e74c3c;
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+/* ================= BUTTON ================= */
+
+ion-button {
+  margin-top: 10px;
+  --border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Disabled Button */
+
+ion-button[disabled] {
+  opacity: 0.6;
+}
+
+/* ================= IMAGE PREVIEW ================= */
+
+.preview {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.preview img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+/* ================= NO DATA ================= */
+
+.no-data {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* ================= ACCORDION STYLE ================= */
+
+ion-accordion-group {
+  margin-top: 10px;
+}
+
+ion-accordion ion-item {
+  --background: #f3f5f9;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* ================= MODAL ================= */
+
+ion-modal {
+  --border-radius: 16px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 480px) {
+
+  .payment-card {
+    padding: 12px;
+  }
+
+  .amount {
+    font-size: 15px;
+  }
+
+  .img-box img {
+    height: 80px;
+  }
+
+  .preview img {
+    height: 110px;
+  }
+
+  .ticket-no {
+    font-size: 12px;
+  }
+
+}

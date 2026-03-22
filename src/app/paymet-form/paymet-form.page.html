@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar style="--background: #0c7cbc; --color: #fff;">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dpr"></ion-back-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Payment</ion-title>
   </ion-toolbar>
@@ -11,68 +11,56 @@
 
   <div class="payment-card">
 
-
-    <!-- Payment Type Dropdown -->
+    <!-- Payment Type -->
     <div class="field">
       <label>Payment Type</label>
-
-      <ion-select
-        placeholder="Select Payment Type"
-        [(ngModel)]="dataToSend.PaymentType"
-        interface="popover">
-
-        <ion-select-option value="Visit Charge">
-          Visit Charge
-        </ion-select-option>
-
-        <ion-select-option value="Material Cost">
-          Material Cost
-        </ion-select-option>
-
-        <ion-select-option value="Labour Cost">
-          Labour Cost
-        </ion-select-option>
-
+      <ion-select [(ngModel)]="dataToSend.PaymentType" placeholder="Select Payment Type">
+        <ion-select-option value="Visit Charge">Visit Charge</ion-select-option>
+        <ion-select-option value="Material Cost">Material Cost</ion-select-option>
+        <ion-select-option value="Labour Cost">Labour Cost</ion-select-option>
       </ion-select>
     </div>
 
-    <!-- Store Name -->
+    <!-- Name -->
     <div class="field">
       <label>Name</label>
-      <ion-input
-        type="text"
-        [(ngModel)]="dataToSend.Store"
-        placeholder="Enter store name">
-      </ion-input>
+      <ion-input [(ngModel)]="dataToSend.Store" placeholder="Enter store name"></ion-input>
     </div>
+
     <!-- Amount -->
     <div class="field">
       <label>Amount</label>
-      <ion-input
-        type="number"
-        [(ngModel)]="dataToSend.Amount"
-        placeholder="Enter amount">
-      </ion-input>
+      <ion-input type="number" [(ngModel)]="dataToSend.Amount" placeholder="Enter amount"></ion-input>
     </div>
 
-    <!-- Bill Image -->
+    <!-- Phone -->
+    <div class="field">
+      <label>Mobile Number</label>
+      <ion-input type="text" [(ngModel)]="dataToSend.PhoneNumber" placeholder="Enter mobile number"></ion-input>
+    </div>
+
+    <!-- Bill Images -->
     <div class="upload-box">
       <div class="upload-header">
-        <span>Bill Image</span>
+        <span>Bill Images (Max 3)</span>
         <ion-button size="small" (click)="captureBillImage()">Upload</ion-button>
       </div>
 
-      <img *ngIf="billImage" [src]="billImage" class="preview-img" />
+      <div *ngFor="let img of billImages">
+        <img [src]="img" class="preview-img" />
+      </div>
     </div>
 
-    <!-- QR Code Image -->
+    <!-- QR Image -->
     <div class="upload-box">
       <div class="upload-header">
-        <span>QR Code Image</span>
+        <span>QR Code Image (Only 1)</span>
         <ion-button size="small" (click)="captureQRImage()">Upload</ion-button>
       </div>
 
-      <img *ngIf="qrImage" [src]="qrImage" class="preview-img" />
+      <div *ngIf="qrImage">
+        <img [src]="qrImage" class="preview-img" />
+      </div>
     </div>
 
     <!-- Schedule Date -->
@@ -91,6 +79,7 @@
             </ion-datetime>
           </ng-template>
         </ion-modal>
+
       </div>
     </div>
 

@@ -1,0 +1,128 @@
+/* BACKGROUND */
+.page-bg {
+  --background: #f1f4f9;
+  padding: 12px;
+}
+
+/* HEADER */
+.header-toolbar {
+  --background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+  --color: #fff;
+}
+
+/* MAIN CARD */
+.main-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  margin-bottom: 16px;
+}
+
+/* USER SECTION */
+.user-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* AVATAR */
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.user-section h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.user-section p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #777;
+}
+
+/* STATUS */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  color: red;
+  font-weight: 600;
+      border: 2px solid;
+}
+
+.status-badge.Pending {
+  background: #ff9800;
+}
+
+.status-badge.Approved {
+  background: #4caf50;
+}
+
+.status-badge.Rejected {
+  background: #f44336;
+}
+
+/* INFO */
+.info-block {
+  margin-top: 15px;
+}
+
+.info-row {
+  margin-bottom: 12px;
+}
+
+.info-row span {
+  font-size: 12px;
+  color: #999;
+}
+
+.info-row strong {
+  display: block;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.issue p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* ATTACHMENT */
+.attachment-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.attachment-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* IMAGE */
+.image-wrapper {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

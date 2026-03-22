@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar">
+
+      <ion-back-button ></ion-back-button>
+
+    <ion-title>Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-bg">
+
+  <!-- MAIN CARD -->
+  <div class="main-card" *ngIf="details">
+
+    <!-- USER INFO -->
+    <div class="user-section">
+      <!-- <div class="avatar">
+        {{ details.Name?.charAt(0) }}
+      </div> -->
+
+      <div>
+        <h2>{{ details.Name }}</h2>
+        <p>{{ details.Mobile }}</p>
+      </div>
+
+      <div class="status-badge" [ngClass]="details.Status">
+   
+          {{ details.Status === 'New' ? 'Under Process' : details.Status }}
+      </div>
+    </div>
+
+    <!-- INFO BLOCK -->
+    <div class="info-block">
+
+      <div class="info-row">
+        <span>Created</span>
+        <strong>
+          {{ details.CreatedAt | date:'dd MMM yyyy, hh:mm a' }}
+        </strong>
+      </div>
+
+      <div class="info-row issue">
+        <span>Issue</span>
+        <p>{{ details.Issue }}</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ATTACHMENT -->
+  <div class="attachment-card" *ngIf="details.Attachment">
+    <div class="attachment-title">Attachment</div>
+
+    <div class="image-wrapper">
+      <img [src]="details.Attachment" />
+    </div>
+  </div>
+
+</ion-content>

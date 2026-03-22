@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar style="--background: #0c7cbc; --color: #fff;"  >
     <ion-back-button slot="start"></ion-back-button>
     <ion-title class="page-title">
       Payment Approval Tickets
@@ -11,11 +11,11 @@
                (ionChange)="segmentChanged($event)"
                class="custom-segment">
     <ion-segment-button value="current"      style="text-transform: none;">
-      <ion-label>Payments Approvals</ion-label>
+      <ion-label>Approve Payments </ion-label>
     </ion-segment-button>
 
     <ion-segment-button value="history"      style="text-transform: none;">
-      <ion-label>Payments Not Done</ion-label>
+      <ion-label>Payment paid</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -48,12 +48,15 @@
 
       <div class="ticket-header">
         <div class="ticket-id">
-          #{{t.TicketID}}
+          #  {{ t.TicketNumber }}
         </div>
 
         <div [ngClass]="getStatusClass(t.Status)" class="status-badge">
           {{t.Status}}
         </div>
+
+
+        
       </div>
 
       <div class="ticket-body">
@@ -63,7 +66,7 @@
         </div>
 
         <div class="info-row">
-          <span class="label">Amount</span>
+          <span class="label"> Request Amount</span>
           <span class="amount">₹ {{t.Amount}}</span>
         </div>
       </div>
@@ -72,7 +75,7 @@
                   size="small"
                   style="text-transform: none;"
                   class="view-btn"
-                  (click)="viewDetails(t.TicketID)">
+                  (click)="viewDetails(t.TicketID , t.ID)">
      Click To Approve Payment
       </ion-button>
 

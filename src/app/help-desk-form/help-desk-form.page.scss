@@ -1,0 +1,56 @@
+.page-bg {
+  --background: #f5f7fb;
+}
+
+/* Logo */
+.logo-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logo {
+  width: 120px;
+}
+
+/* Card */
+.form-card {
+  margin: 20px;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* Input styling */
+ion-item {
+  --border-color: #017dc0;
+  margin-bottom: 10px;
+}
+
+/* Upload */
+.upload-box {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px dashed #017dc0;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.upload-box label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.preview-img {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+/* Button */
+.submit-btn {
+  margin-top: 20px;
+  --background: #d12e27;
+  --border-radius: 10px;
+  font-weight: bold;
+}

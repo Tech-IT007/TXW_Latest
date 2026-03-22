@@ -35,6 +35,12 @@ export class CFOPaymentApprovelPage implements OnInit {
   ) {}
 
   /* ================= INIT ================= */
+
+// ionViewDidEnter() {
+//   this.loadCurrentTickets();
+// }
+
+
   ngOnInit(): void {
     this.loadCurrentTickets();
   }
@@ -81,7 +87,7 @@ export class CFOPaymentApprovelPage implements OnInit {
     this.approvel = {
       StateName: (localStorage.getItem("StateName") || "").split(","),
       IsCfoApprove: "Yes",
-         Status: "Pending",
+         Status: "Pending , Partially Paid , Paid",
       start_counter: 0,
       no_of_records: 10
     };
@@ -176,9 +182,14 @@ export class CFOPaymentApprovelPage implements OnInit {
   }
 
   /* ================= NAVIGATION ================= */
-viewDetails(id: string) {
+viewDetails(ticketId: string, paymentId: string) {
 
-  localStorage.setItem('Ticket_id', id);
+  // store both separately
+  localStorage.setItem('cfo_Ticket_id', ticketId);
+  localStorage.setItem('cfo_payment_id', paymentId);
+
+  console.log("Ticket ID:", ticketId);
+  console.log("Payment ID:", paymentId);
 
   if (this.selectedSegment === 'current') {
     this.router.navigate(['/cfo-payment-approvel-details']);
@@ -188,7 +199,6 @@ viewDetails(id: string) {
   }
 
 }
-
 }
 
 

@@ -15,7 +15,7 @@ import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions
 })
 export class AppComponent {
 
-  appversion = '4.1';
+  appversion = '4.3';
   version: any;
   user: any = {}; // Initialize user object
   users: any;

@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import {
+  NativeGeocoder,
+  NativeGeocoderResult,
+  NativeGeocoderOptions,
+} from '@ionic-native/native-geocoder/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 @Component({
   selector: 'app-barcode-info',
   templateUrl: './barcode-info.page.html',
@@ -14,7 +21,19 @@ export class BarcodeInfoPage implements OnInit {
   filteredBranchList: any[] = [];
   assets_view: any[] = [];
   filteredAssetsList: any[] = [];
+// Readable Address
+  address: any;
 
+  // Location coordinates
+  latitude: number;
+  longitude: number;
+  accuracy: number;
+
+  //Geocoder configuration
+  geoencoderOptions: NativeGeocoderOptions = {
+    useLocale: true,
+    maxResults: 5,
+  };
   selectedBranch: string = '';
   selectedBranchName: string = '';
   selectedAsset: string = '';
@@ -35,8 +54,15 @@ unique_brnach_id = {
     private http: HttpClient,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private router: Router
-  ) {}
+    private router: Router,
+        private geolocation: Geolocation,
+        private nativeGeocoder: NativeGeocoder,
+        private androidPermissions: AndroidPermissions,
+        private locationAccuracy: LocationAccuracy,
+        private platform: Platform,
+  ) {
+    this.chckAppGpsPermission()
+  }
 
   ngOnInit() {
     this.loadBranches();
@@ -215,4 +241,207 @@ alert(this.unique_brnach_id.UniqueCode)
     }
   });
 }
+
+chckAppGpsPermission() {
+
+  this.androidPermissions.checkPermission(
+    this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION
+  ).then(
+    (result) => {
+
+      if (result.hasPermission) {
+
+        this.requestToSwitchOnGPS();
+
+      } else {
+
+        this.askGPSPermission();
+
+      }
+
+    },
+    (err) => {
+      alert(err);
+    }
+  );
+
+}
+ askGPSPermission() {
+
+  this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+
+    if (canRequest) {
+
+      this.requestToSwitchOnGPS();
+
+    } else {
+
+      this.androidPermissions.requestPermission(
+        this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION
+      ).then(
+
+        () => {
+          this.requestToSwitchOnGPS();
+        },
+
+        (error) => {
+          alert('Permission denied ' + error);
+        }
+
+      );
+
+    }
+
+  });
+
+}
+requestToSwitchOnGPS() {
+
+  this.locationAccuracy.request(
+    this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY
+  ).then(
+
+    () => {
+
+      this.getGeolocation();
+
+    },
+
+    (error) => {
+
+      alert('GPS Error ' + JSON.stringify(error));
+
+    }
+
+  );
+
+}
+
+async getGeolocation() {
+
+  this.geolocation.getCurrentPosition({
+
+    enableHighAccuracy: true,
+    timeout: 15000,
+    maximumAge: 0
+
+  }).then((resp) => {
+
+    this.latitude = resp.coords.latitude;
+    this.longitude = resp.coords.longitude;
+    this.accuracy = resp.coords.accuracy;
+
+    console.log("Latitude:", this.latitude);
+    console.log("Longitude:", this.longitude);
+    console.log("Accuracy:", this.accuracy);
+
+    localStorage.setItem('latitude', this.latitude.toString());
+    localStorage.setItem('longitude', this.longitude.toString());
+
+    this.getGeoencoder(this.latitude, this.longitude);
+
+  }).catch((error) => {
+
+    console.error("Location Error", error);
+    alert("Unable to fetch location");
+
+  });
+
+}
+
+async getGeoencoder(latitude: number, longitude: number) {
+
+  try {
+
+    const result: NativeGeocoderResult[] =
+      await this.nativeGeocoder.reverseGeocode(
+        latitude,
+        longitude,
+        this.geoencoderOptions
+      );
+
+    if (result && result.length > 0) {
+
+      this.address = this.generateShortCleanAddress(result[0]);
+
+      localStorage.setItem('address', this.address);
+
+      console.log("Address:", this.address);
+
+    } else {
+
+      this.address = "Address not found";
+
+    }
+
+  } catch (error) {
+
+    console.error("Geocoder Error", error);
+
+    this.address = "Unable to fetch address";
+
+  }
+
+}
+generateShortCleanAddress(addressObj: any): string {
+
+  const parts = [];
+
+  if (addressObj.subThoroughfare) parts.push(addressObj.subThoroughfare);
+  if (addressObj.thoroughfare) parts.push(addressObj.thoroughfare);
+  if (addressObj.subLocality) parts.push(addressObj.subLocality);
+  if (addressObj.locality) parts.push(addressObj.locality);
+
+  if (addressObj.administrativeArea) {
+
+    let state = addressObj.administrativeArea.trim().toLowerCase();
+
+    const stateShortcuts = {
+
+      'uttar pradesh': 'UP',
+      'madhya pradesh': 'MP',
+      'maharashtra': 'MH',
+      'delhi': 'DL',
+      'karnataka': 'KA',
+      'tamil nadu': 'TN',
+      'west bengal': 'WB',
+      'bihar': 'BR',
+      'rajasthan': 'RJ',
+      'gujarat': 'GJ'
+
+    };
+
+    state = stateShortcuts[state] || addressObj.administrativeArea;
+
+    parts.push(state);
+
+  }
+
+  const uniqueParts = [...new Set(parts)];
+
+  if (addressObj.postalCode) {
+
+    return `${uniqueParts.join(', ')} - ${addressObj.postalCode}`;
+
+  } else {
+
+    return uniqueParts.join(', ');
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

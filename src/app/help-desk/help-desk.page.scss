@@ -1,0 +1,102 @@
+/* BACKGROUND */
+// .page-bg {
+//   --background: linear-gradient(to bottom, #4facfe, #f5f7fa);
+// }
+
+/* HEADER */
+.header-toolbar {
+  --background: linear-gradient(135deg, #4facfe, #007aff);
+  --color: #fff;
+  // text-align: center;
+}
+
+/* CARD */
+.modern-card {
+  margin: 14px;
+  padding: 14px;
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* TOP SECTION */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    color: #222;
+  }
+
+  p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: #888;
+  }
+}
+
+/* STATUS BADGE */
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.status-badge.New {
+  background: #4facfe;
+}
+
+.status-badge.Pending {
+  background: #ff9800;
+}
+
+.status-badge.Approved {
+  background: #4caf50;
+}
+
+.status-badge.Rejected {
+  background: #f44336;
+}
+
+/* INFO */
+.card-info {
+  margin-top: 12px;
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #555;
+
+    ion-icon {
+      margin-right: 8px;
+      font-size: 16px;
+      color: #4facfe;
+    }
+
+    span {
+      font-size: 13px;
+    }
+  }
+}
+
+/* BUTTON */
+.view-btn {
+  margin-top: 10px;
+  --background: linear-gradient(135deg, #4facfe, #007aff);
+  --border-radius: 12px;
+  font-weight: 600;
+}
+
+/* FAB */
+.fab-btn {
+  --background: linear-gradient(135deg, #4facfe, #007aff);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}

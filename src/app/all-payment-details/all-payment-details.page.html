@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar style="--background:#027dc1; --color:#fff">
-        <ion-buttons slot="start">
-      <ion-back-button style="color: #fff;"></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button style="color:#fff"></ion-back-button>
     </ion-buttons>
     <ion-title>Payment Details</ion-title>
   </ion-toolbar>
@@ -9,36 +9,90 @@
 
 <ion-content class="details-bg">
 
-  <!-- Payment Info Card -->
+  <!-- Payment Info -->
   <ion-card class="details-card">
-    <h2>{{ payment.StoreName }}</h2>
+
+    <h2>{{ payment.Store }}</h2>
 
     <div class="info-row">
       <span>Amount</span>
-      <strong>₹ {{ payment.Amount }}</strong>
+      <strong class="amount">₹ {{ payment.Amount | number }}</strong>
+    </div>
+
+    <div class="info-row">
+      <span>Payment Type</span>
+      <strong>{{ payment.PaymentType }}</strong>
+    </div>
+
+    <div class="info-row">
+      <span>Phone Number</span>
+      <strong>{{ payment.PhoneNumber }}</strong>
     </div>
 
     <div class="info-row">
       <span>Date</span>
-      <strong>{{ payment.CreatedDate }}</strong>
+      <strong>{{ formattedDate }}</strong>
     </div>
 
     <div class="info-row">
-      <span>Time</span>
-      <strong>{{ payment.CreatedTime }}</strong>
+      <span>Status</span>
+      <strong 
+        [ngClass]="payment.Status == 'Paid' ? 'paid-status' : 'pending-status'">
+        {{ payment.Status }}
+      </strong>
     </div>
+
   </ion-card>
 
+
   <!-- Bill Image -->
-  <ion-card class="image-card" *ngIf="payment.BillImage">
-    <div class="img-title">Bill Image</div>
-    <img [src]="payment.BillImage" />
-  </ion-card>
+<ion-card class="image-card" *ngIf="payment.BillImage?.length">
+
+  <div class="img-title">Bill Images</div>
+
+  <div class="image-grid">
+    <img 
+      *ngFor="let img of payment.BillImage" 
+      [src]="img" 
+      class="multi-img">
+  </div>
+
+</ion-card>
 
   <!-- QR Image -->
   <ion-card class="image-card" *ngIf="payment.QrImage">
     <div class="img-title">QR Code</div>
-    <img [src]="payment.QrImage" />
+    <img [src]="payment.QrImage">
+  </ion-card>
+
+
+  <!-- Payment History -->
+  <ion-card class="history-card" *ngIf="payment_history?.length">
+
+    <div class="history-title">
+      Payment History
+    </div>
+
+    <div class="history-item" *ngFor="let h of payment_history">
+
+      <div class="history-row">
+        <span>Amount Done</span>
+        <strong class="amount">₹ {{ h.AmountDone | number }}</strong>
+      </div>
+
+      <div class="history-row">
+        <span>Remark</span>
+        <strong>{{ h.Remark || 'No Remark' }}</strong>
+      </div>
+
+      <div class="history-row" *ngIf="h.File">
+        <span>File</span>
+      </div>
+
+      <img *ngIf="h.File" [src]="h.File" class="history-img">
+
+    </div>
+
   </ion-card>
 
 </ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar style="--background:#017dc0; --color:#fff">
+     <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Help Desk</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-bg">
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="/assets/img/logo.jpg" alt="Company Logo" class="logo" />
+  </div>
+
+  <!-- Form -->
+  <ion-card class="form-card">
+
+    <!-- Name -->
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input [(ngModel)]="form.name" readonly></ion-input>
+    </ion-item>
+
+    <!-- Mobile -->
+    <ion-item>
+      <ion-label position="floating">Mobile</ion-label>
+      <ion-input [(ngModel)]="form.mobile" readonly></ion-input>
+    </ion-item>
+
+    <!-- Issue -->
+    <ion-item>
+      <ion-label position="floating">Issue</ion-label>
+      <ion-textarea rows="4" [(ngModel)]="form.issue"></ion-textarea>
+    </ion-item>
+
+    <!-- Image -->
+    <div class="upload-box">
+
+      <label>Upload Issue Image</label>
+
+      <ion-button expand="block" fill="outline" (click)="openActionSheet()">
+        Upload Image
+      </ion-button>
+
+      <img *ngIf="previewImage" [src]="previewImage" class="preview-img"/>
+
+    </div>
+
+    <!-- Submit -->
+    <ion-button expand="block" class="submit-btn" (click)="submitForm()">
+      Submit
+    </ion-button>
+
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar">
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Help Desk</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-bg">
+
+  <!-- CARD -->
+  <ion-card *ngFor="let item of concerns" class="modern-card">
+
+    <!-- TOP -->
+    <div class="card-top">
+      <div>
+        <h2>{{ item.Name }}</h2>
+      </div>
+
+      <div class="status-badge" [ngClass]="item.Status">
+    {{ item.Status === 'New' ? 'Under Process' : item.Status }}
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="card-info">
+
+      <div class="info-item">
+        <ion-icon name="call-outline"></ion-icon>
+        <span>{{ item.Mobile }}</span>
+      </div>
+
+      <div class="info-item">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>
+          {{ item.CreatedAt | date:'dd MMM yyyy, hh:mm a' }}
+        </span>
+      </div>
+
+    </div>
+
+    <!-- BUTTON -->
+    <ion-button expand="block" class="view-btn" (click)="viewDetails(item.Id)">
+      View Details
+    </ion-button>
+
+  </ion-card>
+
+  <!-- FAB -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="fab-btn" routerLink="/help-desk-form">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

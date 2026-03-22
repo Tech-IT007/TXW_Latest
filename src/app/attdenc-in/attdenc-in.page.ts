@@ -245,6 +245,7 @@ generateShortCleanAddress(a: any): string {
   // ---------------------------------------------------------
   // ✔ ADVANCED CORDOVA CAMERA (SELFIE ONLY)
   // ---------------------------------------------------------
+
 async capture(): Promise<void> {
 
   const loading = await this.loadingCtrl.create({
@@ -257,57 +258,102 @@ async capture(): Promise<void> {
   try {
 
     const photo = await Camera.getPhoto({
-      quality: 30,
+      quality: 40,
       allowEditing: false,
-      resultType: CameraResultType.Base64,
+      resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
       direction: CameraDirection.Front
     });
 
-    // Base64 string (no prefix)
-    this.img_data = photo.base64String;
+    const compressedBase64 = await this.compressImage(photo.webPath);
 
-    // For preview (with prefix)
-    this.clicked = 'data:image/jpeg;base64,' + photo.base64String;
+    // Preview
+    this.clicked = compressedBase64;
 
-    // Enable mirror preview
+    // Remove prefix for API
+    this.img_data = compressedBase64.split(',')[1];
+
+    this.Attdence_Data.imageData = this.img_data;
+
     this.isMirrored = true;
-
-    // For API submit
-    this.Attdence_Data.imageData = photo.base64String;
 
   } catch (err) {
     console.error('Camera error:', err);
     this.showToast('Camera error. Try again.', 'danger');
   } finally {
-    try {
-      await loading.dismiss();
-    } catch {}
+    loading.dismiss();
   }
+
 }
 
 
-  async attdence_in(): Promise<void> {
-   
-    const loading = await this.loadingCtrl.create({
-      message: 'Submitting attendance...',
-      spinner: 'dots',
-    });
-    await loading.present();
+compressImage(imageUrl: string): Promise<string> {
 
-    const url = 'https://techxpertindia.in/api/punch_in_employee_attendance.php';
+  return new Promise((resolve) => {
 
-    this.http.post(url, this.Attdence_Data)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        () => {
-          loading.dismiss();
-          this.showToast('Attendance submitted!', 'success');
-          this.router.navigateByUrl('vendor-new-page');
-        },
-       
-      );
-  }
+    const img = new Image();
+    img.src = imageUrl;
+
+    img.onload = () => {
+
+      const canvas = document.createElement('canvas');
+
+      const MAX_WIDTH = 500;
+      const scaleSize = MAX_WIDTH / img.width;
+
+      canvas.width = MAX_WIDTH;
+      canvas.height = img.height * scaleSize;
+
+      const ctx: any = canvas.getContext('2d');
+
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const compressedBase64 = canvas.toDataURL('image/jpeg', 0.35);
+
+      resolve(compressedBase64);
+    };
+
+  });
+
+}
+
+
+async attdence_in(): Promise<void> {
+
+  const loading = await this.loadingCtrl.create({
+    message: 'Submitting attendance...',
+    spinner: 'dots'
+  });
+
+  await loading.present();
+
+  const url = 'https://techxpertindia.in/api/punch_in_employee_attendance.php';
+
+  this.http.post(url, this.Attdence_Data)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(
+
+      (res: any) => {
+
+        loading.dismiss();
+
+        this.showToast('Attendance submitted!', 'success');
+
+        this.router.navigateByUrl('vendor-new-page');
+
+      },
+
+      (err) => {
+
+        loading.dismiss();
+
+        this.showToast('Submission failed', 'danger');
+
+      }
+
+    );
+
+}
 
 
 

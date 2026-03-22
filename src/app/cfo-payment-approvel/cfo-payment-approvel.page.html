@@ -11,11 +11,11 @@
                (ionChange)="segmentChanged($event)"
                class="custom-segment">
     <ion-segment-button value="current">
-      <ion-label>Current</ion-label>
+      <ion-label>Approve Payment </ion-label>
     </ion-segment-button>
 
     <ion-segment-button value="history">
-      <ion-label>Payment Done</ion-label>
+      <ion-label>Payment paid</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -48,7 +48,7 @@
 
       <div class="ticket-header">
         <div class="ticket-id">
-          #{{t.TicketID}}
+          #{{t.TicketNumber}}
         </div>
 
         <div [ngClass]="getStatusClass(t.Status)" class="status-badge">
@@ -71,7 +71,7 @@
       <ion-button expand="block"
                   size="small"
                   class="view-btn"
-                  (click)="viewDetails(t.TicketID)">
+                  (click)="viewDetails(t.TicketID,t.ID)">
         View Details
       </ion-button>
 

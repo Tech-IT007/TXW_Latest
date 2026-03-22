@@ -7,23 +7,27 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 @Component({
   selector: 'app-payment-done-details',
   templateUrl: './payment-done-details.page.html',
-  styleUrls: ['./payment-done-details.page.scss'],
+  styleUrls: ['./payment-done-details.page.scss']
 })
-export class PaymentDoneDetailsPage implements OnInit {
 
+export class PaymentDoneDetailsPage implements OnInit {
+historyModal=false;
+selectedHistory:any[]=[];
   impact: any[] = [];
   show = false;
 
   selectedPaymentId: any = null;
-  previewImage: any = null;
 
-  paymentBase64: string = '';   // 🔥 Main image variable
+  previewImage: any = null;
+  paymentBase64 = '';
+
   isSubmitting = false;
 
-  dataToSend = { 
-    TicketID: localStorage.getItem('Ticket_id'),
-    Status: "Pending"
+  dataToSend = {
+    PaymentID: localStorage.getItem("cfo_payment_id"),
+    Status: "Pending , Partially Paid , Paid"
   };
+  store: any = {};
 
   constructor(
     private http: HttpClient,
@@ -38,58 +42,91 @@ export class PaymentDoneDetailsPage implements OnInit {
 
   /* ================= LOAD PAYMENTS ================= */
 
+openHistory(pay:any){
+
+this.selectedHistory=pay.SplitPaymentHistory || [];
+console.log(this.selectedHistory);
+this.historyModal=true;
+
+}
+
+closeHistory(){
+
+this.historyModal=false;
+
+}
   loadPayments() {
+
     this.loader.start();
 
     this.http.post(
-      'https://techxpertindia.in/api/get-ticket-payments-details-by-ticketid.php',
+      'https://techxpertindia.in/api/get-ticket-payments-details-by-paymentid.php',
       this.dataToSend
     ).subscribe((res: any) => {
 
       this.impact = res?.data || [];
+
       this.show = this.impact.length === 0;
+       
+      /* Initialize local fields safely */
+    this.store = res?.data?.[0]?.Store || '';
+   
+      this.impact.forEach((pay: any) => {
+        pay.enterAmount = '';
+        pay.dueAmount = pay.RemainingAmount;
+      });
+
       this.loader.stop();
 
     }, () => {
 
       this.loader.stop();
-      this.impact = [];
       this.show = true;
 
     });
+
   }
 
-  /* ================= FILE SELECT (GALLERY) ================= */
+  /* ================= OPEN PAYMENT FORM ================= */
 
-  onFileSelected(event: any, pay: any) {
-
-    const file = event.target.files[0];
-    if (!file) return;
+  openPaymentOptions(pay: any) {
 
     this.selectedPaymentId = pay.ID;
 
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
+    this.previewImage = null;
+    this.paymentBase64 = '';
 
-    reader.onload = () => {
+    pay.enterAmount = '';
+    pay.dueAmount = pay.RemainingAmount;
 
-      const result: any = reader.result;
-
-      // Preview with prefix
-      this.previewImage = result;
-
-      // Remove prefix for API
-      this.paymentBase64 = result.split(',')[1];
-    };
   }
 
-  /* ================= CAMERA CAPTURE ================= */
+  /* ================= CALCULATE DUE ================= */
 
-  async capture(pay: any): Promise<void> {
+calculateDue(pay: any) {
+
+  const paid = parseFloat(pay.enterAmount) || 0;
+  const remaining = parseFloat(pay.RemainingAmount) || 0;
+
+  if (paid > remaining) {
+
+    alert("Amount cannot be greater than Remaining Amount");
+
+    pay.enterAmount = '';
+    pay.dueAmount = remaining;
+    return;
+
+  }
+
+  pay.dueAmount = remaining - paid;
+
+}
+  /* ================= CAMERA ================= */
+
+  async capture(pay: any) {
 
     const loading = await this.loadingCtrl.create({
-      message: 'Opening camera...',
-      spinner: 'circles'
+      message: 'Opening Camera...'
     });
 
     await loading.present();
@@ -97,63 +134,80 @@ export class PaymentDoneDetailsPage implements OnInit {
     try {
 
       const photo = await Camera.getPhoto({
-        quality: 40,
-        allowEditing: false,
+
+        quality: 60,
         resultType: CameraResultType.Base64,
         source: CameraSource.Camera
+
       });
 
-      this.selectedPaymentId = pay.ID;
+      if (photo?.base64String) {
 
-      // Base64 for API
-      this.paymentBase64 = photo.base64String || '';
+        this.paymentBase64 = photo.base64String;
 
-      // Preview
-      this.previewImage = 'data:image/jpeg;base64,' + photo.base64String;
+        this.previewImage = 'data:image/jpeg;base64,' + photo.base64String;
 
-    } catch (err) {
-      console.error('Camera error:', err);
-    } finally {
-      await loading.dismiss();
+      }
+
+    } catch (e) {
+
+      console.log("Camera Error:", e);
+
     }
+
+    await loading.dismiss();
+
   }
 
   /* ================= SUBMIT PAYMENT ================= */
 
   submitPayment(pay: any) {
 
-    if (!this.paymentBase64 || this.isSubmitting) return;
+    if (this.isSubmitting) return;
+
+    if (!this.paymentBase64) {
+      alert("Please upload payment voucher");
+      return;
+    }
+
+    if (!pay.enterAmount) {
+      alert("Please enter payment amount");
+      return;
+    }
 
     this.isSubmitting = true;
+
     this.loader.start();
 
     const body = {
+
       TicketID: pay.TicketID,
       PaymentID: pay.ID,
       EmployeeID: localStorage.getItem("EmployeeID"),
-      PaymentScreenShot: this.paymentBase64
+      PaymentScreenShot: this.paymentBase64,
+      Amount: pay.enterAmount,
+      Remark: pay.Remarks
+
+
     };
 
     this.http.post(
-      'https://techxpertindia.in/api/post_change_tickets_payment_status.php',
+      'https://techxpertindia.in/api/post_split_ammount_paid_by_cfo.php',
       body
-    ).subscribe(async (res: any) => {
+    ).subscribe(async () => {
 
       this.loader.stop();
       this.isSubmitting = false;
 
-      const t = await this.toast.create({
-        message: "Payment Submitted Successfully",
+      const toast = await this.toast.create({
+        message: 'Payment Submitted Successfully',
         duration: 2000,
-        color: "success"
+        color: 'success'
       });
-      t.present();
 
-      // Reset
-      this.previewImage = null;
-      this.paymentBase64 = '';
-      this.selectedPaymentId = null;
+      toast.present();
 
+      this.resetForm();
       this.loadPayments();
 
     }, async () => {
@@ -161,12 +215,27 @@ export class PaymentDoneDetailsPage implements OnInit {
       this.loader.stop();
       this.isSubmitting = false;
 
-      const t = await this.toast.create({
-        message: "Submission Failed",
+      const toast = await this.toast.create({
+        message: 'Submission Failed',
         duration: 2000,
-        color: "danger"
+        color: 'danger'
       });
-      t.present();
+
+      toast.present();
+
     });
+
   }
+
+  /* ================= RESET FORM ================= */
+
+  resetForm() {
+
+    this.previewImage = null;
+    this.paymentBase64 = '';
+    this.selectedPaymentId = null;
+    this.isSubmitting = false;
+
+  }
+
 }

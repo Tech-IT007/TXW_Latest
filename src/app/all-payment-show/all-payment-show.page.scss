@@ -1,110 +1,175 @@
-.page-bg {
-  --background: #fff;
-  padding: 12px;
+/* PAGE BACKGROUND */
+
+.page-bg{
+  --background:#f4f6f9;
+  padding:12px;
 }
 
-/* Card Design */
-.payment-card {
-  border: 1.5px solid #027dc1;
-  border-left: 6px solid #d12e27;
-  border-radius: 12px;
-  margin-bottom: 14px;
-  box-shadow: none;
+
+/* ADD BUTTON */
+
+.add-btn{
+  --background:#027dc1;
+  --color:#fff;
 }
 
-/* Header */
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 14px;
-  border-bottom: 1px solid #eee;
+
+/* GRAND TOTAL CARD */
+
+.total-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#027dc1,#0098e5);
+  color:#fff;
+  margin-bottom:15px;
 }
 
-.card-header h2 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #027dc1;
-  margin: 0;
+.total-card span{
+  font-size:13px;
+  opacity:0.9;
 }
 
-/* Eye Button */
-.eye-btn {
-    --color: #d12e27;
-    text-transform: none;
-    border: 2px solid;
-    border-radius: 10px;
+.total-card h2{
+  margin:4px 0 0;
+  font-size:22px;
+  font-weight:600;
 }
 
-/* Body */
-.card-body {
-  padding: 12px 14px;
+.total-card ion-icon{
+  font-size:32px;
+  opacity:0.9;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
+
+/* PAYMENT CARD */
+
+.payment-card{
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
 }
 
-.row span {
-  font-size: 13px;
-  color: #555;
+
+/* CARD HEADER */
+
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #eee;
+  padding-bottom:8px;
+  margin-bottom:10px;
 }
 
-.row strong {
-  font-size: 14px;
-  color: #000;
+.card-header h2{
+  font-size:15px;
+  font-weight:600;
+  margin:0;
+  color:#222;
 }
 
-/* Grand Total Card */
-.total-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  border-radius: 14px;
-  background: #027dc1;
-  color: #fff;
-  margin-bottom: 16px;
+
+/* VIEW BUTTON */
+
+.eye-btn{
+  font-size:12px;
+  color:#027dc1;
+  font-weight:500;
 }
 
-.total-left span {
-  font-size: 13px;
-  opacity: 0.9;
+
+/* BODY */
+
+.card-body{
+  font-size:13px;
 }
 
-.total-left h2 {
-  margin: 4px 0 0;
-  font-size: 20px;
-  font-weight: 600;
+
+/* ROW */
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:6px;
 }
 
-.total-card ion-icon {
-  font-size: 28px;
-  color: #fff;
-}
-ion-badge {
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-weight: 600;
+.row span{
+  color:#777;
 }
 
-/* Paid */
-.status-paid {
-  background: #e6f7ee;
-  color: #0f9d58;
+.row strong{
+  // color:#000;
 }
 
-/* Pending */
-.status-pending {
-  background: #fff4e5;
-  color: #d12e27;
+
+/* STATUS COLORS */
+
+.status-pending{
+  color:#ff9800;
 }
 
-/* Rejected */
-.status-rejected {
-  background: #fdecea;
-  color: #d12e27;
+.status-paid{
+  color:#2ecc71;
+}
+
+.status-partial{
+  color:#e91e63;
+}
+
+
+/* APPROVAL BOX */
+
+.approval-box{
+  margin-top:10px;
+  border-top:1px dashed #ddd;
+  padding-top:10px;
+}
+
+.approval-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:6px;
+}
+
+
+/* BADGES */
+
+ion-badge{
+  font-size:11px;
+  padding:5px 8px;
+  border-radius:8px;
+}
+
+
+/* APPROVED */
+
+.approved{
+  background:#2ecc71;
+  color:#fff;
+}
+
+
+/* REJECTED */
+
+.rejected{
+  background:#e74c3c;
+  color:#fff;
+}
+
+
+.status-pending{
+  color:#ff9800;
+}
+
+.status-paid{
+  color:#2ecc71;
+}
+
+.status-partial{
+  color:#e91e63;
 }

@@ -2,17 +2,17 @@
 
 .ticket-detail-page {
   --background: #f4f6f9;
-  padding: 10px;
+  padding: 12px;
 }
 
 /* ================= CARD ================= */
 
 .payment-card {
-  border-radius: 14px;
-  padding: 12px;
-  margin-bottom: 14px;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 16px;
   background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
 /* ================= HEADER ================= */
@@ -21,7 +21,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .left-section {
@@ -32,34 +32,23 @@
 .ticket-no {
   font-size: 13px;
   font-weight: 600;
-  color: #333;
+  color: #222;
 }
 
 .status-badge {
   margin-top: 5px;
   font-size: 11px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  width: fit-content;
   font-weight: 600;
+  color: #1e3a8a;
 }
 
-/* Status Colors */
-
-.status-badge.Pending {
-  background: #fff3cd;
-  color: #856404;
+.remaining {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #444;
 }
 
-.status-badge.Approved {
-  background: #d4edda;
-  color: #155724;
-}
-
-.status-badge.Rejected {
-  background: #f8d7da;
-  color: #721c24;
-}
+/* ================= RIGHT SECTION ================= */
 
 .right-section {
   text-align: right;
@@ -72,10 +61,38 @@
 }
 
 .amount {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: #000;
   margin-top: 3px;
+}
+
+/* ================= APPROVAL LINE ================= */
+
+.approval-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.approval {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  padding: 5px;
+  border-bottom: 3px solid #ccc;
+  font-weight: 600;
+}
+
+.approval.green {
+  border-color: #2ecc71;
+  color: #2ecc71;
+}
+
+.approval.red {
+  border-color: #e74c3c;
+  color: #e74c3c;
 }
 
 /* ================= EXISTING IMAGES ================= */
@@ -105,37 +122,95 @@
   border: 1px solid #e0e0e0;
 }
 
-/* ================= UPLOAD SECTION ================= */
+/* ================= BUTTON ROW ================= */
 
-.upload-section {
-  margin-top: 14px;
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
 }
 
-/* Upload Box */
+.history-btn {
+  height: 36px;
+  text-transform: none;
+  font-size: 12px;
+}
+/* ================= SPLIT PAYMENT HISTORY ================= */
 
-.upload-box {
-  border: 2px dashed #cfd8dc;
-  border-radius: 12px;
-  padding: 14px;
-  text-align: center;
+.history-box {
+  padding: 10px;
+  background: #f8f9fb;
+  border-radius: 10px;
+}
+
+.history-item {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
   font-size: 13px;
-  font-weight: 600;
-  color: #607d8b;
-  background: #f9fbfc;
-  cursor: pointer;
-  transition: all 0.25s ease-in-out;
 }
 
-.upload-box::before {
-  content: "📤 ";
-  font-size: 15px;
+.history-item:last-child {
+  border-bottom: none;
 }
 
-.upload-box:hover {
-  background: #eef5f9;
-  border-color: #3880ff;
+.history-item b {
+  color: #333;
+}
+
+.history-item a {
   color: #3880ff;
-  transform: scale(1.02);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ================= MODAL HISTORY CARD ================= */
+
+.history-card {
+  background: #ffffff;
+  padding: 12px;
+  margin: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  font-size: 13px;
+}
+
+.history-card div {
+  margin-bottom: 4px;
+}
+
+/* ================= FORM ================= */
+
+ion-item {
+  margin-top: 8px;
+  --border-radius: 10px;
+}
+
+ion-input {
+  font-size: 14px;
+}
+
+/* ================= REMAINING NOTE ================= */
+
+.remaining-note {
+  font-size: 11px;
+  color: #e74c3c;
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+/* ================= BUTTON ================= */
+
+ion-button {
+  margin-top: 10px;
+  --border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Disabled Button */
+
+ion-button[disabled] {
+  opacity: 0.6;
 }
 
 /* ================= IMAGE PREVIEW ================= */
@@ -151,40 +226,47 @@
   object-fit: cover;
   border-radius: 12px;
   border: 1px solid #e0e0e0;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
-}
-
-/* ================= BUTTON ================= */
-
-.approve-area {
-  margin-top: 14px;
-}
-
-.approve-btn {
-  --border-radius: 12px;
-  font-size: 14px;
-  height: 40px;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-}
-
-/* Disabled Button */
-ion-button[disabled] {
-  opacity: 0.6;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 
 /* ================= NO DATA ================= */
 
 .no-data {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 40px;
   font-size: 14px;
   color: #777;
+}
+
+/* ================= ACCORDION STYLE ================= */
+
+ion-accordion-group {
+  margin-top: 10px;
+}
+
+ion-accordion ion-item {
+  --background: #f3f5f9;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* ================= MODAL ================= */
+
+ion-modal {
+  --border-radius: 16px;
 }
 
 /* ================= RESPONSIVE ================= */
 
 @media (max-width: 480px) {
+
+  .payment-card {
+    padding: 12px;
+  }
+
+  .amount {
+    font-size: 15px;
+  }
 
   .img-box img {
     height: 80px;
@@ -194,8 +276,66 @@ ion-button[disabled] {
     height: 110px;
   }
 
-  .amount {
-    font-size: 15px;
+  .ticket-no {
+    font-size: 12px;
   }
+/* Gradient Border Card */
+.history-card {
+  position: relative;
+  background: #fff;
+  padding: 14px;
+  margin: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  z-index: 1;
+}
 
+/* Gradient Border Effect */
+.history-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0c7cbc, #00c6ff, #5f2c82);
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  z-index: -1;
+}
+
+/* Text spacing */
+.history-card div {
+  margin-bottom: 6px;
+  color: #444;
+}
+
+/* Label text */
+.history-card b {
+  color: #222;
+  font-weight: 600;
+}
+
+/* Receipt Button */
+.history-card a {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg, #0c7cbc, #00c6ff);
+  font-weight: 500;
+   margin-left: 3%;
+}
+
+/* Hover effect */
+.history-card:hover {
+  transform: translateY(-2px);
+  transition: 0.2s;
+}
 }

@@ -588,6 +588,26 @@ const routes: Routes = [
     path: 'payment-done-details',
     loadChildren: () => import('./payment-done-details/payment-done-details.module').then( m => m.PaymentDoneDetailsPageModule)
   },
+  {
+    path: 'state-transfer-money',
+    loadChildren: () => import('./state-transfer-money/state-transfer-money.module').then( m => m.StateTransferMoneyPageModule)
+  },
+  {
+    path: 'finance-transfer-money',
+    loadChildren: () => import('./finance-transfer-money/finance-transfer-money.module').then( m => m.FinanceTransferMoneyPageModule)
+  },
+  {
+    path: 'help-desk',
+    loadChildren: () => import('./help-desk/help-desk.module').then( m => m.HelpDeskPageModule)
+  },
+  {
+    path: 'help-desk-form',
+    loadChildren: () => import('./help-desk-form/help-desk-form.module').then( m => m.HelpDeskFormPageModule)
+  },
+  {
+    path: 'help-desk-details',
+    loadChildren: () => import('./help-desk-details/help-desk-details.module').then( m => m.HelpDeskDetailsPageModule)
+  },
 
 ];
 

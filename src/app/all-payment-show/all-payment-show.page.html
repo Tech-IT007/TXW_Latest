@@ -1,72 +1,110 @@
 <ion-header>
   <ion-toolbar style="--background:#027dc1; --color:#fff">
-       <ion-buttons slot="start">
-      <ion-back-button style="color: #fff;"></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button style="color:#fff"></ion-back-button>
     </ion-buttons>
     <ion-title>All Payments</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="page-bg">
+
+  <!-- ADD PAYMENT -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" routerLink="/paymet-form">
-    <ion-fab-button class="logout-btn">
+    <ion-fab-button class="add-btn">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <!-- GRAND TOTAL CARD -->
+  <!-- GRAND TOTAL -->
   <ion-card class="total-card">
     <div class="total-left">
       <span>Grand Total</span>
-      <h2>₹ {{ grandTotal }}</h2>
+      <h2>₹ {{ formatAmount(grandTotal) }}</h2>
     </div>
+
     <ion-icon name="wallet-outline"></ion-icon>
   </ion-card>
 
   <!-- PAYMENT LIST -->
+
   <ion-card class="payment-card" *ngFor="let item of paymentList">
+
+    <!-- HEADER -->
     <div class="card-header">
-      <h2>{{ item.Store }}</h2>
-      <ion-button fill="clear" class="eye-btn" (click)="viewPayment(item.ID)">
+
+      <h2>{{item.Store}}</h2>
+
+      <ion-button
+        size="small"
+        fill="clear"
+        class="eye-btn"
+        (click)="viewPayment(item.ID)"
+      >
         View Details
       </ion-button>
+
     </div>
+
+    <!-- BODY -->
 
     <div class="card-body">
+
       <div class="row">
         <span>Amount</span>
-        <strong>₹ {{ item.Amount }}</strong>
+        <strong>₹ {{ formatAmount(item.Amount) }}</strong>
       </div>
 
       <div class="row">
-        <span>Date</span>
-        <strong>{{ item.CreatedDate }}</strong>
-      </div>
-
-      <div class="row">
-        <span>Time</span>
-        <strong>{{ item.CreatedTime }}</strong>
-      </div>
-      
-      <div class="row">
-        <span>ScheduleDate</span>
+        <span>Schedule Date</span>
         <strong>{{ item.ScheduleDate }}</strong>
       </div>
-            <div class="row">
-        <span>Payment Status</span>
+<div class="row">
+  <span>Status</span>
 
-        <ion-badge
-          [ngClass]="{
-            'status-paid': item.Status == 'Paid',
-            'status-pending': item.Status == 'Pending',
-            'status-rejected': item.Status == 'Rejected'
-          }"
-        >
-          {{ item.Status }}
-        </ion-badge>
+  <strong
+    [ngClass]="{
+      'status-pending': item.Status?.toLowerCase() === 'pending',
+      'status-paid': item.Status?.toLowerCase() === 'paid',
+      'status-partial': item.Status?.toLowerCase() === 'partially paid'
+    }">
+
+    {{ item.Status }}
+
+  </strong>
+</div>
+      <!-- APPROVALS -->
+
+      <div class="approval-box">
+
+        <div class="approval-row">
+          <span>State Approval</span>
+          <ion-badge
+          [ngClass]="item.IsStateApprove == 'Yes' ? 'approved' : 'rejected'">
+          {{item.IsStateApprove}}
+          </ion-badge>
+        </div>
+
+        <div class="approval-row">
+          <span>Finance Approval</span>
+          <ion-badge
+          [ngClass]="item.IsFinanceApprove == 'Yes' ? 'approved' : 'rejected'">
+          {{item.IsFinanceApprove}}
+          </ion-badge>
+        </div>
+
+        <div class="approval-row">
+          <span>CFO Approval</span>
+          <ion-badge
+          [ngClass]="item.IsCfoApprove == 'Yes' ? 'approved' : 'rejected'">
+          {{item.IsCfoApprove}}
+          </ion-badge>
+        </div>
 
       </div>
+
     </div>
+
   </ion-card>
 
 </ion-content>

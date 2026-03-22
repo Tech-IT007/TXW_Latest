@@ -205,24 +205,25 @@
     Quote Approval Pending
   </ion-button>
 
-  <!-- Site Visit -->
-  <ion-button
-    *ngIf="this.impact.Status != 'Closed' "
-   style="--background: #ed1212;;"
-    class="btn-warning"
-    routerLink="/techician-all-site-vist-data">
+<!-- Site Visit -->
+<ion-button
+  *ngIf="impact.Status !== 'Closed' && impact.Status !== 'Cancel'"
+  style="--background: #ed1212;"
+  class="btn-warning"
+  routerLink="/techician-all-site-vist-data">
+  Site Visit
+</ion-button>
 
-    Site Visit
-  </ion-button>
+<!-- Conveyance -->
+<ion-button
+  *ngIf="impact.Status !== 'Closed' && impact.Status !== 'Cancel'"
+  class="btn-warning"
+  routerLink="/all-convence-charge">
+  Conveyance Charge
+</ion-button>
 
-  <!-- Conveyance -->
-  <ion-button
-   *ngIf="this.impact.Status != 'Closed' "
-    class="btn-warning"
-    routerLink="/all-convence-charge">
+<!-- Cancel -->
 
-    Conveyance Charge
-  </ion-button>
 
 </div>
 

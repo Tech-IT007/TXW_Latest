@@ -1,87 +1,329 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-back-button slot="start"></ion-back-button>
-    <ion-title style="font-size:16px;">
-      Payment Details
-    </ion-title>
+  <ion-toolbar  style="--background: #0c7cbc; --color: #fff;"  >
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Payment Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ticket-detail-page">
 
+  <!-- NO DATA -->
+
+  <div *ngIf="show" class="no-data">
+    No Payment Data Found
+  </div>
+
+
+  <!-- PAYMENT CARD -->
+
   <ion-card *ngFor="let pay of impact" class="payment-card">
 
     <!-- HEADER -->
+
     <div class="payment-header">
 
       <div class="left-section">
+
         <div class="ticket-no">
           Ticket ID: {{ pay.TicketID }}
         </div>
 
-        <div class="status-badge" style="color: green;">
-        CFO Approved
+        <div class="status-badge">
+          Status : {{ pay.Status }}
         </div>
+
+        <div class="remaining" style="color: red;"> 
+          Remaining Amount : ₹ {{ pay.RemainingAmount }}
+        </div>
+
       </div>
 
       <div class="right-section">
+
         <div class="payment-type">
-          {{ pay.PaymentType }}
+          Payment
         </div>
 
         <div class="amount">
           ₹ {{ pay.Amount }}
         </div>
+
       </div>
 
     </div>
 
-    <!-- EXISTING IMAGES -->
+
+    <!-- APPROVAL LINE -->
+
+    <div class="approval-line">
+
+      <div class="approval"
+      [ngClass]="pay.IsStateApprove == 'Yes' ? 'green':'red'">
+        State
+      </div>
+    <div class="approval"
+      [ngClass]="pay.IsFinanceApprove == 'Yes' ? 'green':'red'">
+        Finance
+      </div>
+            <div class="approval"
+      [ngClass]="pay.IsCfoApprove == 'Yes' ? 'green':'red'">
+        CFO
+      </div>
+    </div>
+
+
+    <!-- BILL / QR IMAGES -->
+
     <div class="img-row">
 
       <div class="img-box" *ngIf="pay.BillImage">
-        <div class="img-title">Bill Image</div>
-        <img [src]="pay.BillImage" />
+
+        <div class="img-title">
+          Bill Image
+        </div>
+
+        <img [src]="pay.BillImage">
+
       </div>
 
       <div class="img-box" *ngIf="pay.QrImage">
-        <div class="img-title">QR Image</div>
-        <img [src]="pay.QrImage" />
+
+        <div class="img-title">
+          QR Image
+        </div>
+
+        <img [src]="pay.QrImage">
+
       </div>
 
     </div>
 
-<!-- CAPTURE PAYMENT IMAGE -->
-<div class="upload-section">
 
-  <div class="upload-box" (click)="capture(pay)">
-    Capture Payment Image
-  </div>
+    <!-- BUTTON ROW -->
 
-  <!-- Preview -->
-  <div class="preview"
-       *ngIf="selectedPaymentId === pay.ID && previewImage">
-    <img [src]="previewImage" />
-  </div>
+<!-- BUTTON ROW -->
 
-</div>
+<div class="button-row">
 
-<!-- SUBMIT BUTTON -->
-<div class="approve-area"
-     *ngIf="selectedPaymentId === pay.ID && previewImage">
+  <!-- PAYMENT UPDATE BUTTON -->
 
-  <ion-button expand="block"
-              [disabled]="isSubmitting"
-              (click)="submitPayment(pay)">
-    Submit
+  <ion-button
+  style="  text-transform: none;
+  font-size: 12px;"
+  expand="block"
+  *ngIf="selectedPaymentId !== pay.ID && pay.RemainingAmount != 0"
+  (click)="openPaymentOptions(pay)">
+    
+    Payment Update
+
+  </ion-button>
+
+
+  <!-- PAYMENT HISTORY BUTTON -->
+
+  <ion-button
+  color="danger"
+  size="small"
+  class="history-btn"
+  *ngIf="pay.SplitPaymentHistory?.length"
+  (click)="openHistory(pay)">
+
+    Payment History
+
   </ion-button>
 
 </div>
 
+    <!-- PAYMENT FORM -->
+
+    <div *ngIf="selectedPaymentId === pay.ID">
+
+      <ion-item>
+
+        <ion-label position="stacked">
+          Remaining Amount
+        </ion-label>
+
+        <ion-input
+        [value]="pay.RemainingAmount"
+        readonly>
+        </ion-input>
+
+      </ion-item>
+
+
+      <ion-item>
+
+        <ion-label position="stacked">
+          Enter Payment Amount
+        </ion-label>
+
+<ion-input
+type="number"
+[(ngModel)]="pay.enterAmount"
+(ngModelChange)="calculateDue(pay)">
+</ion-input>
+      </ion-item>
+
+
+      <div class="remaining-note" 
+      *ngIf="pay.enterAmount">
+
+        Remaining After Payment :
+        ₹ {{ pay.dueAmount }}
+
+      </div>
+
+
+      <ion-item>
+
+        <ion-label position="stacked">
+          Due Amount
+        </ion-label>
+
+        <ion-input
+        [value]="pay.dueAmount"
+        readonly>
+        </ion-input>
+
+      </ion-item>
+
+      <ion-item>
+
+<ion-item>
+
+  <ion-label position="stacked">
+    Remarks
+  </ion-label>
+
+  <ion-input
+    type="text"
+    [(ngModel)]="pay.Remarks"
+    placeholder="Enter remarks">
+  </ion-input>
+
+</ion-item>
+
+      </ion-item>
+
+      <!-- CAMERA BUTTON -->
+
+      <ion-button
+      expand="block"
+      color="medium"
+      *ngIf="pay.enterAmount"
+      (click)="capture(pay)">
+
+        Upload Payment Voucher
+
+      </ion-button>
+
+    </div>
+
+
+    <!-- IMAGE PREVIEW -->
+
+    <div
+    class="preview"
+    *ngIf="selectedPaymentId === pay.ID && previewImage">
+
+      <img [src]="previewImage">
+
+    </div>
+
+
+    <!-- SUBMIT BUTTON -->
+
+    <ion-button
+    expand="block"
+    color="success"
+    *ngIf="selectedPaymentId === pay.ID && previewImage"
+    (click)="submitPayment(pay)">
+
+      Submit Payment
+
+    </ion-button>
+
+
   </ion-card>
 
-  <div *ngIf="show" class="no-data">
-    No Payment Records Found
-  </div>
+
+
+  <!-- ================= SPLIT PAYMENT HISTORY MODAL ================= -->
+
+  <ion-modal [isOpen]="historyModal">
+
+    <ng-template>
+
+      <ion-header>
+
+        <ion-toolbar>
+
+          <ion-title>
+            Split Payment History
+          </ion-title>
+
+          <ion-buttons slot="end">
+
+            <ion-button (click)="closeHistory()">
+              Close
+            </ion-button>
+
+          </ion-buttons>
+
+        </ion-toolbar>
+
+      </ion-header>
+
+
+      <ion-content>
+
+        <div
+        class="history-card"
+        *ngFor="let h of selectedHistory">
+
+          <div>
+            <b>Amount Done :</b>
+            ₹ {{ h.AmountDone }}
+          </div>
+
+          <div>
+            <b>Store :</b>
+
+            {{ store}}
+          </div>
+         <div>
+            <b>Update Date / Time :</b>
+
+            {{ h.Update_At}}
+          </div>
+
+
+
+          <div *ngIf="h.File">
+
+            <b>Payment Receipt :</b>
+             <!-- <img [src]="h.File" class="history-img"> -->
+
+           <a
+            [href]="h.File"
+            target="_blank">
+
+            View
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </ion-content>
+
+    </ng-template>
+
+  </ion-modal>
 
 </ion-content>

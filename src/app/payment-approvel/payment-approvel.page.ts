@@ -33,10 +33,14 @@ export class PaymentApprovelPage implements OnInit {
     private router: Router,
     private loadingCtrl: LoadingController
   ) {}
+ 
+ ionViewWillEnter() {
+    this.loadCurrentTickets();  
+ }
 
   /* ================= INIT ================= */
   ngOnInit(): void {
-    this.loadCurrentTickets();
+  
   }
 
   /* ================= SEGMENT CHANGE ================= */
@@ -81,6 +85,7 @@ export class PaymentApprovelPage implements OnInit {
     this.approvel = {
       StateName: (localStorage.getItem("StateName") || "").split(","),
       IsCfoApprove: "Yes",
+      Status: "Pending",
       start_counter: 0,
       no_of_records: 10
     };
@@ -175,15 +180,16 @@ export class PaymentApprovelPage implements OnInit {
   }
 
   /* ================= NAVIGATION ================= */
-viewDetails(id: string) {
+viewDetails(id: string , paymentId: string) {
 
   localStorage.setItem('Ticket_id', id);
-
+  localStorage.setItem('State_payment_id', paymentId);
+    console.log("Payment ID:", paymentId);
   if (this.selectedSegment === 'current') {
     this.router.navigate(['/payment-approvel-details']);
   } 
   else {
-    this.router.navigate(['/payment-done-details']);
+    this.router.navigate(['/state-transfer-money']);
   }
 
 }
