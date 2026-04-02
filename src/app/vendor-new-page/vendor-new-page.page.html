@@ -31,11 +31,7 @@
 
 <ion-content class="dashboard-content">
   <canvas id="holiSmoke"></canvas>
-  <!-- LOCATION REFRESH -->
-  <div *ngIf="location_enable" class="location-refresh-box">
-    <h5>Location Refresh</h5>
-    <ion-icon name="refresh-outline" (click)="location()"></ion-icon>
-  </div>
+
 
   <!-- ===== PROFILE CARD ===== -->
   <ion-card class="profile-card">
@@ -151,6 +147,13 @@
         <ion-card button routerLink="/mywork-zone" class="dashboard-card">
           <img src="assets/img/workplace.png" />
           <p>My Work Zone</p>
+        </ion-card>
+      </ion-col>
+      
+      <ion-col size="6" *ngIf="raisedTicket">
+        <ion-card button routerLink="/raised-ticket" class="dashboard-card">
+          <img src="assets/img/ppmm.png" />
+          <p>Raise Ticket</p>
         </ion-card>
       </ion-col>
             <ion-col size="6">

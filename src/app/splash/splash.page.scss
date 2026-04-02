@@ -1,0 +1,67 @@
+ion-content {
+  --background: transparent;
+}
+
+/* Remove scroll */
+.no-scroll {
+  --overflow: hidden;
+}
+
+/* Full screen container */
+.splash-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background: linear-gradient(135deg, #0c7cbc, #00c6ff);
+}
+
+/* Logo */
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+  animation: zoomIn 6.2s ease-in-out;
+}
+
+/* Text */
+.app-name {
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.tagline {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 25px;
+}
+
+/* Loader */
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  animation: spin 6s linear infinite;
+}
+
+/* Animations */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

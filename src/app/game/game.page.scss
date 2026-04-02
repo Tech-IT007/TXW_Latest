@@ -1,41 +1,25 @@
-.score-panel {
+.top-panel {
   display: flex;
   justify-content: space-between;
+  padding: 10px;
   font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  padding: 0 10px;
+  font-size: 18px;
 }
 
-.game-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  canvas {
-    border: 2px solid #222;
-    background: #f8fafc;
-  }
+.game-area {
+  position: relative;
+  height: 500px;
+  background: #111;
+  border: 2px solid #0c7cbc;
+  margin: 10px;
+  overflow: hidden;
 }
 
-.controls {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-
-  ion-button {
-    margin: 0 5px;
-    font-size: 1.3rem;
-  }
-}
-
-.start-btn,
-.pause-btn {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-
-  ion-button {
-    font-size: 1.2rem;
-  }
+.target {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: red;
+  border-radius: 50%;
+  box-shadow: 0 0 10px red;
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RefresherCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-all-payment-show',
@@ -8,7 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./all-payment-show.page.scss'],
 })
 export class AllPaymentShowPage {
+ handleRefresh(event: RefresherCustomEvent) {
+    setTimeout(() => {
+      // Any calls to load data go here
+          this.all_paymet_data();
+      event.target.complete();
+    }, 2000);
+  }
 
+rejectedTotal: number = 0;
+paidTotal: number = 0;
   paymentList:any[]=[];
   grandTotal:number=0;
 
@@ -46,15 +56,33 @@ viewPayment(item: any)
    
    this.router.navigate(['/all-payment-details']); 
 }
-  calculateGrandTotal(){
 
-    this.grandTotal=this.paymentList.reduce(
-      (sum,item)=>sum+Number(item.Amount || 0),
-      0
-    );
+calculateGrandTotal() {
 
-  }
+  this.grandTotal = 0;
+  this.rejectedTotal = 0;
+  this.paidTotal = 0;
 
+  this.paymentList.forEach(item => {
+
+    const amount = Number(item?.Amount || 0);
+    const status = (item?.Status || '').toLowerCase();
+
+    if (status === 'rejected') {
+      this.rejectedTotal += amount;
+    } 
+    else if (status === 'paid') {
+      this.paidTotal += amount;
+      this.grandTotal += amount;
+    } 
+    else {
+      // pending / partial etc.
+      this.grandTotal += amount;
+    }
+
+  });
+
+}
   /* FORMAT AMOUNT */
 
   formatAmount(amount:any){

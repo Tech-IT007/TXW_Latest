@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-toolbar style="background: #0c7cbc;;">
-        <ion-buttons slot="start">
-      <ion-back-button ></ion-back-button>
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>Raise Ticket</ion-title>
   </ion-toolbar>
@@ -11,54 +11,57 @@
 
   <ion-card class="ticket-card">
 
-    <!-- Corporate Service Type -->
-    <!-- <ion-item>
-      <ion-label position="stacked">Branch Type</ion-label>
-      <ion-select
-        placeholder="Select Type"
-        [(ngModel)]="form.serviceType">
+    <!-- Ticket Type -->
+    <ion-item>
+      <ion-label position="stacked">Ticket Type</ion-label>
+      <ion-select [(ngModel)]="form.serviceType" placeholder="Select Type">
         <ion-select-option value="R&M">R&M</ion-select-option>
         <ion-select-option value="Supply">Supply</ion-select-option>
         <ion-select-option value="Project">Project</ion-select-option>
       </ion-select>
-    </ion-item> -->
+    </ion-item>
 
-    <!-- Services -->
+    <!-- Branch Site -->
+    <ion-item button (click)="openBranchSiteModal()">
+      <ion-label position="stacked">Branch Site</ion-label>
+      <ion-input
+        [value]="selectedBranchSiteName"
+        placeholder="Select Branch Site"
+        readonly>
+      </ion-input>
+    </ion-item>
+
+    <!-- Service -->
     <ion-item>
       <ion-label position="stacked">Service</ion-label>
       <ion-select
-        placeholder="Select Service"
         [(ngModel)]="form.serviceId"
+        placeholder="Select Service"
         (ionChange)="loadSubServices($event.detail.value)">
-        <ion-select-option
-          *ngFor="let s of services"
-          [value]="s.ID">
-          {{ s.Name }}
+        <ion-select-option *ngFor="let s of services" [value]="s.ID">
+          {{ s.CategoriesName }}
         </ion-select-option>
       </ion-select>
     </ion-item>
 
-    <!-- Sub Services -->
+    <!-- Sub Service -->
     <ion-item>
       <ion-label position="stacked">Sub Service</ion-label>
       <ion-select
-        placeholder="Select Sub Service"
-        [(ngModel)]="form.subServiceId">
-        <ion-select-option
-          *ngFor="let sub of subServices"
-          [value]="sub.SubServiceID">
+        [(ngModel)]="form.subServiceId"
+        placeholder="Select Sub Service">
+        <ion-select-option *ngFor="let sub of subServices" [value]="sub.SubServiceID">
           {{ sub.title }}
-
         </ion-select-option>
       </ion-select>
     </ion-item>
 
-    <!-- Client Ticket ID -->
+    <!-- ✅ Client Ticket ID -->
     <ion-item>
-      <ion-label position="stacked">Client Ticket ID</ion-label>
+      <ion-label position="stacked">Client Ticket ID (Optional)</ion-label>
       <ion-input
-        placeholder="Enter Ticket ID"
-        [(ngModel)]="form.clientTicketId">
+        [(ngModel)]="form.clientTicketId"
+        placeholder="Enter Client Ticket ID">
       </ion-input>
     </ion-item>
 
@@ -66,27 +69,25 @@
     <ion-item>
       <ion-label position="stacked">Priority</ion-label>
       <ion-select
-        placeholder="Select Priority"
-        [(ngModel)]="form.priority">
+        [(ngModel)]="form.priority"
+        placeholder="Select Priority">
         <ion-select-option value="Low">Low</ion-select-option>
         <ion-select-option value="Medium">Medium</ion-select-option>
         <ion-select-option value="High">High</ion-select-option>
       </ion-select>
     </ion-item>
 
-    <!-- Ticket Attachment -->
+    <!-- 🔥 Attachment -->
     <ion-item lines="none">
-      <ion-label>Ticket Attachment</ion-label>
-      <ion-button
-        fill="outline"
-        color="primary"
-        slot="end"
-        (click)="captureImage()">
+      <ion-label>Attachment</ion-label>
+
+      <ion-button fill="outline" slot="end" (click)="captureImage()">
         <ion-icon name="camera-outline"></ion-icon>
         Capture
       </ion-button>
     </ion-item>
 
+    <!-- Image Preview -->
     <div *ngIf="imagePreview" class="image-box">
       <img [src]="imagePreview" />
     </div>
@@ -96,8 +97,8 @@
       <ion-label position="stacked">Message</ion-label>
       <ion-textarea
         rows="4"
-        placeholder="Describe your issue"
-        [(ngModel)]="form.message">
+        [(ngModel)]="form.message"
+        placeholder="Describe your issue">
       </ion-textarea>
     </ion-item>
 
@@ -107,5 +108,47 @@
     </ion-button>
 
   </ion-card>
+
+
+  <!-- 🔥 Branch Site Modal -->
+  <ion-modal [isOpen]="branchSiteModal">
+    <ng-template>
+
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Select Branch Site</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="branchSiteModal = false">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+
+        <!-- Search -->
+        <ion-searchbar
+          [(ngModel)]="branchSiteSearch"
+          (ionInput)="filterBranchSite()"
+          placeholder="Search Branch Site">
+        </ion-searchbar>
+
+        <!-- List -->
+        <ion-list>
+          <ion-item
+            *ngFor="let b of filteredBranchSites"
+            (click)="selectBranchSite(b)">
+            {{ b.BranchSite }}
+          </ion-item>
+
+          <!-- Empty State -->
+          <ion-item *ngIf="filteredBranchSites.length === 0">
+            No Branch Found
+          </ion-item>
+        </ion-list>
+
+      </ion-content>
+
+    </ng-template>
+  </ion-modal>
 
 </ion-content>

@@ -4,15 +4,14 @@
       <ion-back-button ></ion-back-button>
     </ion-buttons>
     <ion-title>Corporate Tickets</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content style="--background: #fff">
 
-  <div>
-    <ion-buttons  style="color: #000; margin-left: 54%; margin-top: 2px">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </div>
+
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

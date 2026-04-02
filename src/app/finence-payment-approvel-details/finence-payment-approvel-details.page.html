@@ -9,7 +9,7 @@
 
 <ion-content class="ticket-detail-page">
 
-  <ion-card *ngFor="let pay of impact" class="payment-card">
+  <ion-card *ngFor="let pay of impact; trackBy: trackByTicket" class="payment-card">
 
     <!-- HEADER -->
     <div class="payment-header">
@@ -19,9 +19,8 @@
           Ticket ID: {{ pay.TicketID }}
         </div>
 
-
-
-        <div class="status-badge" [ngClass]="pay.Status">
+        <div class="status-badge"
+             [ngClass]="pay.Status?.toLowerCase().replace(' ','-')">
           {{ pay.Status }}
         </div>
       </div>
@@ -41,19 +40,27 @@
     <!-- IMAGES -->
     <div class="img-row">
 
-      <div class="img-box" *ngIf="pay.BillImage">
+      <!-- BILL IMAGE -->
+      <div class="img-box" *ngIf="pay.BillImage?.length">
         <div class="img-title">Bill Image</div>
-        <img [src]="pay.BillImage" (click)="openImage(pay.BillImage)" />
+
+        <img *ngFor="let img of pay.BillImage"
+             [src]="img || 'assets/no-image.png'"
+             loading="lazy"
+             (click)="openImage(img)"
+             style="width: 100px; margin: 5px; border-radius: 8px;" />
       </div>
 
+      <!-- QR -->
       <div class="img-box" *ngIf="pay.QrImage">
         <div class="img-title">QR Image</div>
-        <img [src]="pay.QrImage" (click)="openImage(pay.QrImage)" />
+        <img [src]="pay.QrImage || 'assets/no-image.png'"
+             (click)="openImage(pay.QrImage)" />
       </div>
 
     </div>
 
-    <!-- 🔥 FINANCE COST SECTION -->
+    <!-- FINANCE -->
     <div class="finance-box">
 
       <div class="finance-row">
@@ -72,146 +79,142 @@
       </div>
 
       <div class="finance-row">
-        <span style="font-size: 16px; font-weight: bold;">Total Our Cost</span>
-        <strong style="font-size: 16px; font-weight: bold;">
+        <span style="font-weight: bold;">Total Our Cost</span>
+        <strong>
           ₹ {{ (pay.C_VisitCharge || 0) + (pay.C_MaterialCost || 0) + (pay.C_LabourCost || 0) }}
         </strong>
       </div>
 
       <div class="finance-row">
-        <span style="font-size: 16px; font-weight: bold;">Vendor Cost</span>
-        <strong style="font-size: 16px; font-weight: bold;">
-          ₹ {{ pay.ExpectedBudget }}
+        <span style="font-weight: bold;">Vendor Cost</span>
+        <strong>₹ {{ pay.ExpectedBudget }}</strong>
+      </div>
+
+      <hr>
+
+      <div class="finance-row">
+        <span style="font-weight: bold;">Till Paid Amount</span>
+        <strong style="color: green;">
+          ₹ {{ paymentHistory_cfo?.total_cfo_paid || 0 }}
         </strong>
       </div>
 
- ---------------------------------------
-<div class="finance-row">
-  <span style="font-size: 16px; font-weight: bold;">Till Paid Amount</span>
-  <strong style="font-size: 16px; font-weight: bold; color: green;">
-    ₹ {{ paymentHistory_cfo?.total_cfo_paid || 0 }}
-  </strong>
-</div>
-
-
-
     </div>
 
-    <!-- 🔥 PAYMENT HISTORY BUTTON -->
+    <!-- HISTORY -->
     <div class="history-btn-box">
       <ion-button expand="block"
                   fill="outline"
-                  class="history-btn"
                   (click)="openHistory_model(pay)">
         <ion-icon name="time-outline" slot="start"></ion-icon>
         Payment History
       </ion-button>
     </div>
 
-    <!-- APPROVE BUTTON -->
-    <div class="approve-area" *ngIf="pay.IsFinanceApprove == 'No'">
-      <ion-button expand="block"
-                  size="small"
-                  class="approve-btn"
-                  (click)="approvePayment(pay)">
-        APPROVE PAYMENT
-      </ion-button>
+    <!-- ✅ APPROVE + REJECT -->
+    <div class="approve-area" *ngIf="pay.IsFinanceApprove === 'No'">
+
+      <ion-grid>
+        <ion-row>
+
+          <ion-col size="6">
+            <ion-button expand="block"
+                        size="small"
+                        color="success"
+                        (click)="approvePayment(pay)">
+              APPROVE
+            </ion-button>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-button expand="block"
+                        size="small"
+                        color="danger"
+                        (click)="rejectPayment(pay)">
+              REJECT
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
     </div>
 
   </ion-card>
 
 </ion-content>
 
+<!-- ✅ FIXED MODAL -->
+<ion-modal [isOpen]="historyModal">
 
-<!-- 🔥 MODAL -->
-<ion-modal [isOpen]="historyModal" class="history-modal">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Payment History</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeHistory()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-  <ng-template>
+  <ion-content>
 
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Payment History</ion-title>
+    <div *ngIf="paymentHistory?.length > 0; else noHistory">
 
-        <ion-buttons slot="end">
-          <ion-button (click)="closeHistory()">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+      <div class="history-item" *ngFor="let h of paymentHistory">
 
-    <ion-content class="modal-content">
+        <div class="top-row">
+          <span>{{ h.PaymentType }}</span>
+          <span [ngClass]="h.Status">{{ h.Status }}</span>
+        </div>
 
-      <div *ngIf="paymentHistory?.length > 0; else noHistory">
+        <div class="amount">₹ {{ h.Amount }}</div>
 
-        <div class="history-item" *ngFor="let h of paymentHistory">
+        <div class="row">
+          <span>Store</span>
+          <strong>{{ h.Store || '-' }}</strong>
+        </div>
 
-          <!-- TOP -->
-          <div class="top-row">
-            <span class="type">{{ h.PaymentType }}</span>
+        <div class="row">
+          <span>Phone</span>
+          <strong>{{ h.PhoneNumber || '-' }}</strong>
+        </div>
 
-            <span class="status" [ngClass]="h.Status">
-              {{ h.Status }}
-            </span>
-          </div>
+        <div class="row">
+          <span>Date</span>
+          <strong>{{ h.CreatedDate | date:'dd MMM yyyy, hh:mm a' }}</strong>
+        </div>
 
-          <!-- AMOUNT -->
-          <div class="amount">
-            ₹ {{ h.Amount }}
-          </div>
+        <div class="img-row" *ngIf="h.BillImage?.length || h.QrImage">
 
-          <!-- DETAILS -->
-          <div class="row">
-            <span>Store</span>
-            <strong>{{ h.Store || '-' }}</strong>
-          </div>
+          <img *ngFor="let img of h.BillImage"
+               [src]="img"
+               (click)="openImage(img)"
+               style="width: 90px; margin: 5px; border-radius: 8px;">
 
-          <div class="row">
-            <span>Phone</span>
-            <strong>{{ h.PhoneNumber || '-' }}</strong>
-          </div>
+          <img *ngIf="h.QrImage"
+               [src]="h.QrImage"
+               (click)="openImage(h.QrImage)">
+        </div>
 
-          <div class="row">
-            <span>Date</span>
-            <strong>{{ h.CreatedDate | date:'dd MMM yyyy, hh:mm a' }}</strong>
-          </div>
-
-          <!-- IMAGES -->
-          <div class="img-row" *ngIf="h.BillImage || h.QrImage">
-
-            <div class="img-box" *ngIf="h.BillImage">
-              <div class="img-title">Bill</div>
-              <img [src]="h.BillImage" (click)="openImage(h.BillImage)">
-            </div>
-
-            <div class="img-box" *ngIf="h.QrImage">
-              <div class="img-title">QR</div>
-              <img [src]="h.QrImage" (click)="openImage(h.QrImage)">
-            </div>
-
-          </div>
-
-          <!-- CFO FILE -->
-          <div class="cfo-file" *ngIf="h.CfoFile">
-            <ion-button size="small"
-                        fill="outline"
-                        (click)="openImage(h.CfoFile)">
-              <ion-icon name="document-outline" slot="start"></ion-icon>
-              View CFO File
-            </ion-button>
-          </div>
-
+        <div class="cfo-file" *ngIf="h.CfoFile">
+          <ion-button size="small"
+                      fill="outline"
+                      (click)="openImage(h.CfoFile)">
+            <ion-icon name="document-outline" slot="start"></ion-icon>
+            View CFO File
+          </ion-button>
         </div>
 
       </div>
 
-      <!-- EMPTY -->
-      <ng-template #noHistory>
-        <div class="no-history">
-          No Payment History Found
-        </div>
-      </ng-template>
+    </div>
 
-    </ion-content>
+    <ng-template #noHistory>
+      <div class="no-history">
+        No Payment History Found
+      </div>
+    </ng-template>
 
-  </ng-template>
+  </ion-content>
 
 </ion-modal>

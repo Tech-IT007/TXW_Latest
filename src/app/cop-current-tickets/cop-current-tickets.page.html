@@ -221,7 +221,12 @@
   routerLink="/all-convence-charge">
   Conveyance Charge
 </ion-button>
-
+<ion-button
+  *ngIf="impact.Status !== 'Closed' && impact.Status !== 'Cancel'"
+  class="btn-payment"
+routerLink="/all-payment-show">
+Ticket Payment
+</ion-button>
 <!-- Cancel -->
 
 

@@ -1,0 +1,96 @@
+/* Page Background */
+ion-content {
+  --background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Section Title */
+.section-title {
+  background: #017dc0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 6px 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+/* Table Container */
+.table {
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Row */
+.row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+/* Header Row */
+.header {
+  background: #017dc0;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Columns */
+.col {
+  flex: 1;
+  padding: 4px;
+  font-size: 11px;   /* SMALL FONT */
+  border-right: 1px solid #eee;
+}
+
+/* First Column (Question) */
+.point {
+  flex: 2;
+  color: #333;
+}
+
+/* Dropdown */
+ion-select {
+  font-size: 11px;
+  --padding-start: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Input */
+ion-input {
+  font-size: 11px;
+  --padding-start: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Score Box */
+.readonly {
+  text-align: center;
+  font-weight: bold;
+  color: #017dc0;
+}
+
+/* Highlight for NO (Danger) */
+.row.no-selected {
+  background: #fff5f5;
+  border-left: 3px solid #d12e27;
+}
+
+/* Optional: Yes/No color inside dropdown */
+ion-select::part(text) {
+  color: #017dc0;
+}
+
+/* Scroll Fix */
+.table {
+  overflow-x: auto;
+}
+
+/* Remove last border */
+.row:last-child {
+  border-bottom: none;
+}

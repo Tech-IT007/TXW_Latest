@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RefresherCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-help-desk',
@@ -13,7 +14,12 @@ export class HelpDeskPage implements OnInit {
   loading: boolean = false;
 
   constructor(private http: HttpClient , private router: Router) {}
-
+ handleRefresh(event: RefresherCustomEvent) {
+    setTimeout(() => {
+       this.getConcerns(); // Refresh the concerns list
+      event.target.complete();
+    }, 2000);
+  }
   ngOnInit() {
   
   }

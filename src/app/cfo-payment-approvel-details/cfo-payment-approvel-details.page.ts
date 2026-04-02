@@ -1,29 +1,28 @@
-
-
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cfo-payment-approvel-details',
   templateUrl: './cfo-payment-approvel-details.page.html',
   styleUrls: ['./cfo-payment-approvel-details.page.scss'],
 })
-export class CFOPaymentApprovelDetailsPage implements OnInit {
+export class CFOPaymentApprovelDetailsPage implements OnInit, OnDestroy {
 
   impact: any[] = [];
   show = false;
+
   paymentHistory_cfo: any = {};
-  // 🔥 HISTORY VARIABLES
   historyModal = false;
   paymentHistory: any[] = [];
 
+  sub!: Subscription;
+
   dataToSend = {
-    TicketID:   localStorage.getItem('cfo_Ticket_id') || '',
+    TicketID: localStorage.getItem('cfo_Ticket_id') || '',
     Status: "Pending",
   };
 
@@ -31,17 +30,21 @@ export class CFOPaymentApprovelDetailsPage implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private toast: ToastController,
-    private loader: NgxUiLoaderService
+    private loader: NgxUiLoaderService,
+    private alertCtrl: AlertController
   ) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(() => {
+    this.sub = this.route.queryParams.subscribe(() => {
       this.loadPayments();
-      this.openHistory({ TicketID: this.dataToSend.TicketID });
     });
   }
 
-  /* ================= LOAD PAYMENTS ================= */
+  ngOnDestroy() {
+    if (this.sub) this.sub.unsubscribe();
+  }
+
+  /* ================= LOAD ================= */
 
   loadPayments() {
     this.loader.start();
@@ -49,21 +52,56 @@ export class CFOPaymentApprovelDetailsPage implements OnInit {
     this.http.post(
       'https://techxpertindia.in/api/get-ticket-payments-details-by-paymentid-for-cfo.php',
       this.dataToSend
-    ).subscribe((res: any) => {
+    ).subscribe({
 
-      this.impact = res.data || [];
-      this.show = this.impact.length === 0;
+      next: (res: any) => {
 
-      // 🔥 CALL FINANCE API FOR EACH PAYMENT
-      this.impact.forEach(pay => {
-        this.getFinanceData(pay);
-      });
+        this.impact = (res?.data || []).map((pay: any) => ({
+          ...pay,
+          BillImage: this.fixImage(pay.BillImage),
+          QrImage: this.fixImage(pay.QrImage)
+        }));
 
-      this.loader.stop();
+        this.show = this.impact.length === 0;
+
+        this.loadSummary();
+
+        this.impact.forEach(p => this.getFinanceData(p));
+
+        this.loader.stop();
+      },
+
+      error: async () => {
+        this.loader.stop();
+
+        const t = await this.toast.create({
+          message: "Failed to load payments",
+          duration: 2000,
+          color: "danger"
+        });
+        t.present();
+      }
     });
   }
 
-  /* ================= FINANCE DATA ================= */
+  /* ================= IMAGE ================= */
+
+  fixImage(img: any) {
+    if (!img) return '';
+
+    if (typeof img === 'string') {
+      try {
+        const parsed = JSON.parse(img);
+        return Array.isArray(parsed) ? parsed[0] : parsed;
+      } catch {
+        return img;
+      }
+    }
+
+    return img;
+  }
+
+  /* ================= FINANCE ================= */
 
   getFinanceData(pay: any) {
 
@@ -77,87 +115,58 @@ export class CFOPaymentApprovelDetailsPage implements OnInit {
       body
     ).subscribe((res: any) => {
 
-      const data = res?.data || {};
+      const d = res?.data || {};
 
-      pay.C_VisitCharge = parseFloat(data.C_VisitCharge) || 0;
-      pay.C_MaterialCost = parseFloat(data.C_MaterialCost) || 0;
-      pay.C_LabourCost = parseFloat(data.C_LabourCost) || 0;
-      pay.ExpectedBudget = parseFloat(data.ExpectedBudget) || 0;
-
-      const totalCost =
-        pay.C_VisitCharge +
-        pay.C_MaterialCost +
-        pay.C_LabourCost;
-
-      const paid = parseFloat(pay.Amount) || 0;
-
-      pay.profitLoss = totalCost - paid;
-
+      pay.C_VisitCharge = +d.C_VisitCharge || 0;
+      pay.C_MaterialCost = +d.C_MaterialCost || 0;
+      pay.C_LabourCost = +d.C_LabourCost || 0;
+      pay.ExpectedBudget = +d.ExpectedBudget || 0;
     });
   }
 
-  /* ================= 🔥 PAYMENT HISTORY ================= */
-  openHistory(pay: any) {
-    this.loader.start();
+  /* ================= SUMMARY ================= */
 
-    const body = {
-      TicketID: pay.TicketID
-    };
-
+  loadSummary() {
     this.http.post(
       'https://techxpertindia.in/api/get_total_payment_details_by_ticket_id.php',
-      body
+      { TicketID: this.dataToSend.TicketID }
     ).subscribe((res: any) => {
-
-      this.loader.stop();
-
-this.paymentHistory_cfo = res.data.summary || {};
-
-
-      console.log("Payment History:", this.paymentHistory_cfo);
-
-    }, async () => {
-
-      this.loader.stop();
-
-      const t = await this.toast.create({
-        message: "Failed to load payment history",
-        duration: 2000,
-        color: "danger"
-      });
-      t.present();
+      this.paymentHistory_cfo = res?.data?.summary || {};
     });
   }
+
+  /* ================= HISTORY ================= */
 
   openHistory_model(pay: any) {
     this.loader.start();
 
-    const body = {
-      TicketID: pay.TicketID
-    };
-
     this.http.post(
       'https://techxpertindia.in/api/get_total_payment_details_by_ticket_id.php',
-      body
-    ).subscribe((res: any) => {
+      { TicketID: pay.TicketID }
+    ).subscribe({
 
-      this.loader.stop();
+      next: (res: any) => {
 
-      this.paymentHistory = res.data.payments|| [];
-      this.historyModal = true;
+        this.paymentHistory = (res?.data?.payments || []).map((h: any) => ({
+          ...h,
+          BillImage: this.fixImage(h.BillImage),
+          QrImage: this.fixImage(h.QrImage)
+        }));
 
-      console.log("Payment History:", this.paymentHistory);
+        this.historyModal = true;
+        this.loader.stop();
+      },
 
-    }, async () => {
+      error: async () => {
+        this.loader.stop();
 
-      this.loader.stop();
-
-      const t = await this.toast.create({
-        message: "Failed to load payment history",
-        duration: 2000,
-        color: "danger"
-      });
-      t.present();
+        const t = await this.toast.create({
+          message: "Failed to load history",
+          duration: 2000,
+          color: "danger"
+        });
+        t.present();
+      }
     });
   }
 
@@ -168,64 +177,111 @@ this.paymentHistory_cfo = res.data.summary || {};
   /* ================= APPROVE ================= */
 
   approvePayment(pay: any) {
-    this.loader.start();
 
-    const body = {
-      TicketID: pay.TicketID,
-      PaymentID: pay.ID,
-      IsCfoApprove: "Yes"
-    };
+    this.loader.start();
 
     this.http.post(
       'https://techxpertindia.in/api/change_ticket_payment_approval.php',
-      body
-    ).subscribe(async () => {
+      {
+        TicketID: pay.TicketID,
+        PaymentID: pay.ID,
+        IsCfoApprove: "Yes"
+      }
+    ).subscribe({
 
-      this.loader.stop();
+      next: async () => {
 
-      const t = await this.toast.create({
-        message: "Payment Approved Successfully",
-        duration: 2000,
-        color: "success"
-      });
-      t.present();
+        this.loader.stop();
 
-      this.loadPayments();
+        const t = await this.toast.create({
+          message: "Approved",
+          duration: 2000,
+          color: "success"
+        });
+        t.present();
 
-    }, async () => {
+        this.loadPayments();
+      },
 
-      this.loader.stop();
+      error: async () => {
 
-      const t = await this.toast.create({
-        message: "Approval Failed",
-        duration: 2000,
-        color: "danger"
-      });
-      t.present();
+        this.loader.stop();
 
+        const t = await this.toast.create({
+          message: "Approval Failed",
+          duration: 2000,
+          color: "danger"
+        });
+        t.present();
+      }
+    });
+  }
+
+  /* ================= REJECT ================= */
+
+  async rejectPayment(pay: any) {
+
+    const alert = await this.alertCtrl.create({
+      header: 'Reject Payment',
+      message: 'Are you sure?',
+      buttons: [
+        { text: 'Cancel', role: 'cancel' },
+        {
+          text: 'Reject',
+          handler: () => this.confirmReject(pay)
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  confirmReject(pay: any) {
+
+    this.loader.start();
+
+    this.http.post(
+      'https://techxpertindia.in/api/change_ticket_payment_not_approval.php',
+      {
+        TicketID: pay.TicketID,
+        PaymentID: pay.ID,
+        IsStateApprove: "No",
+        IsFinanceApprove: "No",
+        IsCfoApprove: "No"
+      }
+    ).subscribe({
+
+      next: async () => {
+
+        this.loader.stop();
+
+        const t = await this.toast.create({
+          message: "Rejected",
+          duration: 2000,
+          color: "warning"
+        });
+        t.present();
+
+        this.loadPayments();
+      },
+
+      error: async () => {
+
+        this.loader.stop();
+
+        const t = await this.toast.create({
+          message: "Reject Failed",
+          duration: 2000,
+          color: "danger"
+        });
+        t.present();
+      }
     });
   }
 
   /* ================= IMAGE ================= */
 
   openImage(img: string) {
-    window.open(img, '_blank');
+    if (img) window.open(img, '_blank');
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

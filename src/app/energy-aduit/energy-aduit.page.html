@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar  style="--background:#027dc1; --color:#fff">
+    <ion-title>Energy Audit - Electrical</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="section-title">Section A - ELECTRICAL</div>
+
+  <div class="table">
+    
+    <!-- Header -->
+    <div class="row header">
+      <div class="col point">Assessment Check Point</div>
+      <div class="col">Yes/No</div>
+      <div class="col">Remark</div>
+    </div>
+
+    <!-- Data Rows -->
+    <div class="row"
+         *ngFor="let item of questions; let i = index"
+         [ngClass]="{'no-selected': item.status === 'No'}">
+
+      <!-- Question -->
+      <div class="col point">
+        {{i+1}}. {{item.name}}
+      </div>
+
+      <!-- Dropdown -->
+      <div class="col">
+        <ion-select [(ngModel)]="item.status" placeholder="Select">
+          <ion-select-option value="Yes">Yes</ion-select-option>
+          <ion-select-option value="No">No</ion-select-option>
+        </ion-select>
+      </div>
+
+      <!-- Remark -->
+      <div class="col">
+        <ion-input [(ngModel)]="item.remark"
+                   placeholder="Enter remark">
+        </ion-input>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

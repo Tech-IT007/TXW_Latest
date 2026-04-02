@@ -1,175 +1,193 @@
-/* PAGE BACKGROUND */
-
-.page-bg{
-  --background:#f4f6f9;
-  padding:12px;
+/* ================= HEADER ================= */
+.header {
+  --background: #1565c0;
+  --color: #fff;
 }
 
-
-/* ADD BUTTON */
-
-.add-btn{
-  --background:#027dc1;
-  --color:#fff;
+/* ================= PAGE ================= */
+.page-bg {
+  --background: #f4f7fb;
+  padding: 14px;
 }
 
-
-/* GRAND TOTAL CARD */
-
-.total-card{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px;
-  border-radius:14px;
-  background:linear-gradient(135deg,#027dc1,#0098e5);
-  color:#fff;
-  margin-bottom:15px;
+/* ================= FAB BUTTON ================= */
+.fab-btn {
+  --background: #1565c0;
+  --color: #fff;
 }
 
-.total-card span{
-  font-size:13px;
-  opacity:0.9;
+/* ================= SUMMARY CARD ================= */
+.summary-card {
+  background: linear-gradient(135deg, #1565c0, #42a5f5);
+  border-radius: 18px;
+  padding: 18px;
+  color: #fff;
+  margin-bottom: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-.total-card h2{
-  margin:4px 0 0;
-  font-size:22px;
-  font-weight:600;
+/* TOTAL TEXT */
+.total p {
+  font-size: 13px;
+  opacity: 0.9;
 }
 
-.total-card ion-icon{
-  font-size:32px;
-  opacity:0.9;
+.total h1 {
+  font-size: 26px;
+  margin: 6px 0 16px;
+  font-weight: 700;
 }
 
-
-/* PAYMENT CARD */
-
-.payment-card{
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+/* ================= STATS BOX ================= */
+.stats {
+  display: flex;
+  gap: 12px;
 }
 
-
-/* CARD HEADER */
-
-.card-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #eee;
-  padding-bottom:8px;
-  margin-bottom:10px;
+.stat {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  background: #ffffff; /* FIXED VISIBILITY */
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-.card-header h2{
-  font-size:15px;
-  font-weight:600;
-  margin:0;
-  color:#222;
+/* TEXT */
+.stat span {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
 }
 
-
-/* VIEW BUTTON */
-
-.eye-btn{
-  font-size:12px;
-  color:#027dc1;
-  font-weight:500;
+.stat h3 {
+  margin: 4px 0 0;
+  font-size: 16px;
+  font-weight: 700;
 }
 
-
-/* BODY */
-
-.card-body{
-  font-size:13px;
+/* PAID */
+.stat.paid {
+  border-left: 5px solid #2ecc71;
 }
-
-
-/* ROW */
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:6px;
+.stat.paid h3 {
+  color: #2ecc71;
 }
-
-.row span{
-  color:#777;
-}
-
-.row strong{
-  // color:#000;
-}
-
-
-/* STATUS COLORS */
-
-.status-pending{
-  color:#ff9800;
-}
-
-.status-paid{
-  color:#2ecc71;
-}
-
-.status-partial{
-  color:#e91e63;
-}
-
-
-/* APPROVAL BOX */
-
-.approval-box{
-  margin-top:10px;
-  border-top:1px dashed #ddd;
-  padding-top:10px;
-}
-
-.approval-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:6px;
-}
-
-
-/* BADGES */
-
-ion-badge{
-  font-size:11px;
-  padding:5px 8px;
-  border-radius:8px;
-}
-
-
-/* APPROVED */
-
-.approved{
-  background:#2ecc71;
-  color:#fff;
-}
-
 
 /* REJECTED */
-
-.rejected{
-  background:#e74c3c;
-  color:#fff;
+.stat.rejected {
+  border-left: 5px solid #e74c3c;
+}
+.stat.rejected h3 {
+  color: #e74c3c;
 }
 
-
-.status-pending{
-  color:#ff9800;
+/* ================= LIST ================= */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.status-paid{
-  color:#2ecc71;
+/* ================= PAYMENT CARD ================= */
+.payment-item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.2s;
 }
 
-.status-partial{
-  color:#e91e63;
+/* HOVER EFFECT */
+.payment-item:active {
+  transform: scale(0.98);
+}
+
+/* ================= LEFT ================= */
+.left h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+}
+
+.left p {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: #888;
+}
+
+/* ================= RIGHT ================= */
+.right {
+  text-align: right;
+}
+
+.right h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* ================= STATUS ================= */
+.right span {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pending {
+  color: #ff9800;
+}
+
+.paid {
+  color: #2ecc71;
+}
+
+.rejected {
+  color: #e74c3c;
+}
+
+.partial {
+  color: #2196f3;
+}
+
+/* ================= APPROVAL CHIPS ================= */
+.approval-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* CHIP BASE */
+.chip {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* APPROVED */
+.approved {
+  background: #eafaf1;
+  color: #27ae60;
+}
+
+/* REJECTED */
+.chip.rejected {
+  background: #fdecea;
+  color: #e74c3c;
+}
+
+/* ================= EMPTY STATE ================= */
+.empty-state {
+  text-align: center;
+  margin-top: 60px;
+  color: #aaa;
+}
+
+.empty-state ion-icon {
+  font-size: 42px;
+  margin-bottom: 10px;
 }

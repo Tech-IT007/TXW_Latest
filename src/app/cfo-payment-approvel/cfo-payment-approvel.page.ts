@@ -22,7 +22,7 @@ export class CFOPaymentApprovelPage implements OnInit {
     IsStateApprove: "",
     IsCfoApprove: "",
     start_counter: 0,
-    no_of_records: 10
+    no_of_records: 10000
   };
 
   IsFinanceApprove = localStorage.getItem("IsFinanceApprove");
@@ -71,7 +71,7 @@ export class CFOPaymentApprovelPage implements OnInit {
       IsFinanceApprove: "Yes",
       IsCfoApprove: "No",
       start_counter: 0,
-      no_of_records: 10
+      no_of_records: 10000
     };
 
     // Apply approval rules
@@ -89,7 +89,7 @@ export class CFOPaymentApprovelPage implements OnInit {
       IsCfoApprove: "Yes",
          Status: "Pending , Partially Paid , Paid",
       start_counter: 0,
-      no_of_records: 10
+      no_of_records: 10000
     };
 
     this.allTickets();

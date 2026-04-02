@@ -1,24 +1,25 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-payment-approvel-details',
   templateUrl: './payment-approvel-details.page.html',
   styleUrls: ['./payment-approvel-details.page.scss'],
 })
-export class PaymentApprovelDetailsPage implements OnInit {
+export class PaymentApprovelDetailsPage implements OnInit, OnDestroy {
 
   impact: any[] = [];
   show = false;
 
-  // 🔥 HISTORY VARIABLES
   historyModal = false;
   paymentHistory: any[] = [];
-paymentHistory_cfo: any = {};
+  paymentHistory_cfo: any = {};
+
+  sub!: Subscription;
 
   dataToSend = {
     TicketID: localStorage.getItem('Ticket_id'),
@@ -29,239 +30,173 @@ paymentHistory_cfo: any = {};
     private route: ActivatedRoute,
     private http: HttpClient,
     private toast: ToastController,
-    private loader: NgxUiLoaderService
+    private loader: NgxUiLoaderService,
+    private alertCtrl: AlertController
   ) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(() => {
+    this.sub = this.route.queryParams.subscribe(() => {
       this.loadPayments();
-      this.openHistory({ TicketID: this.dataToSend.TicketID });
     });
   }
 
-  /* ================= LOAD PAYMENTS ================= */
-
-loadPayments() {
-  this.loader.start();
-
-  this.http.post(
-    'https://techxpertindia.in/api/get-ticket-payments-details-by-ticketid.php',
-    this.dataToSend
-  ).subscribe((res: any) => {
-
-    this.impact = res.data || [];
-    this.show = this.impact.length === 0;
-
-    // ✅ Fix BillImage for each payment
-    this.impact.forEach(pay => {
-
-      if (pay.BillImage) {
-        if (typeof pay.BillImage === 'string') {
-          try {
-            // If JSON string → convert to array
-            pay.BillImage = JSON.parse(pay.BillImage);
-          } catch {
-            // If normal string → convert to single array
-            pay.BillImage = [pay.BillImage];
-          }
-        }
-      } else {
-        pay.BillImage = [];
-      }
-
-      // 🔥 Call Finance API
-      this.getFinanceData(pay);
-    });
-
-    this.loader.stop();
-  });
-}
-
-  /* ================= FINANCE DATA ================= */
-
-  getFinanceData(pay: any) {
-
-    const body = {
-      security_code: "Techxpertsequirtyabcdabcdabcdabcdabcdabcdefghijkllmnopqrst",
-      TicketID: pay.TicketID
-    };
-
-    this.http.post(
-      'https://techxpertindia.in/api/get_ticket_finance_data_by_ticketid.php',
-      body
-    ).subscribe((res: any) => {
-
-      const data = res?.data || {};
-
-      pay.C_VisitCharge = parseFloat(data.C_VisitCharge) || 0;
-      pay.C_MaterialCost = parseFloat(data.C_MaterialCost) || 0;
-      pay.C_LabourCost = parseFloat(data.C_LabourCost) || 0;
-      pay.ExpectedBudget = parseFloat(data.ExpectedBudget) || 0;
-
-      const totalCost =
-        pay.C_VisitCharge +
-        pay.C_MaterialCost +
-        pay.C_LabourCost;
-
-      const paid = parseFloat(pay.Amount) || 0;
-
-      pay.profitLoss = totalCost - paid;
-
-    });
+  ngOnDestroy() {
+    if (this.sub) this.sub.unsubscribe();
   }
 
-  /* ================= 🔥 PAYMENT HISTORY ================= */
-
-  openHistory(pay: any) {
+  loadPayments() {
     this.loader.start();
 
-    const body = {
-      TicketID: pay.TicketID
-    };
+    this.http.post(
+      'https://techxpertindia.in/api/get-ticket-payments-details-by-ticketid.php',
+      this.dataToSend
+    ).subscribe({
+
+      next: (res: any) => {
+        this.impact = (res?.data || []).map((p: any) => ({
+          ...p,
+          BillImage: this.parseImages(p.BillImage)
+        }));
+
+        this.show = this.impact.length === 0;
+        this.loadCfoSummary();
+        this.loader.stop();
+      },
+
+      error: async () => {
+        this.loader.stop();
+        const t = await this.toast.create({
+          message: "Failed to load data",
+          duration: 2000,
+          color: "danger"
+        });
+        t.present();
+      }
+    });
+  }
+
+  parseImages(img: any) {
+    if (!img) return [];
+    try { return typeof img === 'string' ? JSON.parse(img) : img; }
+    catch { return [img]; }
+  }
+
+  loadCfoSummary() {
+    this.http.post(
+      'https://techxpertindia.in/api/get_total_payment_details_by_ticket_id.php',
+      { TicketID: this.dataToSend.TicketID }
+    ).subscribe((res: any) => {
+      this.paymentHistory_cfo = res?.data?.summary || {};
+    });
+  }
+
+  openHistory_model(pay: any) {
+    this.loader.start();
 
     this.http.post(
       'https://techxpertindia.in/api/get_total_payment_details_by_ticket_id.php',
-      body
-    ).subscribe((res: any) => {
+      { TicketID: pay.TicketID }
+    ).subscribe({
 
-      this.loader.stop();
+      next: (res: any) => {
+        this.paymentHistory = (res?.data?.payments || []).map((h: any) => ({
+          ...h,
+          BillImage: this.parseImages(h.BillImage)
+        }));
 
-this.paymentHistory_cfo = res.data.summary || {};
+        this.historyModal = true;
+        this.loader.stop();
+      },
 
-
-      console.log("Payment History:", this.paymentHistory_cfo);
-
-    }, async () => {
-
-      this.loader.stop();
-
-      const t = await this.toast.create({
-        message: "Failed to load payment history",
-        duration: 2000,
-        color: "danger"
-      });
-      t.present();
+      error: async () => {
+        this.loader.stop();
+        const t = await this.toast.create({
+          message: "Failed to load history",
+          duration: 2000,
+          color: "danger"
+        });
+        t.present();
+      }
     });
   }
-
-
-
-openHistory_model(pay: any) {
-  this.loader.start();
-
-  const body = {
-    TicketID: pay?.TicketID
-  };
-
-  this.http.post(
-    'https://techxpertindia.in/api/get_total_payment_details_by_ticket_id.php',
-    body
-  ).subscribe(
-    async (res: any) => {
-
-      this.loader.stop();
-
-      // ✅ Safe response handling
-      const payments = res?.data?.payments || [];
-
-      // ✅ Fix BillImage for each history item
-      this.paymentHistory = payments.map((item: any) => {
-
-        if (item.BillImage) {
-          if (typeof item.BillImage === 'string') {
-            try {
-              item.BillImage = JSON.parse(item.BillImage);
-            } catch {
-              item.BillImage = [item.BillImage];
-            }
-          }
-        } else {
-          item.BillImage = [];
-        }
-
-        return item;
-      });
-
-      this.historyModal = true;
-
-      console.log("Payment History:", this.paymentHistory);
-    },
-
-    async (error) => {
-      this.loader.stop();
-
-      console.error("API Error:", error);
-
-      const t = await this.toast.create({
-        message: "Failed to load payment history",
-        duration: 2000,
-        color: "danger"
-      });
-      t.present();
-    }
-  );
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
   closeHistory() {
     this.historyModal = false;
   }
 
-  /* ================= APPROVE ================= */
-
   approvePayment(pay: any) {
     this.loader.start();
 
-    const body = {
-      TicketID: pay.TicketID,
-      PaymentID: pay.ID,
-      IsStateApprove: "Yes"
-    };
-
     this.http.post(
       'https://techxpertindia.in/api/change_ticket_payment_approval.php',
-      body
-    ).subscribe(async () => {
-
-      this.loader.stop();
-
-      const t = await this.toast.create({
-        message: "Payment Approved Successfully",
-        duration: 2000,
-        color: "success"
-      });
-      t.present();
-
-      this.loadPayments();
-
-    }, async () => {
-
-      this.loader.stop();
-
-      const t = await this.toast.create({
-        message: "Approval Failed",
-        duration: 2000,
-        color: "danger"
-      });
-      t.present();
-
+      {
+        TicketID: pay.TicketID,
+        PaymentID: pay.ID,
+        IsStateApprove: "Yes"
+      }
+    ).subscribe({
+      next: async () => {
+        this.loader.stop();
+        const t = await this.toast.create({
+          message: "Approved",
+          duration: 2000,
+          color: "success"
+        });
+        t.present();
+        this.loadPayments();
+      }
     });
   }
 
-  /* ================= IMAGE ================= */
+  async rejectPayment(pay: any) {
+
+    const alert = await this.alertCtrl.create({
+      header: 'Reject Payment',
+      message: 'Are you sure?',
+      buttons: [
+        { text: 'Cancel', role: 'cancel' },
+        {
+          text: 'Reject',
+          handler: () => this.callRejectAPI(pay)
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  callRejectAPI(pay: any) {
+
+    this.loader.start();
+
+    this.http.post(
+      'https://techxpertindia.in/api/change_ticket_payment_not_approval.php',
+      {
+        TicketID: pay.TicketID,
+        PaymentID: pay.ID,
+        IsStateApprove: "No",
+        IsFinanceApprove: "No",
+        IsCfoApprove: "No"
+      }
+    ).subscribe({
+      next: async () => {
+        this.loader.stop();
+        const t = await this.toast.create({
+          message: "Rejected",
+          duration: 2000,
+          color: "warning"
+        });
+        t.present();
+        this.loadPayments();
+      }
+    });
+  }
 
   openImage(img: string) {
     window.open(img, '_blank');
+  }
+
+  trackByTicket(i: number, item: any) {
+    return item.TicketID;
   }
 }

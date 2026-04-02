@@ -26,6 +26,7 @@
     "@awesome-cordova-plugins/firebase-x": "^8.1.0",
     "@awesome-cordova-plugins/local-notifications": "^8.1.0",
     "@awesome-cordova-plugins/native-audio": "^8.1.0",
+    "@awesome-cordova-plugins/splash-screen": "^9.1.1",
     "@capacitor-community/camera-preview": "^7.0.2",
     "@capacitor-community/text-to-speech": "^6.0.0",
     "@capacitor/android": "^8.0.0",

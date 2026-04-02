@@ -39,7 +39,7 @@ import { error } from 'console';
 export class VendorNewPagePage implements OnInit {
 notifications: any[] = [];
 isNotificationOpen = false;
-
+raisedTicket: boolean = false;
 lastNotificationCount: number = 0;
   out: any;
   showAttendancePopup = false;
@@ -56,7 +56,7 @@ lastNotificationCount: number = 0;
   outtime_status: any;
   bannerdata: any;
   loction_status: any;
-  location_enable: boolean;
+  location_enable: boolean = false;
   users: any;
   obj: any ={}
   notifiction_counter: any;
@@ -126,6 +126,7 @@ ionViewWillEnter() {
   this.vendor_roles();
   this.profile();
 
+
   const employeeId = localStorage.getItem('EmployeeID');
 
   // Always clear old subscription
@@ -153,22 +154,32 @@ ionViewWillEnter() {
     "EmployeeID": localStorage.getItem("EmployeeID")
   
   }
-  ngOnInit() {
-     // Subscribe to notifications
 
-  
-    this.role = localStorage.getItem('role');
-    console.log(this.role);
-    this.Status_role();
-    this.loction_status = localStorage.getItem('address');
-   
-    if (this.loction_status == '') {
-      this.location_enable = true;
-    } else {
-      this.location_enable = false;
-    }
+
+
+
+
+ngOnInit() {
+
+  this.role = localStorage.getItem('role') || '';
+  console.log(this.role);
+
+  this.Status_role();
+
+  this.loction_status = localStorage.getItem('address') || '';
+
+  this.location_enable = this.loction_status === '';
+
+  // ✅ Role-based condition
+  const rolesArray = this.role.split(',').map(r => r.trim());
+
+  if (rolesArray.includes('Branch Account Manager')) {
+    this.raisedTicket = true;
+  } else {
+    this.raisedTicket = false;
   }
 
+}
   dataToSend: any = {
     EmployeeID: localStorage.getItem('EmployeeID'),
   };
@@ -661,55 +672,7 @@ profile() {
   // ==============================
   // OPEN ACTION SHEET
   // ==============================
-  async captureImage() {
-    const hasPermission = await this.checkCameraPermission();
 
-    if (!hasPermission) {
-      console.warn('Camera permission denied');
-      return;
-    }
-
-    const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Select Image Source',
-      buttons: [
-        {
-          text: 'Take Photo',
-          icon: 'camera',
-          handler: () => this.takePicture1(CameraSource.Camera),
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-        },
-      ],
-    });
-
-    await actionSheet.present();
-  }
-
-  // ==============================
-  // TAKE / PICK IMAGE
-  // ==============================
-  async takePicture1(source: CameraSource) {
-    try {
-      const photo = await Camera.getPhoto({
-        quality: 90,
-        resultType: CameraResultType.Base64,
-        source: source,
-        allowEditing: false,
-      });
-
-      const base64Image = photo.base64String;
-
-      if (base64Image) {
-        this.clickedImage = 'data:image/jpeg;base64,' + base64Image;
-        this.saveImageToDataStore(base64Image);
-      }
-
-    } catch (err) {
-      console.error('Camera error:', err);
-    }
-  }
 
   // ==============================
   // UPLOAD IMAGE TO SERVER
@@ -734,56 +697,6 @@ profile() {
       },
     });
   }
-
-  // ==============================
-  // CHECK CAMERA PERMISSION
-  // ==============================
-  async checkCameraPermission(): Promise<boolean> {
-    const result = await this.androidPermissions.checkPermission(
-      this.androidPermissions.PERMISSION.CAMERA
-    );
-
-    if (!result.hasPermission) {
-      const request = await this.androidPermissions.requestPermission(
-        this.androidPermissions.PERMISSION.CAMERA
-      );
-
-      return request.hasPermission;
-    }
-
-    return true;
-  }
-
-  // ==============================
-  // REFRESH PROFILE (YOUR API)
-  // ==============================
-// soundLoaded = false;
-//   async showInAppMessage() {
-
-//     // 🔊 preload only once
-//     if (!this.soundLoaded) {
-//       await this.nativeAudio.preloadSimple(
-//         'notif',
-//         'assets/sounds/notification.mp3'
-//       );
-//       this.soundLoaded = true;
-//     }
-
-//     // 🔔 play every time
-//     this.nativeAudio.play('notif');
-
-//     // 📢 show alert
-//     const alert = await this.alertCtrl.create({
-//       header: 'Notification',
-//       message: 'This message appears with sound every time',
-//       buttons: ['OK']
-//     });
-
-//     await alert.present();
-//   }
-
-
-
 
 
 playNotificationSound() {

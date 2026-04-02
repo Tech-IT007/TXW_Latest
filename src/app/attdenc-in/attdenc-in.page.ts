@@ -1,53 +1,43 @@
 import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import { LoadingController, Platform, ToastController } from '@ionic/angular';
+import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
-
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
-
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 import { Camera, CameraSource, CameraResultType, CameraDirection } from '@capacitor/camera';
-
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
-declare let window: any;
 
 @Component({
   selector: 'app-attdenc-in',
   templateUrl: './attdenc-in.page.html',
   styleUrls: ['./attdenc-in.page.scss'],
- // IMPORTANT FOR AWESOME CAMERA
 })
 export class AttdencINPage implements OnInit, OnDestroy {
 
-  readonly TEST_UPLOAD_IMAGE_PATH = '/mnt/data/78ba8473-10e4-4ab2-a8be-6af98f490ebf.png';
+  currentTime = '';
+  latitude: number;
+  longitude: number;
+  address = '';
 
-  currentTime: string = '';
-  address: string = '';
-  latitude: number | null = null;
-  longitude: number | null = null;
-  accuracy: number | null = null;
-  clicked: string | null = null;
-  img_data: string | null = null;
+  clicked: string = '';
+  img_data: string = '';
+
+  private destroy$ = new Subject<void>();
 
   Attdence_Data: any = {
     EmployeeID: localStorage.getItem('EmployeeID'),
     Latitude: "",
-    Longitude: "" ,
+    Longitude: "",
     imageData: '',
   };
 
   geoencoderOptions: NativeGeocoderOptions = {
     useLocale: true,
-    maxResults: 5,
+    maxResults: 1,
   };
-
-  latest_adress: any = null;
-  private destroy$ = new Subject<void>();
-  isMirrored: boolean;
 
   constructor(
     private geolocation: Geolocation,
@@ -56,314 +46,133 @@ export class AttdencINPage implements OnInit, OnDestroy {
     private locationAccuracy: LocationAccuracy,
     private http: HttpClient,
     private router: Router,
-    public toastController: ToastController,
-    private platform: Platform,
-    public loadingCtrl: LoadingController,
-    private ngZone: NgZone,
-
+    private toastController: ToastController,
+    private loadingCtrl: LoadingController,
+    private ngZone: NgZone
   ) {
-    this.latest_adress = localStorage.getItem('address') || '';
-
     setInterval(() => {
       this.ngZone.run(() => {
-        const now = new Date();
-        this.currentTime = now.toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        });
+        this.currentTime = new Date().toLocaleTimeString();
       });
     }, 1000);
   }
 
   ngOnInit() {
-   this.
-  chckAppGpsPermission() 
-  this.checkCameraPermission() 
+    this.chckAppGpsPermission();
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
-async checkCameraPermission() {
-  const result = await this.androidPermissions.checkPermission(
-    this.androidPermissions.PERMISSION.CAMERA
-  );
 
-  if (!result.hasPermission) {
-    await this.androidPermissions.requestPermission(
-      this.androidPermissions.PERMISSION.CAMERA
-    );
-  }
-}
-
+  // ---------- GPS ----------
   chckAppGpsPermission() {
-    this.androidPermissions
-      .checkPermission(
-        this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION
-      )
-      .then(
-        (result) => {
-          if (result.hasPermission) {
-            this.requestToSwitchOnGPS();
-          } else {
-            this.askGPSPermission();
-          }
+    this.androidPermissions.checkPermission(
+      this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION
+    ).then(res => {
+      res.hasPermission ? this.requestToSwitchOnGPS() : this.askGPSPermission();
+    });
+  }
+
+  askGPSPermission() {
+    this.androidPermissions.requestPermission(
+      this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION
+    ).then(() => this.requestToSwitchOnGPS());
+  }
+
+  requestToSwitchOnGPS() {
+    this.locationAccuracy.request(
+      this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY
+    ).then(() => this.getLocation());
+  }
+
+  async getLocation() {
+    try {
+      const pos = await this.geolocation.getCurrentPosition({
+        enableHighAccuracy: false,
+        maximumAge: 30000,
+        timeout: 8000
+      });
+
+      this.latitude = pos.coords.latitude;
+      this.longitude = pos.coords.longitude;
+
+      this.Attdence_Data.Latitude = this.latitude;
+      this.Attdence_Data.Longitude = this.longitude;
+
+      this.getAddress(this.latitude, this.longitude);
+
+    } catch {
+      this.showToast('Location error', 'danger');
+    }
+  }
+
+  async getAddress(lat: number, lng: number) {
+    try {
+      const res = await this.nativeGeocoder.reverseGeocode(lat, lng, this.geoencoderOptions);
+      if (res.length) {
+        this.address = `${res[0].locality}, ${res[0].administrativeArea}`;
+        localStorage.setItem('address', this.address);
+      }
+    } catch {}
+  }
+
+  // ---------- CAMERA ----------
+  async capture() {
+    try {
+      const photo = await Camera.getPhoto({
+        quality: 40,
+        resultType: CameraResultType.Base64,
+        source: CameraSource.Camera,
+        direction: CameraDirection.Front
+      });
+
+      const base64 = photo.base64String;
+      if (!base64) return;
+
+      this.clicked = `data:image/jpeg;base64,${base64}`;
+      this.img_data = base64;
+      this.Attdence_Data.imageData = base64;
+
+    } catch {
+      this.showToast('Camera error', 'danger');
+    }
+  }
+
+  // ---------- SUBMIT ----------
+  async attdence_in() {
+
+    if (!this.latitude) {
+      this.showToast('Location required', 'danger');
+      return;
+    }
+
+    if (!this.img_data) {
+      await this.capture();
+      return;
+    }
+
+    const loader = await this.loadingCtrl.create({ message: 'Submitting...' });
+    await loader.present();
+
+    this.http.post('https://techxpertindia.in/api/punch_in_employee_attendance.php', this.Attdence_Data)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        async (res: any) => {
+          this.showToast('Attendance In Success', 'success');
+          this.router.navigateByUrl('vendor-new-page');
+          loader.dismiss().catch(() => {});
         },
-        (err) => {
-          alert(err);
+        async () => {
+          this.showToast('Failed', 'danger');
+          loader.dismiss().catch(() => {});
         }
       );
   }
 
-  askGPSPermission() {
-    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
-      if (canRequest) {
-      } else {
-        this.androidPermissions
-          .requestPermission(
-            this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION
-          )
-          .then(
-            () => {
-              this.requestToSwitchOnGPS();
-            },
-            (error) => {
-              alert(error);
-            }
-          );
-      }
-    });
-  }
-
-  requestToSwitchOnGPS() {
-    this.locationAccuracy
-      .request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY)
-      .then(
-        () => {
-          this.getGeolocation();
-        },
-        (error) => alert(JSON.stringify(error))
-      );
-  }
-
-async getGeolocation() {
-  const loading = await this.loadingCtrl.create({
-    message: 'Fetching location...',
-    spinner: 'circles',
-  });
-  await loading.present();
-
-  try {
-    const position = await this.geolocation.getCurrentPosition({
-      enableHighAccuracy: true,
-      timeout: 8000,          // ⏱ max wait 8 sec
-      maximumAge: 30000       // ♻ allow cached location (VERY FAST)
-    });
-
-    this.latitude = position.coords.latitude;
-    this.longitude = position.coords.longitude;
-    this.accuracy = position.coords.accuracy;
-
-    this.Attdence_Data.Latitude = this.latitude;
-    this.Attdence_Data.Longitude = this.longitude;
-
-    console.log('Lat:', this.latitude);
-    console.log('Lng:', this.longitude);
-    console.log('Accuracy:', this.accuracy);
-
-    // ⚡ reverse geocode WITHOUT loader
-    this.getGeoencoderFast(this.latitude, this.longitude);
-
-  } catch (error) {
-    console.error('GPS Error:', error);
-    this.showToast('Unable to fetch location', 'danger');
-  } finally {
-    loading.dismiss();
-  }
-}
-async getGeoencoderFast(latitude: number, longitude: number) {
-  try {
-    const result = await this.nativeGeocoder.reverseGeocode(
-      latitude,
-      longitude,
-      {
-        useLocale: true,
-        maxResults: 1   // 🚀 only 1 result = faster
-      }
-    );
-
-    if (result && result.length > 0) {
-      this.address = this.generateShortCleanAddress(result[0]);
-      console.log('Address:', this.address);
-    } else {
-      this.address = 'Address not found';
-    }
-
-  } catch (error) {
-    console.error('Geocoder Error:', error);
-    this.address = 'Unable to fetch address';
-  }
-}
-
-
-generateShortCleanAddress(a: any): string {
-  const parts = [];
-
-  if (a.subLocality) parts.push(a.subLocality);
-  if (a.locality) parts.push(a.locality);
-
-  const stateMap = {
-    'uttar pradesh': 'UP',
-    'madhya pradesh': 'MP',
-    'maharashtra': 'MH',
-    'delhi': 'DL',
-    'karnataka': 'KA',
-    'tamil nadu': 'TN',
-    'west bengal': 'WB',
-    'bihar': 'BR',
-    'rajasthan': 'RJ',
-    'gujarat': 'GJ',
-  };
-
-  if (a.administrativeArea) {
-    const stateKey = a.administrativeArea.toLowerCase();
-    parts.push(stateMap[stateKey] || a.administrativeArea);
-  }
-
-  return a.postalCode
-    ? `${parts.join(', ')} - ${a.postalCode}`
-    : parts.join(', ');
-}
-
-
-
-
-
-
-  // ---------------------------------------------------------
-  // ✔ ADVANCED CORDOVA CAMERA (SELFIE ONLY)
-  // ---------------------------------------------------------
-
-async capture(): Promise<void> {
-
-  const loading = await this.loadingCtrl.create({
-    message: 'Opening camera...',
-    spinner: 'circles'
-  });
-
-  await loading.present();
-
-  try {
-
-    const photo = await Camera.getPhoto({
-      quality: 40,
-      allowEditing: false,
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      direction: CameraDirection.Front
-    });
-
-    const compressedBase64 = await this.compressImage(photo.webPath);
-
-    // Preview
-    this.clicked = compressedBase64;
-
-    // Remove prefix for API
-    this.img_data = compressedBase64.split(',')[1];
-
-    this.Attdence_Data.imageData = this.img_data;
-
-    this.isMirrored = true;
-
-  } catch (err) {
-    console.error('Camera error:', err);
-    this.showToast('Camera error. Try again.', 'danger');
-  } finally {
-    loading.dismiss();
-  }
-
-}
-
-
-compressImage(imageUrl: string): Promise<string> {
-
-  return new Promise((resolve) => {
-
-    const img = new Image();
-    img.src = imageUrl;
-
-    img.onload = () => {
-
-      const canvas = document.createElement('canvas');
-
-      const MAX_WIDTH = 500;
-      const scaleSize = MAX_WIDTH / img.width;
-
-      canvas.width = MAX_WIDTH;
-      canvas.height = img.height * scaleSize;
-
-      const ctx: any = canvas.getContext('2d');
-
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-      const compressedBase64 = canvas.toDataURL('image/jpeg', 0.35);
-
-      resolve(compressedBase64);
-    };
-
-  });
-
-}
-
-
-async attdence_in(): Promise<void> {
-
-  const loading = await this.loadingCtrl.create({
-    message: 'Submitting attendance...',
-    spinner: 'dots'
-  });
-
-  await loading.present();
-
-  const url = 'https://techxpertindia.in/api/punch_in_employee_attendance.php';
-
-  this.http.post(url, this.Attdence_Data)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(
-
-      (res: any) => {
-
-        loading.dismiss();
-
-        this.showToast('Attendance submitted!', 'success');
-
-        this.router.navigateByUrl('vendor-new-page');
-
-      },
-
-      (err) => {
-
-        loading.dismiss();
-
-        this.showToast('Submission failed', 'danger');
-
-      }
-
-    );
-
-}
-
-
-
-  async showToast(message: string, color: string = 'primary') {
-    const toast = await this.toastController.create({
-      message,
-      duration: 3000,
-      color,
-      position: 'bottom',
-    });
-    toast.present();
+  async showToast(msg: string, color = 'primary') {
+    const t = await this.toastController.create({ message: msg, duration: 3000, color });
+    t.present();
   }
 }

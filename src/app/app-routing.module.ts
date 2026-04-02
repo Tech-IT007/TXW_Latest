@@ -608,6 +608,22 @@ const routes: Routes = [
     path: 'help-desk-details',
     loadChildren: () => import('./help-desk-details/help-desk-details.module').then( m => m.HelpDeskDetailsPageModule)
   },
+  {
+    path: 'splash',
+    loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
+  },
+  {
+    path: 'energy-aduit',
+    loadChildren: () => import('./energy-aduit/energy-aduit.module').then( m => m.EnergyAduitPageModule)
+  },
+  {
+    path: 'energy-type',
+    loadChildren: () => import('./energy-type/energy-type.module').then( m => m.EnergyTypePageModule)
+  },
+  {
+    path: 'ups-battery',
+    loadChildren: () => import('./ups-battery/ups-battery.module').then( m => m.UPSBATTERYPageModule)
+  },
 
 ];
 

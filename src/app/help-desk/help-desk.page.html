@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar class="header-toolbar">
+  <ion-toolbar  style="--background: #0c7cbc; --color: #fff;" >
     <ion-back-button slot="start"></ion-back-button>
     <ion-title>Help Desk</ion-title>
   </ion-toolbar>
@@ -7,6 +7,9 @@
 
 <ion-content class="page-bg">
 
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <!-- CARD -->
   <ion-card *ngFor="let item of concerns" class="modern-card">
 

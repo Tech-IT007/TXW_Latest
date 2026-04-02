@@ -22,7 +22,7 @@ export class FinencePaymentApprovelPage implements OnInit {
     IsStateApprove: "",
     IsCfoApprove: "",
     start_counter: 0,
-    no_of_records: 10
+    no_of_records: 10000
   };
 
   IsFinanceApprove = localStorage.getItem("IsFinanceApprove");
@@ -69,7 +69,7 @@ ionViewWillEnter() {
       IsFinanceApprove: "",
       IsStateApprove: "Yes",
       start_counter: 0,
-      no_of_records: 10
+      no_of_records: 10000
     };
 
     // Apply approval rules
